@@ -1,6 +1,6 @@
 <?php
 
-class crud implements user{
+class crud{
     // private database object
     private $db;
 
@@ -29,6 +29,20 @@ class crud implements user{
     public function userExists(){
         return false;
     }
+
+    public function login(/*$email,$password */){
+        $email = "test@gmail.com";
+        $password = "test";
+
+      $sql = "SELECT * FROM connexion WHERE email = $email AND password = $password";
+      $stmt = $this->db->prepare($sql);
+      $result =  $stmt->fetch();
+      
+    }
+
+
+
+
 }
 
 

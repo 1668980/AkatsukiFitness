@@ -32,7 +32,7 @@
     require_once 'crud.php';
     $crud = new crud($pdo);
 
-    $crud->insertUser('admin','aaa')
+  //  $crud->insertUser('admin','aaa')
 
-
+    echo "<br> test"
 ?>
