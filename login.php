@@ -4,16 +4,16 @@ include 'includes/header.php';
 
 //If data was submitted with a POST request // if the page loaded after POST
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $username = strtolower(trim($_POST['username']));
+    $username = strtolower(trim($_POST['email']));
     $password = $_POST['password'];
-    $new_password = md5($password . $username);
+    //$new_password = md5($password . $username);
 
-    $result = $user->getUser($username, $new_password);
+    $result = $user->getUser($username, $password);
     if(!$result){
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
     } else {
-        $_SESSION['username'] = $username;
-        $_SESSION['userid'] = $result['id'];
+        $_SESSION['email'] = $username;
+        $_SESSION['userid'] = $result['idutilisateur'];
         header('Location: viewrecords.php');
     }
 }

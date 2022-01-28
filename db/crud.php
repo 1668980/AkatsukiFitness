@@ -19,10 +19,20 @@ class crud{
         return true;
     }
 
-    // for login
-    public function getUser(){
-        $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
-        return $result;
+    // test orlando
+    public function getUser($username, $password){
+        try {
+            $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':username', $username);
+            $stmt->bindparam(':password', $password);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     // to excecute b4 inserting a new user
