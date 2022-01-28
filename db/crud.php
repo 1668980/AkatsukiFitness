@@ -43,11 +43,21 @@ class crud{
     public function login(/*$email,$password */){
         $email = "test@gmail.com";
         $password = "test";
-
-      $sql = "SELECT * FROM connexion WHERE email = $email AND password = $password";
+/*
+      $sql = "SELECT * FROM connexion WHERE email = :email ";
       $stmt = $this->db->prepare($sql);
+      $stmt->bindparam(':email', $email);
+      $stmt->execute();
       $result =  $stmt->fetch();
-      
+      return $result["idutilisateur"];
+
+      */
+      $sql = "SELECT * FROM connexion WHERE email ='$email' ";
+      $stmt = $this->db->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->fetch();     
+        
+      return  $result["idutilisateur"];
     }
 
 
