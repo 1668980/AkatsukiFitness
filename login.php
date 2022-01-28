@@ -1,6 +1,6 @@
 <?php
 include 'includes/header.php';
-//require_once 'db/conn.php';
+require_once 'db/conn.php';
 
 //If data was submitted with a POST request // if the page loaded after POST
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -8,13 +8,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $password = $_POST['password'];
     //$new_password = md5($password . $username);
 
-    $result = $user->getUser($username, $password);
+    $result = $crud->login($username, $password);
     if(!$result){
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
     } else {
-        $_SESSION['email'] = $username;
-        $_SESSION['userid'] = $result['idutilisateur'];
-        header('Location: viewrecords.php');
+    //    $_SESSION['email'] = $username;
+     //   $_SESSION['userid'] = $result['idutilisateur'];
+        header('Location: index.php');
     }
 }
 ?>

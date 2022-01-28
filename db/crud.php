@@ -19,7 +19,7 @@ class crud{
         return true;
     }
 
-    // test orlando
+    /*// test orlando
     public function getUser($username, $password){
         try {
             $sql = "SELECT * FROM connexion WHERE email = :email AND password = :password";
@@ -33,7 +33,7 @@ class crud{
             echo $e->getMessage();
             return false;
         }
-    }
+    }*/
 
     // to excecute b4 inserting a new user
     public function userExists(){
@@ -41,8 +41,7 @@ class crud{
     }
 
     public function login($email,$password){
-     /*   $email = "test@gmail.com";
-        $password = "test";*/
+    
         try{
         
       $sql = "SELECT * FROM connexion WHERE email ='$email' AND password = '$password' ";
@@ -60,7 +59,7 @@ class crud{
        
         try{
            
-         $sql = "SELECT * FROM utilisateur WHERE id = '$id' ";
+         $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
          $stmt = $this->db->prepare($sql);
          $stmt->execute();
          $result = $stmt->fetch();     
