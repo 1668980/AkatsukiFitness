@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `akatsuki_db`
 --
+create database 'akatsuki_db'
 
 -- --------------------------------------------------------
 
