@@ -40,30 +40,43 @@ class crud{
         return false;
     }
 
-    public function login(/*$email,$password */){
-        $email = "test@gmail.com";
-        $password = "test";
-/*
-      $sql = "SELECT * FROM connexion WHERE email = :email ";
-      $stmt = $this->db->prepare($sql);
-      $stmt->bindparam(':email', $email);
-      $stmt->execute();
-      $result =  $stmt->fetch();
-      return $result["idutilisateur"];
-
-      */
-      $sql = "SELECT * FROM connexion WHERE email ='$email' ";
+    public function login($email,$password){
+     /*   $email = "test@gmail.com";
+        $password = "test";*/
+        try{
+        
+      $sql = "SELECT * FROM connexion WHERE email ='$email' AND password = '$password' ";
       $stmt = $this->db->prepare($sql);
       $stmt->execute();
       $result = $stmt->fetch();     
         
-      return  $result["idutilisateur"];
+      return  $result["idutilisateur"];  
+      } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
+    public function getUser($id){
+       
+        try{
+           
+         $sql = "SELECT * FROM utilisateur WHERE id = '$id' ";
+         $stmt = $this->db->prepare($sql);
+         $stmt->execute();
+         $result = $stmt->fetch();     
+           
+         return  $result;  
+         } catch (PDOException $e) {
+               echo $e->getMessage();
+               return false;
+           }
+       }
+   
 
 
 
 
-}
+    }
 
 
 ?>

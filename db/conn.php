@@ -33,7 +33,6 @@
     $crud = new crud($pdo);
 
 
-    $crud->login();
   //  $crud->insertUser('admin','aaa')
 
    
