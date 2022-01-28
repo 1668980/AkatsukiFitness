@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2022 at 09:50 PM
+-- Generation Time: Jan 28, 2022 at 10:01 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -20,60 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `akatsuki_db`
 --
-create database 'akatsuki_db'
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Table structure for table `connexion`
 --
 
-CREATE TABLE `utilisateur` (
-  `iduser` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
+CREATE TABLE `connexion` (
+  `idutilisateur` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `date_de_naissance` date NOT NULL,
-  `idcontenu` int(11) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `utilisateur`
+-- Dumping data for table `connexion`
 --
 
-INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissance`, `idcontenu`) VALUES
-(2, 'test', 'test', 'test@gmail.com', '2022-01-13', 1);
+INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
+(2, 0, 'Test@gmail.com', 'Test');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `utilisateur`
+-- Indexes for table `connexion`
 --
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`iduser`),
-  ADD KEY `Constrain_idcontenu2` (`idcontenu`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `connexion`
+  ADD KEY `idutilisateur` (`idutilisateur`);
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `utilisateur`
+-- Constraints for table `connexion`
 --
-ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `Constrain_idcontenu2` FOREIGN KEY (`idcontenu`) REFERENCES `contenu` (`idcontenu`);
+ALTER TABLE `connexion`
+  ADD CONSTRAINT `Constrain_iduser` FOREIGN KEY (`idutilisateur`) REFERENCES `utilisateur` (`iduser`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
