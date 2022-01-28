@@ -22,9 +22,9 @@ class crud{
     // test orlando
     public function getUser($username, $password){
         try {
-            $sql = "SELECT * FROM utilisateurs WHERE username = :username AND password = :password";
+            $sql = "SELECT * FROM connexion WHERE email = :email AND password = :password";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindparam(':username', $username);
+            $stmt->bindparam(':email', $username);
             $stmt->bindparam(':password', $password);
             $stmt->execute();
             $result = $stmt->fetch();

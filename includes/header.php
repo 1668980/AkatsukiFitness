@@ -1,3 +1,6 @@
+<!-- This session file contains code that starts/resumes a session -->
+<!-- In the header so it is included on every page, allowing session capability to be used on every page -->
+<?php include_once 'includes/session.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
