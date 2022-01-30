@@ -1,10 +1,9 @@
-
 -- phpMyAdmin SQL Dump
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2022 at 09:11 PM
+-- Generation Time: Jan 30, 2022 at 03:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -27,11 +26,10 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `catalogue`
 --
-
-
 DROP DATABASE IF EXISTS `akatsuki_db`;
 CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `akatsuki_db`;
+
 
 CREATE TABLE `catalogue` (
   `idCatalogue` int(11) NOT NULL
@@ -61,6 +59,13 @@ CREATE TABLE `connexion` (
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `connexion`
+--
+
+INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
+(1, 1, 'test@gmail.com', 'test');
+
 -- --------------------------------------------------------
 
 --
@@ -71,13 +76,6 @@ CREATE TABLE `contenu` (
   `idcontenu` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `contenu`
---
-
-INSERT INTO `contenu` (`idcontenu`, `nom`) VALUES
-(1, 'exerciseTest');
 
 -- --------------------------------------------------------
 
@@ -153,7 +151,7 @@ CREATE TABLE `utilisateur` (
   `prenom` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `date_de_naissance` date NOT NULL,
-  `idcontenu` int(11) NOT NULL
+  `idcontenu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -161,7 +159,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissance`, `idcontenu`) VALUES
-(2, 'test', 'test', 'test@gmail.com', '2022-01-13', 1);
+(1, 'test1', 'test', 'test@gmail.com', '2022-01-04', NULL);
 
 --
 -- Indexes for dumped tables
@@ -269,7 +267,7 @@ ALTER TABLE `exercicecatalogue`
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -309,8 +307,6 @@ ALTER TABLE `utilisateur`
   ADD CONSTRAINT `Constrain_idcontenu2` FOREIGN KEY (`idcontenu`) REFERENCES `contenu` (`idcontenu`);
 COMMIT;
 
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
