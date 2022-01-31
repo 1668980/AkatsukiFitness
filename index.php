@@ -30,14 +30,14 @@ require_once('includes/header.php');
                             <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Se connecter
                             </button>
-                            <form class="dropdown-menu" style="min-width: 25rem ;" action="serveur/connexion.php" method="POST">
+                            <form class="dropdown-menu" style="min-width: 25rem ;" action="login.php" method="POST">
                                 <div class="mb-3 ms-3 me-3">
                                     <label for="email" class="form-label">Adresse email</label>
-                                    <input type="email" class="form-control" id="courriel" name="courriel" placeholder="email@example.com" required>
+                                    <input type="email" class="form-control" id="courriel" name="email" placeholder="email@example.com" required>
                                 </div>
                                 <div class="mb-3 ms-3 me-3">
                                     <label for="password" class="form-label">Mot de passe</label>
-                                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>
+                                    <input type="password" class="form-control" id="pass" name="password" placeholder="Mot de passe" required>
                                 </div>
                                 <div class="mb-3 ms-3 me-3">
                                     <div class="form-check">
