@@ -5,7 +5,7 @@ require_once('includes/header.php');
 <body>
     <!--Menu de navigation-->
     <header class="p-2 bg-info text-white">
-        <div class="d-flex flex-wrap align-items-center ms-5 justify-content-center justify-content-lg-start">
+        <div class="d-flex flex-wrap align-items-center ms-5 me-5 justify-content-center justify-content-lg-start">
             <!-- Logo  -->
             <a href="." class="">
                 <img src="images/logo/logo2.png" class="img-fluid" alt="..." style="max-height: 60px">
@@ -15,9 +15,11 @@ require_once('includes/header.php');
 
             <!-- Items du menu -->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
-                <li><a href="#" id="menuFilms" name="" class="nav-link px-2 text-white">Articles de santé et bien-être</a></li>
+                
                 <li><a href="#" id="menuPrix" name="" class="nav-link px-2 text-white">Nos entrainements</a></li>
+                <li><a href="#" id="menuFilms" name="" class="nav-link px-2 text-white">Articles de santé et bien-être</a></li>
                 <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white">À propos de nous</a></li>
+                <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white">Blog </a></li>
             </ul>
 
             <div class="text-end">
@@ -51,7 +53,7 @@ require_once('includes/header.php');
                     </div>
                     <!-- Redirection vers la page d'inscription -->
                     <div class="col-sm-8">
-                        <button type="button" id="btnSignup" name="" class="btn btn-danger" onclick="window.location.href='devenirMembre.html';">Devenir membre</button>
+                        <button type="button" id="btnSignup" name="" class="btn btn-danger" onclick="window.location.href='devenirMembre.php';">Devenir membre</button>
                     </div>
                 </div>
             </div>
@@ -80,17 +82,25 @@ require_once('includes/header.php');
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/blogs/b_01.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>9 Basic Tips To Lose Weight In About 3-4 Weeks</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                <div class="container mt-5 " style="max-height: 400px; max-width: 1050px">
+                        <div class="card bg-dark text-white" style="max-height: 400px; max-width: 1050px">
+                            <img src="images/blogs/b_01.jpg" class="d-block" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Build strength with unique exercises and explosive workout</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Nice-to-Know Facts About Flexibility and Stretching</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
+                <div class="container mt-5 " style="max-height: 400px; max-width: 1050px">
+                        <div class="card bg-dark text-white" style="max-height: 400px; max-width: 1050px">
+                            <img src="images/blogs/b_01.jpg" class="d-block" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Build strength with unique exercises and explosive workout</h5>
+                                <p>Some representative placeholder content for the first slide.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
