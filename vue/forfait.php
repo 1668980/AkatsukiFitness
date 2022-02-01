@@ -21,7 +21,7 @@
                         BRONZE
                     </h2>
                     <p class="card-front__text-price">
-                        À partir de $29
+                        GRATUIT
                     </p>
                         </div>
 

@@ -13,7 +13,7 @@
                 <li><a href="#" id="menuPrix" name="" class="nav-link px-2 text-white">Nos entrainements</a></li>
                 <li><a href="#" id="menuFilms" name="" class="nav-link px-2 text-white">Articles de santé et bien-être</a></li>
                 <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white">À propos de nous</a></li>
-                <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white">Blog </a></li>
+                <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white" onclick="window.location.href='vue/blog.php';">Blog </a></li>
             </ul>
 
             <div class="text-end">
