@@ -1,6 +1,8 @@
+
 <?php
-include '../includes/header.php';
-require_once '../db/conn.php';
+//backend orlando
+include 'includes/header.php';
+require_once 'db/conn.php';
 
 //If data was submitted with a POST request // if the page loaded after POST
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -12,9 +14,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!$result){
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
     } else {
-    //    $_SESSION['email'] = $username;
-     //   $_SESSION['userid'] = $result['idutilisateur'];
-        header('Location: ../index.php');
+        $_SESSION['userid'] = $result;
+        $_SESSION['email'] = $username;
+        header('Location: index.php');
     }
 }
 ?>

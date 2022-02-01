@@ -1,6 +1,15 @@
 <?php
 require_once('includes/header.php');
+
+// testing
+if(isset($_SESSION['userid'])) {
+    $userid = $_SESSION['userid'];
+    echo "<script>alert('bonjour, utilisateur $userid');</script>";
+}
 ?>
+<script>
+    
+</script>
 <body>
     <!--Menu de navigation-->
     <?php require_once ('vue/navMenu.php'); ?>
