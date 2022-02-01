@@ -63,25 +63,25 @@ class crud{
    
 // Sign up
     //add user ajouter une class user
-    public function creeUnCompte(){
-       $last_id = $this->addUser();
-    
+    public function creeUnCompte($user){
+       $last_id = $this->addUser($user);
+      
         return    $this->addConnexion( $last_id);
     } 
-    private function addUser(){
+    private function addUser($user){
         try{
-           $email="test@gmail.com";
+           /*$email="test@gmail.com";
            $prenom="test";
            $nom="test1";
-           $date='2022-01-04';
+           $date='2022-01-04';*/
 
            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`)  VALUES(:nom,:prenom,:email,:date)";
          
              $stmt = $this->db->prepare($sql);
-             $stmt->bindparam(':nom', $nom);
-             $stmt->bindparam(':prenom', $prenom);
-             $stmt->bindparam(':email', $email);
-             $stmt->bindparam(':date', $date);
+             $stmt->bindparam(':nom',  $user->lastName);
+             $stmt->bindparam(':prenom', $user->firstName);
+             $stmt->bindparam(':email', $user->email);
+             $stmt->bindparam(':date', $user->date);
              
              $stmt->execute();
              //$result = $stmt->fetch();     

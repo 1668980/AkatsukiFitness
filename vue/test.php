@@ -18,6 +18,17 @@ include '../db/conn.php';
     var_dump($crud->getUser(2));
     echo"<br><br> Cree un Compte:";
 
-   echo $crud->creeUnCompte();
+//Cree un utilisateur
+$idUser  ;
+$email="01@gmail.com"  ;
+$firstName="01";
+$lastName="01";
+$date='2022-01-04';
+$user = new Utilisateur($email,$firstName,$lastName,$date);
+
+
+
+
+   echo $crud->creeUnCompte($user);
 
 ?>
