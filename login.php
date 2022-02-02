@@ -1,7 +1,7 @@
 
 <?php
 //backend orlando
-include 'includes/header.php';
+//include 'includes/header.php';
 require_once 'db/conn.php';
 
 //If data was submitted with a POST request // if the page loaded after POST
@@ -49,5 +49,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </div>
 
 <?php
-include '../includes/footer.php';
+include 'includes/footer.php';
 ?>
