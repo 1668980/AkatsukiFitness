@@ -1,3 +1,5 @@
+</body>
+
     <footer id="footer" style="bottom:0; text-align: center; padding-top:2%">
         <p>
             <small>

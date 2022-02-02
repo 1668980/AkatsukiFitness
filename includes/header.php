@@ -1,6 +1,14 @@
 <!-- This session file contains code that starts/resumes a session -->
 <!-- In the header so it is included on every page, allowing session capability to be used on every page -->
 <?php include_once 'includes/session.php' ?>
+
+<?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,3 +27,7 @@
     <script src="utilitaires/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <script src="js/app.js"></script>
 </head>
+
+
+<body>
+<?php require_once ('vue/nav.php'); ?>
