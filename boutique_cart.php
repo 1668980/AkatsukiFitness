@@ -7,7 +7,7 @@ require_once('includes/header.php');
         <div class="container w-50 ">
         <div class="card-group container-fluid ">
 
-            <div class="card align-items-center mt-5 mb-5" href="#">
+            <div class="card align-items-center mt-5 mb-5" >
                 affichage du cart.                
             </div>
         </div>

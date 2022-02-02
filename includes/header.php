@@ -30,4 +30,4 @@ error_reporting(E_ALL);
 
 
 <body>
-<?php require_once ('vue/navMenu.php'); ?>
+<?php require_once ('vue/nav.php'); ?>
