@@ -1,12 +1,8 @@
 <?php
 require_once('includes/header.php');
 ?>
-<body>
-    <!--Menu de navigation-->
-    <?php require_once ('vue/navMenu.php'); ?>
-
-    
-    <!-- Corps de la page -->
+  
+  <!-- Corps de la page -->
     <main class="bg-dark">
 
     <table id="filmTable">
@@ -57,6 +53,6 @@ require_once('includes/header.php');
       </table>
             
     <main> 
-</body>
+
 
 <?php require_once('includes/footer.php');?>

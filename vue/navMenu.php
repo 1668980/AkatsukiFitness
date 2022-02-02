@@ -10,8 +10,8 @@
             <!-- Items du menu -->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
                 
-                <li><a href="#" id="menuPrix" name="" class="nav-link px-2 text-white">Nos entrainements</a></li>
-                <li><a href="#" id="menuFilms" name="" class="nav-link px-2 text-white">Articles de santé et bien-être</a></li>
+                <li><a href="#" id="menuPrix" name="" class="nav-link px-2 text-white">Mes entraînements</a></li>
+                <li><a href="#" id="menuFilms" name="" class="nav-link px-2 text-white">Boutique</a></li>
                 <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white">À propos de nous</a></li>
                 <li><a href="#" id="menuAbout" name="" class="nav-link px-2 text-white" onclick="window.location.href='blog.php';">Blog </a></li>
             </ul>
@@ -46,6 +46,9 @@
                         </div>
                     </div>
                     <!-- Redirection vers la page d'inscription -->
+
+                    <!--Inserer une condition lorsque l'utilisateur est connecté -->
+
                     <div class="col-sm-8">
                         <button type="button" id="btnSignup" name="" class="btn btn-danger" onclick="window.location.href='devenirMembre.php';">Devenir membre</button>
                     </div>

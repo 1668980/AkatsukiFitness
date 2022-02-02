@@ -19,3 +19,7 @@
     <script src="utilitaires/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <script src="js/app.js"></script>
 </head>
+
+
+<body>
+<?php require_once ('vue/navMenu.php'); ?>

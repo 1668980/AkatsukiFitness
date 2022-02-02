@@ -1,19 +1,15 @@
 <?php
 require_once('includes/header.php');
+?>
 
+<?php
 // testing
 if(isset($_SESSION['userid'])) {
     $userid = $_SESSION['userid'];
     echo "<script>alert('bonjour, utilisateur $userid');</script>";
 }
 ?>
-<script>
-    
-</script>
-<body>
-    <!--Menu de navigation-->
-    <?php require_once ('vue/navMenu.php'); ?>
-
+  
     
     <!-- Corps de la page -->
     <main class="bg-dark">
@@ -31,6 +27,5 @@ if(isset($_SESSION['userid'])) {
         </div>
             
     <main> 
-</body>
 
 <?php require_once('includes/footer.php');?>
