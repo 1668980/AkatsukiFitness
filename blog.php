@@ -1,4 +1,6 @@
-
+<?php
+require_once('includes/header.php');
+?>
 <body>
     <!--Menu de navigation-->
     <?php require_once ('vue/navMenu.php'); ?>
