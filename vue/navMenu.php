@@ -50,7 +50,7 @@
                     <!--Inserer une condition lorsque l'utilisateur est connecté -->
 
                     <div class="col-sm-8">
-                        <button type="button" id="btnSignup" name="" class="btn btn-danger" onclick="window.location.href='devenirMembre.php';">Devenir membre</button>
+                        <button type="button" id="btnSignup" name="" class="btn btn-danger" onclick="window.location.href='signup.php';">Devenir membre</button>
                     </div>
                 </div>
             </div>
