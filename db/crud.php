@@ -28,7 +28,7 @@ class crud
     {
         return false;
     }
-    // User
+// User
 
     //login retourne l'id du membre
     public function login($email, $password)
@@ -47,8 +47,6 @@ class crud
             return false;
         }
     }
-
-    //getUser prennd l'id d'un utilisateur retourne le info du l'utilisateur
     public function getUser($id)
     {
 
@@ -66,7 +64,7 @@ class crud
         }
     }
 
-    // Sign up
+  // Sign up
     //add user ajouter une class user
     public function creeUnCompte($user)
     {
@@ -75,12 +73,7 @@ class crud
     }
     private function addUser($user)
     {
-        try {
-            /*$email="test@gmail.com";
-           $prenom="test";
-           $nom="test1";
-           $date='2022-01-04';*/
-
+        try {  
             $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`)  VALUES(:nom,:prenom,:email,:date)";
 
             $stmt = $this->db->prepare($sql);
@@ -98,8 +91,6 @@ class crud
             return false;
         }
     }
-
-
     private function addConnexion($user, $id)
     {
         try {
@@ -120,4 +111,99 @@ class crud
             return false;
         }
     }
+
+   //Contenu 
+
+    //premiere fois
+
+    //Cree unContenu
+    //Cree unEntrainement
+    //Cree liste dexercise
+    
+    public function CreeUnContenu($nom){
+        try{
+            $sql = " INSERT INTO `contenu` (`nom`) VALUES ( $nom)";
+            $stmt->execute();
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+    public function CreeUnNouveauEntrainement($nom){
+        try{    
+            $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( $nom)";
+            $stmt->execute();
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+    public function AjouterExercises($listExercises,$idEntainement){
+        foreach($listExercises as $ex){
+            $idExercise = $this->AjouterUnExercise($ex);
+           // $this->LierEntrainementExercise($idExercise,$idEntainement);
+            $this->LierEntrainementExercise($idExercise,$idEntainement);
+        }
+        
+    }
+
+   
+
+    //ajouter entrainement 
+
+    //getContenu
+    //GetEntrainement
+    //CreeLexercie et ajouter A l'entreinement
+
+
+
+    /*
+    public function CreeUnTemplateentrainement($nom){
+        $this->CreeUnNouveauEntrainement("test");
+        // MEthode pour list d'exercise
+    }*/
+
+
+    
+    public function LierEntrainementExercise($idExercise,$idEntainement){
+        try {  
+            $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
+            ($idEntainement,$idExercise)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        return true;
+
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
+        }
+    }
+  
+    public function AjouterUnExercise($exercise){
+
+        try { 
+            $sql = "INSERT INTO `exercice` (`idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
+            (:idexercicecatalogue, :poids, :repetitions, :sets, :duree, :dureepause)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':idexercicecatalogue',  $exercise->idexercicecatalogue);
+            $stmt->bindparam(':poids', $exercise->poids);
+            $stmt->bindparam(':repetitions', $exercise->repetitions);
+            $stmt->bindparam(':duree', $exercise->duree);
+            $stmt->bindparam(':sets', $exercise->sets);
+            $stmt->bindparam(':dureepause', $exercise->dureepause);
+
+           
+            $stmt->execute();
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+       return false;
+        }
+   }
+
+
+
 }
