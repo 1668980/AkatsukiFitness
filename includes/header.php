@@ -1,7 +1,14 @@
 <!-- This session file contains code that starts/resumes a session -->
 <!-- In the header so it is included on every page, allowing session capability to be used on every page -->
-<?php include_once 'includes/session.php' ?>
-
+<?php 
+    include_once 'includes/session.php' ;
+    if(isset($_SESSION['userid'])){
+        $userid = $_SESSION['userid'];
+        $email =  $_SESSION['email'];
+        echo "<script>alert('(TEST) connecté :  utilisateur $userid ($email)');</script>";
+    }
+    
+?>
 <?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

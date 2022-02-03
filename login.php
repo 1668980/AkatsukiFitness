@@ -9,7 +9,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = strtolower(trim($_POST['email']));
     $password = $_POST['password'];
     //$new_password = md5($password . $username);
-
     $result = $crud->login($username, $password);
     if(!$result){
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
@@ -20,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 }
 ?>
-
+<!-- not supposed to appear -->
 <div id="containerLogin" class="containerLogin">
     <h1 class="h1 text-center">Se connecter</h1>
     <!-- reload this page and do the posting action on this page  -->
