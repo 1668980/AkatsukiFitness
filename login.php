@@ -2,6 +2,7 @@
 <?php
 //backend orlando
 //include 'includes/header.php';
+require_once 'includes/session.php';
 require_once 'db/conn.php';
 
 //If data was submitted with a POST request // if the page loaded after POST
@@ -20,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ?>
 <!-- not supposed to appear -->
-<div id="containerLogin" class="containerLogin">
+<div hidden id="containerLogin" class="containerLogin">
     <h1 class="h1 text-center">Se connecter</h1>
     <!-- reload this page and do the posting action on this page  -->
     <form method="POST" id="formLogin" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" class="row mt-1">
@@ -48,5 +49,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </div>
 
 <?php
-include 'includes/footer.php';
+//include 'includes/footer.php';
 ?>
