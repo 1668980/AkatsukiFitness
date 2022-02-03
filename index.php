@@ -18,14 +18,4 @@ require_once('includes/header.php');
         
 <main> 
 
-<?php
-// testing (can remove when page is dynamic)
-if(isset($_SESSION['userid'])) {
-    $userid = $_SESSION['userid'];
-    echo "<script>alert('bonjour, utilisateur $userid');</script>";
-}else {
-   echo "<script>alert('Pas connecté');</script>";
-}
-?>
-
 <?php require_once('includes/footer.php');?>

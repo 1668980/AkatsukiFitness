@@ -2,6 +2,8 @@
 <!-- In the header so it is included on every page, allowing session capability to be used on every page -->
 <?php 
     require_once 'includes/session.php';
+    require_once 'db/Utilisateur.php';
+    require_once 'db/conn.php';
     // if(isset($_SESSION['userid'])){
     //     $userid = $_SESSION['userid'];
     //     $email =  $_SESSION['email'];
