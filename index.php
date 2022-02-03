@@ -4,10 +4,10 @@ require_once('includes/header.php');
 
 <?php
 // testing
-if(isset($_SESSION['userid'])) {
-    $userid = $_SESSION['userid'];
-    echo "<script>alert('bonjour, utilisateur $userid');</script>";
-}
+// if(isset($_SESSION['userid'])) {
+//     $userid = $_SESSION['userid'];
+//     echo "<script>alert('bonjour, utilisateur $userid');</script>";
+// }
 ?>
   
     

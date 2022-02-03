@@ -15,11 +15,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     } else {
         $_SESSION['userid'] = $result;
         $_SESSION['email'] = $username;
+        echo "<script>alert('(TEST) connecté :  utilisateur $userid ($email)');</script>";
         header('Location: index.php');
     }
 }
 ?>
-<!-- not supposed to appear -->
+<!-- not used right now -->
 <div id="containerLogin" class="containerLogin">
     <h1 class="h1 text-center">Se connecter</h1>
     <!-- reload this page and do the posting action on this page  -->
