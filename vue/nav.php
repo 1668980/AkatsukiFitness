@@ -9,8 +9,9 @@
 
         <!-- Items du menu -->
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
-
+        <?php if (isset($_SESSION['userid'])) { ?>
             <li><a href="workouts.php" name="" class="nav-link px-2 text-white">Mes entraînements</a></li>
+        <?php }?>
             <li><a href="boutique_index.php" name="" class="nav-link px-2 text-white">Boutique</a></li>
             <li><a href="about.php" name="" class="nav-link px-2 text-white">À propos de nous</a></li>
             <li><a href="blog.php" name="" class="nav-link px-2 text-white">Blog </a></li>
