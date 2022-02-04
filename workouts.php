@@ -1,8 +1,7 @@
 <?php
 require_once('includes/header.php');
-require_once 'includes/auth_check.php';
 ?>
-
+<!-- ajouter un form si pour te guider vers une creation de compte ou log in -->
 <main class="bg-dark">
 
 
