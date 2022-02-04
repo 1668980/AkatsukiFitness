@@ -25,7 +25,7 @@
                     $userid = $_SESSION['userid'];
                     $userInfo = $crud->getUser($userid);
                     //$user = new Utilisateur($userInfo[0],$userInfo[1],$userInfo[2],$userInfo[3],$userInfo[4]);
-                    $rep = '<div class="col-sm-8"> <h5 class="mt-1" > Bienvenue ' . $userInfo[1] . ' ' . $userInfo[2] . '</h5> </div>';
+                    $rep = '<div class="col-sm-8"> <a class="mt-1" href="profile.php"> Bienvenue ' . $userInfo[1] . ' ' . $userInfo[2] . '</a> </div>';
                     $rep .= ' <div class="col-lg-4">
                                 <button type="button" id="btnSignOut" name="" class="btn btn-danger" onclick="window.location.href=\'logout.php\';">Déconnexion</button>
                             </div>';
