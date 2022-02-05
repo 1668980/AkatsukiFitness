@@ -1,1 +1,13 @@
 @import url(style-forfait.css);
+
+
+.card-hover:hover {
+    box-shadow: 2px 3px 3px black;
+    border-radius: 0.55rem;
+    cursor: pointer;
+}
+
+
+.card-perso {
+    box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
+}
