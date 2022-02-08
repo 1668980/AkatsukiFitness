@@ -91,6 +91,21 @@ class crud
             return false;
         }
     }
+    public function UpdateUser($user)
+    {
+        try {  
+      
+            $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName, `email` = '$user->email', `date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
+            $stmt = $this->db->prepare($sql);        
+
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
     private function addConnexion($user, $id)
     {
         try {

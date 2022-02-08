@@ -25,5 +25,11 @@ class Utilisateur {
     public function setPassword($pswd){
         $this->password = $pswd;
     }
+
+    
+
+
+
+
 } 
 ?>
