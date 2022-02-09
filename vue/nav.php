@@ -24,6 +24,8 @@
                 if (isset($_SESSION['userid'])) {
                     $userid = $_SESSION['userid'];
                     $userInfo = $crud->getUser($userid);
+                    $userStatus = $_SESSION['status'];
+                    //echo '<script>alert("hello")</script>';
                     //$user = new Utilisateur($userInfo[0],$userInfo[1],$userInfo[2],$userInfo[3],$userInfo[4]);
                     $rep = '<div class="col-sm-8"> <a class="mt-1" href="profile.php"> Bienvenue ' . $userInfo[1] . ' ' . $userInfo[2] . '</a> </div>';
                     $rep .= ' <div class="col-lg-4">

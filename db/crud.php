@@ -64,11 +64,11 @@ class crud
         }
     }
 
-    public function getUserStatus($id)
+    public function getUserStatus($email)
     {
         try {
 
-            $sql = "SELECT * FROM connexion WHERE idutilisateur = '$id' ";
+            $sql = "SELECT * FROM connexion WHERE email ='$email' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();

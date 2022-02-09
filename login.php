@@ -10,16 +10,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $password = $_POST['password'];
     //$new_password = md5($password . $username);
     $result = $crud->login($username, $password);
-    $userStatus = $crud->getUserStatus($result);
+    // if($userStatus === 0) {
+    //     // in testing
+    //     echo `<script>alert('{$userStatus}')</script>`;
+    // }
     if(!$result){
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
-    } elseif($userStatus === 0) {
-        // in testing
-        header('Location: admin.php');
-    } else {
+    }else {
+        $userStatus = $crud->getUserStatus($username);
+        echo `<script>alert('{$userStatus}')</script>`;
+        $_SESSION['status'] = $userStatus;
         $_SESSION['userid'] = $result;
         $_SESSION['email'] = $username;
+        if($userStatus == 0){
+            header('Location: admin.php');
+        } else {
         header('Location: index.php');
+        }
     }
 }
 ?>
