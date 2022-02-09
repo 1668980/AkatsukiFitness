@@ -2,151 +2,53 @@
 
 class crud
 {
+//Class  
     // private database object
     private $db;
 
-    //constructor to initialize private variable to the database connection
+   //constructor to initialize private variable to the database  connection
     public function __construct($conn)
     {
         $this->db = $conn;
     }
 
-    // to do
-    // public function insertUser()
-    // {
-    //     // verif
-    //     $result = $this->getUserbyUsername($username);
-
-    //     $sql = "INSERT INTO users (username,password) VALUES(:username,:password)";
-    //     return true;
-    // }
-
-
-
-    // to excecute b4 inserting a new user
-    public function userExists()
-    {
-        return false;
-    }
 // User
 
-    //login retourne l'id du membre
-    public function login($email, $password)
-    {
-
-        try {
-
-            $sql = "SELECT * FROM connexion WHERE email ='$email' AND password = '$password' ";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetch();
-
-            return  $result["idutilisateur"];
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
-    public function getUser($id)
-    {
-
-        try {
-
-            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetch();
-
-            return  $result;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
-
-    public function getUserStatus($email)
-    {
-        try {
-
-            $sql = "SELECT * FROM connexion WHERE email ='$email' ";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetch();
-            return  $result['status'];
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
-
-  // Sign up
-    //add user ajouter une class user
-    public function creeUnCompte($user)
-    {
+    //CreateUser
+    public function creeUnCompte($user){
         $doNotExist = $this->VerifierSiEmailDejaUtilise($user->email);
         if($doNotExist){
             $last_id = $this->addUser($user);
-            return    $this->addConnexion($user, $last_id);
+            $this->addConnexion($user, $last_id);
+            $this->CreeUnContenu($last_id);
+            $this->CreeUnContenu($last_id);
+            return  $last_id;
+            
         }else{
             return false;
         }
-        
+    
     }
-    private function addUser($user)
-    {
+    private function addUser($user){
         try {  
             $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`)  VALUES(:nom,:prenom,:email,:date)";
-
+        
             $stmt = $this->db->prepare($sql);
             $stmt->bindparam(':nom',  $user->lastName);
             $stmt->bindparam(':prenom', $user->firstName);
             $stmt->bindparam(':email', $user->email);
             $stmt->bindparam(':date', $user->date);
-
+        
             $stmt->execute();
             //$result = $stmt->fetch();     
-
+        
             return $this->db->lastInsertId();;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    // update connexion aussi
-    public function UpdateUser($user)
-    {
-        try {  
-      
-            $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName, `date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
-            $stmt = $this->db->prepare($sql);        
-
-            $stmt->execute();            
-            return true;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
-    public function VerifierSiEmailDejaUtilise($email)
-    {
-        try {
-        $sql = "SELECT * FROM `connexion` WHERE email = '$email' ";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch();
-        if($result){
-            return false;
-        }else {
-            return true;
-        }
-    }
-        catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
-    private function addConnexion($user, $id)
-    {
+    private function addConnexion($user, $id){
         try {
             $status = 1;
             $sql = "INSERT INTO `connexion` ( `idutilisateur`, `status`, `email`, `password`)  VALUES(:idutilisateur,:status,:email,:password)";
@@ -166,7 +68,116 @@ class crud
         }
     }
 
-   //Contenu 
+    //UpdateUser
+    public function UpdateUserUtilisateurTableSansEmail($user){
+        try {  
+            $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName,`date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }    
+    public function UpdateUserEmail($user){
+        $this->UpdateEmailUtilisateurTable($user);
+        $this->UpdateUserConnexionTable($user);
+    }    
+    private function UpdateEmailUtilisateurTable($user){
+        try {  
+            $sql = "UPDATE `utilisateur` SET `email` =  '$user->email' WHERE `utilisateur`.`iduser` =  $user->idUser";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }    
+    private function UpdateUserConnexionTable(){
+        try {  
+            $sql = "UPDATE `connexion` SET `email` =  '$user->email' WHERE `connexion`.`idUtilisateur` =  $user->idUser";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+        //manque update password
+    //GetUser
+    public function login($email, $password){
+
+        try {
+
+            $sql = "SELECT * FROM connexion WHERE email ='$email' AND password = '$password' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+
+            return  $result["idutilisateur"];
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function getUser($id){
+
+        try {
+
+            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+
+            return  $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function getUserStatus($email){
+        try {
+
+            $sql = "SELECT * FROM connexion WHERE email ='$email' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return  $result['status'];
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    //Verification
+    public function VerifierSiEmailDejaUtilise($email){
+        try {
+            $sql = "SELECT * FROM `connexion` WHERE email = '$email' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            if($result){
+                return false;
+            }else {
+                return true;
+            }
+        }catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    
+
+    
+    
+    
+    
+   
+
+//Contenu 
 
     //premiere fois
 
@@ -174,16 +185,20 @@ class crud
     //Cree unEntrainement
     //Cree liste dexercise
     
-    public function CreeUnContenu($nom){
+    public function CreeUnContenu($idUser){
         try{
-            $sql = " INSERT INTO `contenu` (`nom`) VALUES ( $nom)";
+            $sql = " INSERT INTO `contenu` (`iduser`) VALUES ($idUser)";
+            $stmt = $this->db->prepare($sql);
             $stmt->execute();
-        return $this->db->lastInsertId();
+        return true;
         }catch (PDOException $e) {
             echo $e->getMessage();
         return false;
         }
     }
+
+
+
     public function CreeUnNouveauEntrainement($nom){
         try{    
             $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( $nom)";
