@@ -1,4 +1,3 @@
-
 <?php
 //backend orlando
 //include 'includes/header.php';
@@ -11,12 +10,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $password = $_POST['password'];
     //$new_password = md5($password . $username);
     $result = $crud->login($username, $password);
+    // if($userStatus === 0) {
+    //     // in testing
+    //     echo `<script>alert('{$userStatus}')</script>`;
+    // }
     if(!$result){
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
-    } else {
+    }else {
+        $userStatus = $crud->getUserStatus($username);
+        echo `<script>alert('{$userStatus}')</script>`;
+        $_SESSION['status'] = $userStatus;
         $_SESSION['userid'] = $result;
         $_SESSION['email'] = $username;
+        if($userStatus == 0){
+            header('Location: admin.php');
+        } else {
         header('Location: index.php');
+        }
     }
 }
 ?>
@@ -27,7 +37,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <form method="POST" id="formLogin" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" class="row mt-1">
         <div class="form-group col-12">
             <label for="email" class="form-label">Couriel:</label>
-            <input type="text" class="form-control" id="email" name="email" value="<?php //if($_SERVER['REQUEST_METHOD'] == 'POST') echo $_POST['username']; ?>" required>
+            <input type="text" class="form-control" id="email" name="email"
+                value="<?php //if($_SERVER['REQUEST_METHOD'] == 'POST') echo $_POST['username']; ?>" required>
             <?php //if(empty($username) && $_SERVER['REQUEST_METHOD'] === 'POST') {?>
             <!-- <p class="text-danger"> <?php //$username_error;?> </p> -->
             <?php //}?>
@@ -43,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <button id="btnConnecter" type="submit" class="btn btn-success ">Se connecter</button>
         </div>
         <div class="col mt-1">
-        <a href="#" class="mt-1" >Mot de passe oublié?</a>
+            <a href="#" class="mt-1">Mot de passe oublié?</a>
         </div>
     </form>
 </div>

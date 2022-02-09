@@ -64,6 +64,21 @@ class crud
         }
     }
 
+    public function getUserStatus($email)
+    {
+        try {
+
+            $sql = "SELECT * FROM connexion WHERE email ='$email' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return  $result['status'];
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
   // Sign up
     //add user ajouter une class user
     public function creeUnCompte($user)
