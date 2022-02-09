@@ -105,7 +105,7 @@ class crud
             return false;
         }
     }
-        //manque update password
+    //manque update password
     //GetUser
     public function login($email, $password){
 
@@ -178,27 +178,43 @@ class crud
 
 //Contenu 
 
-    //premiere fois
-
-    //Cree unContenu
-    //Cree unEntrainement
-    //Cree liste dexercise
-    
+    //Create
     public function CreeUnContenu($idUser){
         try{
             $sql = " INSERT INTO `contenu` (`iduser`) VALUES ($idUser)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-        return true;
+            return true;
         }catch (PDOException $e) {
             echo $e->getMessage();
         return false;
         }
     }
+    //get
+    private function GetUnContenuAvecId($idUser){
+        try{
+            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return  $result['idcontenu'];
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+        
+    }
+   
+//Entrainement
 
-
-
-    public function CreeUnNouveauEntrainement($nom){
+    //Create
+    public function CreeUnNouveauEntrainement($nom,$idUser){
+       $idEntainement= $this->CreeEntrainement($nom);
+       $idContenu = $this->GetUnContenuAvecId($idUser);
+       $this->LierEntrainementContenu($idContenu,$idEntainement);
+       return true;
+    }
+    private function CreeEntrainement($nom){
         try{    
             $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( $nom)";
             $stmt->execute();
@@ -208,48 +224,35 @@ class crud
         return false;
         }
     }
+
+    //Get
+    private function GetEntrainementsAvecIdContenu($idUser){
+        try{
+            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return  $result['idcontenu'];
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+        
+    }
+    //Update
+    //Delete
+   
+//Exercise 
+    
+    //create
     public function AjouterExercises($listExercises,$idEntainement){
         foreach($listExercises as $ex){
-            $idExercise = $this->AjouterUnExercise($ex);
-           // $this->LierEntrainementExercise($idExercise,$idEntainement);
+            $idExercise = $this->AjouterUnExercise($ex);           
             $this->LierEntrainementExercise($idExercise,$idEntainement);
         }
         
     }
-
-   
-
-    //ajouter entrainement 
-
-    //getContenu
-    //GetEntrainement
-    //CreeLexercie et ajouter A l'entreinement
-
-
-
-    /*
-    public function CreeUnTemplateentrainement($nom){
-        $this->CreeUnNouveauEntrainement("test");
-        // MEthode pour list d'exercise
-    }*/
-
-
-    
-    public function LierEntrainementExercise($idExercise,$idEntainement){
-        try {  
-            $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
-            ($idEntainement,$idExercise)";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-        return true;
-
-        }catch (PDOException $e) {
-             echo $e->getMessage();
-        return false;
-        }
-    }
-  
-    public function AjouterUnExercise($exercise){
+    private function AjouterUnExercise($exercise){
 
         try { 
             $sql = "INSERT INTO `exercice` (`idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
@@ -270,7 +273,44 @@ class crud
             echo $sql.$e->getMessage();
        return false;
         }
-   }
+    }
+    //Get
+    //Update
+    //Delete
+   
+
+   
+
+    //GetEntrainement
+    //CreeLexercie et ajouter A l'entreinement
+
+    private function LierEntrainementExercise($idExercise,$idEntainement){
+        try {  
+            $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
+            ($idEntainement,$idExercise)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        return true;
+
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
+        }
+    }
+    private function LierEntrainementContenu($idContenu,$idEntainement){
+        try {  
+            $sql = "INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES 
+            ($idContenu,$idEntainement)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        return true;
+
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
+        }
+    }
+
 
 
 
