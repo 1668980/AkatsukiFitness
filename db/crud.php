@@ -47,17 +47,15 @@ class crud
             return false;
         }
     }
-    public function getUser($id)
+    public function getUserStatus($id)
     {
-
         try {
 
-            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+            $sql = "SELECT * FROM connexion WHERE idutilisateur = '$id' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();
-
-            return  $result;
+            return  $result['status'];
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
