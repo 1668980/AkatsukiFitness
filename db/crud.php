@@ -47,6 +47,23 @@ class crud
             return false;
         }
     }
+    public function getUser($id)
+    {
+
+        try {
+
+            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+
+            return  $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
     public function getUserStatus($id)
     {
         try {
