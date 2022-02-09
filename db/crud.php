@@ -20,8 +20,7 @@ class crud
         if($doNotExist){
             $last_id = $this->addUser($user);
             $this->addConnexion($user, $last_id);
-            $this->CreeUnContenu($last_id);
-            $this->CreeUnContenu($last_id);
+            $this->CreeUnContenu($last_id);         
             return  $last_id;
             
         }else{
