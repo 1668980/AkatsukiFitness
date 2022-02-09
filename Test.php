@@ -21,14 +21,17 @@ $exercisesList = array();
 array_push($exercisesList,$exercise);
 echo $crud->AjouterExercises($exercisesList,1);*/
 $idUser =2 ;
-$email="02@gmail.com"  ;
-$firstName="02";
-$lastName="02";
+$email="03@gmail.com"  ;
+$firstName="03";
+$lastName="03";
 $date='2022-02-22';
 $user = new Utilisateur($idUser,$lastName,$firstName,$email,$date);
+$user->setPassword("dasd12asd");
 
 
+echo "dasds";
+echo $crud->VerifierSiEmailDejaUtilise($email);
+echo $crud->creeUnCompte($user);
 
-echo $crud->UpdateUser($user);
 
 ?>

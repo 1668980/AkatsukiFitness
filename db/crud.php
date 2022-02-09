@@ -68,8 +68,14 @@ class crud
     //add user ajouter une class user
     public function creeUnCompte($user)
     {
-        $last_id = $this->addUser($user);
-        return    $this->addConnexion($user, $last_id);
+        $doNotExist = $this->VerifierSiEmailDejaUtilise($user->email);
+        if($doNotExist){
+            $last_id = $this->addUser($user);
+            return    $this->addConnexion($user, $last_id);
+        }else{
+            return false;
+        }
+        
     }
     private function addUser($user)
     {
@@ -91,11 +97,12 @@ class crud
             return false;
         }
     }
+    // update connexion aussi
     public function UpdateUser($user)
     {
         try {  
       
-            $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName, `email` = '$user->email', `date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
+            $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName, `date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
             $stmt = $this->db->prepare($sql);        
 
             $stmt->execute();            
@@ -105,7 +112,24 @@ class crud
             return false;
         }
     }
-
+    public function VerifierSiEmailDejaUtilise($email)
+    {
+        try {
+        $sql = "SELECT * FROM `connexion` WHERE email = '$email' ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        if($result){
+            return false;
+        }else {
+            return true;
+        }
+    }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     private function addConnexion($user, $id)
     {
         try {
