@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2022 at 10:24 PM
+-- Generation Time: Feb 10, 2022 at 02:54 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -26,6 +26,27 @@ USE `akatsuki_db`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories` (
+  `idcategorie` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
+(1, 'pectoraux'),
+(2, 'triceps'),
+(3, 'biceps');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `connexion`
 --
 
@@ -42,9 +63,7 @@ CREATE TABLE `connexion` (
 --
 
 INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
-(1, 1, 'test@gmail.com', 'test'),
-(2, 1, '01@gmail.com', '12345678'),
-(3, 1, '03@gmail.com', '12345678');
+(1, 1, 'test@gmail.com', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -64,8 +83,7 @@ CREATE TABLE `contenu` (
 --
 
 INSERT INTO `contenu` (`idcontenu`, `iduser`, `nom`) VALUES
-(2, 3, NULL),
-(3, 3, NULL);
+(1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,6 +97,14 @@ CREATE TABLE `entrainement` (
   `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `entrainement`
+--
+
+INSERT INTO `entrainement` (`identrainement`, `nom`) VALUES
+(1, 'Entrainemnt du lundi'),
+(2, 'Entrainemnt du lundi');
+
 -- --------------------------------------------------------
 
 --
@@ -90,6 +116,14 @@ CREATE TABLE `entrainementcontenu` (
   `idcontenu` int(11) NOT NULL,
   `identrainement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `entrainementcontenu`
+--
+
+INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -103,6 +137,14 @@ CREATE TABLE `entrainementexercice` (
   `idexercice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `entrainementexercice`
+--
+
+INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES
+(1, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -112,13 +154,21 @@ CREATE TABLE `entrainementexercice` (
 DROP TABLE IF EXISTS `exercice`;
 CREATE TABLE `exercice` (
   `idexercice` int(11) NOT NULL,
-  `idExerciceLibreAcces` int(11) NOT NULL,
+  `idexercicecatalogue` int(11) NOT NULL,
   `poids` float NOT NULL,
   `repetitions` int(11) NOT NULL,
   `sets` int(11) NOT NULL,
   `duree` int(11) NOT NULL,
   `dureepause` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exercice`
+--
+
+INSERT INTO `exercice` (`idexercice`, `idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`) VALUES
+(1, 1, 100, 6, 3, 0, 60),
+(2, 2, 100, 6, 3, 0, 60);
 
 -- --------------------------------------------------------
 
@@ -131,8 +181,16 @@ CREATE TABLE `exercicecatalogue` (
   `idexercicecatalogue` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `image` varchar(150) NOT NULL,
-  `categorie` varchar(50) NOT NULL
+  `idcategorie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exercicecatalogue`
+--
+
+INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcategorie`) VALUES
+(1, 'tirage à la poulie vertical', '', 3),
+(2, 'exercise pec', '', 1);
 
 -- --------------------------------------------------------
 
@@ -157,13 +215,17 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissance`, `poids`, `datedebutabonnement`, `datefinabonnement`) VALUES
-(1, 'test1', 'test', 'test@gmail.com', '2022-01-04', NULL, NULL, NULL),
-(2, 'n01', 'p01', '01@gmail.com', '2021-01-01', NULL, NULL, NULL),
-(3, '03', '03', '03@gmail.com', '2022-02-09', NULL, NULL, NULL);
+(1, 'test', 'test', 'test@gmail.com', '2011-01-01', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`idcategorie`);
 
 --
 -- Indexes for table `connexion`
@@ -208,7 +270,8 @@ ALTER TABLE `exercice`
 -- Indexes for table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
-  ADD PRIMARY KEY (`idexercicecatalogue`);
+  ADD PRIMARY KEY (`idexercicecatalogue`),
+  ADD KEY `Constraint_exerciceCat_categorie` (`idcategorie`);
 
 --
 -- Indexes for table `utilisateur`
@@ -221,34 +284,40 @@ ALTER TABLE `utilisateur`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `contenu`
 --
 ALTER TABLE `contenu`
-  MODIFY `idcontenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idcontenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `entrainement`
 --
 ALTER TABLE `entrainement`
-  MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `exercice`
 --
 ALTER TABLE `exercice`
-  MODIFY `idexercice` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idexercice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
-  MODIFY `idexercicecatalogue` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idexercicecatalogue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -279,6 +348,12 @@ ALTER TABLE `entrainementcontenu`
 ALTER TABLE `entrainementexercice`
   ADD CONSTRAINT `Constrain_identrainement2` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`),
   ADD CONSTRAINT `Constrain_idexercise` FOREIGN KEY (`idexercice`) REFERENCES `exercice` (`idexercice`);
+
+--
+-- Constraints for table `exercicecatalogue`
+--
+ALTER TABLE `exercicecatalogue`
+  ADD CONSTRAINT `Constraint_exerciceCat_categorie` FOREIGN KEY (`idcategorie`) REFERENCES `categories` (`idcategorie`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

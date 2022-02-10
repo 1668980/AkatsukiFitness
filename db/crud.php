@@ -157,8 +157,8 @@ class crud
             $sql = "SELECT * FROM `connexion` WHERE email = '$email' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetch();
-            if($result){
+            $result = $stmt->rowCount();
+            if($result>0){
                 return false;
             }else {
                 return true;
@@ -193,7 +193,7 @@ class crud
     //get
     private function GetUnContenuAvecId($idUser){
         try{
-            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+            $sql = "SELECT * FROM  `contenu` WHERE iduser = '$idUser' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();
@@ -216,7 +216,8 @@ class crud
     }
     private function CreeEntrainement($nom){
         try{    
-            $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( $nom)";
+            $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( '$nom')";
+            $stmt = $this->db->prepare($sql);
             $stmt->execute();
         return $this->db->lastInsertId();
         }catch (PDOException $e) {
@@ -227,8 +228,8 @@ class crud
 
     //Get
     private function GetEntrainementsAvecIdContenu($idUser){
-        try{
-            $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+        /*try{
+           $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();
@@ -236,7 +237,7 @@ class crud
         }catch  (PDOException $e) {
             echo $e->getMessage();
         return false;
-        }
+        }*/
         
     }
     //Update
@@ -275,6 +276,18 @@ class crud
         }
     }
     //Get
+    public function GetExercisesFromAnEntrainement($idEntrainement){
+        try{
+            $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice WHERE identrainement = '$idEntrainement'";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
     //Update
     //Delete
    
