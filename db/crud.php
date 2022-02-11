@@ -229,9 +229,14 @@ class crud
     }
 
     //Get
-    private function GetEntrainementsAvecIdContenu($idContenu){
+    public function GetEntrainementByIdUser($idUser){
+        
+        $idContenu =$this->GetUnContenuAvecId($idUser);
+        return $this->GetEntrainementsByContenu($idContenu);
+    }
+    private function GetEntrainementsByContenu($idContenu){
         try{
-            $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON entrainementcontenu.identrainement  = entrainement.identrainement  WHERE  = '$idContenu'";
+            $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON `entrainementcontenu`.`identrainement`  = `entrainement`.`identrainement`  WHERE `entrainementcontenu`.`idcontenu` = '$idContenu' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();

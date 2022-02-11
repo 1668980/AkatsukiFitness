@@ -52,8 +52,17 @@ function getFlipBox($nomEntrainement, $listExercise, $lienImage, $buttonText, $c
             <div class="card align-items-center mt-5 mb-5 bg-dark" style="display:inline-flex; border-radius: 25px;">
                 <div class="row row-cols-1" style="width:100%;">
                     <div class="col panel" style="width:100%;align-items: center;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 25px 0px 0px;">En Progression</div>                    
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 200); ?> 
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 100); ?>                                                            
+                    <?php
+                    $exerciseList= $crud->GetExercisesFromAnEntrainement(1);
+                    $entainementList = $crud->GetEntrainementByIdUser($_SESSION['userid']);
+                    for( $i =0;$i<count($entainementList);$i++){
+                        echo getFlipBox($entainementList[$i]['nom'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 200);
+                    }
+                   ?>
+                   
+                   
+                    <?php //echo getFlipBox($exerciseList[0]['poids'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 200); ?> 
+                    <?php //echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 100); ?>                                                            
                 </div>             
             </div>
         </div>
@@ -67,9 +76,14 @@ function getFlipBox($nomEntrainement, $listExercise, $lienImage, $buttonText, $c
                     <div class="col-1" style="width:50%;display:inline-flex;background-color:gray;font-size: 24px; padding:15px; border-radius: 0px 25px 0px 0px;justify-content: right;">
                         <button type="button" id="btnAjouterEntrainement" class="btn btn-success" style="background-color:green;" onclick="">Ajouter</button>
                     </div>
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Commencer", 50); ?> 
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Commencer", 25); ?>   
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Commencer", 300); ?>                                                          
+                    <?php
+                    $exerciseList= $crud->GetExercisesFromAnEntrainement(1);
+                    $entainementList = $crud->GetEntrainementByIdUser($_SESSION['userid']);
+                    for( $i =0;$i<count($entainementList);$i++){
+                        echo getFlipBox($entainementList[$i]['nom'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 200);
+                    }
+                   ?>
+                       
                 </div>             
             </div>
         </div>
@@ -78,10 +92,7 @@ function getFlipBox($nomEntrainement, $listExercise, $lienImage, $buttonText, $c
             <div class="card align-items-center mt-5 mb-5 bg-dark" style="display:inline-flex; border-radius: 25px;">
                 <div class="row row-cols-1" style="width:100%;">
                     <div class="col panel" style="width:100%;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 25px 0px 0px;">Compléter</div>                    
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Annuler", 80); ?> 
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Annuler", 310); ?>   
-                    <?php echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Annuler", 34); ?>                                                          
-                </div>             
+                   </div>             
             </div>
         </div>
         
