@@ -62,11 +62,12 @@ echo $crud->AjouterExercises($exercisesList,$idUserAajouter);
 
 
 */
-/*$result =$crud->GetExercisesFromAnEntrainement(1);
-var_dump($result);
+
+$result =$crud->GetExercisesFromAnEntrainement(1);
+var_dump($result[0]);
 echo "<br>";
-echo $result[0]['poids'];*/
-$result =$crud->GetEntrainementByIdUser(1);
-var_dump($result);
+echo $result[0]['poids'];
+/*$result =$crud->GetEntrainementByIdUser(1);
+var_dump($result);*/
 
 ?>
