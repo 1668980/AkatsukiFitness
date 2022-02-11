@@ -20,9 +20,9 @@ require_once('includes/header.php');
 
                             var pattern = /^[A-Za-z\d_-]{8,10}$/;
 
-                            alert("mdp= " + passwd + " conf= " + passwdConf);
+                            // alert("mdp= " + passwd + " conf= " + passwdConf);
                             if (pattern.test(passwd) == true) {
-                                alert("mdp ok");
+                                // alert("mdp ok");
                                 $('#message1').html('Valide').css('color', 'green');
                                 if (passwd == passwdConf) {
                                     $('#message2').html('Valide').css('color', 'green');

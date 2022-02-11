@@ -10,7 +10,6 @@
 
     require_once 'includes/session.php';
     require_once 'includes/helpers.php';
-
     require_once 'db/Utilisateur.php';
     require_once 'db/Exercise.php';
     require_once 'db/conn.php';
