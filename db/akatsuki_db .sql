@@ -26,9 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `categories`
 --
-DROP DATABASE IF EXISTS `akatsuki_db`;
-CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `akatsuki_db`;
+-- USE `akatsuki_db`;
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
