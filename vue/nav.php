@@ -21,11 +21,11 @@
             <div class="row justify-content-center align-items-center">
                 <?php
                 $rep = '';
-                if (isset($_SESSION['userid'])) {
+                if (is_logged_in()) {
                     $userid = $_SESSION['userid'];
                     $userInfo = $crud->getUser($userid);
                     //$user = new Utilisateur($userInfo[0],$userInfo[1],$userInfo[2],$userInfo[3],$userInfo[4]);
-                    $rep = '<div class="col-sm-8"> <button type="button" id="btnProfile" class="btn btn-light bg-secondary text-white" onclick="window.location.href=\'profile.php\';" style="font-weight: bold;"> Bienvenue ' . $userInfo[1] . ' ' . $userInfo[2] . '</button> </div>';
+                    $rep = '<div class="col-sm-8"> <button type="button" id="btnProfile" class="btn btn-light bg-secondary text-white" onclick="window.location.href=\'profile.php\';" style="font-weight: bold;"> Bienvenue ' . $userInfo['prenom'] . ' ' . $userInfo['nom'] . '</button> </div>';
                     $rep .= ' <div class="col-lg-4">
                                 <button type="button" id="btnSignOut" name="" class="btn btn-danger" onclick="window.location.href=\'logout.php\';">Déconnexion</button>
                             </div>';
