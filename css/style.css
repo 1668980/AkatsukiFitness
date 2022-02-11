@@ -1,5 +1,5 @@
+@import url(style-entrainement.css);
 @import url(style-forfait.css);
-
 
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
