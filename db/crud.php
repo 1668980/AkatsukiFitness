@@ -139,6 +139,22 @@ class crud
             return false;
         }
     }
+
+    public function getAllUsers(){
+
+        try {
+
+            $sql = "SELECT * FROM utilisateur ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+
+            return  $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     public function getUserStatus($email){
         try {
 

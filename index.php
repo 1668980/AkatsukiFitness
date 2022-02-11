@@ -14,7 +14,7 @@ require_once('includes/header.php');
     
     <div style="width:40%; margin: 0 auto;">
         <button class="btn btn-success" type="button" style="width:100%; font-size:200% ">INSCRIVEZ-VOUS!</button>
-    </div>
+</div>
         
 <main> 
 
