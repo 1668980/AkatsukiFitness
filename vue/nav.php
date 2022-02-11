@@ -21,7 +21,7 @@
             <div class="row justify-content-center align-items-center">
                 <?php
                 $rep = '';
-                if (isset($_SESSION['userid'])) {
+                if (is_logged_in()) {
                     $userid = $_SESSION['userid'];
                     $userInfo = $crud->getUser($userid);
                     //$user = new Utilisateur($userInfo[0],$userInfo[1],$userInfo[2],$userInfo[3],$userInfo[4]);

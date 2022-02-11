@@ -7,7 +7,10 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+
     require_once 'includes/session.php';
+    require_once 'includes/helpers.php';
+
     require_once 'db/Utilisateur.php';
     require_once 'db/Exercise.php';
     require_once 'db/conn.php';
