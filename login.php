@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['userid'] = $result;
         $_SESSION['email'] = $username;
         $_SESSION['status'] = $userStatus;
-        if ($userStatus == 0) {
+        if ($_SESSION['status'] == 0) {
             header('Location: admin.php');
         } else {
             header('Location: index.php');
