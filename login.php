@@ -5,7 +5,7 @@ require_once 'includes/session.php';
 require_once 'db/conn.php';
 
 //If data was submitted with a POST request // if the page loaded after POST
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = strtolower(trim($_POST['email']));
     $password = $_POST['password'];
     //$new_password = md5($password . $username);
@@ -14,18 +14,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //     // in testing
     //     echo `<script>alert('{$userStatus}')</script>`;
     // }
-    if(!$result){
+    if (!$result) {
         echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
-    }else {
+    } else {
         $userStatus = $crud->getUserStatus($username);
         echo `<script>alert('{$userStatus}')</script>`;
-        $_SESSION['status'] = $userStatus;
         $_SESSION['userid'] = $result;
         $_SESSION['email'] = $username;
-        if($userStatus == 0){
+        $_SESSION['status'] = $userStatus;
+        if ($userStatus == 0) {
             header('Location: admin.php');
         } else {
-        header('Location: index.php');
+            header('Location: index.php');
         }
     }
 }
@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <div hidden id="containerLogin" class="containerLogin">
     <h1 class="h1 text-center">Se connecter</h1>
     <!-- reload this page and do the posting action on this page  -->
-    <form method="POST" id="formLogin" action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>" class="row mt-1">
+    <form method="POST" id="formLogin" action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" class="row mt-1">
         <div class="form-group col-12">
             <label for="email" class="form-label">Couriel:</label>
             <input type="text" class="form-control" id="email" name="email"
