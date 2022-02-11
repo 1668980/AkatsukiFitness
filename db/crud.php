@@ -115,8 +115,10 @@ class crud
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();
-
-            return  $result["idutilisateur"];
+            if($result){
+                return  $result["idutilisateur"];
+            }else return false;
+           
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
@@ -227,17 +229,17 @@ class crud
     }
 
     //Get
-    private function GetEntrainementsAvecIdContenu($idUser){
-        /*try{
-           $sql = "SELECT * FROM utilisateur WHERE iduser = '$id' ";
+    private function GetEntrainementsAvecIdContenu($idContenu){
+        try{
+            $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON entrainementcontenu.identrainement  = entrainement.identrainement  WHERE  = '$idContenu'";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetch();
-            return  $result['idcontenu'];
+            $result = $stmt->fetchAll();
+            return  $result;
         }catch  (PDOException $e) {
             echo $e->getMessage();
         return false;
-        }*/
+        }
         
     }
     //Update
@@ -281,7 +283,7 @@ class crud
             $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice WHERE identrainement = '$idEntrainement'";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll();
             return  $result;
         }catch  (PDOException $e) {
             echo $e->getMessage();
