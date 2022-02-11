@@ -53,11 +53,10 @@ function getFlipBox($nomEntrainement, $listExercise, $lienImage, $buttonText, $c
                 <div class="row row-cols-1" style="width:100%;">
                     <div class="col panel" style="width:100%;align-items: center;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 25px 0px 0px;">En Progression</div>                    
                     <?php
-                   // $exerciseList= $crud->GetExercisesFromAnEntrainement(1);
+                    $exerciseList= $crud->GetExercisesFromAnEntrainement(1);
                     $entainementList = $crud->GetEntrainementByIdUser($_SESSION['userid']);
                     for( $i =0;$i<count($entainementList);$i++){
-                        $exerciseList= $crud->GetExercisesFromAnEntrainement($entainementList[$i]["idenidentrainementtra"]);
-                        echo getFlipBox($entainementList[$i]['nom'], array($exerciseList[0]['nom'],"100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 200);
+                        echo getFlipBox($entainementList[$i]['nom'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/entrainement/OnePunchMan.jpg", "Completer", 200);
                     }
                    ?>
                    
