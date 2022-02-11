@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 10, 2022 at 02:54 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 11 fév. 2022 à 19:08
+-- Version du serveur : 10.4.21-MariaDB
+-- Version de PHP : 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `akatsuki_db`
+-- Base de données : `akatsuki_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categories`
 --
 DROP DATABASE IF EXISTS `akatsuki_db`;
 CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `akatsuki_db`;
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -36,7 +37,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categories`
+-- Déchargement des données de la table `categories`
 --
 
 INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
@@ -47,7 +48,7 @@ INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `connexion`
+-- Structure de la table `connexion`
 --
 
 DROP TABLE IF EXISTS `connexion`;
@@ -59,7 +60,7 @@ CREATE TABLE `connexion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `connexion`
+-- Déchargement des données de la table `connexion`
 --
 
 INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
@@ -68,7 +69,7 @@ INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenu`
+-- Structure de la table `contenu`
 --
 
 DROP TABLE IF EXISTS `contenu`;
@@ -79,7 +80,7 @@ CREATE TABLE `contenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `contenu`
+-- Déchargement des données de la table `contenu`
 --
 
 INSERT INTO `contenu` (`idcontenu`, `iduser`, `nom`) VALUES
@@ -88,7 +89,7 @@ INSERT INTO `contenu` (`idcontenu`, `iduser`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrainement`
+-- Structure de la table `entrainement`
 --
 
 DROP TABLE IF EXISTS `entrainement`;
@@ -98,17 +99,17 @@ CREATE TABLE `entrainement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrainement`
+-- Déchargement des données de la table `entrainement`
 --
 
 INSERT INTO `entrainement` (`identrainement`, `nom`) VALUES
 (1, 'Entrainemnt du lundi'),
-(2, 'Entrainemnt du lundi');
+(2, 'Entrainemnt du mardi');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrainementcontenu`
+-- Structure de la table `entrainementcontenu`
 --
 
 DROP TABLE IF EXISTS `entrainementcontenu`;
@@ -118,7 +119,7 @@ CREATE TABLE `entrainementcontenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrainementcontenu`
+-- Déchargement des données de la table `entrainementcontenu`
 --
 
 INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
@@ -128,7 +129,7 @@ INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrainementexercice`
+-- Structure de la table `entrainementexercice`
 --
 
 DROP TABLE IF EXISTS `entrainementexercice`;
@@ -138,7 +139,7 @@ CREATE TABLE `entrainementexercice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrainementexercice`
+-- Déchargement des données de la table `entrainementexercice`
 --
 
 INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES
@@ -148,7 +149,7 @@ INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exercice`
+-- Structure de la table `exercice`
 --
 
 DROP TABLE IF EXISTS `exercice`;
@@ -163,7 +164,7 @@ CREATE TABLE `exercice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `exercice`
+-- Déchargement des données de la table `exercice`
 --
 
 INSERT INTO `exercice` (`idexercice`, `idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`) VALUES
@@ -173,7 +174,7 @@ INSERT INTO `exercice` (`idexercice`, `idexercicecatalogue`, `poids`, `repetitio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exercicecatalogue`
+-- Structure de la table `exercicecatalogue`
 --
 
 DROP TABLE IF EXISTS `exercicecatalogue`;
@@ -185,7 +186,7 @@ CREATE TABLE `exercicecatalogue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `exercicecatalogue`
+-- Déchargement des données de la table `exercicecatalogue`
 --
 
 INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcategorie`) VALUES
@@ -195,7 +196,7 @@ INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcateg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 DROP TABLE IF EXISTS `utilisateur`;
@@ -211,146 +212,146 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissance`, `poids`, `datedebutabonnement`, `datefinabonnement`) VALUES
 (1, 'test', 'test', 'test@gmail.com', '2011-01-01', NULL, NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `categories`
+-- Index pour la table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`idcategorie`);
 
 --
--- Indexes for table `connexion`
+-- Index pour la table `connexion`
 --
 ALTER TABLE `connexion`
   ADD KEY `idutilisateur` (`idutilisateur`);
 
 --
--- Indexes for table `contenu`
+-- Index pour la table `contenu`
 --
 ALTER TABLE `contenu`
   ADD PRIMARY KEY (`idcontenu`),
   ADD KEY `Constrain_idcontUser` (`iduser`);
 
 --
--- Indexes for table `entrainement`
+-- Index pour la table `entrainement`
 --
 ALTER TABLE `entrainement`
   ADD PRIMARY KEY (`identrainement`);
 
 --
--- Indexes for table `entrainementcontenu`
+-- Index pour la table `entrainementcontenu`
 --
 ALTER TABLE `entrainementcontenu`
   ADD KEY `Constrain_idcontenu` (`idcontenu`),
   ADD KEY `Constrain_identrainement` (`identrainement`);
 
 --
--- Indexes for table `entrainementexercice`
+-- Index pour la table `entrainementexercice`
 --
 ALTER TABLE `entrainementexercice`
   ADD KEY `Constrain_idexercise` (`idexercice`),
   ADD KEY `Constrain_identrainement2` (`identrainement`);
 
 --
--- Indexes for table `exercice`
+-- Index pour la table `exercice`
 --
 ALTER TABLE `exercice`
   ADD PRIMARY KEY (`idexercice`);
 
 --
--- Indexes for table `exercicecatalogue`
+-- Index pour la table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   ADD PRIMARY KEY (`idexercicecatalogue`),
   ADD KEY `Constraint_exerciceCat_categorie` (`idcategorie`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`iduser`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `contenu`
+-- AUTO_INCREMENT pour la table `contenu`
 --
 ALTER TABLE `contenu`
   MODIFY `idcontenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `entrainement`
+-- AUTO_INCREMENT pour la table `entrainement`
 --
 ALTER TABLE `entrainement`
   MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `exercice`
+-- AUTO_INCREMENT pour la table `exercice`
 --
 ALTER TABLE `exercice`
   MODIFY `idexercice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `exercicecatalogue`
+-- AUTO_INCREMENT pour la table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   MODIFY `idexercicecatalogue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `connexion`
+-- Contraintes pour la table `connexion`
 --
 ALTER TABLE `connexion`
   ADD CONSTRAINT `Constrain_iduser` FOREIGN KEY (`idutilisateur`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Constraints for table `contenu`
+-- Contraintes pour la table `contenu`
 --
 ALTER TABLE `contenu`
   ADD CONSTRAINT `Constrain_idcontUser` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Constraints for table `entrainementcontenu`
+-- Contraintes pour la table `entrainementcontenu`
 --
 ALTER TABLE `entrainementcontenu`
   ADD CONSTRAINT `Constrain_idcontenu` FOREIGN KEY (`idcontenu`) REFERENCES `contenu` (`idcontenu`),
   ADD CONSTRAINT `Constrain_identrainement` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`);
 
 --
--- Constraints for table `entrainementexercice`
+-- Contraintes pour la table `entrainementexercice`
 --
 ALTER TABLE `entrainementexercice`
   ADD CONSTRAINT `Constrain_identrainement2` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`),
   ADD CONSTRAINT `Constrain_idexercise` FOREIGN KEY (`idexercice`) REFERENCES `exercice` (`idexercice`);
 
 --
--- Constraints for table `exercicecatalogue`
+-- Contraintes pour la table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   ADD CONSTRAINT `Constraint_exerciceCat_categorie` FOREIGN KEY (`idcategorie`) REFERENCES `categories` (`idcategorie`);
