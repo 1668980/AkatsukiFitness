@@ -1,6 +1,12 @@
 <!-- This session file contains code that starts/resumes a session -->
 <!-- In the header so it is included on every page, allowing session capability to be used on every page -->
 <?php 
+
+    // pour display les erreurs.
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     require_once 'includes/session.php';
     require_once 'db/Utilisateur.php';
     require_once 'db/Exercise.php';
@@ -12,13 +18,6 @@
     // }
     
 ?>
-<?php 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -15,6 +15,9 @@ require_once('includes/header.php');
                         function validatePassword1() {
                             let passwd = $('#passInsc').val();
                             let passwdConf = $('#passConf').val();
+
+                            // tester votre regex sur https://regex101.com/
+
                             var pattern = /^[A-Za-z\d_-]{8,10}$/;
 
                             alert("mdp= " + passwd + " conf= " + passwdConf);
