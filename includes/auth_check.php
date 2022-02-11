@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['userid'])) {
+if(!is_logged_in()) {
     header("Location: index.php");
 }
 ?>
