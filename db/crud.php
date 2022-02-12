@@ -106,6 +106,7 @@ class crud
         }
     }
     //manque update password
+
     //GetUser
     public function login($email, $password){
 
@@ -139,7 +140,6 @@ class crud
             return false;
         }
     }
-
     public function getAllUsers(){
 
         try {
@@ -187,9 +187,38 @@ class crud
         }
     }
     
+    //Abonement
+    public function AddsubscriptionToUser($idUser,$duree){
+        $dt1 = new DateTime();
+        $today = $dt1->format("Y-m-d");
+        $endDate =$this->CalculateEndDate($duree);
+        return $this->AddsubscriptionToUserTable($today,$endDate,$idUser);
+    }
+    private function CalculateEndDate($duree){
+        
+        $dt2 = new DateTime($duree);
+       
+        return  $dt2->format("Y-m-d");
+    }
+    private function AddsubscriptionToUserTable($today,$endDate,$idUser){
+        try {  
+            $sql = "UPDATE `utilisateur` SET `datedebutabonnement` = '$today',`datefinabonnement` = '$endDate' WHERE `utilisateur`.`iduser` =  $idUser";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }    
+    public function IsUserSubscibed($idUser){
+        $user =$this->getUser($idUser);
 
-    
-    
+        $dateStartSub= new DateTime($user['datedebutabonnement']);
+        $dateEndSub= new DateTime($user['datefinabonnement']);
+               
+        return $dateStartSub < $dateEndSub;
+    }
     
     
    
@@ -269,25 +298,25 @@ class crud
 //Exercise 
     
     //create
-    public function AjouterExercises($listExercises,$idEntainement){
+    public function AjouterExercices($listExercises,$idEntainement){
         foreach($listExercises as $ex){
             $idExercise = $this->AjouterUnExercise($ex);           
-            $this->LierEntrainementExercise($idExercise,$idEntainement);
+            $this->LierEntrainementExercice($idExercise,$idEntainement);
         }
         
     }
-    private function AjouterUnExercise($exercise){
+    private function AjouterUnExercice($exercice){
 
         try { 
             $sql = "INSERT INTO `exercice` (`idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
             (:idexercicecatalogue, :poids, :repetitions, :sets, :duree, :dureepause)";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindparam(':idexercicecatalogue',  $exercise->idexercicecatalogue);
-            $stmt->bindparam(':poids', $exercise->poids);
-            $stmt->bindparam(':repetitions', $exercise->repetitions);
-            $stmt->bindparam(':duree', $exercise->duree);
-            $stmt->bindparam(':sets', $exercise->sets);
-            $stmt->bindparam(':dureepause', $exercise->dureepause);
+            $stmt->bindparam(':idexercicecatalogue',  $exercice->idexercicecatalogue);
+            $stmt->bindparam(':poids', $exercice->poids);
+            $stmt->bindparam(':repetitions', $exercice->repetitions);
+            $stmt->bindparam(':duree', $exercice->duree);
+            $stmt->bindparam(':sets', $exercice->sets);
+            $stmt->bindparam(':dureepause', $exercice->dureepause);
 
            
             $stmt->execute();
@@ -323,7 +352,7 @@ class crud
     //GetEntrainement
     //CreeLexercie et ajouter A l'entreinement
 
-    private function LierEntrainementExercise($idExercise,$idEntainement){
+    private function LierEntrainementExercice($idExercise,$idEntainement){
         try {  
             $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
             ($idEntainement,$idExercise)";
