@@ -30,13 +30,14 @@ class crud
     }
     private function addUser($user){
         try {  
-            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`)  VALUES(:nom,:prenom,:email,:date)";
+            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`)  VALUES(:nom,:prenom,:email,:date,:sexe)";
         
             $stmt = $this->db->prepare($sql);
             $stmt->bindparam(':nom',  $user->lastName);
             $stmt->bindparam(':prenom', $user->firstName);
             $stmt->bindparam(':email', $user->email);
             $stmt->bindparam(':date', $user->date);
+            $stmt->bindparam(':sexe', $user->sexe);
         
             $stmt->execute();
             //$result = $stmt->fetch();     
@@ -94,7 +95,7 @@ class crud
             return false;
         }
     }    
-    private function UpdateUserConnexionTable(){
+    private function UpdateUserConnexionTable($user){
         try {  
             $sql = "UPDATE `connexion` SET `email` =  '$user->email' WHERE `connexion`.`idUtilisateur` =  $user->idUser";
             $stmt = $this->db->prepare($sql);  
@@ -300,7 +301,7 @@ class crud
     //create
     public function AjouterExercices($listExercises,$idEntainement){
         foreach($listExercises as $ex){
-            $idExercise = $this->AjouterUnExercise($ex);           
+            $idExercise = $this->AjouterUnExercice($ex);           
             $this->LierEntrainementExercice($idExercise,$idEntainement);
         }
         

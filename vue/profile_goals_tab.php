@@ -11,7 +11,7 @@
                 <div class="row mb-6">
                     <label for="weight" class="col-md-2 col-form-label">Poids initial</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="poid en lbs." class="form-control" name="weight" required="" value="<?php echo $weight ?>">
+                        <input type="text" placeholder="poid en lbs." class="form-control" name="weight" required="" value="<?php echo $weight ?>" disabled>
                     </div>
                 </div>
 

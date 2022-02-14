@@ -5,13 +5,13 @@ require_once 'db/Utilisateur.php';
 require_once 'db/conn.php';
 $prenom = $_POST['prenom'];
 $nom = $_POST['nom'];
-$sexe = $_POST['radioSexe'];
+$sexe = $_POST['sexe'];
 $naissance = $_POST['birthDate'];
 $courriel = strtolower(trim($_POST['courriel']));
 $pass = $_POST['passInsc'];
 $passConf = $_POST['passConf'];
 
-$user = new Utilisateur(0, $nom, $prenom, $courriel, $naissance);
+$user = new Utilisateur(0, $nom, $prenom, $courriel, $naissance, $sexe);
 $user->setPassword($pass);
 
     $result = $crud->creeUnCompte($user);
