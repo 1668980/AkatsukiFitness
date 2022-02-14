@@ -68,6 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="poids" class="col-md-2 col-form-label">Poids</label>
+                                <div class="col-sm-9">
+                                    <input type="text" placeholder="poid en lbs." class="form-control" name="date_de_naissance" required="" value="<?php echo $weight ?>">
+                                </div>
+                            </div>
+
                             <input type="button" value="Annuler" onclick="window.location.href='profile.php'">
                             <input type="submit" value="Sauvegarder">
 

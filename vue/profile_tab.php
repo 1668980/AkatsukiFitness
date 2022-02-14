@@ -9,6 +9,7 @@
                 <li>Nom : <?php echo $lastname ?> </li>
                 <li>Courriel : <?php echo $email ?></li>
                 <li>Date de Naissance : <?php echo $dob ?></li>
+                <li>Poids : <?php echo $weight ?></li>
                 <!--<li>Sexe :</li>-->
             </ul>
             </p>
