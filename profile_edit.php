@@ -10,6 +10,7 @@ $lastname = $userInfo['nom'];
 $email = $userInfo['email'];
 $dob = $userInfo['date_de_naissance'];
 $weight = $userInfo['poids'];
+$sexe = $userInfo['sexe'];
 
 // var_export($userInfo);
 // die();
@@ -65,6 +66,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label for="date_de_naissance" class="col-md-2 col-form-label">Date de naissance</label>
                                 <div class="col-sm-9">
                                     <input type="date"  class="form-control" name="date_de_naissance" required="" value="<?php echo $dob ?>">
+                                </div>
+                            </div>
+
+                            <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-2 pt-0">Sexe</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexe" id="Male" value="male" <?php if ($sexe == 'male') { echo 'checked'; } ?>>
+                                <label class="form-check-label" for="radioMale">
+                                    Homme
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexe" id="Femelle" value="femelle" <?php if ($sexe == 'femelle') { echo 'checked'; } ?>>
+                                <label class="form-check-label" for="radioFemelle">
+                                    Femme
+                                </label>
+                            </div>
+                            <div class="form-check disabled">
+                                <input class="form-check-input" type="radio" name="sexe" id="Autre" value="autre"  <?php if ($sexe == 'autre') { echo 'checked'; } ?>>
+                                <label class="form-check-label" for="radioAutre">
+                                    Autre
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                            <div class="row mb-3">
+                                <label for="poids" class="col-md-2 col-form-label">Poids</label>
+                                <div class="col-sm-9">
+                                    <input type="text" placeholder="poid en lbs." class="form-control" name="poids" required="" value="<?php echo $weight ?>">
                                 </div>
                             </div>
 

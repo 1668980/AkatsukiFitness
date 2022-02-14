@@ -70,19 +70,19 @@ require_once('includes/header.php');
                         <legend class="col-form-label col-sm-2 pt-0">Sexe</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radioSexe" id="Male" value="male" checked>
+                                <input class="form-check-input" type="radio" name="sexe" id="Male" value="male" checked>
                                 <label class="form-check-label" for="radioMale">
                                     Homme
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radioSexe" id="Femelle" value="femelle">
+                                <input class="form-check-input" type="radio" name="sexe" id="Femelle" value="femelle">
                                 <label class="form-check-label" for="radioFemelle">
                                     Femme
                                 </label>
                             </div>
                             <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="radioSexe" id="Autre" value="autre">
+                                <input class="form-check-input" type="radio" name="sexe" id="Autre" value="autre">
                                 <label class="form-check-label" for="radioAutre">
                                     Autre
                                 </label>

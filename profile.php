@@ -10,6 +10,7 @@ $firstname = $userInfo['prenom'];
 $lastname = $userInfo['nom'];
 $email = $userInfo['email'];
 $dob = $userInfo['date_de_naissance'];
+$sexe = $userInfo['sexe'];
 $weight = $userInfo['poids'];
 $weight_goal = "123";
 

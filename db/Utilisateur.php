@@ -6,9 +6,9 @@ class Utilisateur {
     public $lastName;
     public $date;
     public $password;
-    public $gender;
+    public $sexe;
 
-    public function __construct($id,$last,$first,$email,$date)
+    public function __construct($id,$last,$first,$email,$date,$sexe)
     {
         if($id != 0 ){
             $this->idUser = $id;
@@ -19,7 +19,7 @@ class Utilisateur {
         $this->firstName = $first;
         $this->email = $email;
         $this->date = $date;
-        $this->gender = "homme";
+        $this->sexe = $sexe;
     }
 
     public function setPassword($pswd){
