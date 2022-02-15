@@ -1,6 +1,6 @@
 <?php
 
-class Crudd
+class Crud
 {
 //Class  
     // private database object
