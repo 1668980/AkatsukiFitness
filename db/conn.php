@@ -30,9 +30,9 @@ try {
 }
 
 // initialize CRUD for database operation functions
-require_once 'Crudd.php';
+require_once 'Crud.php';
 //require_once 'Utilisateur.php';
-$crud = new Crudd($pdo);
+$crud = new Crud($pdo);
 
 //$crud->creerUnCompte(new Utilisateur(0,'Admin', 'Monsieur', 'admin@gmail.com', '1998-01-31'));
 
