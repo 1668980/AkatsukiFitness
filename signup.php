@@ -1,10 +1,10 @@
 <?php
 require_once('includes/header.php');
 ?>
-    <!-- Corps de la page -->
-    <main class="bg-dark">
-        <!-- Container du formulaire d'incription-->
-        <div class="container w-50 ">
+<!-- Corps de la page -->
+<main class="bg-dark">
+    <!-- Container du formulaire d'incription-->
+    <div class="container w-50 ">
         <div class="card-group container-fluid ">
             <div class="card align-items-center mt-5 mb-5" href="#">
 
@@ -40,8 +40,7 @@ require_once('includes/header.php');
                             if (checkbox.prop("checked") == true) {
                                 alert("checkbox is checked");
                                 return true;
-                            } 
-                            else if (checkbox.prop("checked") == false) {
+                            } else if (checkbox.prop("checked") == false) {
                                 alert("checkbox is not checked");
                                 return false;
                             }
@@ -113,7 +112,7 @@ require_once('includes/header.php');
                     </div>
                     <script>
                         $('#passInsc').on('keyup', function() {
-                            var pattern = /^[A-Za-z\d_-]{8,10}$/;
+                            var pattern = /^[A-Za-z\d_-]{8,25}$/;
                             if (pattern.test($('#passInsc').val()) == true) {
                                 $('#message1').html('Valide').css('color', 'green');
                             } else
@@ -135,6 +134,17 @@ require_once('includes/header.php');
                                 $('#message2').html('Not Matching').css('color', 'red');
                         });
                     </script>
+                    <div class="col-sm-10">
+                        <div class="row ms-3 mb-3">
+                                <div class="card align-items-center card-perso card-hover text-white bg-secondary ">
+                                    <div class="card-body">
+                                        <h4 class="card-title"> Abonnement Gratuit </h4>
+                                        <h6 class="card-subtitle mb-2 text-muted">Profitez de plusieurs avantages  à nos frais </h6>
+                                        <a href="blog_article.php" class="stretched-link d-none">Lire l'article</a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-sm-10">
                             <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" name="invalidCheck1" required>
@@ -149,8 +159,8 @@ require_once('includes/header.php');
                 </form>
             </div>
         </div>
-        </div>
-    </main>
+    </div>
+</main>
 
 
 <?php
