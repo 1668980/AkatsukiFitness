@@ -14,7 +14,7 @@
         <?php //}?>
             <li><a href="shop_index.php" name="" class="nav-link px-2 text-white">Boutique</a></li>
             <li><a href="about.php" name="" class="nav-link px-2 text-white">À propos de nous</a></li>
-            <li><a href="blog.php" name="" class="nav-link px-2 text-white">Blog </a></li>
+            <li><a href="blog.php" name="" class="nav-link px-2 text-white">Blog</a></li>
         </ul>
 
         <div class="text-end">

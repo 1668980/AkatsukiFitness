@@ -1,6 +1,6 @@
 <?php
 //backend orlando
-//include 'includes/header.php';
+include 'includes/header.php';
 require_once 'includes/session.php';
 require_once 'db/conn.php';
 
@@ -31,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <!-- not supposed to appear -->
-<div hidden id="containerLogin" class="containerLogin">
-    <h1 class="h1 text-center">Se connecter</h1>
+<div id="containerLogin" class="container mt-2">
+    <div class="container">
+    <h1 class="h1 text-center textLogin">Se connecter</h1>
     <!-- reload this page and do the posting action on this page  -->
     <form method="POST" id="formLogin" action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" class="row mt-1">
         <div class="form-group col-12">
@@ -51,14 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php //}?>
         </div>
         <div class="form-group col-12 mt-3">
-            <button id="btnConnecter" type="submit" class="btn btn-success ">Se connecter</button>
+            <button id="btnLogin" type="submit" class="btn btn-success ">Se connecter</button>
         </div>
-        <div class="col mt-1">
+        <!-- <div class="col mt-1">
             <a href="#" class="mt-1">Mot de passe oublié?</a>
-        </div>
+        </div> -->
     </form>
 </div>
 
 <?php
-//include 'includes/footer.php';
+include 'includes/footer.php';
 ?>

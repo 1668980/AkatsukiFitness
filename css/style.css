@@ -11,3 +11,25 @@
 .card-perso {
     box-shadow: 0 2px 8px rgb(0 0 0 / 30%);
 }
+
+/* nav bar O.V */
+#myNav {
+    padding: 0%;
+    /* background-color: #dc3545 !important; */
+    text-align: center;
+  }
+
+#myNav .logo {
+padding-left: 10px;
+padding-right: 10px;
+margin-right: 0%;
+}
+
+#containerLogin {
+    max-width: 420px;
+    color: white;
+}
+
+#btnLogin {
+    width: 100%;
+}

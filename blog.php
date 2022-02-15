@@ -1,7 +1,6 @@
 <?php
 require_once('includes/header.php');
 ?>
-<main class="bg-dark">
 <div class="container">
     <div class="card-group container-fluid mt-5">
         <div class="row">
@@ -143,7 +142,6 @@ require_once('includes/header.php');
         </div>
     </div>
 </div>
-</main>
 <?php
 require_once('includes/footer.php');
 ?>
