@@ -75,13 +75,13 @@ require_once('includes/header.php');
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender"  value="femme">
+                                <input class="form-check-input" type="radio" name="gender" value="femme">
                                 <label class="form-check-label" for="radioFemme">
                                     Femme
                                 </label>
                             </div>
                             <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="gender"  value="autre">
+                                <input class="form-check-input" type="radio" name="gender" value="autre">
                                 <label class="form-check-label" for="radioAutre">
                                     Autre
                                 </label>
@@ -134,15 +134,30 @@ require_once('includes/header.php');
                                 $('#message2').html('Not Matching').css('color', 'red');
                         });
                     </script>
-                    <div class="col-sm-10">
-                        <div class="row ms-3 mb-3">
-                                <div class="card align-items-center card-perso card-hover text-white bg-secondary ">
-                                    <div class="card-body">
-                                        <h4 class="card-title"> Abonnement Gratuit </h4>
-                                        <h6 class="card-subtitle mb-2 text-muted">Profitez de plusieurs avantages  à nos frais </h6>
-                                        <a href="blog_article.php" class="stretched-link d-none">Lire l'article</a>
-                                    </div>
+                    <div class="row  mb-3 align-items-center">
+                        <div class="col-sm-6 mb-3">
+                            <div class="card align-items-center card-perso card-hover text-white bg-secondary ">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Abonnement Gratuit </h5>
+                                    <ul>
+                                        <li>Blogs créés par des passionés du fitness</li>
+                                        <li>Des entrainements préselectionés  </li>
+                                        <li>Des produits pour faciliter la #fitnessLife</li>
+                                    </ul>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="card align-items-center card-perso card-hover text-white bg-info ">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Abonnement Premium </h5>
+                                    <ul>
+                                        <li>Tous les avantages de l'abonnement gratuit</li>
+                                        <li>Un suivis de vos buts et objectifs </li>
+                                        <li>La possibilité de personnaliser vos entrainements</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-3">

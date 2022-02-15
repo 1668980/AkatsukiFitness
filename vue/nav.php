@@ -1,4 +1,4 @@
-<nav class="p-2 bg-secondary text-white ">
+<nav class="p-2 bg-info text-white ">
     <div class="d-flex flex-wrap align-items-center ms-5 me-5 justify-content-center justify-content-lg-start">
         <!-- Logo  -->
         <a href="." class="">
