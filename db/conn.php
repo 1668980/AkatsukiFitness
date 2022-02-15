@@ -1,5 +1,4 @@
 <?php
-
 // connection (local)
 // $host = 'localhost';
 // $db = 'akatsuki_db';
@@ -31,9 +30,9 @@ try {
 }
 
 // initialize CRUD for database operation functions
-require_once 'crud.php';
+require_once 'Crudd.php';
 //require_once 'Utilisateur.php';
-$crud = new crud($pdo);
+$crud = new Crudd($pdo);
 
 //$crud->creerUnCompte(new Utilisateur(0,'Admin', 'Monsieur', 'admin@gmail.com', '1998-01-31'));
 

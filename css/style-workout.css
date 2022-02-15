@@ -1,6 +1,6 @@
-.entrainement *,
-.entrainement *::after,
-.entrainement *::before {
+.workout *,
+.workout *::after,
+.workout *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,7 +17,7 @@
 
 
 /* body */
-.entrainementBody {
+.workoutBody {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -110,13 +110,13 @@ figure,
 }
 
 /* img */
-.entrainement img {
+.workout img {
   height: 100%;
   border-radius: 24px;
 }
 
 /* figcaption */
-.entrainement figcaption {
+.workout figcaption {
   display: block;
 
   width: auto;
@@ -175,7 +175,7 @@ figure,
 }
 
 /* ul */
-.entrainement ul {
+.workout ul {
   padding-top: 50%;
   margin: 0 auto;
   width: 70%;
@@ -191,7 +191,7 @@ figure,
 }
 
 /* li */
-.entrainement li {
+.workout li {
   width: 100%;
   margin-top: 12px;
   padding-bottom: 12px;
@@ -202,11 +202,11 @@ figure,
   position: relative;
 }
 
-.entrainement li:nth-child(2n) {
+.workout li:nth-child(2n) {
   color: var(--white-2);
 }
 
-.entrainement li:not(:last-child)::after {
+.workout li:not(:last-child)::after {
   content: "";
 
   position: absolute;
@@ -221,7 +221,7 @@ figure,
 }
 
 /* button */
-.entrainement button {
+.workout button {
   font-family: inherit;
   font-weight: bold;
   color: var(--white-1);
@@ -237,14 +237,14 @@ figure,
   cursor: pointer;
 }
 
-.entrainement button:hover,
-.entrainement button:focus {
+.workout button:hover,
+.workout button:focus {
   color: var(--primary);
   background: hsla(var(--hue), 25%, 10%, .2);
   border-color: currentColor;
 }
 
-.entrainement button:active {
+.workout button:active {
   transform: translate(2px);
 }
 
@@ -348,9 +348,9 @@ figure,
 }
 
 /* states */
-.entrainement button:hover+.design-container,
-.entrainement button:active+.design-container,
-.entrainement button:focus+.design-container {
+.workout button:hover+.design-container,
+.workout button:active+.design-container,
+.workout button:focus+.design-container {
   --tr: 20;
   --op: .7;
 }

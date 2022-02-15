@@ -14,9 +14,6 @@ $sexe = $userInfo['sexe'];
 $weight = $userInfo['poids'];
 $weight_goal = "123";
 
-// var_export($userInfo);
-// die();
-
 ?>
 
 <main class="bg-dark">

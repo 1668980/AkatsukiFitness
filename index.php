@@ -10,7 +10,7 @@ require_once('includes/header.php');
     <?php require_once ('vue/carrousel.php'); ?>   
     
     <!-- Container de cartes pour les articles, entrainemnts ou recettes (contenu) -->
-    <?php require_once ('vue/forfait.php'); ?>
+    <?php require_once ('vue/plans.php'); ?>
     
     <div style="width:40%; margin: 0 auto;">
         <button class="btn btn-success" type="button" style="width:100%; font-size:200% ">INSCRIVEZ-VOUS!</button>

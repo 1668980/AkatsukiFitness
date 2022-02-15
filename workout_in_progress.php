@@ -31,8 +31,8 @@ function getEntrainementInfo($nomEntrainement){
         <div class="col-sm-4">
                 <div class="card mb-3 card-perso" style="max-width: auto; max-height: 100% " href="#">
                     <div class="card-body">
-                        <h4 class="card-title"> Titre exercice <?php// echo $row['nom'] ?> </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Durée de l'entrainement: <?php// echo $row['duree'] ?> <br /> Muscles visés </h6>
+                        <h4 class="card-title"> Titre exercice <?php // echo $row['nom'] ?> </h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Durée de l'entrainement: <?php // echo $row['duree'] ?> <br /> Muscles visés </h6>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,8 @@ function getEntrainementInfo($nomEntrainement){
 -->
 
 <?php 
- $exerciseList= $crud->GetExercisesFromAnEntrainement(1);
- $entainementList = $crud->GetEntrainementByIdUser($_SESSION['userid']);
+ $exerciseList= $crud->getExercicesFromEntrainement(1);
+ $entainementList = $crud->getEntrainementByIdUser($_SESSION['userid']);
  for( $i =0;$i<1;$i++){
     echo getEntrainementInfo($entainementList[$i]['nom']);
  }

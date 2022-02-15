@@ -12,6 +12,7 @@
                 <li>Sexe : <?php echo $sexe ?></li>
                 <li>Poids : <?php echo $weight ?></li>
                 <!--<li>Sexe :</li>-->
+
             </ul>
             </p>
             <a href="profile_edit.php" class="card-link">Modifier</a>

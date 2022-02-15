@@ -1,5 +1,5 @@
 <?php
-class Exercise {
+class Exercice {
     public $idExercise;
     public $idexercicecatalogue;
     public $poids;

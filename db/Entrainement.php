@@ -1,10 +1,10 @@
 <?php
 class Entrainement {
-    public $nom;
+    public $name;
     public $ExerciseList;
   
 
-    public function __construct($nom,$ExerciseList)
+    public function __construct($name,$ExerciseList)
     {
         if($id != 0 ){
             $this->idExercise = $id;
@@ -13,11 +13,11 @@ class Entrainement {
         }
         
         $this->idexercicecatalogue = $idexercicecatalogue;
-        $this->poids = $poids;
+        $this->weight = $weight;
         $this->repetitions = $repetitions;
         $this->sets = $sets;
-        $this->duree = $duree;
-        $this->dureepause = $dureepause;
+        $this->duration = $duration;
+        $this->break_duration = $break_duration;
     }
 
 } 

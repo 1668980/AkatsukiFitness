@@ -30,7 +30,7 @@ require_once('includes/header.php');
             <h3>Lancé en 2022, notre équipe est constituée de 6 programmeurs motivés 
             à se remettre en forme, tout comme vous et nous voulons insiter les autres à l'entrainement. 
             Nous vous offrons un système simple d'utilisation, mais très efficace. Avec notre suivi de poids
-            et de statistique, vous alez atteindre votre but avec facilité et motivation.
+            et de statistique, vous allez atteindre votre but avec facilité et motivation.
             </h3>  
         </div>
         

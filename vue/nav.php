@@ -10,9 +10,9 @@
         <!-- Items du menu -->
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
         <?php //if (isset($_SESSION['userid'])) { ?>
-            <li><a href="entrainements.php" name="" class="nav-link px-2 text-white">Mes entraînements</a></li>
+            <li><a href="workouts.php" name="" class="nav-link px-2 text-white">Mes entraînements</a></li>
         <?php //}?>
-            <li><a href="boutique_index.php" name="" class="nav-link px-2 text-white">Boutique</a></li>
+            <li><a href="shop_index.php" name="" class="nav-link px-2 text-white">Boutique</a></li>
             <li><a href="about.php" name="" class="nav-link px-2 text-white">À propos de nous</a></li>
             <li><a href="blog.php" name="" class="nav-link px-2 text-white">Blog </a></li>
         </ul>
@@ -24,7 +24,7 @@
                 if (is_logged_in()) {
                     $userid = $_SESSION['userid'];
                     $userInfo = $crud->getUser($userid);
-                    //$user = new Utilisateur($userInfo[0],$userInfo[1],$userInfo[2],$userInfo[3],$userInfo[4]);
+   
                     $rep = '<div class="col-sm-8"> <button type="button" id="btnProfile" class="btn btn-light bg-secondary text-white" onclick="window.location.href=\'profile.php\';" style="font-weight: bold;"> Bienvenue ' . $userInfo['prenom'] . ' ' . $userInfo['nom'] . '</button> </div>';
                     $rep .= ' <div class="col-lg-4">
                                 <button type="button" id="btnSignOut" name="" class="btn btn-danger" onclick="window.location.href=\'logout.php\';">Déconnexion</button>

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- reload this page and do the posting action on this page  -->
     <form method="POST" id="formLogin" action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" class="row mt-1">
         <div class="form-group col-12">
-            <label for="email" class="form-label">Couriel:</label>
+            <label for="email" class="form-label">Courriel:</label>
             <input type="text" class="form-control" id="email" name="email"
                 value="<?php //if($_SERVER['REQUEST_METHOD'] == 'POST') echo $_POST['username']; ?>" required>
             <?php //if(empty($username) && $_SERVER['REQUEST_METHOD'] === 'POST') {?>
