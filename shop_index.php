@@ -7,7 +7,7 @@ require_once('includes/header.php');
         <div class="card-group container-fluid ">
 
 
-        <a href="boutique_cart.php"> view cart </a>
+        <a href="shop_cart.php"> view cart </a>
 
             <!-- TODO: foreach products -->
 

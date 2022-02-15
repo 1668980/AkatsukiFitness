@@ -10,7 +10,7 @@ require_once('includes/header.php');
 
                 <p class="fs-1 fw-bold mt-5"> Devenir Membre</p>
 
-                <form class="w-75 mt-4 mb-4 needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()' action="enregistrer.php" method="POST">
+                <form class="w-75 mt-4 mb-4 needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()' action="signup_action.php" method="POST">
                     <script>
                         function validatePassword1() {
                             let passwd = $('#passInsc').val();
@@ -50,7 +50,7 @@ require_once('includes/header.php');
                     <div class="row mb-3">
                         <label for="nom" class="col-md-2 col-form-label">Nom</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nom" name="nom" required>
+                            <input type="text" class="form-control" id="lastname" name="lastname" required>
                         </div>
                         <div class="valid-feedback">
                             Looks good!
@@ -59,7 +59,7 @@ require_once('includes/header.php');
                     <div class="row mb-3">
                         <label for="prenom" class="col-sm-2 col-form-label">Prenom</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="prenom" name="prenom" required>
+                            <input type="text" class="form-control" id="firstname" name="firstname" required>
                         </div>
                         <div class="valid-feedback">
                             Looks good!
@@ -69,19 +69,19 @@ require_once('includes/header.php');
                         <legend class="col-form-label col-sm-2 pt-0">Sexe</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sexe" id="Male" value="male" checked>
-                                <label class="form-check-label" for="radioMale">
+                                <input class="form-check-input" type="radio" name="gender" value="homme" checked>
+                                <label class="form-check-label" for="radioHomme">
                                     Homme
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sexe" id="Femelle" value="femelle">
-                                <label class="form-check-label" for="radioFemelle">
+                                <input class="form-check-input" type="radio" name="gender"  value="femme">
+                                <label class="form-check-label" for="radioFemme">
                                     Femme
                                 </label>
                             </div>
                             <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="sexe" id="Autre" value="autre">
+                                <input class="form-check-input" type="radio" name="gender"  value="autre">
                                 <label class="form-check-label" for="radioAutre">
                                     Autre
                                 </label>
@@ -91,7 +91,7 @@ require_once('includes/header.php');
                     <div class="row mb-3 align-items-center">
                         <label for="birthDate" class="col-sm-2 col-form-label">Date de naissance</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+                            <input type="date" class="form-control" id="dob" name="dob" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -100,7 +100,7 @@ require_once('includes/header.php');
                     <div class="row mb-3">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="courriel" name="courriel" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                     </div>
                     <div class="row mb-3 align-items-center">

@@ -10,16 +10,16 @@ $sets=3;
 $duree=0;
 $dureePause=60;
 
-$exercice = new Exercise(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
+$exercice = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
 
 // fonctionnel
 //var_dump($exercice);
-echo $crud->AjouterUnExercice($exercice);
+echo $crud->addExercice($exercice);
 
 $exercicesList = array();
 
 array_push($exercicesList,$exercice);
-echo $crud->AjouterExercices($exercicesList,1);*/
+echo $crud->addExercices($exercicesList,1);*/
 /*$idUser =2 ;
 $email="03@gmail.com"  ;
 $firstName="03";
@@ -30,8 +30,8 @@ $user->setPassword("dasd12asd");
 
 
 echo "dasds";
-echo $crud->VerifierSiEmailDejaUtilise($email);
-echo $crud->creeUnCompte($user);*/
+echo $crud->isEmailUsed($email);
+echo $crud->createUtilisateur($user);*/
 /*
 
 $idexercicecatalogue =1;
@@ -41,8 +41,8 @@ $sets=3;
 $duree=0;
 $dureePause=60;
 
-$exercice = new Exercise(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
-$exercise2 = new Exercise(0,2,$poids,$repetitions,$sets,$duree,$dureePause);
+$exercice = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
+$exercise2 = new Exercice(0,2,$poids,$repetitions,$sets,$duree,$dureePause);
 
 $exercicesList = array();
 
@@ -55,25 +55,25 @@ $idUserAajouter = 1;
 // Entrainement
 //Dabord cree l'entrainement
 echo"<br><br> cree entrainement :<br>";
-echo $crud->CreeUnNouveauEntrainement($nomDeLentrainement,$idUserAajouter);
+echo $crud->createNewWorkout($nomDeLentrainement,$idUserAajouter);
 echo"<br><br> ajouter exercice :<br>";
-echo $crud->AjouterExercices($exercicesList,$idUserAajouter);
+echo $crud->addExercices($exercicesList,$idUserAajouter);
 
 
 
 */
 /*
-$result =$crud->GetExercisesFromAnEntrainement(1);
+$result =$crud->getExercicesFromEntrainement(1);
 var_dump($result[0]);
 echo "<br>";
 echo $result[0]['poids'];
-/*$result =$crud->GetEntrainementByIdUser(1);
+/*$result =$crud->getEntrainementByIdUser(1);
 var_dump($result);*/
 /*
-$result =$crud->AddsubscriptionToUser(1,"+1 month");
+$result =$crud->addSubscriptionToUser(1,"+1 month");
 var_dump($result);*/
 
-$result =$crud->IsUserSubscibed(1);
+$result =$crud->isUserSubscibed(1);
 var_dump($result);
 
 

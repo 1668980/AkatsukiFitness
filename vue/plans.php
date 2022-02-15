@@ -1,4 +1,4 @@
-<div class="forfait main" style="padding:2%; padding-left:20%;padding-right:20%;">
+<div class="plans main" style="padding:2%; padding-left:20%;padding-right:20%;">
 
 
 

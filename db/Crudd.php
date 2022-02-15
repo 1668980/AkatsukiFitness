@@ -1,12 +1,12 @@
 <?php
 
-class crud
+class Crudd
 {
 //Class  
     // private database object
     private $db;
 
-   //constructor to initialize private variable to the database  connection
+   //constructor to initialize private variable to the database connection
     public function __construct($conn)
     {
         $this->db = $conn;
@@ -14,30 +14,33 @@ class crud
 
 // User
 
-    //CreateUser
-    public function creeUnCompte($user){
-        $doNotExist = $this->VerifierSiEmailDejaUtilise($user->email);
-        if($doNotExist){
-            $last_id = $this->addUser($user);
-            $this->addConnexion($user, $last_id);
-            $this->CreeUnContenu($last_id);         
-            return  $last_id;
-            
-        }else{
+    //createUtilisateur
+    public function createUtilisateur($user){
+
+        $used = $this->isEmailUsed($user->email);
+
+        if($used){
             return false;
         }
-    
+
+        $last_id = $this->addUtilisateur($user);
+
+        $this->addConnexion($user, $last_id);
+        $this->createContenu($last_id);         
+        return  $last_id;
+
     }
-    private function addUser($user){
+
+    private function addUtilisateur($user){
         try {  
-            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`)  VALUES(:nom,:prenom,:email,:date,:sexe)";
+            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`)  VALUES(:lastname,:firstname,:email,:dob,:gender)";
         
             $stmt = $this->db->prepare($sql);
-            $stmt->bindparam(':nom',  $user->lastName);
-            $stmt->bindparam(':prenom', $user->firstName);
+            $stmt->bindparam(':lastname',  $user->lastname);
+            $stmt->bindparam(':firstname', $user->firstname);
             $stmt->bindparam(':email', $user->email);
-            $stmt->bindparam(':date', $user->date);
-            $stmt->bindparam(':sexe', $user->sexe);
+            $stmt->bindparam(':dob', $user->dob);
+            $stmt->bindparam(':gender', $user->gender);
         
             $stmt->execute();
             //$result = $stmt->fetch();     
@@ -69,7 +72,7 @@ class crud
     }
 
     //UpdateUser
-    public function UpdateUserUtilisateurTableSansEmail($user){
+    public function updateUserUtilisateurTableSansEmail($user){
         try {  
             $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName,`date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
             $stmt = $this->db->prepare($sql);  
@@ -80,11 +83,11 @@ class crud
             return false;
         }
     }    
-    public function UpdateUserEmail($user){
-        $this->UpdateEmailUtilisateurTable($user);
-        $this->UpdateUserConnexionTable($user);
+    public function updateUserEmail($user){
+        $this->updateEmailUtilisateurTable($user);
+        $this->updateUserConnexionTable($user);
     }    
-    private function UpdateEmailUtilisateurTable($user){
+    private function updateEmailUtilisateurTable($user){
         try {  
             $sql = "UPDATE `utilisateur` SET `email` =  '$user->email' WHERE `utilisateur`.`iduser` =  $user->idUser";
             $stmt = $this->db->prepare($sql);  
@@ -95,7 +98,7 @@ class crud
             return false;
         }
     }    
-    private function UpdateUserConnexionTable($user){
+    private function updateUserConnexionTable($user){
         try {  
             $sql = "UPDATE `connexion` SET `email` =  '$user->email' WHERE `connexion`.`idUtilisateur` =  $user->idUser";
             $stmt = $this->db->prepare($sql);  
@@ -171,37 +174,33 @@ class crud
     }
 
     //Verification
-    public function VerifierSiEmailDejaUtilise($email){
+    public function isEmailUsed($email){
         try {
             $sql = "SELECT * FROM `connexion` WHERE email = '$email' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->rowCount();
-            if($result>0){
-                return false;
-            }else {
-                return true;
-            }
-        }catch (PDOException $e) {
+            return ($result>0); 
+        } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
     
     //Abonement
-    public function AddsubscriptionToUser($idUser,$duree){
+    public function addSubscriptionToUser($idUser,$duree){
         $dt1 = new DateTime();
         $today = $dt1->format("Y-m-d");
-        $endDate =$this->CalculateEndDate($duree);
-        return $this->AddsubscriptionToUserTable($today,$endDate,$idUser);
+        $endDate =$this->calculateEndDate($duree);
+        return $this->addSubscriptionToUserTable($today,$endDate,$idUser);
     }
-    private function CalculateEndDate($duree){
+    private function calculateEndDate($duree){
         
         $dt2 = new DateTime($duree);
        
         return  $dt2->format("Y-m-d");
     }
-    private function AddsubscriptionToUserTable($today,$endDate,$idUser){
+    private function addSubscriptionToUserTable($today,$endDate,$idUser){
         try {  
             $sql = "UPDATE `utilisateur` SET `datedebutabonnement` = '$today',`datefinabonnement` = '$endDate' WHERE `utilisateur`.`iduser` =  $idUser";
             $stmt = $this->db->prepare($sql);  
@@ -212,7 +211,7 @@ class crud
             return false;
         }
     }    
-    public function IsUserSubscibed($idUser){
+    public function isUserSubscibed($idUser){
         $user =$this->getUser($idUser);
 
         $dateStartSub= new DateTime($user['datedebutabonnement']);
@@ -227,7 +226,7 @@ class crud
 //Contenu 
 
     //Create
-    public function CreeUnContenu($idUser){
+    public function createContenu($idUser){
         try{
             $sql = " INSERT INTO `contenu` (`iduser`) VALUES ($idUser)";
             $stmt = $this->db->prepare($sql);
@@ -238,8 +237,9 @@ class crud
         return false;
         }
     }
+
     //get
-    private function GetUnContenuAvecId($idUser){
+    private function getContenuId($idUser){
         try{
             $sql = "SELECT * FROM  `contenu` WHERE iduser = '$idUser' ";
             $stmt = $this->db->prepare($sql);
@@ -256,13 +256,13 @@ class crud
 //Entrainement
 
     //Create
-    public function CreeUnNouveauEntrainement($nom,$idUser){
-       $idEntainement= $this->CreeEntrainement($nom);
-       $idContenu = $this->GetUnContenuAvecId($idUser);
-       $this->LierEntrainementContenu($idContenu,$idEntainement);
+    public function createNewEntrainement($nom,$idUser){
+       $idEntrainement= $this->createEntrainement($nom);
+       $idContenu = $this->getContenuId($idUser);
+       $this->linkEntrainementContenu($idContenu,$idEntrainement);
        return true;
     }
-    private function CreeEntrainement($nom){
+    private function createEntrainement($nom){
         try{    
             $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( '$nom')";
             $stmt = $this->db->prepare($sql);
@@ -275,12 +275,12 @@ class crud
     }
 
     //Get
-    public function GetEntrainementByIdUser($idUser){
+    public function getEntrainementByIdUser($idUser){
         
-        $idContenu =$this->GetUnContenuAvecId($idUser);
-        return $this->GetEntrainementsByContenu($idContenu);
+        $idContenu =$this->getContenuId($idUser);
+        return $this->getEntrainementsByContenu($idContenu);
     }
-    private function GetEntrainementsByContenu($idContenu){
+    private function getEntrainementsByContenu($idContenu){
         try{
             $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON `entrainementcontenu`.`identrainement`  = `entrainement`.`identrainement`  WHERE `entrainementcontenu`.`idcontenu` = '$idContenu' ";
             $stmt = $this->db->prepare($sql);
@@ -299,14 +299,14 @@ class crud
 //Exercise 
     
     //create
-    public function AjouterExercices($listExercises,$idEntainement){
-        foreach($listExercises as $ex){
-            $idExercise = $this->AjouterUnExercice($ex);           
-            $this->LierEntrainementExercice($idExercise,$idEntainement);
+    public function addExercices($listExercices,$idEntrainement){
+        foreach($listExercices as $ex){
+            $idExercise = $this->addExercice($ex);           
+            $this->linkEntrainementExercice($idExercise,$idEntrainement);
         }
         
     }
-    private function AjouterUnExercice($exercice){
+    private function addExercice($exercice){
 
         try { 
             $sql = "INSERT INTO `exercice` (`idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
@@ -329,7 +329,7 @@ class crud
         }
     }
     //Get
-    public function GetExercisesFromAnEntrainement($idEntrainement){
+    public function getExercicesFromEntrainement($idEntrainement){
         try{
             $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice 
             INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue` ";
@@ -353,10 +353,10 @@ class crud
     //GetEntrainement
     //CreeLexercie et ajouter A l'entreinement
 
-    private function LierEntrainementExercice($idExercise,$idEntainement){
+    private function linkEntrainementExercice($idExercise,$idEntrainement){
         try {  
             $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
-            ($idEntainement,$idExercise)";
+            ($idEntrainement,$idExercise)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         return true;
@@ -366,10 +366,10 @@ class crud
         return false;
         }
     }
-    private function LierEntrainementContenu($idContenu,$idEntainement){
+    private function linkEntrainementContenu($idContenu,$idEntrainement){
         try {  
             $sql = "INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES 
-            ($idContenu,$idEntainement)";
+            ($idContenu,$idEntrainement)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         return true;
