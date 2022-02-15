@@ -72,10 +72,10 @@ var_dump($result);*/
 /*
 $result =$crud->addSubscriptionToUser(1,"+1 month");
 var_dump($result);*/
-
+/*
 $result =$crud->isUserSubscibed(1);
 var_dump($result);
-
+*/
 
 
 

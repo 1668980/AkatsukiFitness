@@ -30,7 +30,6 @@ class Crud
         return  $last_id;
 
     }
-
     private function addUtilisateur($user){
         try {  
             $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`)  VALUES(:lastname,:firstname,:email,:dob,:gender)";
@@ -380,6 +379,73 @@ class Crud
         }
     }
 
+//json Cattegorie
+    public function addJsonCategorieAndExercice($name,$img,$cat){
+        if(!$this->isJsonCategorieExist($cat)){
+          $idCat= $this->addNewExerciceCategorie($cat);
+        }
+        $idCat= $this->getExerciseCategorie($cat);
+        return $this->addExerciceCatalogue($name,$img,$idCat);
+    }
+    private function addNewExerciceCategorie($cat){
+        try { 
+            $sql = "INSERT INTO `categories` (`nom`)  VALUES 
+            ('$cat')";
+            $stmt = $this->db->prepare($sql); 
+            $stmt->execute();
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
+        }
+    }
+    private function isJsonCategorieExist($cat){
+        try { 
+            $sql = "SELECT * FROM `categories` WHERE `nom`= '$cat' ";
+            $stmt = $this->db->prepare($sql);   
+            $stmt->execute();
+            $result = $stmt->rowCount();
+            
+            if($result>0){
+                return true;
+            }else{
+                return false;
+            }
+
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
+        }
+    }
+    public function getExerciseCategorie($cat){
+        try { 
+            $sql = "SELECT * FROM  `categories` WHERE `nom`= '$cat' ";
+            $stmt = $this->db->prepare($sql);   
+            $stmt->execute();
+            $result = $stmt->fetch();
+       
+         
+            return $result['idcategorie'];
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();        
+        return false;
+        }
+    }
+
+    public function addExerciceCatalogue($name,$img,$idCat){
+        try { 
+            $sql = "INSERT INTO `exercicecatalogue` (`nom`,`image`,`idcategorie`)  VALUES 
+            ('$name','$img',$idCat)";
+            $stmt = $this->db->prepare($sql); 
+            $stmt->execute();
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
+        }
+    }
 
 
 
