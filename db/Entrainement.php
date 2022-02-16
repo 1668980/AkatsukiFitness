@@ -7,9 +7,9 @@ class Entrainement {
     public function __construct($name,$ExerciseList)
     {
         if($id != 0 ){
-            $this->idExercise = $id;
+            $this->idexercice = $id;
         }else{
-            $this->idExercise = 0;
+            $this->idexercice = 0;
         }
         
         $this->idexercicecatalogue = $idexercicecatalogue;

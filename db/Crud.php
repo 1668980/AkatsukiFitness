@@ -293,15 +293,39 @@ class Crud
         
     }
     //Update
+    public function updateEntrainement($idEntrainement,$name){
+        try {  
+            $sql = "UPDATE `entrainement` SET `nom` =  '$name' WHERE `identrainement` =  $idEntrainement";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     //Delete
-   
-//Exercise 
+    public function deleteEntrainement($idEntrainement){
+        try {  
+            // ON DELETE CASCADE
+            $sql = "DELETE FROM `entrainement` WHERE `identrainement` =  $idEntrainement";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+//Exercice 
     
     //create
     public function addExercices($listExercices,$idEntrainement){
         foreach($listExercices as $ex){
-            $idExercise = $this->addExercice($ex);           
-            $this->linkEntrainementExercice($idExercise,$idEntrainement);
+            $idexercice = $this->addExercice($ex);           
+            $this->linkEntrainementExercice($idexercice,$idEntrainement);
         }
         
     }
@@ -344,18 +368,42 @@ class Crud
         }
     }
     //Update
+    public function updateExercice($exercice){
+        try {  
+            $sql = "UPDATE `exercice` SET `poids` =  '$exercice->poids', `repetitions` =  '$exercice->repetitions',
+             `sets` =  '$exercice->sets', `duree` =  '$exercice->duree',  `dureepause` =  '$exercice->dureepause'   
+            WHERE `idexercice` =  $exercice->idexercice";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     //Delete
-   
+    public function deleteExercice($idexercice){
+        try {  
+            // ON DELETE CASCADE
+            $sql = "DELETE FROM `exercice` WHERE `idexercice` = $idexercice";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 
    
 
-    //GetEntrainement
-    //CreeLexercie et ajouter A l'entreinement
+//lier les diferente table
 
-    private function linkEntrainementExercice($idExercise,$idEntrainement){
+    private function linkEntrainementExercice($idexercice,$idEntrainement){
         try {  
             $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
-            ($idEntrainement,$idExercise)";
+            ($idEntrainement,$idexercice)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         return true;

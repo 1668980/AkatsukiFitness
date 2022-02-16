@@ -78,5 +78,19 @@ var_dump($result);
 */
 
 
+$idexercicecatalogue =1;
+$poids = 50;
+$repetitions=5;
+$sets=2;
+$duree=0;
+$dureePause=60;
 
+$exercice = new Exercice(1,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
+
+//$result =$crud->updateExercice($exercice);
+//$result =$crud->deleteExercice(2);
+$result =$crud->deleteEntrainement(2);
+
+echo "<br> test <br>";
+var_dump($result);
 ?>
