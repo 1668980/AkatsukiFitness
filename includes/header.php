@@ -60,7 +60,7 @@
                 </div>
                 <div class="navbar-nav ms-auto">
                     <?php if(!isset($_SESSION['userid'])) { ?>
-                    <a href="login.php" class="nav-item nav-link">Login</a>
+                    <a href="login.php" class="nav-item nav-link">Se connecter</a>
                     <?php } else {
                         $userid = $_SESSION['userid'];
                         $userInfo = $crud->getUser($userid); ?>
