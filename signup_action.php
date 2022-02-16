@@ -16,7 +16,7 @@ $user->setPassword($pass);
 
 $result = $crud->createUtilisateur($user);
 
-$_SESSION['userid'] = $result;
-$_SESSION['email'] = $email;
-header('Location: index.php');
+//$_SESSION['userid'] = $result;
+//$_SESSION['email'] = $email;
+header('Location: login.php');
 ?>

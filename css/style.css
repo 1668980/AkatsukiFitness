@@ -30,10 +30,20 @@ margin-right: 0%;
     color: white;
 }
 
+#containerSignup {
+    max-width: 600px;
+    color: white;
+}
+
 #btnLogin {
     width: 100%;
 }
 
 #btnSignup {
     width: 100%;
+}
+
+
+.cardLogin {
+    min-height: 220px;
 }
