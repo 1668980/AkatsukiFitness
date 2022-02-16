@@ -64,7 +64,8 @@
                     <?php } else {
                         $userid = $_SESSION['userid'];
                         $userInfo = $crud->getUser($userid); ?>
-                    <a id="btnBlog" href="profile.php" class="nav-item nav-link active">Bienvenue, <?php echo $userInfo['prenom']?>!</a>
+                    <a id="btnBlog" href="profile.php" class="nav-item nav-link active">Bienvenue,
+                        <?php echo $userInfo['prenom']?>!</a>
                     <a href="logout.php" class="nav-item nav-link">Se déconnecter</a>
                     <?php }?>
                 </div>

@@ -52,12 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php //}?>
         </div>
         <div class="form-group col-12 mt-3">
-            <button id="btnLogin" type="submit" class="btn btn-success ">Se connecter</button>
+            <button id="btnLogin" type="submit" class="btn btn-danger bg-gradient">Se connecter</button>
         </div>
+        
         <!-- <div class="col mt-1">
             <a href="#" class="mt-1">Mot de passe oublié?</a>
         </div> -->
     </form>
+    <hr class="mt-3">
+        <div class="form-group col-8 mx-auto">
+            <a href="signup.php" id="btnSignup" class="btn btn-success bg-gradient ms-auto">S'enregistrer</a>
+        </div>
 </div>
 
 <?php
