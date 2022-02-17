@@ -45,5 +45,29 @@
 
 
 <body class="bg-dark">
+
+<?php
+
+
+if (isset($breadcrumb)){
+    echo '<div class="container">';
+    breadcrumb($breadcrumb);
+  echo '</div>';
+}
+
+?>
+
+
+<?php
+
+
+if (isset($landing_img)){
+    echo '<div class="landing"> img goes here</div>';
+}
+
+?>
+    
     <div class="container">
+
+    
      
