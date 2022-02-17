@@ -6,7 +6,7 @@
 
     function breadcrumb(array $bc_elements) { 
         $str = '
-    <section>
+    <section style="color:white">
      <ul class="breadcrumb">
     ';
     

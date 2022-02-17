@@ -55,19 +55,19 @@ if (isset($breadcrumb)){
     breadcrumb($breadcrumb);
   echo '</div>';
 }
-
 ?>
-
 
 <?php
+    if (isset($landing_img)){
+        echo '<div class="landing mb-5" style="background-image:url(\''.$landing_img.'\')">
+        <div id="landing-text-box">';
 
-
-if (isset($landing_img)){
-    echo '<div class="landing"> img goes here</div>';
-}
-
+        if (isset($landing_title)) {
+            echo '<h1 class="title ">'.$landing_title.'</h1>';
+        }
+        echo '</div></div>';   
+        }
 ?>
-    
     <div class="container">
 
     

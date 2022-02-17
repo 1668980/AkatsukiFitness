@@ -1,5 +1,6 @@
 @import url(style-workout.css);
 @import url(style-plans.css);
+@import url(style-breadcrumb.css);
 
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
@@ -48,44 +49,23 @@ margin-right: 0%;
     min-height: 220px;
 }
 
- /* Style the list */
- ul.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
-    background-color: #eee;
-  }
-  
-  /* Display list items side by side */
-  ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-  }
-  
-  /* Add a slash symbol (/) before/behind each list item */
-  ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-  }
-  
-  /* Add a color to all links inside the list */
-  ul.breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
-  }
-  
-  /* Add a color on mouse-over */
-  ul.breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
-  }
 
   .landing {
       min-height: 400px;
-      background-image: url('/AkatsukiFitness/images/about/guy-red-gloves-cropped.jpg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover; 
+      align-self: center;
+      display : flex;
+      align-items : center;
+      justify-content : center;
+  }
+  #landing-text-box h1.title{
+      color: #FFFFFF;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      
   }
 
   h4.title {

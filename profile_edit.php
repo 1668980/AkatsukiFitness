@@ -1,4 +1,10 @@
 <?php
+
+$breadcrumb =[
+    ["index.php", "Accueil"],
+    ["profile.php", "Mon profil"],
+    ["", "Modification de profil"]
+];
 require_once('includes/header.php');
 require_once 'includes/auth_check.php';
 
