@@ -10,40 +10,6 @@ require_once('includes/header.php');
 
     <form class="needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()'
         action="signup_action.php" method="POST">
-        <script>
-        function validatePassword1() {
-            let passwd = $('#passInsc').val();
-            let passwdConf = $('#passConf').val();
-            // tester votre regex sur https://regex101.com/
-
-            var pattern = /^[A-Za-z\d_-]{8,10}$/;
-
-            // alert("mdp= " + passwd + " conf= " + passwdConf);
-            if (pattern.test(passwd) == true) {
-                // alert("mdp ok");
-                $('#message1').html('Valide').css('color', 'green');
-                if (passwd == passwdConf) {
-                    $('#message2').html('Valide').css('color', 'green');
-                    return true;
-                } else
-                    $('#message2').html('Non valide').css('color', 'red');
-                return false;
-            } else
-                $('#message1').html('Non valide').css('color', 'red');
-            return false;
-        }
-
-        function f1() {
-            let checkbox = $('#invalidCheck1');
-            if (checkbox.prop("checked") == true) {
-                alert("checkbox is checked");
-                return true;
-            } else if (checkbox.prop("checked") == false) {
-                alert("checkbox is not checked");
-                return false;
-            }
-        }
-        </script>
         <!-- row 1 -->
         <div class="row">
             <div class="form-group col-md-6 mt-1">
@@ -110,28 +76,12 @@ require_once('includes/header.php');
                 <span id="message1" name="message1"></span>
             </div>
             <div class="form-group col-md-6">
-                <script>
-                $('#passInsc').on('keyup', function() {
-                    var pattern = /^[A-Za-z\d_-]{8,25}$/;
-                    if (pattern.test($('#passInsc').val()) == true) {
-                        $('#message1').html('Valide').css('color', 'green');
-                    } else
-                        $('#message1').html('Non valide').css('color', 'red');
-                });
-                </script>
+
                 <label for="passwordConfirm" class="form-label">Confirmez le mot de passe</label>
                 <input type="password" class="form-control" id="passConf" name="passConf" required>
                 <span id="message2" name="message2"></span>
             </div>
         </div>
-        <script>
-        $('#passConf').on('keyup', function() {
-            if ($('#passInsc').val() == $('#passConf').val()) {
-                $('#message2').html('Matching').css('color', 'green');
-            } else
-                $('#message2').html('Not Matching').css('color', 'red');
-        });
-        </script>
         <div class="row mt-3">
             <div class="col-12 col-sm-6 mb-2">
                 <div class="card align-items-center card-perso card-hover text-white bg-secondary cardLogin ">

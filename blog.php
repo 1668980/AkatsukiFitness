@@ -1,4 +1,12 @@
 <?php
+
+$landing_img = "images/about/guy-red-gloves-cropped.jpg";
+$landing_title = "Blog";
+$breadcrumb =[
+    ["/", "Accueil"],
+    ["", "Blog"]
+];
+
 require_once('includes/header.php');
 
 function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color) {
@@ -22,11 +30,6 @@ function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $n
 }
 
 ?>
-
-
-<header class="blogheader">
-  BLOG
-</header>
 <div class="blogbody">
 <div class="blogcontainer">  
   <?php 

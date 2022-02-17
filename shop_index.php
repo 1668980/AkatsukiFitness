@@ -1,4 +1,10 @@
 <?php
+$landing_img = "images/about/guy-red-gloves-cropped.jpg";
+$landing_title = "Boutique";
+$breadcrumb =[
+    ["/", "Accueil"],
+    ["", "Boutique"]
+];
 require_once('includes/header.php');
 ?>
 
