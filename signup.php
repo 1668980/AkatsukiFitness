@@ -66,9 +66,9 @@ require_once('includes/header.php');
             <div class="form-group col-6">
                 <label class="form-label">Sexe</label>
                 <select name="gender" class="form-select" aria-label="">
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
-                    <option value="autre">Autre</option>
+                    <option value="0">Homme</option>
+                    <option value="1">Femme</option>
+                    <option value="2">Autre</option>
                 </select>
                 <!-- <label class="form-label">Sexe</label>
                 <div class="form-check">
