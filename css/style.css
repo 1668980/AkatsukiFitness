@@ -1,5 +1,6 @@
 @import url(style-workout.css);
 @import url(style-plans.css);
+@import url(style-blog.css);
 
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
