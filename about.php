@@ -25,12 +25,8 @@ require_once('includes/header.php');
                 <img src="images/blogs/b_01.jpg" class="img-fluid rounded mx-auto d-block" alt="...">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 align-self-center">
-                <h4 class="title">Subtitle</h4> 
-                <p class="text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at purus accumsan, iaculis turpis vitae, accumsan urna. 
-                    Aliquam tempus tincidunt metus, quis dapibus odio pellentesque non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque mi odio, porta eget euismod sed, 
-                    tempus mollis ex. Donec ornare tincidunt felis ut volutpat. 
-                </p>
+                <h4 class="title"><?php __('about_title1'); ?></h4> 
+                <p class="text"><?php __('about_text1'); ?></p>
                 
             </div>
         </div>

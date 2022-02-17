@@ -29,4 +29,10 @@
     ';
      echo $str;
     }
+
+
+    function __($key) { 
+        return Lang::__($key);
+    }
+
 ?>
