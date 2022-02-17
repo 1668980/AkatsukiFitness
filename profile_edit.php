@@ -79,19 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <legend class="col-form-label col-sm-2 pt-0">Sexe</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" value="homme" <?php if ($gender == 'homme') { echo 'checked'; } ?>>
+                                <input class="form-check-input" type="radio" name="gender" value="homme" <?php if ($gender == 0) { echo 'checked'; } ?>>
                                 <label class="form-check-label" for="radioMale">
                                     Homme
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender"  value="femme" <?php if ($gender == 'femme') { echo 'checked'; } ?>>
+                                <input class="form-check-input" type="radio" name="gender"  value="femme" <?php if ($gender == 1) { echo 'checked'; } ?>>
                                 <label class="form-check-label" for="radioFemelle">
                                     Femme
                                 </label>
                             </div>
                             <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="gender"  value="autre"  <?php if ($gender == 'autre') { echo 'checked'; } ?>>
+                                <input class="form-check-input" type="radio" name="gender"  value="autre"  <?php if ($gender == 2) { echo 'checked'; } ?>>
                                 <label class="form-check-label" for="radioAutre">
                                     Autre
                                 </label>

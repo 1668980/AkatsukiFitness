@@ -332,8 +332,8 @@ class Crud
     private function addExercice($exercice){
 
         try { 
-            $sql = "INSERT INTO `exercice` (`idexercicecatalogue`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
-            (:idexercicecatalogue, :poids, :repetitions, :sets, :duree, :dureepause)";
+            $sql = "INSERT INTO `exercice` (`idexercicecatalogue`,`status`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
+            (:idexercicecatalogue, 0, :poids, :repetitions, :sets, :duree, :dureepause)";
             $stmt = $this->db->prepare($sql);
             $stmt->bindparam(':idexercicecatalogue',  $exercice->idexercicecatalogue);
             $stmt->bindparam(':poids', $exercice->poids);
@@ -395,8 +395,50 @@ class Crud
         }
     }
 
+    //Historique And STATUS
 
-   
+    public function getExerciceStatus($idExercice){
+        try{
+            $sql = "SELECT * FROM `exercice` WHERE `idexercice` = $idExercice ";           
+      
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            
+            $result = $stmt->fetch();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+
+
+    }
+    public function setExerciceStatusComplete($idExercice){
+        try {  
+            $sql = "UPDATE `exercice` SET `status` =  1 WHERE `idexercice` =  $idExercice";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function setExerciceStatusIncomplete($idExercice){
+        try {  
+            $sql = "UPDATE `exercice` SET `status` =  0 WHERE `idexercice` =  $idExercice";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+
+    
 
 //lier les diferente table
 

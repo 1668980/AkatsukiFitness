@@ -8,148 +8,57 @@ $breadcrumb =[
 ];
 
 require_once('includes/header.php');
+
+function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color) {
+  return '<div class="blogcard" onclick="location.href=\'blog_article.php\';" style="cursor: pointer;">
+            <div class="blogcard-header">
+              <img src="'.$lienImage.'" alt="'.$title.'" />
+            </div>
+            <div class="blogcard-body">
+              <span class="blogtag" style="background-color:'.$color.';">'.$theme.'</span>
+              <h4>'.$title.'</h4>
+              <p>'.$description.'</p>
+              <div class="bloguser">
+                <img src="'.$imageProfile.'" alt="user" />
+                <div class="bloguser-info">
+                  <h5>'.$nomProfile.'</h5>
+                  <small>'.$datePosted.'</small>
+                </div>
+              </div>
+            </div>
+          </div>'; 
+}
+
 ?>
-<div class="container">
-    <div class="card-group container-fluid mt-5">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment sse motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body" style="max-width: 540px;  max-height: 240px ">
-                        <h4 class="card-title"> Lutter contre les bras flasque</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Exercice </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body" style="max-width: 540px; max-height: 240px ">
-                        <h4 class="card-title"> Le sport en 2 coup 3 temps </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Entrainement </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body" style="max-width: 540px; max-height: 240px ">
-                        <h4 class="card-title"> Le parcours à suivre pour une ligne de rêve </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Nutrition </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body" style="max-width: 540px; max-height: 240px ">
-                        <h4 class="card-title"> Une méthode simple et efficace pour se motiver </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body" style="max-width: 540px; max-height: 240px ">
-                        <h4 class="card-title"> Comment perdre des calories avec efficacité</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Entrainement</h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-3 card-perso card-hover" style="max-width: 540px; min-height:140px ; max-height: 240px " href="blog_article.php">
-                    <div class="card-body">
-                        <h4 class="card-title"> Comment Se motiver à prendre les poids </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">18/08/2021 <br /> Motivation </h6>
-                        <a href="blog_article.php" class="stretched-link" >Lire l'article</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+<header class="blogheader">
+  BLOG
+</header>
+<div class="blogbody">
+<div class="blogcontainer">  
+  <?php 
+    $title = "How to Keep Going When You Don’t Know What’s Next";
+    $theme = "Popular";
+    $description = "The future can be scary, but there are ways to deal with that fear.";
+    $lienImage = "https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg";
+    $imageProfile = "https://lh3.googleusercontent.com/ogw/ADGmqu8sn9zF15pW59JIYiLgx3PQ3EyZLFp5Zqao906l=s32-c-mo";
+    $nomProfile = "Eyup Ucmaz";
+    $datePosted = "Yesterday";
+    $color = "#47bcd4";
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
+    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);    
+  ?>
+
+
 </div>
+
 <?php
 require_once('includes/footer.php');
 ?>

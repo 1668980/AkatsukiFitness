@@ -14,12 +14,13 @@ $exercice = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree
 
 // fonctionnel
 //var_dump($exercice);
-echo $crud->addExercice($exercice);
+
 
 $exercicesList = array();
 
 array_push($exercicesList,$exercice);
 echo $crud->addExercices($exercicesList,1);*/
+
 /*$idUser =2 ;
 $email="03@gmail.com"  ;
 $firstName="03";
@@ -76,7 +77,7 @@ var_dump($result);*/
 $result =$crud->isUserSubscibed(1);
 var_dump($result);
 */
-
+/*
 
 $idexercicecatalogue =1;
 $poids = 50;
@@ -92,5 +93,15 @@ $exercice = new Exercice(1,$idexercicecatalogue,$poids,$repetitions,$sets,$duree
 $result =$crud->deleteEntrainement(2);
 
 echo "<br> test <br>";
-var_dump($result);
+var_dump($result);*/
+
+$crud->setExerciceStatusComplete(1);
+
+
+
+
+
+
+
+
 ?>
