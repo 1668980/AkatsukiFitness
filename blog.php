@@ -30,11 +30,6 @@ function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $n
 }
 
 ?>
-
-
-<header class="blogheader">
-  BLOG
-</header>
 <div class="blogbody">
 <div class="blogcontainer">  
   <?php 
