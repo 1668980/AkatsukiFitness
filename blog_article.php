@@ -1,4 +1,13 @@
 <?php
+
+$landing_img = "images/about/guy-red-gloves-cropped.jpg";
+$landing_title = "Blog";
+$breadcrumb =[
+    ["/", "Accueil"],
+    ["blog.php", "Blog"],
+    ["", "Article"]
+];
+
 require_once('includes/header.php');
 ?>
 

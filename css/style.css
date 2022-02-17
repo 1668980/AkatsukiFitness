@@ -1,5 +1,6 @@
 @import url(style-workout.css);
 @import url(style-plans.css);
+@import url(style-breadcrumb.css);
 @import url(style-blog.css);
 
 .card-hover:hover {
@@ -15,7 +16,7 @@
 
 /* nav bar O.V */
 #myNav {
-    padding: 0%;
+    padding: 12px;
     /* background-color: #dc3545 !important; */
     text-align: center;
   }
@@ -48,3 +49,29 @@ margin-right: 0%;
 .cardLogin {
     min-height: 220px;
 }
+
+
+  .landing {
+      min-height: 400px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; 
+      align-self: center;
+      display : flex;
+      align-items : center;
+      justify-content : center;
+  }
+  #landing-text-box h1.title{
+      color: #FFFFFF;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      
+  }
+
+  h4.title {
+      color: #dc3545;
+  }
+  p.text{
+      color: #FFFFFF;
+  }
