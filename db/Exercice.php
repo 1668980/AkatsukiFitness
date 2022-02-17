@@ -25,5 +25,6 @@ class Exercice {
         $this->dureepause = $dureepause;
     }
 
+    
 } 
 ?>

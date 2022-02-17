@@ -292,6 +292,22 @@ class Crud
         }
         
     }
+
+
+    //Récupérer les entrainements par défaut
+    public function getEntrainements(){
+        try{
+            $sql = "SELECT * FROM `entrainement`";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+
     //Update
     public function updateEntrainement($idEntrainement,$name){
         try {  
