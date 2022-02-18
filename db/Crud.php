@@ -263,7 +263,7 @@ class Crud
     }
     private function createEntrainement($nom){
         try{    
-            $sql = " INSERT INTO `entrainement` (`nom`) VALUES ( '$nom')";
+            $sql = " INSERT INTO `entrainement` (`nom`,`status`) VALUES ( '$nom',0)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         return $this->db->lastInsertId();

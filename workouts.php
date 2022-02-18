@@ -178,19 +178,19 @@ require_once 'includes/auth_check.php';
                             foreach($listeEntrainement as $training){
                                 $idEntrainement = $training['identrainement'];
                                 $nom = $training['nom'];
-                                $difficulte = $training['difficulte'];
-                                $type = $training['type'];
-                                $duree = $training['duree'];
+                               // $difficulte = $training['difficulte'];
+                                //$type = $training['type'];
+                               // $duree = $training['duree'];
 
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
                                             <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25">
-                                                    <h4 class="card-title"> '.$nom .' </h4>
+                                                    <h4 class="card-title"> '.$nom.'</h4>
                                                     <ul>
-                                                        <li>'.$type .'</li>
-                                                        <li>'.$duree.' minutes </li>
-                                                        <li>'.$difficulte.'</li>
+                                                        <li>'./*$type */'</li>
+                                                        <li>'./*.$duree.*/' minutes </li>
+                                                        <li>'./*.$difficulte.*/'</li>
                                                     </ul>
                                                 </div>
                                             </div>
