@@ -63,11 +63,16 @@ echo $crud->addExercices($exercicesList,$idUserAajouter);
 
 
 */
+$result =$crud->getExercicesCatalogue();
+echo $result[0]['nom'];
 
+
+//var_dump($result);
+/*
 $result =$crud->getExercicesFromEntrainement(1);
 //var_dump($result);
 echo $result[0]["nom"];
-echo "<br>";
+echo "<br>";*/
 //echo $result[0]['poids'];
 /*$result =$crud->getEntrainementByIdUser(1);
 var_dump($result);*/

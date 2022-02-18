@@ -454,7 +454,18 @@ class Crud
         }
     }
 
-
+    public function getExercicesCatalogue(){
+        try { 
+            $sql = "SELECT * FROM `exercicecatalogue` LIMIT 25";
+            $stmt = $this->db->prepare($sql); 
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        return $result;
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
+        }
+    }
 
     
 

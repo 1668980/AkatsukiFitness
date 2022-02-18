@@ -6,6 +6,15 @@ $breadcrumb = [
 
 require_once 'includes/header.php';
 require_once 'includes/auth_check.php';
+$isCreated=false;
+if(isset($_GET['id'])){   
+    echo '<script>
+    $(document).ready(function(){
+            $("#exerciceModal").modal(\'show\');
+    });
+    </script>';
+}
+
 
 // function getFlipBox($nomEntrainement, $listExercise, $lienImage, $buttonText, $color) {
 //     $details = "";
@@ -320,6 +329,50 @@ echo $rep;
                         </div>
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Continue</button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exerciceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden='true'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+                <form action="new_workout.php" method="POST">
+                   <?php
+                  $exercices= $crud->getExercicesCatalogue();
+                  foreach ($exercices as $ex) {
+                    $nom=$ex['nom'];
+                    ?>
+                    <div class="container flex-row">
+                    <p><?php echo $nom?></p>
+                    <button type="button" class="btn btn-success">Ajouter</button>
+                    </div>
+                    <?php
+
+
+
+
+
+
+
+
+                  }
+                   ?> 
+
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Continue</button>
