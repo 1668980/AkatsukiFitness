@@ -1,6 +1,6 @@
 <?php
 
-$landing_img = "images/about/guy-red-gloves-cropped.jpg";
+$landing_img = "images/blogs/girl-workout-laptop.jpg";
 $landing_title = "Blog";
 $breadcrumb =[
     ["/", "Accueil"],
