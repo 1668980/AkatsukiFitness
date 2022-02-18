@@ -5,7 +5,6 @@ require_once('includes/header.php');
 <!-- Container du formulaire d'incription-->
 <div id="containerSignup" class="container mt-2">
 
-
     <h1 class="h1 text-center textLogin mt-2">Devenir membre</h1>
 
     <form class="needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()'
