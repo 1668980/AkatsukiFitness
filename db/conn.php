@@ -1,20 +1,20 @@
 <?php
 
-//connection (local)
-$host = 'localhost';
-$db = 'akatsuki_db';
-$user = 'root';
-$pass = '';
-$chartset = 'utf8mb4';
+// connection (local)
+// $host = 'localhost';
+// $db = 'akatsuki_db';
+// $user = 'root';
+// $pass = '';
+// $chartset = 'utf8mb4';
 
 // remote database connection (online)
 // Port number: 3306
 
-// $host = 'sql5.freesqldatabase.com';
-// $db = 'sql5472123';
-// $user = 'sql5472123';
-// $pass = 'kkplchz5zV';
-// $chartset = 'utf8mb4';
+$host = 'sql5.freesqldatabase.com';
+$db = 'sql5472123';
+$user = 'sql5472123';
+$pass = 'kkplchz5zV';
+$chartset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;chartset=$chartset";
 
