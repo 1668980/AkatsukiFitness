@@ -26,7 +26,9 @@ class Crud
         $last_id = $this->addUtilisateur($user);
 
         $this->addConnexion($user, $last_id);
-        $this->createContenu($last_id);         
+        $idContenu= $this->createContenu($last_id);  
+        $this->linkEntrainementContenu($idContenu,1);
+        $this->linkEntrainementContenu($idContenu,2);
         return  $last_id;
 
     }
@@ -259,7 +261,7 @@ class Crud
        $idEntrainement= $this->createEntrainement($nom);
        $idContenu = $this->getContenuId($idUser);
        $this->linkEntrainementContenu($idContenu,$idEntrainement);
-       return true;
+       return $idEntrainement;
     }
     private function createEntrainement($nom){
         try{    
