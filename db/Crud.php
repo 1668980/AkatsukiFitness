@@ -310,6 +310,20 @@ class Crud
         }
     }
 
+      //Récupérer une entrainement (Mathieu)
+      public function getEntrainementInfo($idEntrainement){
+        try{
+            $sql = "SELECT * FROM `entrainement` where `identrainement`=$idEntrainement";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+
     //Update
     public function updateEntrainement($idEntrainement,$name){
         try {  

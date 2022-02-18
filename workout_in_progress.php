@@ -5,28 +5,35 @@ require_once('includes/auth_check.php')
 
 <?php
 //TODO: avoir le type de muscle ou entrainement de plus et duree entrainement
-function getEntrainementInfo($nomEntrainement){
-    $details = "";
-    return '<div class="container w-100 ">
+//$var_value = $_POST['identrainement'];
+$entrainement = $crud->getEntrainementInfo('1');
+$details ='';
+
+foreach($entrainement as $training){
+    $idEntrainement = $training['identrainement'];
+    $nom = $training['nom'];
+    $status = $training['status'];
+    //$difficulte = $training['difficulte'];
+    //$type = $traning['type'];
+    //$duree = $training['duree'];
+    
+//function getEntrainements($nomEntrainement){
+    $text .= '<div class="container w-100 ">
                 <div class="col-sm-4">
                         <div class="card mb-3 card-perso" style="max-width: auto; max-height: 100% " href="#">
                             <div class="card-body">
-                                <h4 class="card-title"> '.$nomEntrainement .' </h4>
-                                <h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: <br /> Muscles visés </h6>
+                                <h4 class="card-title"> '.$nom .' </h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: '.$duree . '<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
                             </div>
                         </div>
                     </div>
                 </div>';
 }
-
+echo $text;
 ?>
 
-<head>
-
-    <link rel="stylesheet" href="style-workoutprogress.css">
-</head>
-<main>
-    <!--
+<main >
+<!--
     <div class="container w-100 ">
         <div class="col-sm-4">
                 <div class="card mb-3 card-perso" style="max-width: auto; max-height: 100% " href="#">
@@ -39,63 +46,126 @@ function getEntrainementInfo($nomEntrainement){
         </div>
 -->
 
-    <?php 
- $exerciseList= $crud->getExercicesFromEntrainement(1);
- $entainementList = $crud->getEntrainementByIdUser($_SESSION['userid']);
- for( $i =0;$i<1;$i++){
-    echo getEntrainementInfo($entainementList[$i]['nom']);
- }
+<?php 
+ //$exerciseList= $crud->getExercicesFromEntrainement(1);
+ //$entainementList = $crud->getEntrainementByIdUser($_SESSION['userid']);
+ //for( $i =0;$i<1;$i++){
+ //   echo getEntrainementInfo($entainementList[$i]['nom']);
+ //}
+
+ //$result = $crud->getExercicesFromEntrainement(1);
+
+ //echo $result[0]["nom"];
+ 
 
 ?>
 
 
-    <?php
+<?php
 
-$link = mysqli_connect("sql5.freesqldatabase.com", "sql5472123", "kkplchz5zV", "sql5472123");
+//$link = mysqli_connect("sql5.freesqldatabase.com", "sql5472123", "kkplchz5zV", "sql5472123");
 
-$query = mysqli_query($link, "select * from exercice where idexercice=1");
-while ( $row = mysqli_fetch_array($query) ) :
+//$query = mysqli_query($link,"SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice 
+//INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue` ");// "select * from exercice");
+//while ( $row = mysqli_fetch_array($query) ) :
+//$query = mysqli_query($link, "select idexercice from entrainementexercice where identrainement = 1");
+$exercice = $crud->getExercicesFromEntrainement(1);
+//while ($row = mysqli_fetch_array($query)) :
+$detail = '';
+foreach($exercice as $training){
+    $idExercice = $training['idexercice'];
+    //$idCatalogue = $training['idcatalogue'];
+    $status = $training['status'];
+    $poids = $training['poids'];
+    $reps = $training['repetitions'];
+    $sets = $training['sets'];
+    $duree = $training['duree'];
+    $dureepause = $training['dureepause'];
+    $nom = $training['nom'];
 
-?>
-
-
-    <?php //for ($x = 1; $x <= 4; $x++) : ?>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <h4 class="card-header">
-                    <div class="ChangeButtonC">
-                        <label>
-                            <button class="btn-primary" id="btn1"
-                                onclick="document.getElementById('btn1').style.background='green'">
-                                <!--     <span class="seatButton">
-                                                Exercice complété
-                                            <a href="show.php" class="btn btn-primary">Exercice complété</a>
-
-                                            </span>-->
-                                <span class="seatButton"> Exercice complété </span>
-                            </button>
-                        </label>
+    $details .= '<div class ="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <h4 class="card-header">
+                                <div class="ChangeButtonC">
+                                    <label>
+                                        <h1> '.$nom .' </h1>    
+                                        <button class="btn-primary" >
+                                            <span class="seatButton"> Exercice complété </span>
+                                        </button>
+                                    </label>
+                                </div>
+                            </h4>
+                            <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .'  </div>
+                            <div class="card-footer"> Poids : '.$poids .'</div>
+                        </div>
                     </div>
-                </h4>
-                <div class="card-body">Sets : <?php echo $row['sets']?> <br /> Répétitions :
-                    <?php echo $row['repetitions'] ?> </br> Repos entre sets : <?php echo $row['dureepause'] ?> </div>
-                <div class="card-footer"> Poids : <?php echo $row['poids']?></div>
+                </div>
+                ';
+}
+echo $details;
+?>
+
+
+   <!--
+         <div class ="row">
+             <div class="col-md-4">
+                <div class="card">
+                    <h4 class="card-header">
+                        <div class="ChangeButtonC">
+                            <label>
+                                <button class="btn-primary" id="btn1" href='" . $GET["id"] . "' onclick="document.getElementById('btn1').style.background='green'">
+                                        
+                                            <?php
+                                            //$crud->setExerciceStatusComplete("")
+                                            ?>
+                                    <span class="seatButton"> Exercice complété </span>
+                                </button>
+                            </label>
+                        </div>
+                    </h4>
+                    <div class="card-body">Sets : <?php //echo $row['sets']?> <br/> Répétitions : <?php //echo $row['repetitions'] ?> </br> Repos entre sets : <?php //echo $row['dureepause'] ?> </div>
+                    <div class="card-footer"> Poids : <?php //echo $row['poids']?></div>
+                </div>
+            </div>
+         </div> -->
+    </main>
+
+<?php
+//endforeach;
+?>
+            <div class="card-group container-fluid">
+            <div class="row">
+            <div class="ChangeButtonC">
+                            <label>
+
+                            <?php 
+
+                            
+                                ?>
+                                <button class="btn-success" id="btn2" onclick="document.getElementById('btn2').style.background='green'">
+                                       
+                                    <span class="seatButton"> Fini </span>
+                                </button>
+                            </label>
+                        </div><div class="ChangeButtonC">
+                            <label>
+                                <button class="btn-primary" id="btn3" onclick="document.getElementById('btn3').style.background='blue'">
+                                        
+                                    <span class="seatButton"> Pause </span>
+                                </button>
+                            </label>
+                        </div><div class="ChangeButtonC">
+                            <label>
+                                <button class="btn-danger" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
+                                       
+                                    <span class="seatButton"> Abandonner </span>
+                                </button>
+                            </label>
+                        </div>
             </div>
         </div>
     </div>
-    <?php //endfor; ?>
-</main>
-
-<?php
-endwhile;
-?>
-<div class="card-group container-fluid">
-    <div class="row">
-
-    </div>
-</div>
-</div>
 </main>
 
 
