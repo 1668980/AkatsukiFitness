@@ -20,8 +20,8 @@ $file = '[{"bodyPart":"waist","equipment":"body weight","gifUrl":"http://d205bpv
 
 
     }
-*/
 
+*/
 
 
 
