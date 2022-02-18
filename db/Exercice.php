@@ -1,6 +1,6 @@
 <?php
-class Exercise {
-    public $idExercise;
+class Exercice {
+    public $idexercice;
     public $idexercicecatalogue;
     public $poids;
     public $repetitions;
@@ -12,9 +12,9 @@ class Exercise {
     public function __construct($id,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureepause)
     {
         if($id != 0 ){
-            $this->idExercise = $id;
+            $this->idexercice = $id;
         }else{
-            $this->idExercise = 0;
+            $this->idexercice = 0;
         }
         
         $this->idexercicecatalogue = $idexercicecatalogue;
@@ -25,5 +25,6 @@ class Exercise {
         $this->dureepause = $dureepause;
     }
 
+    
 } 
 ?>

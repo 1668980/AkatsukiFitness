@@ -1,35 +1,29 @@
 <?php
 class Utilisateur {
-    public $idUser;
+    public $id_user;
     public $email;
-    public $firstName;
-    public $lastName;
-    public $date;
+    public $firstname;
+    public $lastname;
+    public $dob; //date_of_bith
     public $password;
     public $gender;
 
-    public function __construct($id,$last,$first,$email,$date)
+    public function __construct($id,$lastname,$firstname,$email,$dob,$gender)
     {
         if($id != 0 ){
-            $this->idUser = $id;
+            $this->id_user = $id;
         }else{
-            $this->idUser = 0;
+            $this->id_user = 0;
         }
-        $this->lastName = $last;
-        $this->firstName = $first;
+        $this->lastname = $lastname;
+        $this->firstname = $firstname;
         $this->email = $email;
-        $this->date = $date;
-        $this->gender = "homme";
+        $this->dob = $dob;
+        $this->gender = $gender;
     }
 
     public function setPassword($pswd){
         $this->password = $pswd;
     }
-
-    
-
-
-
-
 } 
 ?>

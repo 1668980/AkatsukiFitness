@@ -9,7 +9,19 @@
                 <li>Nom : <?php echo $lastname ?> </li>
                 <li>Courriel : <?php echo $email ?></li>
                 <li>Date de Naissance : <?php echo $dob ?></li>
+                <li>Sexe : <?php
+                if($sexe == 0){
+                    echo "homme";
+                }else if($sexe ==1){
+                    echo "femme";
+                }else{
+                    echo "autre";
+                }               
+                
+               ?></li>
+                <li>Poids : <?php echo $weight ?></li>
                 <!--<li>Sexe :</li>-->
+
             </ul>
             </p>
             <a href="profile_edit.php" class="card-link">Modifier</a>

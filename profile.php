@@ -1,4 +1,9 @@
 <?php
+
+$breadcrumb =[
+    ["/", "Accueil"],
+    ["", "Mon profil"]
+];
 require_once('includes/header.php');
 require_once 'includes/auth_check.php';
 
@@ -10,11 +15,9 @@ $firstname = $userInfo['prenom'];
 $lastname = $userInfo['nom'];
 $email = $userInfo['email'];
 $dob = $userInfo['date_de_naissance'];
+$sexe = $userInfo['sexe'];
 $weight = $userInfo['poids'];
 $weight_goal = "123";
-
-// var_export($userInfo);
-// die();
 
 ?>
 
