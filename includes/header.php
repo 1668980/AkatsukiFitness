@@ -42,7 +42,7 @@
 
 
 <?php 
-        require_once ('vue/nav.php'); ?>
+        include ('vue/nav.php'); ?>
 
 
 <body class="bg-dark">
@@ -68,6 +68,15 @@ if (isset($breadcrumb)){
         echo '</div></div>';   
         }
 ?>
+
+
+<?php
+    if (isset($carousel)) { 
+        include ('vue/carrousel.php');
+    }
+
+?>
+
     <div class="container">
 
     

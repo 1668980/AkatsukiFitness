@@ -51,27 +51,55 @@ margin-right: 0%;
 }
 
 
-  .landing {
-      min-height: 400px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover; 
-      align-self: center;
-      display : flex;
-      align-items : center;
-      justify-content : center;
-  }
-  #landing-text-box h1.title{
-      color: #FFFFFF;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      
-  }
+.landing {
+    min-height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    align-self: center;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+}
+#landing-text-box h1.title{
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    
+}
 
-  h4.title {
-      color: #dc3545;
-  }
-  p.text{
-      color: #FFFFFF;
-  }
+h4.title {
+    color: #dc3545;
+}
+p.text{
+    color: #FFFFFF;
+}
+
+
+
+
+.carousel-indicators .active {
+    background-color:#dc3545;
+}
+
+.slide { 
+    height: 400px; 
+    min-width: 100%; 
+    background-size:cover; 
+    background-position: center;
+    background-repeat:no-repeat; 
+}
+
+.slide1 {
+    background-image:url('../images/sliders/couple-training.jpg');
+}
+.slide2 {
+    background-image:url('../images/sliders/lady-workout-leggings.jpg');
+}
+.slide3 {
+    background-image:url('../images/about/guy-red-gloves-cropped.jpg');
+}
+
+
+
