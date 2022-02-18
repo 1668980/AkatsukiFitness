@@ -210,11 +210,7 @@ class Crud
             return false;
         }
     }    
-<<<<<<< Updated upstream:db/Crud.php
-    public function isUserSubscibed($idUser){
-=======
-    public function IsUserSubscribed($idUser){
->>>>>>> Stashed changes:db/crud.php
+    public function isUserSubscribed($idUser){
         $user =$this->getUser($idUser);
 
         $dateStartSub= new DateTime($user['datedebutabonnement']);
