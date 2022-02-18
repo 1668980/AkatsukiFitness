@@ -259,7 +259,7 @@ class Crud
        $idEntrainement= $this->createEntrainement($nom);
        $idContenu = $this->getContenuId($idUser);
        $this->linkEntrainementContenu($idContenu,$idEntrainement);
-       return true;
+       return $idEntrainement;
     }
     private function createEntrainement($nom){
         try{    

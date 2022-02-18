@@ -7,7 +7,8 @@ $name = $_POST['name'];
 
 $result = $crud->createNewEntrainement($name, $_SESSION['userid']);
 
+
 //$_SESSION['userid'] = $result;
 //$_SESSION['email'] = $email;
-header('Location: workouts.php');
+header('Location: workouts.php?id=' . $result );
 ?>
