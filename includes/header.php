@@ -46,7 +46,7 @@
         include ('vue/nav.php'); ?>
 
 
-<body class="bg-dark text-light">
+<body class="bg-dark ">
 
 <?php
 

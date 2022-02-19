@@ -74,13 +74,15 @@ class Crud
 
     //UpdateUser
     public function updateUserUtilisateurTableSansEmail($user){
-        try {  
-            $sql = "UPDATE `utilisateur` SET `nom` =  $user->lastName, `prenom` =  $user->firstName,`date_de_naissance` = '$user->date' WHERE `utilisateur`.`iduser` =  $user->idUser";
+       
+    
+           try {  
+            $sql = "UPDATE `utilisateur` SET `nom` =  '$user->lastname' , `prenom` =  '$user->firstname',`date_de_naissance` = '$user->dob',`sexe` = '$user->gender',`poids`= '$user->weight' WHERE `utilisateur`.`iduser` =  $user->id_user";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            echo $e->getMessage()."<br>".$sql;
             return false;
         }
     }    

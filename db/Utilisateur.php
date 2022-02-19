@@ -7,8 +7,9 @@ class Utilisateur {
     public $dob; //date_of_bith
     public $password;
     public $gender;
+    public $weight;
 
-    public function __construct($id,$lastname,$firstname,$email,$dob,$gender)
+    public function __construct($id,$lastname,$firstname,$email,$dob,$gender,$weight)
     {
         if($id != 0 ){
             $this->id_user = $id;
@@ -20,7 +21,9 @@ class Utilisateur {
         $this->email = $email;
         $this->dob = $dob;
         $this->gender = $gender;
+        $this->weight = $weight;
     }
+    
 
     public function setPassword($pswd){
         $this->password = $pswd;

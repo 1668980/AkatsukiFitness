@@ -22,8 +22,12 @@ $gender = $userInfo['sexe'];
 // die();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   
 
-    var_export($_POST);
+   $user = new Utilisateur($_SESSION["userid"], $_POST['lastname'], $_POST['firstname'], $_POST['email'], $_POST['dob'], $_POST['gender'],$_POST['weight']);
+   $r= $crud->updateUserUtilisateurTableSansEmail($user);
+  
+   header('Location: profile_edit.php');
 
     //TODO: le code qui update la DB;
     return;
@@ -34,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main class="bg-dark">
 
 
-    <div class="container w-50 ">
+    <div class="container w-50 text">
         <div class="card-group container-fluid ">
 
             <div class="card" style="width:500px;">
@@ -79,19 +83,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <legend class="col-form-label col-sm-2 pt-0">Sexe</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" value="homme" <?php if ($gender == 0) { echo 'checked'; } ?>>
+                                <input class="form-check-input" type="radio" name="gender" value="0" <?php if ($gender == 0) { echo 'checked'; } ?>>
                                 <label class="form-check-label" for="radioMale">
                                     Homme
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender"  value="femme" <?php if ($gender == 1) { echo 'checked'; } ?>>
+                                <input class="form-check-input" type="radio" name="gender"  value="1" <?php if ($gender == 1) { echo 'checked'; } ?>>
                                 <label class="form-check-label" for="radioFemelle">
                                     Femme
                                 </label>
                             </div>
                             <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="gender"  value="autre"  <?php if ($gender == 2) { echo 'checked'; } ?>>
+                                <input class="form-check-input" type="radio" name="gender"  value="2"  <?php if ($gender == 2) { echo 'checked'; } ?>>
                                 <label class="form-check-label" for="radioAutre">
                                     Autre
                                 </label>

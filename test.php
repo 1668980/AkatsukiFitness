@@ -1,7 +1,10 @@
+<div class="text-light">
+
 <?php
 
 include 'includes/header.php';
 include 'db/conn.php';
+
 /*
 $idexercicecatalogue =1;
 $poids = 100;
@@ -63,8 +66,9 @@ echo $crud->addExercices($exercicesList,$idUserAajouter);
 
 
 */
-$result =$crud->getExercicesCatalogue();
-echo $result[0]['nom'];
+
+// $result =$crud->getExercicesCatalogue();
+// echo $result[0]['nom'];
 
 
 //var_dump($result);
@@ -101,13 +105,17 @@ $result =$crud->deleteEntrainement(2);
 echo "<br> test <br>";
 var_dump($result);*/
 
-$crud->setExerciceStatusComplete(1);
+// $crud->setExerciceStatusComplete(1);
+$email="03@gmail.com"  ;
+$firstName="03";
+$lastName="03";
+$date='2022-02-22';
+$user = new Utilisateur($_SESSION['userid'],$lastName,$firstName,$email,$date,1,0);
 
+$r= $crud->updateUserUtilisateurTableSansEmail($user);
 
-
-
-
-
+var_dump( $r);
 
 
 ?>
+</div>

@@ -11,7 +11,7 @@ $email = strtolower(trim($_POST['email']));
 $pass = $_POST['passInsc'];
 $passConf = $_POST['passConf'];
 
-$user = new Utilisateur(0, $lastname, $firstname, $email, $dob, $gender);
+$user = new Utilisateur(0, $lastname, $firstname, $email, $dob, $gender,0);
 $user->setPassword($pass);
 
 $result = $crud->createUtilisateur($user);
