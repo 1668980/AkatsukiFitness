@@ -193,7 +193,7 @@ if(isset($_GET['id'])){
                     <div class="card-group container-fluid ">
                         <div class="row">
                             <?php
-$listeEntrainement = $crud->getEntrainements();
+$listeEntrainement = $crud->getEntrainementByIdUser($_SESSION['userid']);
 
 $rep = '';
 foreach ($listeEntrainement as $training) {

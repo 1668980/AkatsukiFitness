@@ -12,8 +12,9 @@
     require_once 'includes/helpers.php';
     require_once 'db/Utilisateur.php';
     require_once 'db/Exercice.php';
+    require_once 'db/Entrainement.php';
     require_once 'db/conn.php';
-    require_once 'includes/Lang.php'
+    require_once 'includes/Lang.php';
     // if(isset($_SESSION['userid'])){
     //     $userid = $_SESSION['userid'];
     //     $email =  $_SESSION['email'];
@@ -45,7 +46,7 @@
         include ('vue/nav.php'); ?>
 
 
-<body class="bg-dark">
+<body class="bg-dark text-light">
 
 <?php
 

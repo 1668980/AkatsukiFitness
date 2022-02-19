@@ -6,9 +6,9 @@ class Entrainement {
     public $type;
     public $duree;
     public $ExerciseList;
-  
+    
 
-    public function __construct($id,$name,$difficulte,$type,$duree,$ExerciseList)
+    public function __construct($id,$name)//,$difficulte,$type,$duree,$ExerciseList)
     {
         if($id != 0 ){
             $this->idexercice = $id;
