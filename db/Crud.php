@@ -278,7 +278,7 @@ class Crud
     }
 
     //Get
-    public function getEntrainementByIdUser($idUser){
+    public function getEntrainementsByIdUser($idUser){
         
         $idContenu =$this->getContenuId($idUser);
         return $this->getEntrainementsByContenu($idContenu);
@@ -295,10 +295,7 @@ class Crud
         return false;
         }
         
-    }
-
-
-    //Récupérer les entrainements par défaut
+    }   
     public function getEntrainements(){
         try{
             $sql = "SELECT * FROM `entrainement`";
@@ -310,12 +307,11 @@ class Crud
             echo $e->getMessage();
         return false;
         }
-    }
-
-      //Récupérer une entrainement (Mathieu)
-      public function getEntrainementInfo($idEntrainement){
+    }    
+    public function getEntrainementByIdEntrainement($idEntrainement){
+      //Récupérer un entrainement (Mathieu)
         try{
-            $sql = "SELECT * FROM `entrainement` where `identrainement`=$idEntrainement";
+            $sql = "SELECT * FROM `entrainement` where `identrainement`= $idEntrainement";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -325,11 +321,69 @@ class Crud
         return false;
         }
     }
+        //get entrainement completed or incompleted
+    public function getEntrainementsCompletedByIdUser($idUser){
+        $idContenu =$this->getContenuId($idUser);
+        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,1);
+    }
+    public function getEntrainementsIncompletedByIdUser($idUser){
+        $idContenu =$this->getContenuId($idUser);
+        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,0);
+    }
+    private function getEntrainementsCompletedOrIncompletedByContenu($idContenu,$wantedStatus){
+        try{
+            $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON `entrainementcontenu`.`identrainement`  = `entrainement`.`identrainement`  
+            WHERE `entrainementcontenu`.`idcontenu` = '$idContenu' AND `entrainement`.`status` = $wantedStatus";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+        
+    }   
+        //get %completed
+    
+    public function getPercentageOfExercicesCompletedInEntrainement($idEntrainement){
+        $exercices=  $this->getExercicesFromEntrainement($idEntrainement);
+        $exerciceCompleted=0;
+        foreach($exercices as $ex){
+            if($ex['status']==1 ){
+                $exerciceCompleted++;
+            }
+        }
+        return $exerciceCompleted/count($exercices)*100;
+    }
+
 
     //Update
     public function updateEntrainement($idEntrainement,$name){
         try {  
             $sql = "UPDATE `entrainement` SET `nom` =  '$name' WHERE `identrainement` =  $idEntrainement";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function setEntrainementStatusComplete($idEntrainement){
+        try {  
+            $sql = "UPDATE `entrainement` SET `status` =  1 WHERE `identrainement` =  $idEntrainement";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function setEntrainementStatusIncomplete($idEntrainement){
+        try {  
+            $sql = "UPDATE `entrainement` SET `status` =  0 WHERE `identrainement` =  $idEntrainement";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;
@@ -581,6 +635,39 @@ class Crud
         return false;
         }
     }
+//Blogs
+
+    public function getAllBlogs(){
+        try {  
+            $sql = "SELECT * FROM `blog`";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetch();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function getAllBlogsWithCategorie($idCategorie){
+        try {  
+            $sql = "SELECT * FROM `blog` WHERE `idcategorie`= $idCategorie";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetch();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 
 
 

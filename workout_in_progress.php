@@ -6,7 +6,7 @@ require_once('includes/auth_check.php')
 <?php
 //TODO: avoir le type de muscle ou entrainement de plus et duree entrainement
 //$var_value = $_POST['identrainement'];
-$entrainement = $crud->getEntrainementInfo('1');
+$entrainement = $crud->getEntrainementByIdEntrainement('1');
 $details ='';
 
 foreach($entrainement as $training){
@@ -48,9 +48,9 @@ echo $text;
 
 <?php 
  //$exerciseList= $crud->getExercicesFromEntrainement(1);
- //$entainementList = $crud->getEntrainementByIdUser($_SESSION['userid']);
+ //$entainementList = $crud->getEntrainementsByIdUser($_SESSION['userid']);
  //for( $i =0;$i<1;$i++){
- //   echo getEntrainementInfo($entainementList[$i]['nom']);
+ //   echo getEntrainementByIdEntrainement($entainementList[$i]['nom']);
  //}
 
  //$result = $crud->getExercicesFromEntrainement(1);

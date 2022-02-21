@@ -2,10 +2,7 @@
 include 'db/conn.php';
 include 'includes/header.php';
 
-$workout01= new Entrainement(0,"Par Defaut 01");
-$workout02= new Entrainement(0,"Par Defaut 02");
-
-$idexercicecatalogue =1;
+$idexercicecatalogue =2;
 $poids = 50;
 $repetitions=5;
 $sets=2;

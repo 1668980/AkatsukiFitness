@@ -66,7 +66,7 @@ if(isset($_GET['id'])){
                     <div class="col panel" style="width:100%;align-items: center;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 25px 0px 0px;">En Progression</div>
                     <?php
 // $exerciseList= $crud->getExercicesFromEntrainement(1);
-// $entainementList = $crud->getEntrainementByIdUser($_SESSION['userid']);
+// $entainementList = $crud->getEntrainementsByIdUser($_SESSION['userid']);
 // for( $i =0;$i<count($entainementList);$i++){
 //     echo getFlipBox($entainementList[$i]['nom'], array($exerciseList[0]['nom'],"100 pushups","100 squats", "10km de course"), "images/workouts/OnePunchMan.jpg", "Completer", 200);
 // }
@@ -92,7 +92,7 @@ if(isset($_GET['id'])){
                     </div>
                     <?php
 // $exerciseList= $crud->getExercicesFromEntrainement(1);
-// $entainementList = $crud->getEntrainementByIdUser($_SESSION['userid']);
+// $entainementList = $crud->getEntrainementsByIdUser($_SESSION['userid']);
 // for( $i =0;$i<count($entainementList);$i++){
 //     echo getFlipBox($entainementList[$i]['nom'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/workouts/OnePunchMan.jpg", "Completer", 200);
 // }
@@ -193,7 +193,7 @@ if(isset($_GET['id'])){
                     <div class="card-group container-fluid ">
                         <div class="row">
                             <?php
-$listeEntrainement = $crud->getEntrainementByIdUser($_SESSION['userid']);
+$listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
 
 $rep = '';
 foreach ($listeEntrainement as $training) {

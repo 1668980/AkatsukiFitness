@@ -78,7 +78,7 @@ $result =$crud->getExercicesFromEntrainement(1);
 echo $result[0]["nom"];
 echo "<br>";*/
 //echo $result[0]['poids'];
-/*$result =$crud->getEntrainementByIdUser(1);
+/*$result =$crud->getEntrainementsByIdUser(1);
 var_dump($result);*/
 /*
 $result =$crud->addSubscriptionToUser(1,"+1 month");
@@ -106,15 +106,25 @@ echo "<br> test <br>";
 var_dump($result);*/
 
 // $crud->setExerciceStatusComplete(1);
-$email="03@gmail.com"  ;
-$firstName="03";
-$lastName="03";
-$date='2022-02-22';
-$user = new Utilisateur($_SESSION['userid'],$lastName,$firstName,$email,$date,1,0);
+// $email="03@gmail.com"  ;
+// $firstName="03";
+// $lastName="03";
+// $date='2022-02-22';
+// $user = new Utilisateur($_SESSION['userid'],$lastName,$firstName,$email,$date,1,0);
 
-$r= $crud->updateUserUtilisateurTableSansEmail($user);
+// $r= $crud->updateUserUtilisateurTableSansEmail($user);
 
-var_dump( $r);
+// var_dump( $r);
+
+/*
+$r= $crud->getEntrainementsIncompletedByIdUser($_SESSION['userid']);
+
+ var_dump( $r);
+*/
+
+echo $crud->getPercentageOfExercicesCompletedInEntrainement(5);
+
+
 
 
 ?>
