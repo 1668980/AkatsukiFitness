@@ -356,7 +356,14 @@ class Crud
         }
         return $exerciceCompleted/count($exercices)*100;
     }
-
+    public function getEntrainementLength($idEntrainement){
+        $exercices=  $this->getExercicesFromEntrainement($idEntrainement);
+        $exerciceLenght=0;
+        foreach($exercices as $ex){
+            $exerciceLenght += $ex['duree'] ;
+        }
+        return $exerciceLenght;
+    }
 
     //Update
     public function updateEntrainement($idEntrainement,$name){

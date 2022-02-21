@@ -122,7 +122,7 @@ $r= $crud->getEntrainementsIncompletedByIdUser($_SESSION['userid']);
  var_dump( $r);
 */
 
-echo $crud->getPercentageOfExercicesCompletedInEntrainement(5);
+echo $crud->getEntrainementLength(5);
 
 
 
