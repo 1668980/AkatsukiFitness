@@ -689,7 +689,22 @@ class Crud
             return false;
         }
     }
-
+    public function getBlogByTitleSearch($txt){
+        try {  
+            $search = "%".$txt."%";
+            $sql = "SELECT * FROM `blog` WHERE `titre` LIKE '$search' ";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetch();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 
 
 
