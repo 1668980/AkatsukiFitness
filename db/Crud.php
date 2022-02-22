@@ -366,9 +366,10 @@ class Crud
     }
 
     //Update
-    public function updateEntrainement($idEntrainement,$name){
+    public function updateEntrainement($entrainement){
         try {  
-            $sql = "UPDATE `entrainement` SET `nom` =  '$name' WHERE `identrainement` =  $idEntrainement";
+         
+            $sql = "UPDATE `entrainement` SET `nom` =  '$entrainement->name',`type` =  '$entrainement->type', `difficulte`= '$entrainement->difficulte' WHERE `identrainement` =  $entrainement->id";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;
@@ -666,7 +667,7 @@ class Crud
             $stmt = $this->db->prepare($sql);
         
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll();
         
             return $result;
         } catch (PDOException $e) {
@@ -681,7 +682,7 @@ class Crud
             $stmt = $this->db->prepare($sql);
         
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll();
         
             return $result;
         } catch (PDOException $e) {
@@ -697,7 +698,7 @@ class Crud
             $stmt = $this->db->prepare($sql);
         
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll();
         
             return $result;
         } catch (PDOException $e) {
@@ -705,7 +706,53 @@ class Crud
             return false;
         }
     }
+//Produits
 
-
+    public function getAllProduits(){
+        try {  
+            $sql = "SELECT * FROM `produit`";
+            
+            $stmt = $this->db->prepare($sql);            
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            
+        return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+    public function getAllProduitWithCategorie($idCategorie){
+        try {  
+            $sql = "SELECT * FROM `produit` WHERE `idcategorie`= $idCategorie";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }   
+    }
+    public function getProduitByTitleSearch($txt){
+        try {  
+            $search = "%".$txt."%";
+            $sql = "SELECT * FROM `blproduitog` WHERE `nom` LIKE '$search' ";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+        }
+    }
+    
 
 }
