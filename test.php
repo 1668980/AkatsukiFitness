@@ -126,6 +126,7 @@ $r =$crud->deleteEntrainementById(42);
 
 var_dump($r);
 */
-
+$r =$crud->getBlogByTitleSearch("com");
+var_dump ($r);
 ?>
 </div>
