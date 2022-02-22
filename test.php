@@ -121,11 +121,11 @@ $r= $crud->getEntrainementsIncompletedByIdUser($_SESSION['userid']);
 
  var_dump( $r);
 */
+/*
+$r =$crud->deleteEntrainementById(42);
 
-echo $crud->getEntrainementLength(5);
-
-
-
+var_dump($r);
+*/
 
 ?>
 </div>

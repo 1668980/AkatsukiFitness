@@ -259,15 +259,15 @@ class Crud
 //Entrainement
 
     //Create
-    public function createNewEntrainement($nom,$idUser){
-       $idEntrainement= $this->createEntrainement($nom);
-       $idContenu = $this->getContenuId($idUser);
+    public function createNewEntrainement($entrainement){
+       $idEntrainement= $this->createEntrainement($entrainement);
+       $idContenu = $this->getContenuId($entrainement->idUser);
        $this->linkEntrainementContenu($idContenu,$idEntrainement);
-       return $idEntrainement;
+       return $idEntrainement;   
     }
-    private function createEntrainement($nom){
+    private function createEntrainement($entrainement){
         try{    
-            $sql = " INSERT INTO `entrainement` (`nom`,`status`) VALUES ( '$nom',0)";
+            $sql = " INSERT INTO `entrainement` (`nom`,`status`,`type`,`difficulte`) VALUES ( '$entrainement->name',0,'$entrainement->type','$entrainement->difficulte')";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
         return $this->db->lastInsertId();
@@ -356,7 +356,7 @@ class Crud
         }
         return $exerciceCompleted/count($exercices)*100;
     }
-    public function getEntrainementLength($idEntrainement){
+    public function getEntrainementDuration($idEntrainement){
         $exercices=  $this->getExercicesFromEntrainement($idEntrainement);
         $exerciceLenght=0;
         foreach($exercices as $ex){
@@ -400,9 +400,15 @@ class Crud
         }
     }
     //Delete
-    public function deleteEntrainement($idEntrainement){
+        
+    public function deleteEntrainementById($idEntrainement){
+        $this->deleteExerciceFromEntrainement($idEntrainement);
+        return   $this->deleteEntrainement($idEntrainement);
+     
+
+    }
+    private function deleteEntrainement($idEntrainement){
         try {  
-            // ON DELETE CASCADE
             $sql = "DELETE FROM `entrainement` WHERE `identrainement` =  $idEntrainement";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
@@ -412,7 +418,16 @@ class Crud
             return false;
         }
     }
-
+    private function deleteExerciceFromEntrainement($idEntrainement){
+      
+        $exercices = $this->getExercicesFromEntrainement($idEntrainement);
+        foreach($exercices as $ex){
+            $this->deleteExercice($ex['idexercice']);
+        }      
+      return true;
+      
+    
+    }
 
 //Exercice 
     
@@ -450,7 +465,7 @@ class Crud
     public function getExercicesFromEntrainement($idEntrainement){
         try{
             $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice 
-            INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue` ";
+            INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue`  WHERE `identrainement` = '$idEntrainement' ";
             
           //  $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice WHERE identrainement = '$idEntrainement'";
             $stmt = $this->db->prepare($sql);
