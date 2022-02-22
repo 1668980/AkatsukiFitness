@@ -19,12 +19,12 @@
     padding: 12px;
     /* background-color: #dc3545 !important; */
     text-align: center;
-  }
+}
 
 #myNav .logo {
-padding-left: 10px;
-padding-right: 10px;
-margin-right: 0%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 0%;
 }
 
 #containerLogin {
@@ -55,24 +55,26 @@ margin-right: 0%;
     min-height: 400px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
     align-self: center;
-    display : flex;
-    align-items : center;
-    justify-content : center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#landing-text-box h1.title{
+
+#landing-text-box h1.title {
     color: #FFFFFF;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    
+
 }
 
 h4.title {
     color: #dc3545;
 }
-p.text{
+
+p.text {
     color: #FFFFFF;
 }
 
@@ -80,26 +82,32 @@ p.text{
 
 
 .carousel-indicators .active {
-    background-color:#dc3545;
+    background-color: #dc3545;
 }
 
-.slide { 
-    height: 400px; 
-    min-width: 100%; 
-    background-size:cover; 
+.slide {
+    height: 400px;
+    min-width: 100%;
+    background-size: cover;
     background-position: center;
-    background-repeat:no-repeat; 
+    background-repeat: no-repeat;
 }
 
 .slide1 {
-    background-image:url('../images/sliders/couple-training.jpg');
+    background-image: url('../images/sliders/couple-training.jpg');
 }
+
 .slide2 {
-    background-image:url('../images/sliders/lady-workout-leggings.jpg');
+    background-image: url('../images/sliders/lady-workout-leggings.jpg');
 }
+
 .slide3 {
-    background-image:url('../images/about/guy-red-gloves-cropped.jpg');
+    background-image: url('../images/about/guy-red-gloves-cropped.jpg');
 }
 
-
-
+/* Shop */
+.card-img,
+.card-img-top,
+.card-img-bottom {
+    width: 100%;
+}

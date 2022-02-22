@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `akatsuki_db`
 --
 
+DROP DATABASE IF EXISTS `akatsuki_db`;
+CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `akatsuki_db`;
+
 -- --------------------------------------------------------
 
 --

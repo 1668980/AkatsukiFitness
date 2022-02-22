@@ -30,10 +30,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Akatuski : Fitness Manager</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/assets/favicon.ico" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="utilitaires/bootstrap-5.1.3-dist/css/bootstrap.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Core CSS -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Javascript -->
     <script src="utilitaires/popper.min.js"></script>
     <script src="utilitaires/jquery-3.6.0.min.js"></script>
