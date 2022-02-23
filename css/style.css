@@ -2,6 +2,8 @@
 @import url(style-plans.css);
 @import url(style-breadcrumb.css);
 @import url(style-blog.css);
+@import url(style-search.css);
+
 
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
