@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `blog`
 --
+DROP DATABASE IF EXISTS `akatsuki_db`;
+CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `akatsuki_db`;
 
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
