@@ -350,14 +350,14 @@ echo $rep;
             </div>
             <div>
                 <form action="new_workout.php" method="POST">
-                   <?php
+                    <?php
                   $exercices= $crud->getExercicesCatalogue();
                   foreach ($exercices as $ex) {
                     $nom=$ex['nom'];
                     ?>
                     <div class="container flex-row">
-                    <p><?php echo $nom?></p>
-                    <button type="button" class="btn btn-success">Ajouter</button>
+                        <p><?php echo $nom?></p>
+                        <button type="button" class="btn btn-success">Ajouter</button>
                     </div>
                     <?php
 
@@ -369,7 +369,7 @@ echo $rep;
 
 
                   }
-                   ?> 
+                   ?>
 
 
 
