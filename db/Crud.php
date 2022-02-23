@@ -712,7 +712,7 @@ class Crud
 
     public function getAllProduits(){
         try {  
-            $sql = "SELECT * FROM `produit`";
+            $sql = "SELECT * FROM `produits`";
             
             $stmt = $this->db->prepare($sql);            
             $stmt->execute();
@@ -726,7 +726,7 @@ class Crud
     }
     public function getAllProduitWithCategorie($idCategorie){
         try {  
-            $sql = "SELECT * FROM `produit` WHERE `idcategorie`= $idCategorie";
+            $sql = "SELECT * FROM `produits` WHERE `idcategorie`= $idCategorie";
         
             $stmt = $this->db->prepare($sql);
         
@@ -742,7 +742,7 @@ class Crud
     public function getProduitByTitleSearch($txt){
         try {  
             $search = "%".$txt."%";
-            $sql = "SELECT * FROM `blproduitog` WHERE `nom` LIKE '$search' ";
+            $sql = "SELECT * FROM `produits` WHERE `nom` LIKE '$search' ";
         
             $stmt = $this->db->prepare($sql);
         
