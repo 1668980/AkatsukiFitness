@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2022 at 11:35 PM
+-- Generation Time: Feb 24, 2022 at 12:04 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -20,15 +20,15 @@ SET time_zone = "+00:00";
 --
 -- Database: `akatsuki_db`
 --
-DROP DATABASE IF EXISTS `akatsuki_db`;
-CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `akatsuki_db`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `blog`
 --
+DROP DATABASE IF EXISTS `akatsuki_db`;
+CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `akatsuki_db`;
 
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
@@ -1694,10 +1694,10 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`idproduit`, `idcategorie`, `nom`, `marque`, `prix`, `info`, `description`, `image`) VALUES
-(1, 2, 'Whey à la vanille', 'AkatsukiFitness', 20, '', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'pas Encore:)'),
-(2, 2, 'Whey au chocolat', 'AkatsukiFitness', 20, '', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'pas Encore:)'),
-(3, 2, 'Whey à la fraise', 'AkatsukiFitness', 20, '', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'pas Encore:)'),
-(4, 2, 'Whey sans arome', 'AkatsukiFitness', 20, '', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'pas Encore:)');
+(1, 2, 'Whey à la vanille', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(2, 2, 'Whey au chocolat', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(3, 2, 'Whey à la fraise', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(4, 2, 'Whey sans arome', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg');
 
 -- --------------------------------------------------------
 
