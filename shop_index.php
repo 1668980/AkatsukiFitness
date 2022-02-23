@@ -10,11 +10,11 @@ require_once('includes/header.php');
 <!-- work in progress -->
 <!-- load data from database -->
 <?php
-
+$categorieProduitList = $crud->getCategoriesProduit();
 if(isset($_GET['idcat'])){
-    $productList = $crud->getProduitsWithCategorie($_GET['idcat']);
+    $productList = $crud->getAllProduitWithCategorie($_GET['idcat']);
 } else if(isset($_GET['title'])) {
-    $productList = $crud->getProduitsByTitleSearch($_GET['title']);
+    $productList = $crud->getProduitByTitleSearch($_GET['title']);
 } else {
     $productList = $crud->getAllProduits();
 }
@@ -22,7 +22,29 @@ if(isset($_GET['idcat'])){
 ?>
 
 <!-- product container -->
-<div id="containerShop" class="container">
+<form action="shop_index.php" >
+    <div id="containerShop" class="container">
+       
+         <div class="searchFilter mb-3">
+           <div class="searchBox">      
+             <input class="searchInput" type="text" name="title"  placeholder="Search">
+               <button class="searchButton" type="submit" >
+               <span class="bi-search"></span>
+               </button>
+           </div>
+      
+    </div>
+    </form>
+
+    <div class="filterContainer mb-5">
+    <?php foreach($categorieProduitList as $cat) {?>
+        
+        <a  class="btn" href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>"><?php echo $cat['nom']?></a>
+        <?php }?>
+    </div>
+
+
+
     <section class="py-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->
