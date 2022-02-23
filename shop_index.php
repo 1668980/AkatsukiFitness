@@ -11,31 +11,15 @@ require_once('includes/header.php');
 <!-- load data from database -->
 <?php
 
-$productList = $crud->getAllProduits();
+if(isset($_GET['idcat'])){
+    $productList = $crud->getProduitsWithCategorie($_GET['idcat']);
+} else if(isset($_GET['title'])) {
+    $productList = $crud->getProduitsByTitleSearch($_GET['title']);
+} else {
+    $productList = $crud->getAllProduits();
+}
 
-
-
-// function getBlogCard($id, $nom, $theme, $description, $lienImage) {
-//   return '<div class="blogcard" onclick="location.href=\'blog_article.php\';" style="cursor: pointer;">
-//             <div class="blogcard-header">
-//               <img src="'.$lienImage.'" alt="'.$title.'" />
-//             </div>
-//             <div class="blogcard-body">
-//               <span class="blogtag" style="background-color:'.$color.';">'.$theme.'</span>
-//               <h4>'.$title.'</h4>
-//               <p>'.$description.'</p>
-//               <div class="bloguser">
-//                 <img src="'.$imageProfile.'" alt="user" />
-//                 <div class="bloguser-info">
-//                   <h5>'.$nomProfile.'</h5>
-//                   <small>'.$datePosted.'</small>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>'; 
-// }
 ?>
-
 
 <!-- product container -->
 <div id="containerShop" class="container">
@@ -60,7 +44,8 @@ $productList = $crud->getAllProduits();
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a>
+                        </div>
                     </div>
                 </div>
             </div>
