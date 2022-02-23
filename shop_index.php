@@ -20,7 +20,6 @@ if(isset($_GET['idcat'])){
 }
 
 ?>
-
 <!-- product container -->
 <form action="shop_index.php" >
     <div id="containerShop" class="container">
