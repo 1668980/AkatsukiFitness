@@ -20,7 +20,6 @@ if(isset($_GET['idcat'])){
 }
 
 ?>
-
 <!-- product container -->
 <div id="containerShop" class="container">
     <section class="py-5">
