@@ -755,6 +755,20 @@ class Crud
         return false;
         }
     }
-    
+    public function getCategoriesProduit(){
+        try {  
+            $sql = "SELECT * FROM `categoriesproduit`";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }   
+    }
 
 }
