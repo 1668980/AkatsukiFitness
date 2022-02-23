@@ -81,8 +81,7 @@ echo "<br>";*/
 /*$result =$crud->getEntrainementsByIdUser(1);
 var_dump($result);*/
 /*
-$result =$crud->addSubscriptionToUser(1,"+1 month");
-var_dump($result);*/
+*/
 /*
 $result =$crud->isUserSubscibed(1);
 var_dump($result);
@@ -126,7 +125,12 @@ $r =$crud->deleteEntrainementById(42);
 
 var_dump($r);
 */
-$r =$crud->getBlogByTitleSearch("com");
-var_dump ($r);
+// $r =$crud->getBlogByTitleSearch("com");
+// var_dump ($r);
+
+$result =$crud->addSubscriptionToUser(2,2);
+var_dump($result);
+
+
 ?>
 </div>

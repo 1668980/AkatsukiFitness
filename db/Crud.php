@@ -198,8 +198,10 @@ class Crud
         return $this->addSubscriptionToUserTable($today,$endDate,$idUser);
     }
     private function calculateEndDate($duree){
-        
-        $dt2 = new DateTime($duree);
+        $d = "+".$duree."month";
+
+
+        $dt2 = new DateTime($d);
        
         return  $dt2->format("Y-m-d");
     }
