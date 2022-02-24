@@ -10,7 +10,7 @@ require_once('includes/header.php');
     <?php require_once ('vue/plans.php'); ?>
     
     <div style="width:40%; margin: 0 auto;">
-        <button class="btn btn-success" type="button" style="width:100%; font-size:200% "><?php __('index_btn'); ?></button>
+        <button class="btn btn-success" type="button" style="width:100%;" onclick="window.location.href='signup.php'"><?php __('index_btn'); ?></button>
 </div>
         
 
