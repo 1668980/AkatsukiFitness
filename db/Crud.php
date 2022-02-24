@@ -2,8 +2,12 @@
 
 class Crud
 {
-//Class  
-    // private database object
+
+    const STATUS_INCOMPLETE = 0;
+    const STATUS_COMPLETED = 1;
+    const STATUS_INPROGRESS = 2;
+
+
     private $db;
 
    //constructor to initialize private variable to the database connection
@@ -267,11 +271,20 @@ class Crud
        $this->linkEntrainementContenu($idContenu,$idEntrainement);
        return $idEntrainement;   
     }
+
     private function createEntrainement($entrainement){
         try{    
-            $sql = " INSERT INTO `entrainement` (`nom`,`status`,`type`,`difficulte`) VALUES ( '$entrainement->name',0,'$entrainement->type','$entrainement->difficulte')";
+
+            $sql = "INSERT INTO `entrainement` (`nom`,`status`,`type`,`difficulte`) VALUES (:name,:status,:type,:difficulte)";
+
             $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':name', $entrainement->name);
+            $stmt->bindValue(':status', self::STATUS_INCOMPLETE);
+            $stmt->bindparam(':type', $entrainement->type);
+            $stmt->bindparam(':difficulte', $entrainement->difficulte);
+
             $stmt->execute();
+
         return $this->db->lastInsertId();
         }catch (PDOException $e) {
             echo $e->getMessage();
@@ -326,11 +339,11 @@ class Crud
         //get entrainement completed or incompleted
     public function getEntrainementsCompletedByIdUser($idUser){
         $idContenu =$this->getContenuId($idUser);
-        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,1);
+        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,self::STATUS_COMPLETED);
     }
     public function getEntrainementsIncompletedByIdUser($idUser){
         $idContenu =$this->getContenuId($idUser);
-        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,0);
+        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,self::STATUS_INCOMPLETE);
     }
     private function getEntrainementsCompletedOrIncompletedByContenu($idContenu,$wantedStatus){
         try{
@@ -382,7 +395,15 @@ class Crud
     }
     public function setEntrainementStatusComplete($idEntrainement){
         try {  
-            $sql = "UPDATE `entrainement` SET `status` =  1 WHERE `identrainement` =  $idEntrainement";
+            
+
+            //TODO :  utiliser la constante self::STATUS_COMPLETED ici mais il faut la passer par value;
+            // $s = self::STATUS_COMPLETED;
+            //$sql = "UPDATE `entrainement` SET `status` = $s  WHERE `identrainement` =  $idEntrainement";
+            // ou avec un prepared statement. il faut utiliser un bindvalue au lieu d'un bindparam;
+
+
+            $sql = "UPDATE `entrainement` SET `status` = 1  WHERE `identrainement` =  $idEntrainement";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;
@@ -393,6 +414,12 @@ class Crud
     }
     public function setEntrainementStatusIncomplete($idEntrainement){
         try {  
+
+            //TODO :  utiliser la constante self::STATUS_INCOMPLETE ici mais il faut la passer par value;
+            // $s = self::STATUS_INCOMPLETE;
+            //$sql = "UPDATE `entrainement` SET `status` = $s  WHERE `identrainement` =  $idEntrainement";
+            // ou avec un prepared statement. il faut utiliser un bindvalue au lieu d'un bindparam;
+
             $sql = "UPDATE `entrainement` SET `status` =  0 WHERE `identrainement` =  $idEntrainement";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            

@@ -11,7 +11,9 @@
 
 
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>text</p>
+                    <h5><?php __('index_carrousel_title_1'); ?></h5>
+                    <p><?php __('index_carrousel_text_1'); ?></p>
+                    <a href="signup.php"> <?php __('index_carrousel_btn_1'); ?></a>
                 </div>
 
             </div>
@@ -20,8 +22,9 @@
             <div class="slide slide2">
                 
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>un titre</h5>
-                    <p>text</p>
+                    <h5><?php __('index_carrousel_title_2'); ?></h5>
+                    <p><?php __('index_carrousel_text_2'); ?></p>
+                    <a href="signup.php"> <?php __('index_carrousel_btn_2'); ?></a>
                 </div>
 
             </div>
@@ -30,8 +33,9 @@
             <div class="slide slide3">
                 
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>un titre</h5>
-                    <p>text</p>
+                    <h5><?php __('index_carrousel_title_3'); ?></h5>
+                    <p><?php __('index_carrousel_text_3'); ?></p>
+                    <a href="signup.php"> <?php __('index_carrousel_btn_3'); ?></a>
                 </div>
 
             </div>

@@ -5,6 +5,17 @@
 @import url(style-search.css);
 
 
+a {
+    color: #dc3545;
+    text-decoration: none;
+}
+
+a:hover {    
+    color: #ffffff;
+    text-decoration: none;
+
+}
+
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
     border-radius: 0.55rem;
