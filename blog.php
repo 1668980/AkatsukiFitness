@@ -41,11 +41,11 @@ function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $n
 </div>
 
 <div class="filterContainer mb-5">
-  <button class="btn active" onclick=""> Show all</button>
-  <button class="btn" onclick="this.className +=' active'"> Popular</button>
-  <button class="btn" onclick=""> Biceps</button>
-  <button class="btn" onclick=""> Triceps</button>
-  <button class="btn" onclick=""> Lower Body</button>
+  <button class="btn btnSearch active" onclick=""> Show all</button>
+  <button class="btn btnSearch" onclick="this.className +=' active'"> Popular</button>
+  <button class="btn btnSearch" onclick=""> Biceps</button>
+  <button class="btn btnSearch" onclick=""> Triceps</button>
+  <button class="btn btnSearch" onclick=""> Lower Body</button>
 </div>
 
 
