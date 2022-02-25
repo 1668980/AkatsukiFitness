@@ -7,14 +7,13 @@ require_once('includes/auth_check.php')
 //TODO: avoir le type de muscle ou entrainement de plus et duree entrainement
 //$var_value = $_POST['identrainement'];
 $entrainement = $crud->getEntrainementByIdEntrainement('1');
-$details ='';
-
+$text = '';
 foreach($entrainement as $training){
     $idEntrainement = $training['identrainement'];
     $nom = $training['nom'];
     $status = $training['status'];
-    //$difficulte = $training['difficulte'];
-    //$type = $traning['type'];
+    $difficulte = $training['difficulte'];
+    $type = $training['type'];
     //$duree = $training['duree'];
     
 //function getEntrainements($nomEntrainement){
@@ -23,13 +22,21 @@ foreach($entrainement as $training){
                         <div class="card mb-3 card-perso" style="max-width: auto; max-height: 100% " href="#">
                             <div class="card-body">
                                 <h4 class="card-title"> '.$nom .' </h4>
-                                <h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: '.$duree . '<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
+
+
+                                ';
+                            }
+
+                                echo $text;
+
+                                $dureeEntrainement = $crud->getEntrainementDuration('1');
+                                $text2 = '';
+                                $text2 .='<h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
                             </div>
                         </div>
                     </div>
                 </div>';
-}
-echo $text;
+            echo $text2;
 ?>
 
 <main >
@@ -69,9 +76,8 @@ echo $text;
 //INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue` ");// "select * from exercice");
 //while ( $row = mysqli_fetch_array($query) ) :
 //$query = mysqli_query($link, "select idexercice from entrainementexercice where identrainement = 1");
-$exercice = $crud->getExercicesFromEntrainement(1);
-//while ($row = mysqli_fetch_array($query)) :
-$detail = '';
+$exercice = $crud->getExercicesFromEntrainement('1');
+$details = '';
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
     //$idCatalogue = $training['idcatalogue'];
@@ -140,28 +146,42 @@ echo $details;
                             <label>
 
                             <?php 
-
+                                if(isset($_POST['btn2'])){
+                                    $crud->setEntrainementStatusComplete('1');
+                                    //echo "this button is selected";
+                                }
+                                if(isset($_POST['btn3'])){
+                                    $crud->setEntrainementStatusComplete('1');
+                                    //echo "this button is selected";
+                                }
+                                if(isset($_POST['btn3'])){
+                                    $crud->setEntrainementStatusComplete('1');
+                                    //echo "this button is selected";
+                                }
                             
                                 ?>
-                                <button class="btn-success" id="btn2" onclick="document.getElementById('btn2').style.background='green'">
+                                <form method="post">
+
+                                <button class="btn-success" name="btn2" id="btn2" onclick="document.getElementById('btn2').style.background='green'">
                                        
                                     <span class="seatButton"> Fini </span>
-                                </button>
-                            </label>
-                        </div><div class="ChangeButtonC">
-                            <label>
+                            </button>
+                                    </label>
+                                </div><div class="ChangeButtonC">
+                                    <label>
                                 <button class="btn-primary" id="btn3" onclick="document.getElementById('btn3').style.background='blue'">
                                         
                                     <span class="seatButton"> Pause </span>
                                 </button>
-                            </label>
-                        </div><div class="ChangeButtonC">
-                            <label>
+                                    </label>
+                                </div><div class="ChangeButtonC">
+                                    <label>
                                 <button class="btn-danger" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
                                        
                                     <span class="seatButton"> Abandonner </span>
                                 </button>
                             </label>
+                            </form>
                         </div>
             </div>
         </div>
