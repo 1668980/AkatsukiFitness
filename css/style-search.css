@@ -1,0 +1,88 @@
+.filterContainer {
+    text-align: center;   
+}
+
+/* The "show" class is added to the filtered elements */
+  .show {
+    display: block;
+  }
+  
+  /* Style the buttons */
+  .btnSearch {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Add a light grey background on mouse-over */
+  .btnSearch:hover {
+    background-color: #ddd;
+  }
+  
+  /* Add a dark background to the active button */
+  .btnSearch.active {
+    background-color: #666;
+    color: white;
+  }
+
+.searchFilter {
+    position: relative;
+    height: 60px;
+    padding-bottom: 20px;    
+}
+
+.searchBox { 
+    position: absolute;    
+    left: 50%;     
+    transform:  translate(-50%);
+    background: #2f3640;
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+}
+
+.searchButton {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.searchInput {
+    position: relative;
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+
+}
+
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+}
+}

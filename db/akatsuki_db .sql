@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : ven. 18 fév. 2022 à 20:21
--- Version du serveur : 10.4.21-MariaDB
--- Version de PHP : 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Feb 24, 2022 at 12:04 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,18 +18,41 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `akatsuki_db`
+-- Database: `akatsuki_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `categories`
+-- Table structure for table `blog`
 --
 DROP DATABASE IF EXISTS `akatsuki_db`;
 CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `akatsuki_db`;
 
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE `blog` (
+  `idblog` int(11) NOT NULL,
+  `idcategorie` int(11) NOT NULL,
+  `titre` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `sujet` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `texte` text COLLATE utf8_unicode_ci NOT NULL,
+  `auteur` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`idblog`, `idcategorie`, `titre`, `date`, `sujet`, `texte`, `auteur`) VALUES
+(1, 1, 'Combien de fois par semaine s\'entrainné?', '2022-02-16', '1', 'adsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'DASDAS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -38,7 +61,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Déchargement des données de la table `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
@@ -66,7 +89,46 @@ INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `connexion`
+-- Table structure for table `categoriesblog`
+--
+
+DROP TABLE IF EXISTS `categoriesblog`;
+CREATE TABLE `categoriesblog` (
+  `idcategorie` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `categoriesblog`
+--
+
+INSERT INTO `categoriesblog` (`idcategorie`, `nom`) VALUES
+(1, 'Entrainement');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categoriesproduit`
+--
+
+DROP TABLE IF EXISTS `categoriesproduit`;
+CREATE TABLE `categoriesproduit` (
+  `idcategorie` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `categoriesproduit`
+--
+
+INSERT INTO `categoriesproduit` (`idcategorie`, `nom`) VALUES
+(1, 'protéine'),
+(2, 'bar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `connexion`
 --
 
 DROP TABLE IF EXISTS `connexion`;
@@ -78,16 +140,17 @@ CREATE TABLE `connexion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `connexion`
+-- Dumping data for table `connexion`
 --
 
 INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
-(1, 1, 'test@gmail.com', '0123456789');
+(1, 1, 'test@gmail.com', '0123456789'),
+(2, 1, 'a@a', '0123456789');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `contenu`
+-- Table structure for table `contenu`
 --
 
 DROP TABLE IF EXISTS `contenu`;
@@ -98,37 +161,42 @@ CREATE TABLE `contenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `contenu`
+-- Dumping data for table `contenu`
 --
 
 INSERT INTO `contenu` (`idcontenu`, `iduser`, `nom`) VALUES
-(1, 1, NULL);
+(1, 1, NULL),
+(2, 2, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entrainement`
+-- Table structure for table `entrainement`
 --
 
 DROP TABLE IF EXISTS `entrainement`;
 CREATE TABLE `entrainement` (
   `identrainement` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `difficulte` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `entrainement`
+-- Dumping data for table `entrainement`
 --
 
-INSERT INTO `entrainement` (`identrainement`, `nom`, `status`) VALUES
-(1, 'Entrainemnt du lundi', 0),
-(2, 'Entrainemnt du mardi', 0);
+INSERT INTO `entrainement` (`identrainement`, `nom`, `status`, `type`, `difficulte`) VALUES
+(1, 'Par defaut01', 0, 'Bas du corp', '1'),
+(2, 'Par defaut02', 0, 'haut1 du corp', '1'),
+(3, 'Par defaut01', 0, 'Bas du corp', '1'),
+(4, 'Par defaut02', 0, 'haut1 du corp', '1');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entrainementcontenu`
+-- Table structure for table `entrainementcontenu`
 --
 
 DROP TABLE IF EXISTS `entrainementcontenu`;
@@ -138,17 +206,21 @@ CREATE TABLE `entrainementcontenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `entrainementcontenu`
+-- Dumping data for table `entrainementcontenu`
 --
 
 INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entrainementexercice`
+-- Table structure for table `entrainementexercice`
 --
 
 DROP TABLE IF EXISTS `entrainementexercice`;
@@ -158,17 +230,19 @@ CREATE TABLE `entrainementexercice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `entrainementexercice`
+-- Dumping data for table `entrainementexercice`
 --
 
 INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES
 (1, 1),
-(1, 2);
+(2, 2),
+(3, 3),
+(4, 4);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exercice`
+-- Table structure for table `exercice`
 --
 
 DROP TABLE IF EXISTS `exercice`;
@@ -184,17 +258,19 @@ CREATE TABLE `exercice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `exercice`
+-- Dumping data for table `exercice`
 --
 
 INSERT INTO `exercice` (`idexercice`, `idexercicecatalogue`, `status`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`) VALUES
-(1, 1, 0, 100, 6, 3, 0, 60),
-(2, 2, 0, 100, 6, 3, 0, 60);
+(1, 2, 0, 50, 5, 2, 0, 60),
+(2, 2, 0, 50, 5, 2, 0, 60),
+(3, 2, 0, 50, 5, 2, 0, 60),
+(4, 2, 0, 50, 5, 2, 0, 60);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exercicecatalogue`
+-- Table structure for table `exercicecatalogue`
 --
 
 DROP TABLE IF EXISTS `exercicecatalogue`;
@@ -206,7 +282,7 @@ CREATE TABLE `exercicecatalogue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `exercicecatalogue`
+-- Dumping data for table `exercicecatalogue`
 --
 
 INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcategorie`) VALUES
@@ -1545,7 +1621,35 @@ INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcateg
 -- --------------------------------------------------------
 
 --
--- Structure de la table `poids`
+-- Table structure for table `historiquedexercice`
+--
+
+DROP TABLE IF EXISTS `historiquedexercice`;
+CREATE TABLE `historiquedexercice` (
+  `idexercice` int(11) NOT NULL,
+  `idhistorique` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historiqueexerciceprecedent`
+--
+
+DROP TABLE IF EXISTS `historiqueexerciceprecedent`;
+CREATE TABLE `historiqueexerciceprecedent` (
+  `idhistorique` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `poids` float NOT NULL,
+  `repetitions` int(11) NOT NULL,
+  `sets` int(11) NOT NULL,
+  `duree` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `poids`
 --
 
 DROP TABLE IF EXISTS `poids`;
@@ -1558,7 +1662,7 @@ CREATE TABLE `poids` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `poidshistorique`
+-- Table structure for table `poidshistorique`
 --
 
 DROP TABLE IF EXISTS `poidshistorique`;
@@ -1570,7 +1674,35 @@ CREATE TABLE `poidshistorique` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Table structure for table `produits`
+--
+
+DROP TABLE IF EXISTS `produits`;
+CREATE TABLE `produits` (
+  `idproduit` int(11) NOT NULL,
+  `idcategorie` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `marque` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `prix` float NOT NULL,
+  `info` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(150) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `produits`
+--
+
+INSERT INTO `produits` (`idproduit`, `idcategorie`, `nom`, `marque`, `prix`, `info`, `description`, `image`) VALUES
+(1, 2, 'Whey à la vanille', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(2, 2, 'Whey au chocolat', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(3, 2, 'Whey à la fraise', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(4, 2, 'Whey sans arome', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `utilisateur`
 --
 
 DROP TABLE IF EXISTS `utilisateur`;
@@ -1587,175 +1719,264 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Dumping data for table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`, `poids`, `datedebutabonnement`, `datefinabonnement`) VALUES
-(1, 'test', 'test', 'test@gmail.com', '2011-01-01', 0, NULL, NULL, NULL);
+(1, 'test', 'test', 'test@gmail.com', '2022-02-08', 0, NULL, '2022-02-23', '2022-03-23'),
+(2, 'a', 'a', 'a@a', '2022-02-07', 0, NULL, '2022-02-23', '2022-04-23');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `categories`
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`idblog`),
+  ADD KEY `Constraint_blog_cat` (`idcategorie`);
+
+--
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`idcategorie`);
 
 --
--- Index pour la table `connexion`
+-- Indexes for table `categoriesblog`
+--
+ALTER TABLE `categoriesblog`
+  ADD PRIMARY KEY (`idcategorie`);
+
+--
+-- Indexes for table `categoriesproduit`
+--
+ALTER TABLE `categoriesproduit`
+  ADD PRIMARY KEY (`idcategorie`);
+
+--
+-- Indexes for table `connexion`
 --
 ALTER TABLE `connexion`
   ADD KEY `idutilisateur` (`idutilisateur`);
 
 --
--- Index pour la table `contenu`
+-- Indexes for table `contenu`
 --
 ALTER TABLE `contenu`
   ADD PRIMARY KEY (`idcontenu`),
   ADD KEY `Constrain_idcontUser` (`iduser`);
 
 --
--- Index pour la table `entrainement`
+-- Indexes for table `entrainement`
 --
 ALTER TABLE `entrainement`
   ADD PRIMARY KEY (`identrainement`);
 
 --
--- Index pour la table `entrainementcontenu`
+-- Indexes for table `entrainementcontenu`
 --
 ALTER TABLE `entrainementcontenu`
   ADD KEY `Constrain_idcontenu` (`idcontenu`),
   ADD KEY `Constrain_identrainement` (`identrainement`);
 
 --
--- Index pour la table `entrainementexercice`
+-- Indexes for table `entrainementexercice`
 --
 ALTER TABLE `entrainementexercice`
   ADD KEY `Constrain_idexercise` (`idexercice`),
   ADD KEY `Constrain_identrainement2` (`identrainement`);
 
 --
--- Index pour la table `exercice`
+-- Indexes for table `exercice`
 --
 ALTER TABLE `exercice`
   ADD PRIMARY KEY (`idexercice`);
 
 --
--- Index pour la table `exercicecatalogue`
+-- Indexes for table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   ADD PRIMARY KEY (`idexercicecatalogue`),
   ADD KEY `Constraint_exerciceCat_categorie` (`idcategorie`);
 
 --
--- Index pour la table `poids`
+-- Indexes for table `historiquedexercice`
+--
+ALTER TABLE `historiquedexercice`
+  ADD KEY `Constraint_ExeHis_idexercice` (`idexercice`),
+  ADD KEY `Constraint_ExeHis_idhistorique` (`idhistorique`);
+
+--
+-- Indexes for table `historiqueexerciceprecedent`
+--
+ALTER TABLE `historiqueexerciceprecedent`
+  ADD PRIMARY KEY (`idhistorique`);
+
+--
+-- Indexes for table `poids`
 --
 ALTER TABLE `poids`
   ADD PRIMARY KEY (`idpoids`);
 
 --
--- Index pour la table `poidshistorique`
+-- Indexes for table `poidshistorique`
 --
 ALTER TABLE `poidshistorique`
   ADD KEY `Constraint_poidH_user` (`iduser`),
   ADD KEY `Constraint_poidH_poids` (`idpoids`);
 
 --
--- Index pour la table `utilisateur`
+-- Indexes for table `produits`
+--
+ALTER TABLE `produits`
+  ADD PRIMARY KEY (`idproduit`),
+  ADD KEY `Constraint_produits_cat` (`idcategorie`);
+
+--
+-- Indexes for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`iduser`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `categories`
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `idblog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT pour la table `contenu`
+-- AUTO_INCREMENT for table `categoriesblog`
+--
+ALTER TABLE `categoriesblog`
+  MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `categoriesproduit`
+--
+ALTER TABLE `categoriesproduit`
+  MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `contenu`
 --
 ALTER TABLE `contenu`
-  MODIFY `idcontenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcontenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pour la table `entrainement`
+-- AUTO_INCREMENT for table `entrainement`
 --
 ALTER TABLE `entrainement`
-  MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `exercice`
+-- AUTO_INCREMENT for table `exercice`
 --
 ALTER TABLE `exercice`
-  MODIFY `idexercice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idexercice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `exercicecatalogue`
+-- AUTO_INCREMENT for table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   MODIFY `idexercicecatalogue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1330;
 
 --
--- AUTO_INCREMENT pour la table `poids`
+-- AUTO_INCREMENT for table `historiqueexerciceprecedent`
+--
+ALTER TABLE `historiqueexerciceprecedent`
+  MODIFY `idhistorique` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `poids`
 --
 ALTER TABLE `poids`
   MODIFY `idpoids` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `utilisateur`
+-- AUTO_INCREMENT for table `produits`
+--
+ALTER TABLE `produits`
+  MODIFY `idproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `connexion`
+-- Constraints for table `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `Constraint_blog_cat` FOREIGN KEY (`idcategorie`) REFERENCES `categoriesblog` (`idcategorie`);
+
+--
+-- Constraints for table `connexion`
 --
 ALTER TABLE `connexion`
   ADD CONSTRAINT `Constrain_iduser` FOREIGN KEY (`idutilisateur`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Contraintes pour la table `contenu`
+-- Constraints for table `contenu`
 --
 ALTER TABLE `contenu`
   ADD CONSTRAINT `Constrain_idcontUser` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Contraintes pour la table `entrainementcontenu`
+-- Constraints for table `entrainementcontenu`
 --
 ALTER TABLE `entrainementcontenu`
   ADD CONSTRAINT `Constrain_idcontenu` FOREIGN KEY (`idcontenu`) REFERENCES `contenu` (`idcontenu`) ON DELETE CASCADE,
   ADD CONSTRAINT `Constrain_identrainement` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `entrainementexercice`
+-- Constraints for table `entrainementexercice`
 --
 ALTER TABLE `entrainementexercice`
   ADD CONSTRAINT `Constrain_identrainement2` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`) ON DELETE CASCADE,
   ADD CONSTRAINT `Constrain_idexercise` FOREIGN KEY (`idexercice`) REFERENCES `exercice` (`idexercice`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `exercicecatalogue`
+-- Constraints for table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   ADD CONSTRAINT `Constraint_exerciceCat_categorie` FOREIGN KEY (`idcategorie`) REFERENCES `categories` (`idcategorie`);
 
 --
--- Contraintes pour la table `poidshistorique`
+-- Constraints for table `historiquedexercice`
+--
+ALTER TABLE `historiquedexercice`
+  ADD CONSTRAINT `Constraint_ExeHis_idexercice` FOREIGN KEY (`idexercice`) REFERENCES `exercice` (`idexercice`),
+  ADD CONSTRAINT `Constraint_ExeHis_idhistorique` FOREIGN KEY (`idhistorique`) REFERENCES `historiqueexerciceprecedent` (`idhistorique`);
+
+--
+-- Constraints for table `poidshistorique`
 --
 ALTER TABLE `poidshistorique`
   ADD CONSTRAINT `Constraint_poidsHistorique_poids` FOREIGN KEY (`idpoids`) REFERENCES `poids` (`idpoids`),
   ADD CONSTRAINT `Constraint_poidsHistorique_user` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`iduser`);
+
+--
+-- Constraints for table `produits`
+--
+ALTER TABLE `produits`
+  ADD CONSTRAINT `Constraint_produits_cat` FOREIGN KEY (`idcategorie`) REFERENCES `categoriesproduit` (`idcategorie`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

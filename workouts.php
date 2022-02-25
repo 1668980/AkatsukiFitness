@@ -256,51 +256,38 @@ echo $rep;
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..."
+
+                        <?php 
+                            $listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
+
+                            $workouts = array_filter($listeEntrainement, function($workout) { 
+                                    return $workout['status'] == Crud::STATUS_COMPLETED;
+                            });
+
+                            foreach ($workouts as $workout) {
+
+                                echo '
+                                <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                    <div class="card card-perso card-hover text-white border-0"
                                         style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
+                                        <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..."
+                                            style="min-width:162px; min-height:185px;">
+                                        <div class="card-img-overlay bg-dark bg-opacity-25">
+                                            <h4 class="card-title"> '.$workout['nom'].'</h4>
+                                            <ul>
+                                            <li>'.$workout['type'].' </li>
+                                            <li>TODO DUREE </li>
+                                                <li>'.$workout['difficulte'].' </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..."
-                                        style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..."
-                                        style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                ';
+
+                                
+                            }
+                         ?>
+                         
                         </div>
                     </div>
                 </div>
@@ -350,14 +337,14 @@ echo $rep;
             </div>
             <div>
                 <form action="new_workout.php" method="POST">
-                   <?php
+                    <?php
                   $exercices= $crud->getExercicesCatalogue();
                   foreach ($exercices as $ex) {
                     $nom=$ex['nom'];
                     ?>
                     <div class="container flex-row">
-                    <p><?php echo $nom?></p>
-                    <button type="button" class="btn btn-success">Ajouter</button>
+                        <p><?php echo $nom?></p>
+                        <button type="button" class="btn btn-success">Ajouter</button>
                     </div>
                     <?php
 
@@ -369,7 +356,7 @@ echo $rep;
 
 
                   }
-                   ?> 
+                   ?>
 
 
 

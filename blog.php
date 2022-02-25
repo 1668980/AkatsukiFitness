@@ -30,7 +30,27 @@ function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $n
 }
 
 ?>
+
+<div class="searchFilter mb-3">
+  <div class="searchBox">
+      <input class="searchInput"type="text" name="" placeholder="Search">
+      <button class="searchButton" href="#">
+      <span class="bi-search"></span>
+      </button>
+  </div>
+</div>
+
+<div class="filterContainer mb-5">
+  <button class="btn btnSearch active" onclick=""> Show all</button>
+  <button class="btn btnSearch" onclick="this.className +=' active'"> Popular</button>
+  <button class="btn btnSearch" onclick=""> Biceps</button>
+  <button class="btn btnSearch" onclick=""> Triceps</button>
+  <button class="btn btnSearch" onclick=""> Lower Body</button>
+</div>
+
+
 <div class="blogbody">
+
 <div class="blogcontainer">  
   <?php 
     $title = "How to Keep Going When You Don’t Know What’s Next";
