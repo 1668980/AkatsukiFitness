@@ -59,10 +59,22 @@ a:hover {
 }
 
 
-.cardLogin {
-    min-height: 220px;
+.card-login {
+    color: #fff;
+    background-color: #6D757D;
+    border-radius: 0.55rem;
+    border: 2px solid #000000;
+    min-height: 300px;
 }
 
+.card-login:hover {
+    border: 2px solid rgba(220, 53, 69, 1);
+    background-color: rgba(220, 53, 69, 0.6);
+}
+
+.card-login-selected{
+    background-color: #dc3545;
+}
 
 .landing {
     min-height: 400px;

@@ -1,6 +1,7 @@
 <?php
 require_once('includes/header.php');
 ?>
+
 <!-- Corps de la page -->
 <!-- Container du formulaire d'incription-->
 <div id="containerSignup" class="container mt-2">
@@ -83,7 +84,7 @@ require_once('includes/header.php');
         </div>
         <div class="row mt-3">
             <div class="col-12 col-sm-6 mb-2">
-                <div class="card align-items-center card-perso card-hover text-white bg-secondary cardLogin ">
+                <div class="card align-items-center card-perso card-hover card-login ">
                     <div class="card-body">
                         <h5 class="card-title"> Abonnement Gratuit </h5>
                         <ul>
@@ -95,7 +96,7 @@ require_once('includes/header.php');
                 </div>
             </div>
             <div class="col-12 col-sm-6 mb-2">
-                <div class="card align-items-center card-perso card-hover text-white bg-info cardLogin ">
+                <div class="card align-items-center card-perso card-hover card-login">
                     <div class="card-body">
                         <h5 class="card-title"> Abonnement Premium </h5>
                         <ul>
@@ -124,6 +125,12 @@ require_once('includes/header.php');
     </form>
 </div>
 
+<script type="text/javascript">
+    $(".card-login").click(function() { 
+        $('.card-login').removeClass('card-login-selected');
+        $(this).addClass('card-login-selected');
+    });
+</script>
 
 <?php
 require_once('includes/footer.php');
