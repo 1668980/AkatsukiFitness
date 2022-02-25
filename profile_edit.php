@@ -110,8 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                             </div>
 
-                            <input type="button" value="<?php __('profile_edit_btn_cancel'); ?>" onclick="window.location.href='profile.php'">
-                            <input type="submit" value="<?php __('profile_edit_btn_save'); ?>">
+                            <div class="align-right mt-4">
+                                <input type="button" class="btn" value="<?php __('profile_edit_btn_cancel'); ?>" onclick="window.location.href='profile.php'">
+                                <input type="submit" class="btn btn-success" value="<?php __('profile_edit_btn_save'); ?>">
+                            </div>
+
+
 
                         </form>
 
