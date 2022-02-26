@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2022 at 12:04 AM
+-- Generation Time: Feb 26, 2022 at 01:36 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -122,8 +122,8 @@ CREATE TABLE `categoriesproduit` (
 --
 
 INSERT INTO `categoriesproduit` (`idcategorie`, `nom`) VALUES
-(1, 'protéine'),
-(2, 'bar');
+(1, 'Bar'),
+(2, 'Protéine');
 
 -- --------------------------------------------------------
 
@@ -191,7 +191,10 @@ INSERT INTO `entrainement` (`identrainement`, `nom`, `status`, `type`, `difficul
 (1, 'Par defaut01', 0, 'Bas du corp', '1'),
 (2, 'Par defaut02', 0, 'haut1 du corp', '1'),
 (3, 'Par defaut01', 0, 'Bas du corp', '1'),
-(4, 'Par defaut02', 0, 'haut1 du corp', '1');
+(4, 'Par defaut02', 0, 'haut1 du corp', '1'),
+(5, 'Entrainement Lundi', 1, 'haut1 du corp', 'dificile'),
+(6, 'Entrainement Mardi', 2, 'haut1 du corp', 'dificile'),
+(7, 'Entrainement Mercredi', 0, 'haut1 du corp', 'dificile');
 
 -- --------------------------------------------------------
 
@@ -215,7 +218,10 @@ INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
 (1, 1),
 (1, 2),
 (2, 3),
-(2, 4);
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7);
 
 -- --------------------------------------------------------
 
@@ -1697,7 +1703,8 @@ INSERT INTO `produits` (`idproduit`, `idcategorie`, `nom`, `marque`, `prix`, `in
 (1, 2, 'Whey à la vanille', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
 (2, 2, 'Whey au chocolat', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
 (3, 2, 'Whey à la fraise', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
-(4, 2, 'Whey sans arome', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg');
+(4, 2, 'Whey sans arome', 'AkatsukiFitness', 20, '1kg', 'AkatsukiFitness Whey ™ est une formule protéinée qui satisfait tous vos besoins en protéines. Les protéines jouent un rôle clé dans toute alimentation équilibrée en contribuant au maintien des fonctions du système immunitaire et de la masse musculaire maigre.', 'WheyProteinVanille.jpg'),
+(5, 1, 'Bar au chocolat', 'AkatsukiSupplement', 1, '1 bar', 'bar', '');
 
 -- --------------------------------------------------------
 
@@ -1878,7 +1885,7 @@ ALTER TABLE `contenu`
 -- AUTO_INCREMENT for table `entrainement`
 --
 ALTER TABLE `entrainement`
-  MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `exercice`
@@ -1908,7 +1915,7 @@ ALTER TABLE `poids`
 -- AUTO_INCREMENT for table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `idproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `utilisateur`
