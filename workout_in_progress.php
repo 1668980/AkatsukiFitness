@@ -1,11 +1,21 @@
 <?php
 require_once('includes/header.php');
 require_once('includes/auth_check.php')
+//$idEntrainementChoisi = $_POST['id_training'];
 ?>
-
+<head>
+<style>
+.wrapper {
+    text-align: center;
+}
+.button {
+    position: absolute;
+    top: 50%;
+}
+</style>
+<main>
 <?php
-//TODO: avoir le type de muscle ou entrainement de plus et duree entrainement
-//$var_value = $_POST['identrainement'];
+
 $entrainement = $crud->getEntrainementByIdEntrainement('1');
 $text = '';
 foreach($entrainement as $training){
@@ -17,13 +27,13 @@ foreach($entrainement as $training){
     //$duree = $training['duree'];
     
 //function getEntrainements($nomEntrainement){
-    $text .= '<div class="container w-100 ">
-                <div class="col-sm-4">
-                        <div class="card mb-3 card-perso" style="max-width: auto; max-height: 100% " href="#">
+    $text .= '
+                        <div class="card mb-3 card-perso d-flex p-2 bd-highlight" >
                             <div class="card-body">
-                                <h4 class="card-title"> '.$nom .' </h4>
-
-
+                            <div class="d-flex align-items-center">
+                                <h2 class="card-title text-center mx-auto w-100"> '.$nom .' </h2>
+                                    <p>Modifier</p>
+                                </div>
                                 ';
                             }
 
@@ -33,13 +43,10 @@ foreach($entrainement as $training){
                                 $text2 = '';
                                 $text2 .='<h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
                             </div>
-                        </div>
-                    </div>
-                </div>';
+                    </div>';
             echo $text2;
 ?>
 
-<main >
 <!--
     <div class="container w-100 ">
         <div class="col-sm-4">
@@ -67,17 +74,14 @@ foreach($entrainement as $training){
 
 ?>
 
-
+<div class="card-group">
 <?php
 
-//$link = mysqli_connect("sql5.freesqldatabase.com", "sql5472123", "kkplchz5zV", "sql5472123");
-
-//$query = mysqli_query($link,"SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice 
-//INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue` ");// "select * from exercice");
-//while ( $row = mysqli_fetch_array($query) ) :
-//$query = mysqli_query($link, "select idexercice from entrainementexercice where identrainement = 1");
 $exercice = $crud->getExercicesFromEntrainement('1');
 $details = '';
+$idIncrement = 0;
+
+
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
     //$idCatalogue = $training['idcatalogue'];
@@ -88,15 +92,16 @@ foreach($exercice as $training){
     $duree = $training['duree'];
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
+    $idIncrement++;
 
-    $details .= '<div class ="row">
+    $details .= '
                     <div class="col-md-4">
                         <div class="card">
                             <h4 class="card-header">
                                 <div class="ChangeButtonC">
                                     <label>
                                         <h1> '.$nom .' </h1>    
-                                        <button class="btn-primary" >
+                                        <button class="btn-primary" name="btn'.$idIncrement.'" id="btn'.$idIncrement.'">
                                             <span class="seatButton"> Exercice complété </span>
                                         </button>
                                     </label>
@@ -105,13 +110,18 @@ foreach($exercice as $training){
                             <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .'  </div>
                             <div class="card-footer"> Poids : '.$poids .'</div>
                         </div>
-                    </div>
                 </div>
                 ';
+
+                
 }
 echo $details;
-?>
+if(isset($_POST['btn'.$idIncrement.''])){
+    $crud->setExerciceStatusComplete($idIncrement);
+}
 
+?>
+</div>
 
    <!--
          <div class ="row">
@@ -151,40 +161,45 @@ echo $details;
                                     //echo "this button is selected";
                                 }
                                 if(isset($_POST['btn3'])){
-                                    $crud->setEntrainementStatusComplete('1');
+                                    $crud->setEntrainementStatusIncomplete('1');
                                     //echo "this button is selected";
                                 }
-                                if(isset($_POST['btn3'])){
+                                if(isset($_POST['btn4'])){
                                     $crud->setEntrainementStatusComplete('1');
                                     //echo "this button is selected";
                                 }
                             
                                 ?>
+                                
                                 <form method="post">
-
                                 <button class="btn-success" name="btn2" id="btn2" onclick="document.getElementById('btn2').style.background='green'">
                                        
                                     <span class="seatButton"> Fini </span>
-                            </button>
+                                </button>
                                     </label>
-                                </div><div class="ChangeButtonC">
+                                </div>
+                                <div class="ChangeButtonC">
                                     <label>
-                                <button class="btn-primary" id="btn3" onclick="document.getElementById('btn3').style.background='blue'">
-                                        
+                                <button class="btn-primary" name="btn3" id="btn3" onclick="document.getElementById('btn3').style.background='blue'">
                                     <span class="seatButton"> Pause </span>
                                 </button>
                                     </label>
-                                </div><div class="ChangeButtonC">
-                                    <label>
-                                <button class="btn-danger" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
-                                       
-                                    <span class="seatButton"> Abandonner </span>
-                                </button>
+                                </div>
+                                
                             </label>
                             </form>
                         </div>
             </div>
         </div>
+                            <form method="post">
+                            <div class="wrapper">
+                                    <label>
+                                <button class="btn-danger" name="btn4" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
+                                       
+                                    <span class="seatButton"> Abandonner exercice</span>
+                                </button>
+                            </div>
+                            </form>
     </div>
 </main>
 
