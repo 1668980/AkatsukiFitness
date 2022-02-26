@@ -65,7 +65,7 @@ if(isset($_GET['idcat'])){
                             <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
                             <!-- Product price-->
                             <?php echo $products['info'] ?>
-                            <?php echo $products['prix'] ?>
+                            <?php echo $products['prix'] ?>$
                         </div>
                     </div>
                     <!-- Product actions-->
