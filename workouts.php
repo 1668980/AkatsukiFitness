@@ -28,7 +28,32 @@ if (isset($_GET['id'])) {
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-                            
+                        <?php
+                            $listeEntrainement = $crud->getEntrainementsInProgressByIdUser($_SESSION['userid']);
+
+                            $rep = '';
+                            foreach ($listeEntrainement as $training) {
+                                $idEntrainement = $training['identrainement'];
+                                $nom = $training['nom'];
+                                $difficulte = $training['difficulte'];
+                                $type = $training['type'];
+                                // $duree = $training['duree'];
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
+                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
+                                                    <h4 class="card-title"> ' . $nom . '</h4>
+                                                    <ul>
+                                                        <li>' . $type . '</li>
+                                                        <li>' . /*.$duree.*/ ' minutes </li>
+                                                        <li>' . $difficulte. '</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>';
+                            }
+                            echo $rep;
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -98,34 +123,32 @@ if (isset($_GET['id'])) {
                     <div class="card-group container-fluid ">
                         <div class="row">
 
-                        <?php 
-                            $listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
+                        <?php
+                            $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
 
-                            $workouts = array_filter($listeEntrainement, function($workout) { 
-                                    return $workout['status'] == Crud::STATUS_COMPLETED;
-                            });
-
-                            foreach ($workouts as $workout) {
-
-                                echo '
-                                <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                    <div class="card card-perso card-hover text-white border-0"
-                                        style="min-width:162px; min-height:185px;">
-                                        <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..."
-                                            style="min-width:162px; min-height:185px;">
-                                        <div class="card-img-overlay bg-dark bg-opacity-25">
-                                            <h4 class="card-title"> '.$workout['nom'].'</h4>
-                                            <ul>
-                                            <li>'.$workout['type'].' </li>
-                                            <li>TODO DUREE </li>
-                                            <li>'.$workout['difficulte'].' </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                ';
+                            $rep = '';
+                            foreach ($listeEntrainement as $training) {
+                                $idEntrainement = $training['identrainement'];
+                                $nom = $training['nom'];
+                                $difficulte = $training['difficulte'];
+                                $type = $training['type'];
+                                // $duree = $training['duree'];
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
+                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
+                                                    <h4 class="card-title"> ' . $nom . '</h4>
+                                                    <ul>
+                                                        <li>' . $type . '</li>
+                                                        <li>' . /*.$duree.*/ ' minutes </li>
+                                                        <li>' . $difficulte. '</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>';
                             }
-                         ?>
+                            echo $rep;
+                            ?>
                          
                         </div>
                     </div>

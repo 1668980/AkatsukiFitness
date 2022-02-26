@@ -10,55 +10,53 @@ class Crud
 
     private $db;
 
-    //constructor to initialize private variable to the database connection
+   //constructor to initialize private variable to the database connection
     public function __construct($conn)
     {
         $this->db = $conn;
     }
 
-    // User
+// User
 
     //createUtilisateur
-    public function createUtilisateur($user)
-    {
+    public function createUtilisateur($user){
 
         $used = $this->isEmailUsed($user->email);
 
-        if ($used) {
+        if($used){
             return false;
         }
 
         $last_id = $this->addUtilisateur($user);
 
         $this->addConnexion($user, $last_id);
-        $idContenu = $this->createContenu($last_id);
-        $this->linkEntrainementContenu($idContenu, 1);
-        $this->linkEntrainementContenu($idContenu, 2);
+        $idContenu= $this->createContenu($last_id);  
+        $this->linkEntrainementContenu($idContenu,1);
+        $this->linkEntrainementContenu($idContenu,2);
         return  $last_id;
-    }
-    private function addUtilisateur($user)
-    {
-        try {
-            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`)  VALUES(:lastname,:firstname,:email,:dob,:gender)";
 
+    }
+    private function addUtilisateur($user){
+        try {  
+            $sql = "INSERT INTO `utilisateur` ( `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`)  VALUES(:lastname,:firstname,:email,:dob,:gender)";
+        
             $stmt = $this->db->prepare($sql);
             $stmt->bindparam(':lastname',  $user->lastname);
             $stmt->bindparam(':firstname', $user->firstname);
             $stmt->bindparam(':email', $user->email);
             $stmt->bindparam(':dob', $user->dob);
             $stmt->bindparam(':gender', $user->gender);
-
+        
             $stmt->execute();
             //$result = $stmt->fetch();     
-
+        
             return $this->db->lastInsertId();;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    private function addConnexion($user, $id)
-    {
+    private function addConnexion($user, $id){
         try {
             $status = 1;
             $sql = "INSERT INTO `connexion` ( `idutilisateur`, `status`, `email`, `password`)  VALUES(:idutilisateur,:status,:email,:password)";
@@ -79,43 +77,39 @@ class Crud
     }
 
     //UpdateUser
-    public function updateUserUtilisateurTableSansEmail($user)
-    {
-
-
-        try {
+    public function updateUserUtilisateurTableSansEmail($user){
+       
+    
+           try {  
             $sql = "UPDATE `utilisateur` SET `nom` =  '$user->lastname' , `prenom` =  '$user->firstname',`date_de_naissance` = '$user->dob',`sexe` = '$user->gender',`poids`= '$user->weight' WHERE `utilisateur`.`iduser` =  $user->id_user";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
-            echo $e->getMessage() . "<br>" . $sql;
+            echo $e->getMessage()."<br>".$sql;
             return false;
         }
-    }
-    public function updateUserEmail($user)
-    {
+    }    
+    public function updateUserEmail($user){
         $this->updateEmailUtilisateurTable($user);
         $this->updateUserConnexionTable($user);
-    }
-    private function updateEmailUtilisateurTable($user)
-    {
-        try {
+    }    
+    private function updateEmailUtilisateurTable($user){
+        try {  
             $sql = "UPDATE `utilisateur` SET `email` =  '$user->email' WHERE `utilisateur`.`iduser` =  $user->idUser";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
-    }
-    private function updateUserConnexionTable($user)
-    {
-        try {
+    }    
+    private function updateUserConnexionTable($user){
+        try {  
             $sql = "UPDATE `connexion` SET `email` =  '$user->email' WHERE `connexion`.`idUtilisateur` =  $user->idUser";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -125,8 +119,7 @@ class Crud
     //manque update password
 
     //GetUser
-    public function login($email, $password)
-    {
+    public function login($email, $password){
 
         try {
 
@@ -134,16 +127,16 @@ class Crud
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();
-            if ($result) {
+            if($result){
                 return  $result["idutilisateur"];
-            } else return false;
+            }else return false;
+           
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    public function getUser($id)
-    {
+    public function getUser($id){
 
         try {
 
@@ -158,8 +151,7 @@ class Crud
             return false;
         }
     }
-    public function getAllUsers()
-    {
+    public function getAllUsers(){
 
         try {
 
@@ -174,8 +166,7 @@ class Crud
             return false;
         }
     }
-    public function getUserStatus($email)
-    {
+    public function getUserStatus($email){
         try {
 
             $sql = "SELECT * FROM connexion WHERE email ='$email' ";
@@ -190,100 +181,95 @@ class Crud
     }
 
     //Verification
-    public function isEmailUsed($email)
-    {
+    public function isEmailUsed($email){
         try {
             $sql = "SELECT * FROM `connexion` WHERE email = '$email' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->rowCount();
-            return ($result > 0);
+            return ($result>0); 
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-
+    
     //Abonement
-    public function addSubscriptionToUser($idUser, $duree)
-    {
+    public function addSubscriptionToUser($idUser,$duree){
         $dt1 = new DateTime();
         $today = $dt1->format("Y-m-d");
-        $endDate = $this->calculateEndDate($duree);
-        return $this->addSubscriptionToUserTable($today, $endDate, $idUser);
+        $endDate =$this->calculateEndDate($duree);
+        return $this->addSubscriptionToUserTable($today,$endDate,$idUser);
     }
-    private function calculateEndDate($duree)
-    {
+    private function calculateEndDate($duree){
+        $d = "+".$duree."month";
 
-        $dt2 = new DateTime($duree);
 
+        $dt2 = new DateTime($d);
+       
         return  $dt2->format("Y-m-d");
     }
-    private function addSubscriptionToUserTable($today, $endDate, $idUser)
-    {
-        try {
+    private function addSubscriptionToUserTable($today,$endDate,$idUser){
+        try {  
             $sql = "UPDATE `utilisateur` SET `datedebutabonnement` = '$today',`datefinabonnement` = '$endDate' WHERE `utilisateur`.`iduser` =  $idUser";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
-    }
-    public function isUserSubscribed($idUser)
-    {
-        $user = $this->getUser($idUser);
+    }    
+    public function isUserSubscribed($idUser){
+        $user =$this->getUser($idUser);
 
-        $dateStartSub = new DateTime($user['datedebutabonnement']);
-        $dateEndSub = new DateTime($user['datefinabonnement']);
-
+        $dateStartSub= new DateTime($user['datedebutabonnement']);
+        $dateEndSub= new DateTime($user['datefinabonnement']);
+               
         return $dateStartSub < $dateEndSub;
     }
+    
+    
+   
 
-
-
-
-    //Contenu 
+//Contenu 
 
     //Create
-    public function createContenu($idUser)
-    {
-        try {
+    public function createContenu($idUser){
+        try{
             $sql = " INSERT INTO `contenu` (`iduser`) VALUES ($idUser)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return true;
-        } catch (PDOException $e) {
+        }catch (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
     }
 
     //get
-    private function getContenuId($idUser)
-    {
-        try {
+    private function getContenuId($idUser){
+        try{
             $sql = "SELECT * FROM  `contenu` WHERE iduser = '$idUser' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();
             return  $result['idcontenu'];
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
+        
     }
-
-    //Entrainement
+   
+//Entrainement
 
     //Create
-    public function createNewEntrainement($entrainement, $idUser)
-    {
-        $idEntrainement = $this->createEntrainement($entrainement);
-        $idContenu = $this->getContenuId($idUser);
-        $this->linkEntrainementContenu($idContenu, $idEntrainement);
-        return $idEntrainement;
+    public function createNewEntrainement($entrainement){
+       $idEntrainement= $this->createEntrainement($entrainement);
+       $idContenu = $this->getContenuId($entrainement->idUser);
+       $this->linkEntrainementContenu($idContenu,$idEntrainement);
+       return $idEntrainement;   
     }
 
     private function createEntrainement($entrainement){
@@ -302,55 +288,52 @@ class Crud
         return $this->db->lastInsertId();
         }catch (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
     }
 
     //Get
-    public function getEntrainementsByIdUser($idUser)
-    {
-
-        $idContenu = $this->getContenuId($idUser);
+    public function getEntrainementsByIdUser($idUser){
+        
+        $idContenu =$this->getContenuId($idUser);
         return $this->getEntrainementsByContenu($idContenu);
     }
-    private function getEntrainementsByContenu($idContenu)
-    {
-        try {
+    private function getEntrainementsByContenu($idContenu){
+        try{
             $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON `entrainementcontenu`.`identrainement`  = `entrainement`.`identrainement`  WHERE `entrainementcontenu`.`idcontenu` = '$idContenu' ";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
             return  $result;
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
-    }
-    public function getEntrainements()
-    {
-        try {
+        
+    }   
+    public function getEntrainements(){
+        try{
             $sql = "SELECT * FROM `entrainement`";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
             return  $result;
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
-    }
-    public function getEntrainementByIdEntrainement($idEntrainement)
-    {
-        //Récupérer un entrainement (Mathieu)
-        try {
+    }    
+    public function getEntrainementByIdEntrainement($idEntrainement){
+      //Récupérer un entrainement (Mathieu)
+        try{
             $sql = "SELECT * FROM `entrainement` where `identrainement`= $idEntrainement";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
             return  $result;
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
     }
         //get entrainement completed or incompleted
@@ -362,42 +345,52 @@ class Crud
         $idContenu =$this->getContenuId($idUser);
         return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,self::STATUS_INCOMPLETE);
     }
-    private function getEntrainementsCompletedOrIncompletedByContenu($idContenu, $wantedStatus)
-    {
-        try {
+    public function getEntrainementsInProgressByIdUser($idUser){
+        $idContenu =$this->getContenuId($idUser);
+        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,self::STATUS_INPROGRESS);
+    }
+    private function getEntrainementsCompletedOrIncompletedByContenu($idContenu,$wantedStatus){
+        try{
             $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON `entrainementcontenu`.`identrainement`  = `entrainement`.`identrainement`  
             WHERE `entrainementcontenu`.`idcontenu` = '$idContenu' AND `entrainement`.`status` = $wantedStatus";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
             return  $result;
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
-    }
-    //get %completed
-
-    public function getPercentageOfExercicesCompletedInEntrainement($idEntrainement)
-    {
-        $exercices =  $this->getExercicesFromEntrainement($idEntrainement);
-        $exerciceCompleted = 0;
-        foreach ($exercices as $ex) {
-            if ($ex['status'] == 1) {
+        
+    }   
+        //get %completed
+    
+    public function getPercentageOfExercicesCompletedInEntrainement($idEntrainement){
+        $exercices=  $this->getExercicesFromEntrainement($idEntrainement);
+        $exerciceCompleted=0;
+        foreach($exercices as $ex){
+            if($ex['status']==1 ){
                 $exerciceCompleted++;
             }
         }
-        return $exerciceCompleted / count($exercices) * 100;
+        return $exerciceCompleted/count($exercices)*100;
+    }
+    public function getEntrainementDuration($idEntrainement){
+        $exercices=  $this->getExercicesFromEntrainement($idEntrainement);
+        $exerciceLenght=0;
+        foreach($exercices as $ex){
+            $exerciceLenght += $ex['duree'] ;
+        }
+        return $exerciceLenght;
     }
 
-
     //Update
-    public function updateEntrainement($idEntrainement, $name)
-    {
-        try {
-            $sql = "UPDATE `entrainement` SET `nom` =  '$name' WHERE `identrainement` =  $idEntrainement";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+    public function updateEntrainement($entrainement){
+        try {  
+         
+            $sql = "UPDATE `entrainement` SET `nom` =  '$entrainement->name',`type` =  '$entrainement->type', `difficulte`= '$entrainement->difficulte' WHERE `identrainement` =  $entrainement->id";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -432,8 +425,8 @@ class Crud
             // ou avec un prepared statement. il faut utiliser un bindvalue au lieu d'un bindparam;
 
             $sql = "UPDATE `entrainement` SET `status` =  0 WHERE `identrainement` =  $idEntrainement";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -441,35 +434,48 @@ class Crud
         }
     }
     //Delete
-    public function deleteEntrainement($idEntrainement)
-    {
-        try {
-            // ON DELETE CASCADE
+        
+    public function deleteEntrainementById($idEntrainement){
+        $this->deleteExerciceFromEntrainement($idEntrainement);
+        return   $this->deleteEntrainement($idEntrainement);
+     
+
+    }
+    private function deleteEntrainement($idEntrainement){
+        try {  
             $sql = "DELETE FROM `entrainement` WHERE `identrainement` =  $idEntrainement";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-
-
-    //Exercice 
-
-    //create
-    public function addExercices($listExercices, $idEntrainement)
-    {
-        foreach ($listExercices as $ex) {
-            $idexercice = $this->addExercice($ex);
-            $this->linkEntrainementExercice($idexercice, $idEntrainement);
-        }
+    private function deleteExerciceFromEntrainement($idEntrainement){
+      
+        $exercices = $this->getExercicesFromEntrainement($idEntrainement);
+        foreach($exercices as $ex){
+            $this->deleteExercice($ex['idexercice']);
+        }      
+      return true;
+      
+    
     }
-    private function addExercice($exercice)
-    {
 
-        try {
+//Exercice 
+    
+    //create
+    public function addExercices($listExercices,$idEntrainement){
+        foreach($listExercices as $ex){
+            $idexercice = $this->addExercice($ex);           
+            $this->linkEntrainementExercice($idexercice,$idEntrainement);
+        }
+        
+    }
+    private function addExercice($exercice){
+
+        try { 
             $sql = "INSERT INTO `exercice` (`idexercicecatalogue`,`status`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`)  VALUES 
             (:idexercicecatalogue, 0, :poids, :repetitions, :sets, :duree, :dureepause)";
             $stmt = $this->db->prepare($sql);
@@ -480,41 +486,39 @@ class Crud
             $stmt->bindparam(':sets', $exercice->sets);
             $stmt->bindparam(':dureepause', $exercice->dureepause);
 
-
+           
             $stmt->execute();
-
-            return $this->db->lastInsertId();
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+       return false;
         }
     }
     //Get
-    public function getExercicesFromEntrainement($idEntrainement)
-    {
-        try {
+    public function getExercicesFromEntrainement($idEntrainement){
+        try{
             $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice 
-            INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue` ";
-
-            //  $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice WHERE identrainement = '$idEntrainement'";
+            INNER JOIN `exercicecatalogue` ON `exercice`.`idexercicecatalogue` =`exercicecatalogue`.`idexercicecatalogue`  WHERE `identrainement` = '$idEntrainement' ";
+            
+          //  $sql = "SELECT * FROM `entrainementexercice` INNER JOIN exercice ON entrainementexercice.idexercice = exercice.idexercice WHERE identrainement = '$idEntrainement'";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll();
             return  $result;
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
     }
     //Update
-    public function updateExercice($exercice)
-    {
-        try {
+    public function updateExercice($exercice){
+        try {  
             $sql = "UPDATE `exercice` SET `poids` =  '$exercice->poids', `repetitions` =  '$exercice->repetitions',
              `sets` =  '$exercice->sets', `duree` =  '$exercice->duree',  `dureepause` =  '$exercice->dureepause'   
             WHERE `idexercice` =  $exercice->idexercice";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -522,13 +526,12 @@ class Crud
         }
     }
     //Delete
-    public function deleteExercice($idexercice)
-    {
-        try {
+    public function deleteExercice($idexercice){
+        try {  
             // ON DELETE CASCADE
             $sql = "DELETE FROM `exercice` WHERE `idexercice` = $idexercice";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -538,39 +541,38 @@ class Crud
 
     //Historique And STATUS
 
-    public function getExerciceStatus($idExercice)
-    {
-        try {
-            $sql = "SELECT * FROM `exercice` WHERE `idexercice` = $idExercice ";
-
+    public function getExerciceStatus($idExercice){
+        try{
+            $sql = "SELECT * FROM `exercice` WHERE `idexercice` = $idExercice ";           
+      
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-
+            
             $result = $stmt->fetch();
             return  $result;
-        } catch (PDOException $e) {
+        }catch  (PDOException $e) {
             echo $e->getMessage();
-            return false;
+        return false;
         }
+
+
     }
-    public function setExerciceStatusComplete($idExercice)
-    {
-        try {
+    public function setExerciceStatusComplete($idExercice){
+        try {  
             $sql = "UPDATE `exercice` SET `status` =  1 WHERE `idexercice` =  $idExercice";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    public function setExerciceStatusIncomplete($idExercice)
-    {
-        try {
+    public function setExerciceStatusIncomplete($idExercice){
+        try {  
             $sql = "UPDATE `exercice` SET `status` =  0 WHERE `idexercice` =  $idExercice";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -578,202 +580,226 @@ class Crud
         }
     }
 
-    public function getExercicesCatalogue()
-    {
-        try {
+    public function getExercicesCatalogue(){
+        try { 
             $sql = "SELECT * FROM `exercicecatalogue` LIMIT 25";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->prepare($sql); 
             $stmt->execute();
             $result = $stmt->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
+        return $result;
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
         }
     }
 
-    //Lister catégories des exercices 
-    public function ListExercicesCategories()
-    {
-        try {
-            $sql = "SELECT * FROM `categories`";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
-        }
-    }
+    
 
-    //Lister catégories des exercices 
-    public function ListExercicesParCategories($cat)
-    {
-        try {
-            $sql = "SELECT * FROM `exercicecatalogue` Where `idcategorie`= '$cat' LIMIT 25";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
-        }
-    }
+//lier les diferente table
 
-    //selectioner une fonction par son id
-    public function getCatbyId($idCat){
-        try {
-            $sql = "SELECT * FROM `categories` Where `idcategorie`= '$idCat' ";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
-        }
-    }
-
-    public function getNameOfCat($idCat){
-        $idCategorie = $this->getCatbyId($idCat);
-        return $idCategorie[0]['nom'];
-    }
-
-
-    //lier les diferente table
-
-    private function linkEntrainementExercice($idexercice, $idEntrainement)
-    {
-        try {
+    private function linkEntrainementExercice($idexercice,$idEntrainement){
+        try {  
             $sql = "INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES 
             ($idEntrainement,$idexercice)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            return true;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
+        return true;
+
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
         }
     }
-    private function linkEntrainementContenu($idContenu, $idEntrainement)
-    {
-        try {
+    private function linkEntrainementContenu($idContenu,$idEntrainement){
+        try {  
             $sql = "INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES 
             ($idContenu,$idEntrainement)";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            return true;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
+        return true;
+
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
         }
     }
 
-    //json Cattegorie
-    public function addJsonCategorieAndExercice($name, $img, $cat)
-    {
-        if (!$this->isJsonCategorieExist($cat)) {
-            $idCat = $this->addNewExerciceCategorie($cat);
+//json Cattegorie
+    public function addJsonCategorieAndExercice($name,$img,$cat){
+        if(!$this->isJsonCategorieExist($cat)){
+          $idCat= $this->addNewExerciceCategorie($cat);
         }
-        $idCat = $this->getExerciseCategorie($cat);
-        return $this->addExerciceCatalogue($name, $img, $idCat);
+        $idCat= $this->getExerciseCategorie($cat);
+        return $this->addExerciceCatalogue($name,$img,$idCat);
     }
-    private function addNewExerciceCategorie($cat)
-    {
-        try {
+    private function addNewExerciceCategorie($cat){
+        try { 
             $sql = "INSERT INTO `categories` (`nom`)  VALUES 
             ('$cat')";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->prepare($sql); 
             $stmt->execute();
-
-            return $this->db->lastInsertId();
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
         }
     }
-    private function isJsonCategorieExist($cat)
-    {
-        try {
+    private function isJsonCategorieExist($cat){
+        try { 
             $sql = "SELECT * FROM `categories` WHERE `nom`= '$cat' ";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->prepare($sql);   
             $stmt->execute();
             $result = $stmt->rowCount();
-
-            if ($result > 0) {
+            
+            if($result>0){
                 return true;
-            } else {
+            }else{
                 return false;
             }
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
+
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
         }
     }
-    public function getExerciseCategorie($cat)
-    {
-        try {
+    public function getExerciseCategorie($cat){
+        try { 
             $sql = "SELECT * FROM  `categories` WHERE `nom`= '$cat' ";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->prepare($sql);   
             $stmt->execute();
             $result = $stmt->fetch();
-
-
+       
+         
             return $result['idcategorie'];
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();        
+        return false;
         }
     }
 
-    public function addExerciceCatalogue($name, $img, $idCat)
-    {
-        try {
+    public function addExerciceCatalogue($name,$img,$idCat){
+        try { 
             $sql = "INSERT INTO `exercicecatalogue` (`nom`,`image`,`idcategorie`)  VALUES 
             ('$name','$img',$idCat)";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $this->db->prepare($sql); 
             $stmt->execute();
-
-            return $this->db->lastInsertId();
-        } catch (PDOException $e) {
-            echo $sql . $e->getMessage();
-            return false;
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
         }
     }
-    //Blogs
+//Blogs
 
-    public function getAllBlogs()
-    {
-        try {
+    public function getAllBlogs(){
+        try {  
             $sql = "SELECT * FROM `blog`";
-
+        
             $stmt = $this->db->prepare($sql);
-
+        
             $stmt->execute();
-            $result = $stmt->fetch();
-
+            $result = $stmt->fetchAll();
+        
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    public function getAllBlogsWithCategorie($idCategorie)
-    {
-        try {
+    public function getAllBlogsWithCategorie($idCategorie){
+        try {  
             $sql = "SELECT * FROM `blog` WHERE `idcategorie`= $idCategorie";
-
+        
             $stmt = $this->db->prepare($sql);
-
+        
             $stmt->execute();
-            $result = $stmt->fetch();
-
+            $result = $stmt->fetchAll();
+        
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
+    public function getBlogByTitleSearch($txt){
+        try {  
+            $search = "%".$txt."%";
+            $sql = "SELECT * FROM `blog` WHERE `titre` LIKE '$search' ";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+//Produits
+
+    public function getAllProduits(){
+        try {  
+            $sql = "SELECT * FROM `produits`";
+            
+            $stmt = $this->db->prepare($sql);            
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            
+        return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+    public function getAllProduitWithCategorie($idCategorie){
+        try {  
+            $sql = "SELECT * FROM `produits` WHERE `idcategorie`= $idCategorie";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }   
+    }
+    public function getProduitByTitleSearch($txt){
+        try {  
+            $search = "%".$txt."%";
+            $sql = "SELECT * FROM `produits` WHERE `nom` LIKE '$search' ";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+        }
+    }
+    public function getCategoriesProduit(){
+        try {  
+            $sql = "SELECT * FROM `categoriesproduit`";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }   
+    }
+
 }
