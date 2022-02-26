@@ -1,5 +1,5 @@
     <!-- pour des la couleur du text blanche : navbar-dark / noir : navbar-light -->
-    <nav id="myNav" class="navbar navbar-expand-md navbar-dark bg-danger bg-gradient">
+    <nav id="myNav" class="navbar navbar-expand-lg navbar-dark bg-danger bg-gradient">
         <div class="container-fluid">
             <a class="logo navbar-brand" href="index.php"><i class="bi bi-check2-circle"> </i>Akatsuki Fitness</a>
             <button id="toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse"
