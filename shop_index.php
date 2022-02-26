@@ -21,8 +21,10 @@ if(isset($_GET['idcat'])){
 
 ?>
 <!-- product container -->
+
+<a id="search-result"></a>
 <div id="containerShop" class="container">
-    <form action="shop_index.php">
+    <form action="shop_index.php#search-result">
         <div class="searchFilter mb-3">
             <div class="searchBox">
                 <input class="searchInput" type="text" name="title" placeholder="Search">
@@ -36,7 +38,7 @@ if(isset($_GET['idcat'])){
     <div class="filterContainer">
         <?php foreach($categorieProduitList as $cat) {?>
         <a class="btn btn-danger"
-            href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>"><?php echo $cat['nom']?></a>
+            href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?></a>
         <?php }?>
     </div>
 
