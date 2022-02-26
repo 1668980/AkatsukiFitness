@@ -16,6 +16,12 @@ a:hover {
 
 }
 
+ul {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0; 
+}
+
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
     border-radius: 0.55rem;
@@ -59,10 +65,22 @@ a:hover {
 }
 
 
-.cardLogin {
-    min-height: 220px;
+.card-login {
+    color: #fff;
+    background-color: #6D757D;
+    border-radius: 0.55rem;
+    border: 2px solid #000000;
+    min-height: 300px;
 }
 
+.card-login:hover {
+    border: 2px solid rgba(220, 53, 69, 1);
+    background-color: rgba(220, 53, 69, 0.6);
+}
+
+.card-login-selected{
+    background-color: #dc3545;
+}
 
 .landing {
     min-height: 400px;
@@ -132,4 +150,58 @@ p.text {
 .card-body {
     flex: 1 1 auto;
     padding: 1rem 1rem;
+}
+
+.profile{
+    color: #fff;
+}
+.profile .card{
+    border:1px solid #dc3545;
+    background-color: #22252A;
+    min-width: 500px;
+    margin-bottom: 10px;
+}
+
+.profile h5.card-title{
+    color:#dc3545;
+    border-bottom: 1px solid #dc3545;
+    padding: 2px 0px;
+    
+}
+
+.profile .icon
+{
+    max-width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile .nav-tabs{
+    border-bottom: 1px solid #dc3545;
+    margin-bottom: 10px;
+    
+}
+
+.profile .nav-tabs .nav-link.active{
+    color: #FFFFFF;
+    background-color: #dc3545;
+    border-color: #dc3545 #dc3545 #dc3545;
+}
+.profile .nav-tabs .nav-link{
+    color: #dc3545;
+}
+.profile .nav-tabs .nav-link:hover{
+    color: #fff;
+    background-color: rgba(220, 53, 69, 0.6);
+    border-color: #dc3545;
+}
+
+.profile .goals input[type=text] {
+    max-width: 100px;
+    color: #dc3545;
+    background-color: #22252A;
+}
+
+.align-right{
+    text-align: right;
 }

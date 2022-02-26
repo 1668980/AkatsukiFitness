@@ -29,7 +29,9 @@
         'profile_gender_other' => 'Autre',
 
         'profile_tab_title_inprogress' => 'Entraînement en cours',
-        'profile_tab_title_completed' => 'Entraînement(s) complété(s)',
+        'profile_tab_title_completed' => 'Dernier(s) entraînement(s) complété(s)',
+        'profile_tab_link_inprogress' => 'Voir les entraînements',
+        'profile_tab_link_completed' => 'Plus de détails',
 
         'index_carrousel_title_2' => 'This is a title',
         'index_carrousel_title_3' => 'This is a title',
