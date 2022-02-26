@@ -21,24 +21,23 @@ if(isset($_GET['idcat'])){
 
 ?>
 <!-- product container -->
-<form action="shop_index.php" >
-    <div id="containerShop" class="container">
-       
-         <div class="searchFilter mb-3">
-           <div class="searchBox">      
-             <input class="searchInput" type="text" name="title"  placeholder="Search">
-               <button class="searchButton" type="submit" >
-               <span class="bi-search"></span>
-               </button>
-           </div>
-      
-    </div>
+
+<div id="containerShop" class="container">
+    <form action="shop_index.php">
+        <div class="searchFilter mb-3">
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="title" placeholder="Search">
+                <button class="searchButton" type="submit">
+                    <span class="bi-search"></span>
+                </button>
+            </div>
+        </div>
     </form>
 
-    <div class="filterContainer mb-5">
-    <?php foreach($categorieProduitList as $cat) {?>
-        
-        <a  class="btn" href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>"><?php echo $cat['nom']?></a>
+    <div class="filterContainer">
+        <?php foreach($categorieProduitList as $cat) {?>
+        <a class="btn btn-danger"
+            href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>"><?php echo $cat['nom']?></a>
         <?php }?>
     </div>
 
