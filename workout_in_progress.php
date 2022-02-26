@@ -32,7 +32,7 @@ foreach($entrainement as $training){
                             <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <h2 class="card-title text-center mx-auto w-100"> '.$nom .' </h2>
-                                    <p>Modifier</p>
+                                    <button class="btn-primary">Modifier</button>
                                 </div>
                                 ';
                             }
@@ -180,7 +180,7 @@ if(isset($_POST['btn'.$idIncrement.''])){
                                 </div>
                                 <div class="ChangeButtonC">
                                     <label>
-                                <button class="btn-primary" name="btn3" id="btn3" onclick="document.getElementById('btn3').style.background='blue'">
+                                <button class="btn-primary" name="btn3" id="btn3" onclick="document.getElementById('btn3').style.background='blue'" href="/workouts.php">
                                     <span class="seatButton"> Pause </span>
                                 </button>
                                     </label>
