@@ -17,6 +17,8 @@ $email = $userInfo['email'];
 $dob = $userInfo['date_de_naissance'];
 $weight = $userInfo['poids'];
 $gender = $userInfo['sexe'];
+$weight_goal = $userInfo['poids_desire'];
+$avatar = $userInfo['avatar'];
 
 // var_export($userInfo);
 // die();
@@ -24,7 +26,26 @@ $gender = $userInfo['sexe'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
 
-   $user = new Utilisateur($_SESSION["userid"], $_POST['lastname'], $_POST['firstname'], $_POST['email'], $_POST['dob'], $_POST['gender'],$_POST['weight']);
+    $user = $crud->getUser($_SESSION['userid']);
+
+
+    // echo $user['lastname'];
+
+
+
+    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : $user['nom'];
+    $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : $user['prenom'];
+    $email = isset($_POST['email']) ? $_POST['email'] : $user['email'];
+    $dob = isset($_POST['dob']) ? $_POST['dob'] : $user['date_de_naissance'];
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : $user['sexe'];
+    $weight = isset($_POST['weight']) ? $_POST['weight'] : $user['poids'];
+    $weight_goal = isset($_POST['weight_goal']) ? $_POST['weight_goal'] : $user['poids_desire'];
+    $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : $user['avatar'];
+
+
+
+   $user = new Utilisateur($_SESSION["userid"], $lastname, $firstname, $email, $dob, $gender, $weight, $weight_goal, $avatar);
+
    $r= $crud->updateUserUtilisateurTableSansEmail($user);
   
    header('Location: profile.php');

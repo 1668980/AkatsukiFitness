@@ -8,8 +8,10 @@ class Utilisateur {
     public $password;
     public $gender;
     public $weight;
+    public $weight_goal;
+    public $avatar;
 
-    public function __construct($id,$lastname,$firstname,$email,$dob,$gender,$weight)
+    public function __construct($id,$lastname,$firstname,$email,$dob,$gender,$weight,$weight_goal,$avatar)
     {
         if($id != 0 ){
             $this->id_user = $id;
@@ -22,6 +24,9 @@ class Utilisateur {
         $this->dob = $dob;
         $this->gender = $gender;
         $this->weight = $weight;
+        $this->weight_goal = $weight_goal;
+        $this->avatar = $avatar;
+
     }
     
 

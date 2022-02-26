@@ -81,7 +81,14 @@ class Crud
        
     
            try {  
-            $sql = "UPDATE `utilisateur` SET `nom` =  '$user->lastname' , `prenom` =  '$user->firstname',`date_de_naissance` = '$user->dob',`sexe` = '$user->gender',`poids`= '$user->weight' WHERE `utilisateur`.`iduser` =  $user->id_user";
+
+            $sql = "UPDATE `utilisateur` SET `nom` =  '$user->lastname' , `prenom` =  '$user->firstname',`date_de_naissance` = '$user->dob',`sexe` = '$user->gender'
+            ,`poids`= '$user->weight'";
+            
+            if ($user->weight_goal != null) { 
+                $sql .= ",`poids_desire`= '$user->weight_goal'";
+            }
+            $sql .= ",`avatar`= '$user->avatar' WHERE `utilisateur`.`iduser` =  $user->id_user";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;
