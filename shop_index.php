@@ -21,7 +21,6 @@ if(isset($_GET['idcat'])){
 
 ?>
 <!-- product container -->
-
 <div id="containerShop" class="container">
     <form action="shop_index.php">
         <div class="searchFilter mb-3">
@@ -46,7 +45,14 @@ if(isset($_GET['idcat'])){
     <section class="py-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->
-            <?php foreach($productList as $products) {?>
+            <?php 
+            if(count($productList) === 0) {?>
+            <h4 class='text-primary text-center'>Aucun produit trouvé :(</h4>
+            <?php
+            }
+            foreach($productList as $products) {
+            ?>
+
             <div class="col mb-5">
                 <div class="card h-100 card-product">
                     <!-- Product image-->
@@ -59,7 +65,7 @@ if(isset($_GET['idcat'])){
                             <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
                             <!-- Product price-->
                             <?php echo $products['info'] ?>
-                            <?php echo $products['prix'] ?>
+                            <?php echo $products['prix'] ?>$
                         </div>
                     </div>
                     <!-- Product actions-->

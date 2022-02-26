@@ -6,172 +6,54 @@ $breadcrumb = [
 
 require_once 'includes/header.php';
 require_once 'includes/auth_check.php';
-$isCreated=false;
-if(isset($_GET['id'])){   
+$isCreated = false;
+if (isset($_GET['id'])) {
     echo '<script>
     $(document).ready(function(){
             $("#exerciceModal").modal(\'show\');
     });
     </script>';
 }
-
-
-// function getFlipBox($nomEntrainement, $listExercise, $lienImage, $buttonText, $color) {
-//     $details = "";
-//     foreach($listExercise as $value) { $details .= '<li>'.$value .' </li>';  }
-//     return '<div class="workout flip-box-container" style="--hue: '.$color.'">
-//                 <div class="workout flip-box">
-
-//                     <div class="workout box-front">
-//                         <figure>
-//                         <div class="workout img-bg"></div>
-//                         <img src="'.$lienImage .'" alt="'.$nomEntrainement .'">
-//                         <figcaption>'.$nomEntrainement .'</figcaption>
-//                         </figure>
-//                         <ul>'.$details.'</ul>
-//                     </div>
-
-//                     <div class="workout box-back">
-//                         <figure>
-//                         <div class="workout img-bg"></div>
-//                         <img src="'.$lienImage .'" alt="'.$nomEntrainement .'">
-//                         </figure>
-
-//                         <button>'.$buttonText.'</button>
-
-//                         <div class="workout design-container">
-//                         <span class="workout design design--1"></span>
-//                         <span class="workout design design--2"></span>
-//                         <span class="workout design design--3"></span>
-//                         <span class="workout design design--4"></span>
-//                         <span class="workout design design--5"></span>
-//                         <span class="workout design design--6"></span>
-//                         <span class="workout design design--7"></span>
-//                         <span class="workout design design--8"></span>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>';
-// }
-
 ?>
-
-
-
-<!-- <div class="workout">
-
-        <div class="workoutInProgress">
-            <div class="card align-items-center mt-5 mb-5 bg-dark" style="display:inline-flex; border-radius: 25px;">
-                <div class="row row-cols-1" style="width:100%;">
-                    <div class="col panel" style="width:100%;align-items: center;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 25px 0px 0px;">En Progression</div>
-                    <?php
-// $exerciseList= $crud->getExercicesFromEntrainement(1);
-// $entainementList = $crud->getEntrainementsByIdUser($_SESSION['userid']);
-// for( $i =0;$i<count($entainementList);$i++){
-//     echo getFlipBox($entainementList[$i]['nom'], array($exerciseList[0]['nom'],"100 pushups","100 squats", "10km de course"), "images/workouts/OnePunchMan.jpg", "Completer", 200);
-// }
-?>
-
-
-                    <?php //echo getFlipBox($exerciseList[0]['poids'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/workouts/OnePunchMan.jpg", "Completer", 200);
-?>
-                    <?php //echo getFlipBox("One Punch Man", array("100 situps","100 pushups","100 squats", "10km de course"), "images/workouts/OnePunchMan.jpg", "Completer", 100);
-?>
-                </div>
-            </div>
-        </div>
-
-        <div class="workoutChoix">
-            <div class="card align-items-center mt-5 mb-5 bg-dark" style="display:inline-flex; border-radius: 25px;">
-                <div class="row row-cols-1" style="width:100%;">
-                    <div class="col-1" style="width:50%;display:inline-flex;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 0px 0px 0px;">
-                        Entrainements Disponibles
-                    </div>
-                    <div class="col-1" style="width:50%;display:inline-flex;background-color:gray;font-size: 24px; padding:15px; border-radius: 0px 25px 0px 0px;justify-content: right;">
-                        <button type="button" id="btnAjouterEntrainement" class="btn btn-success" style="background-color:green;" onclick="">Ajouter</button>
-                    </div>
-                    <?php
-// $exerciseList= $crud->getExercicesFromEntrainement(1);
-// $entainementList = $crud->getEntrainementsByIdUser($_SESSION['userid']);
-// for( $i =0;$i<count($entainementList);$i++){
-//     echo getFlipBox($entainementList[$i]['nom'], array("100 situps","100 pushups","100 squats", "10km de course"), "images/workouts/OnePunchMan.jpg", "Completer", 200);
-// }
-?>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="workoutCompleter">
-            <div class="card align-items-center mt-5 mb-5 bg-dark" style="display:inline-flex; border-radius: 25px;">
-                <div class="row row-cols-1" style="width:100%;">
-                    <div class="col panel" style="width:100%;background-color:gray;font-size: 24px; padding:15px; border-radius: 25px 25px 0px 0px;">Compléter</div>
-                   </div>
-            </div>
-        </div>
-
-        </div> -->
 
 <div class="accordion mt-5" id="accordionPanelsStayOpenExample">
     <div class="accordion-item border-0">
         <h2 class="accordion-header text-white" id="panelsStayOpen-headingOne">
-            <button class="accordion-button bg-danger bg-gradient text-white " type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseOne">
+            <button class="accordion-button bg-danger bg-gradient text-white " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                 En cours
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show bg-dark"
-            aria-labelledby="panelsStayOpen-headingOne">
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show bg-dark" aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body">
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..."
-                                        style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-white bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..."
-                                        style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-white bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..."
-                                        style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-white bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php
+                            $listeEntrainement = $crud->getEntrainementsInProgressByIdUser($_SESSION['userid']);
+
+                            $rep = '';
+                            foreach ($listeEntrainement as $training) {
+                                $idEntrainement = $training['identrainement'];
+                                $nom = $training['nom'];
+                                $difficulte = $training['difficulte'];
+                                $type = $training['type'];
+                                // $duree = $training['duree'];
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
+                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
+                                                    <h4 class="card-title"> ' . $nom . '</h4>
+                                                    <ul>
+                                                        <li>' . $type . '</li>
+                                                        <li>' . /*.$duree.*/ ' minutes </li>
+                                                        <li>' . $difficulte. '</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>';
+                            }
+                            echo $rep;
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -180,62 +62,49 @@ if(isset($_GET['id'])){
     </div>
     <div class="accordion-item border-0">
         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-            <button class="accordion-button bg-danger bg-gradient text-white " type="button" data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseTwo">
-                Suggestions
+            <button class="accordion-button bg-danger bg-gradient text-white " type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Mes entrainements
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show bg-dark"
-            aria-labelledby="panelsStayOpen-headingTwo">
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show bg-dark" aria-labelledby="panelsStayOpen-headingTwo">
             <div class="accordion-body">
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
                             <?php
-$listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
+                            $listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
 
-$rep = '';
-foreach ($listeEntrainement as $training) {
-    $idEntrainement = $training['identrainement'];
-    $nom = $training['nom'];
-    // $difficulte = $training['difficulte'];
-    //$type = $training['type'];
-    // $duree = $training['duree'];
-
-    $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                            <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
+                            $rep = '';
+                            foreach ($listeEntrainement as $training) {
+                                $idEntrainement = $training['identrainement'];
+                                $nom = $training['nom'];
+                                $difficulte = $training['difficulte'];
+                                $type = $training['type'];
+                                // $duree = $training['duree'];
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25">
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
-                                                        <li>' . /*$type */'</li>
-                                                        <li>' . /*.$duree.*/' minutes </li>
-                                                        <li>' . /*.$difficulte.*/'</li>
+                                                        <li>' . $type . '</li>
+                                                        <li>' . /*.$duree.*/ ' minutes </li>
+                                                        <li>' . $difficulte. '</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>';
-}
-
-echo $rep;
-
-?>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso  text-white border-0"
-                                    style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..."
-                                        style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <!-- button modal -->
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            Nouvelle entrainement
-                                        </button>
+                            }
+                            echo $rep;
+                            ?>
+                            <div class="col-md-4 mb-4" onclick="window.location.href='new_workout.php'" style="min-width:162px; min-height:185px;">
+                                <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
+                                    <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                    <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center">
+                                        <h4 class="card-title text-center"> <span class="badge badge-pill bg-black">Créer un entrainement</span></h4>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -244,49 +113,42 @@ echo $rep;
     </div>
     <div class="accordion-item border-0 ">
         <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button bg-danger bg-gradient text-white collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseThree">
+            <button class="accordion-button bg-danger bg-gradient text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                 Complétés
             </button>
         </h2>
-        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse bg-dark"
-            aria-labelledby="panelsStayOpen-headingThree">
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse bg-dark" aria-labelledby="panelsStayOpen-headingThree">
             <div class="accordion-body">
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
 
-                        <?php 
-                            $listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
+                        <?php
+                            $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
 
-                            $workouts = array_filter($listeEntrainement, function($workout) { 
-                                    return $workout['status'] == Crud::STATUS_COMPLETED;
-                            });
-
-                            foreach ($workouts as $workout) {
-
-                                echo '
-                                <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                    <div class="card card-perso card-hover text-white border-0"
-                                        style="min-width:162px; min-height:185px;">
-                                        <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..."
-                                            style="min-width:162px; min-height:185px;">
-                                        <div class="card-img-overlay bg-dark bg-opacity-25">
-                                            <h4 class="card-title"> '.$workout['nom'].'</h4>
-                                            <ul>
-                                            <li>'.$workout['type'].' </li>
-                                            <li>TODO DUREE </li>
-                                                <li>'.$workout['difficulte'].' </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                ';
-
-                                
+                            $rep = '';
+                            foreach ($listeEntrainement as $training) {
+                                $idEntrainement = $training['identrainement'];
+                                $nom = $training['nom'];
+                                $difficulte = $training['difficulte'];
+                                $type = $training['type'];
+                                // $duree = $training['duree'];
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
+                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
+                                                    <h4 class="card-title"> ' . $nom . '</h4>
+                                                    <ul>
+                                                        <li>' . $type . '</li>
+                                                        <li>' . /*.$duree.*/ ' minutes </li>
+                                                        <li>' . $difficulte. '</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>';
                             }
-                         ?>
+                            echo $rep;
+                            ?>
                          
                         </div>
                     </div>
@@ -320,8 +182,8 @@ echo $rep;
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Continue</button>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>
@@ -338,42 +200,36 @@ echo $rep;
             <div>
                 <form action="new_workout.php" method="POST">
                     <?php
-                  $exercices= $crud->getExercicesCatalogue();
-                  foreach ($exercices as $ex) {
-                    $nom=$ex['nom'];
+                    $exercices = $crud->getExercicesCatalogue();
+                    foreach ($exercices as $ex) {
+                        $nom = $ex['nom'];
                     ?>
-                    <div class="container flex-row">
-                        <p><?php echo $nom?></p>
-                        <button type="button" class="btn btn-success">Ajouter</button>
-                    </div>
+                        <div class="container flex-row">
+                            <p><?php echo $nom ?></p>
+                            <button type="button" class="btn btn-success">Ajouter</button>
+                        </div>
                     <?php
-
-
-
-
-
-
-
-
-                  }
-                   ?>
-
-
-
+                    }
+                    ?>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Continue</button>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>
 
-
-
-
-
+<div id="toastTrainingOptions" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+    <div class="mt-2 pt-2 border-top">
+      <button type="button" class="btn btn-primary btn-sm">Take action</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+    </div>
+  </div>
+</div>
 
 
 <?php

@@ -345,6 +345,10 @@ class Crud
         $idContenu =$this->getContenuId($idUser);
         return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,self::STATUS_INCOMPLETE);
     }
+    public function getEntrainementsInProgressByIdUser($idUser){
+        $idContenu =$this->getContenuId($idUser);
+        return $this->getEntrainementsCompletedOrIncompletedByContenu($idContenu,self::STATUS_INPROGRESS);
+    }
     private function getEntrainementsCompletedOrIncompletedByContenu($idContenu,$wantedStatus){
         try{
             $sql = "SELECT * FROM `entrainementcontenu` INNER JOIN entrainement ON `entrainementcontenu`.`identrainement`  = `entrainement`.`identrainement`  
