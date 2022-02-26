@@ -593,7 +593,52 @@ class Crud
         }
     }
 
-    
+    //Lister catégories des exercices 
+    public function ListExercicesCategories()
+    {
+        try {
+            $sql = "SELECT * FROM `categories`";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $sql . $e->getMessage();
+            return false;
+        }
+    }
+    //Lister catégories des exercices 
+    public function ListExercicesParCategories($cat)
+    {
+        try {
+            $sql = "SELECT * FROM `exercicecatalogue` Where `idcategorie`= '$cat' LIMIT 25";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $sql . $e->getMessage();
+            return false;
+        }
+    }
+
+    //selectioner une fonction par son id
+    public function getCatbyId($idCat){
+        try {
+            $sql = "SELECT * FROM `categories` Where `idcategorie`= '$idCat' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $sql . $e->getMessage();
+            return false;
+        }
+    }
+    public function getNameOfCat($idCat){
+        $idCategorie = $this->getCatbyId($idCat);
+        return $idCategorie[0]['nom'];
+    }
 
 //lier les diferente table
 
