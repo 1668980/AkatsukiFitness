@@ -22,6 +22,10 @@ validatePassword1 = () => {
     return false;
 }
 
+function workoutInProgress(idEntrainement) {
+    window.location.href = "workout_in_progress.php?id_training=" + idEntrainement;
+}
+
 f1 = () => {
     let checkbox = $('#invalidCheck1');
     if (checkbox.prop("checked") == true) {
@@ -42,9 +46,32 @@ $('#passInsc').on('keyup', function () {
 });
 
 
-$('#passConf').on('keyup', function() {
+$('#passConf').on('keyup', function () {
     if ($('#passInsc').val() == $('#passConf').val()) {
         $('#message2').html('Matching').css('color', 'green');
     } else
         $('#message2').html('Not Matching').css('color', 'red');
 });
+
+
+var toastTrainingOptions = document.getElementById('toastTrainingOptions')
+function showTrainingOptions(idEntrainement) {
+    var toast = new bootstrap.Toast(toastTrainingOptions)
+    toast.show()
+}
+
+function triggerToast($idTraining) {
+    var toastTrigger = document.getElementById('TCard' + $idTraining)
+    var toastTrainingOptions = document.getElementById('toastTrainingOptions')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastTrainingOptions)
+            toast.show()
+        })
+    }
+}
+
+function afficherBtnAjout() {
+    var btn = document.getElementById('addExercice');
+    btn.style.display="block";
+}
