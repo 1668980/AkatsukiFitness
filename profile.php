@@ -18,7 +18,7 @@ $dob = $userInfo['date_de_naissance'];
 $sexe = $userInfo['sexe'];
 $weight = $userInfo['poids'];
 $weight_goal = $userInfo['poids_desire'];
-
+$avatar = $userInfo['avatar'];
 ?>
 
 <div class="profile container">

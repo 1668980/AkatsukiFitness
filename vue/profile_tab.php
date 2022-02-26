@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <img src="images/assets/icon-user.png" class="icon">
+                        <img src="images/avatars/<?php echo $avatar?>.png" class="icon">
                     </div>
                     <div class="col-lg-9">
                         <p class="card-text">

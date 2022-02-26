@@ -204,3 +204,11 @@ p.text {
 .align-right{
     text-align: right;
 }
+
+.profile-edit img{
+    max-width: 50px;
+}
+
+.profile-edit img.selected {
+    border: 1px solid blue;
+}

@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main class="bg-dark">
 
 
-    <div class="container w-50 text">
+    <div class="profile-edit container w-50 text">
         <div class="card-group container-fluid ">
 
             <div class="card" style="width:500px;">
@@ -131,6 +131,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                             </div>
 
+
+                            <div class="row mb-3">
+                                <label for="avatar" class="col-md-2 col-form-label">Avatar</label>
+                                <div class="col-sm-9">
+                                    <?php foreach([1,2,3,4,5] as $id) { ?>
+                                        <img  data-selected="<?php echo $id?>" src="images/avatars/<?php echo $id; ?>.png" class="avatar_selection
+                                        <?php if ($id == $avatar) { ?>
+                                                selected
+                                            <?php } ?>
+                                        "/>
+                                    <?php } ?>
+                                </div>
+                                <input type="hidden" id="avatar" name="avatar" value="<?php echo $avatar; ?>">
+
+                            </div>
+
+
+
                             <div class="align-right mt-4">
                                 <input type="button" class="btn" value="<?php __('profile_edit_btn_cancel'); ?>" onclick="window.location.href='profile.php'">
                                 <input type="submit" class="btn btn-success" value="<?php __('profile_edit_btn_save'); ?>">
@@ -153,6 +171,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 
+<script type="text/javascript">
+    $(".avatar_selection").on('click', function() { 
+        $('.avatar_selection').removeClass('selected');
+        $(this).addClass('selected');
+        $("#avatar").val($(this).data('selected'));
+    });
+</script>
 <?php
 require_once('includes/footer.php');
 ?>
