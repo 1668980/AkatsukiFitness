@@ -11,6 +11,6 @@ $user = $_SESSION['userid'];
 
 
 $training = new Entrainement(0, $user, $name, $difficulty, $type);
-$result = $crud->createNewEntrainement($training, $user);
+$result = $crud->createNewEntrainement($training);
 header('Location: workouts.php');
 ?>
