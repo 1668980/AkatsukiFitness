@@ -10,7 +10,7 @@ $difficulty = $_POST['trainingDifficulty'];
 $user = $_SESSION['userid'];
 
 
-$training = new Entrainement(0, $name, $difficulty, $type);
+$training = new Entrainement(0, $user, $name, $difficulty, $type);
 $result = $crud->createNewEntrainement($training, $user);
 header('Location: workouts.php');
 ?>

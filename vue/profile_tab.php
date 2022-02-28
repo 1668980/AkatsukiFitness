@@ -49,13 +49,9 @@
                 <ul>
 
                 <?php 
-                    $listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
+                    $listeEntrainement = $crud->getEntrainementsInProgressByIdUser($_SESSION['userid']);
 
-                    $in_progress = array_filter($listeEntrainement, function($workout) { 
-                            return $workout['status'] == Crud::STATUS_INPROGRESS;
-                    });
-
-                    foreach ($in_progress as $workout) {
+                    foreach ($listeEntrainement as $workout) {
                         echo '<li>'.$workout['nom'].'</li>';                                            
                     }
                 ?>
@@ -77,8 +73,7 @@
                 <?php 
                     $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
                         foreach ($listeEntrainement as $training) {
-                            $nom = $training['nom'];
-                            echo '<li>'.$nom.'</li>';
+                            echo '<li>'.$training['nom'].'</li>';
                         }
                     ?>
                 
