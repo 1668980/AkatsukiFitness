@@ -1,4 +1,21 @@
 $(() => {
+    // navbar
+    $('#btnTrain').on('click', () => {
+        let href = this.href
+        !href ? $('#loginModalLabel').text('Connexion requise!') : null
+        $('#loginModalLabel').addClass('text-danger')
+        setTimeout(() => {
+            $('#loginModalLabel').removeClass('text-danger')
+        },1000)
+
+    })
+
+    $('#btnNavLogin').on('click', () => {
+        $('#loginModalLabel').text('Se connecter')
+        $('#loginModalLabel').removeClass('text-danger')
+    })
+
+    // sign up functions
     $('#passInsc').on('keyup', function () {
         var pattern = /^[A-Za-z\d_-]{8,25}$/;
         if (pattern.test($('#passInsc').val()) == true) {

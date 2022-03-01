@@ -12,8 +12,9 @@
                     <a id="btnHome" href="index.php" class="nav-item nav-link">Accueil</a>
                     <a id="btnTrain" 
                         <?php if(!isset($_SESSION['userid'])) { ?> 
+                            
                             data-bs-toggle="modal"
-                            data-bs-target="#loginModal" href="#" 
+                            data-bs-target="#loginModal"
                         <?php } else {?> href="workouts.php" <?php } ?>
                         class="nav-item nav-link">Entraînements
                     </a>
@@ -23,7 +24,7 @@
                 </div>
                 <div class="navbar-nav ms-auto">
                     <?php if(!isset($_SESSION['userid'])) { ?>
-                    <button type="button" class="btn btn-outline-light bg-gradient" data-bs-toggle="modal"
+                    <button id="btnNavLogin" type="button" class="btn btn-outline-light bg-gradient" data-bs-toggle="modal"
                         data-bs-target="#loginModal">
                         Se connecter
                     </button>
