@@ -17,7 +17,10 @@
                 </div>
                 <div class="navbar-nav ms-auto">
                     <?php if(!isset($_SESSION['userid'])) { ?>
-                    <a href="login.php" class="nav-item nav-link">Se connecter</a>
+                    <button type="button" class="btn btn-outline-light bg-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Se connecter
+                    </button>
+                    <!-- <a href="login.php" class="nav-item nav-link">Se connecter</a> -->
                     <?php } else {
                         $userid = $_SESSION['userid'];
                         $userInfo = $crud->getUser($userid); ?>
