@@ -1,4 +1,4 @@
-$(function(){
+$(() => {
     $('#passInsc').on('keyup', function () {
         var pattern = /^[A-Za-z\d_-]{8,25}$/;
         if (pattern.test($('#passInsc').val()) == true) {
