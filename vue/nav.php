@@ -10,14 +10,21 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav me-auto">
                     <a id="btnHome" href="index.php" class="nav-item nav-link">Accueil</a>
-                    <a id="btnTrain" href="workouts.php" class="nav-item nav-link">Entraînements</a>
+                    <a id="btnTrain" 
+                        <?php if(!isset($_SESSION['userid'])) { ?> 
+                            data-bs-toggle="modal"
+                            data-bs-target="#loginModal" href="#" 
+                        <?php } else {?> href="workouts.php" <?php } ?>
+                        class="nav-item nav-link">Entraînements
+                    </a>
                     <a id="btnStore" href="shop_index.php" class="nav-item nav-link">Boutique</a>
                     <a id="btnAbout" href="about.php" class="nav-item nav-link">À propos de nous</a>
                     <a id="btnBlog" href="blog.php" class="nav-item nav-link">Blog</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <?php if(!isset($_SESSION['userid'])) { ?>
-                    <button type="button" class="btn btn-outline-light bg-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-light bg-gradient" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">
                         Se connecter
                     </button>
                     <!-- <a href="login.php" class="nav-item nav-link">Se connecter</a> -->
