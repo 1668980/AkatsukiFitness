@@ -405,8 +405,7 @@ class Crud
         }
     }
     public function setEntrainementStatusComplete($idEntrainement){
-        try {  
-            
+        try {              
 
             //TODO :  utiliser la constante self::STATUS_COMPLETED ici mais il faut la passer par value;
             // $s = self::STATUS_COMPLETED;
@@ -416,7 +415,10 @@ class Crud
 
             $sql = "UPDATE `entrainement` SET `status` = 1  WHERE `identrainement` =  $idEntrainement";
             $stmt = $this->db->prepare($sql);  
-            $stmt->execute();            
+            $stmt->execute();   
+
+            $listExercices =$this->getExercicesFromEntrainement($idEntrainement);
+            $this->addHistoriqueOfExerciceList($listExercices);
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -675,7 +677,19 @@ class Crud
         return false;
         }
     }
+    private function linkHistoriqueExercice($idExercice,$idHistorique){
+        try {  
+            $sql = "INSERT INTO `historiquedexercice` (`idexercice`, `idhistorique`) VALUES 
+            ($idExercice,$idHistorique)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        return true;
 
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
+        }
+    }
 //json Cattegorie
     public function addJsonCategorieAndExercice($name,$img,$cat){
         if(!$this->isJsonCategorieExist($cat)){
@@ -853,5 +867,45 @@ class Crud
         return false;
         }   
     }
+
+//Historique
+    //Exercice
+
+    public function addHistoriqueOfExerciceList($listExercices){
+        foreach($listExercices as $ex){
+            $idHistorique = $this->addHistoriqueOfExercice($ex);           
+            $this->linkHistoriqueExercice($ex['idexercice'],$idHistorique);
+        }
+    }
+    private function addHistoriqueOfExercice($exercice){
+   
+        try { 
+            $dt1 = new DateTime();
+            $today = $dt1->format("Y-m-d");
+
+            $sql = "INSERT INTO `historiqueexerciceprecedent` (`date`, `poids`, `repetitions`, `sets`, `duree`)  VALUES 
+            (:date, :poids, :repetitions, :sets, :duree)";
+            $stmt = $this->db->prepare($sql);
+            
+        
+            $stmt->bindparam(':date', $today);
+            $stmt->bindparam(':poids', $exercice['poids']);
+            $stmt->bindparam(':repetitions', $exercice['repetitions']);
+            $stmt->bindparam(':duree', $exercice['duree']);
+            $stmt->bindparam(':sets', $exercice['sets']);
+           
+
+           
+            $stmt->execute();
+            
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $sql.$e->getMessage();
+        return false;
+        }
+    }
+    
+    
+ 
 
 }
