@@ -9,13 +9,13 @@ $breadcrumb =[
 
 require_once('includes/header.php');
 
-function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color) {
+function getBlogCard($title, $categorie, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color) {
   return '<div class="blogcard" onclick="location.href=\'blog_article.php\';" style="cursor: pointer;">
             <div class="blogcard-header">
               <img src="'.$lienImage.'" alt="'.$title.'" />
             </div>
             <div class="blogcard-body">
-              <span class="blogtag" style="background-color:'.$color.';">'.$theme.'</span>
+              <span class="blogtag" style="background-color:'.$color.';">'.$categorie.'</span>
               <h4>'.$title.'</h4>
               <p>'.$description.'</p>
               <div class="bloguser">
@@ -39,36 +39,38 @@ function getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $n
       </button>
   </div>
 </div>
-
 <div class="filterContainer mb-5">
-  <button class="btn btnSearch active" onclick=""> Show all</button>
-  <button class="btn btnSearch" onclick="this.className +=' active'"> Popular</button>
-  <button class="btn btnSearch" onclick=""> Biceps</button>
-  <button class="btn btnSearch" onclick=""> Triceps</button>
-  <button class="btn btnSearch" onclick=""> Lower Body</button>
+<?php
+    $categories = $crud->getAllCategoriesBlog();
+    $rep = '';
+    foreach($categories as $categorie) {
+      $nom = $categorie['nom'];
+      $rep .= '<button class="btn btnSearch" id="'.$nom.'" onclick="changeFilter("'.$nom.'");"> '.$nom.' </button>';
+    }
+    echo $rep;
+  ?>
 </div>
+<script>
+function changeFilter($categorie) {
+  document.getElementById($categorie).addClass('active');
+}
+</script>
 
 
 <div class="blogbody">
 
 <div class="blogcontainer">  
   <?php 
-    $title = "How to Keep Going When You Don’t Know What’s Next";
-    $theme = "Popular";
-    $description = "The future can be scary, but there are ways to deal with that fear.";
-    $lienImage = "https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg";
-    $imageProfile = "https://lh3.googleusercontent.com/ogw/ADGmqu8sn9zF15pW59JIYiLgx3PQ3EyZLFp5Zqao906l=s32-c-mo";
-    $nomProfile = "Eyup Ucmaz";
-    $datePosted = "Yesterday";
-    $color = "#47bcd4";
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);
-    echo getBlogCard($title, $theme, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color);    
+
+    $blogs = $crud->getAllBlogs();
+    $rep = '';
+    foreach ($blogs as $blog) {
+      $categorie = $crud->getCategoriesBlog($blog['idcategorie'])[0];
+      $imagelien = $crud->getLienImage($blog['imageID'])[0]['lien'];
+      $imageProfile = "https://lh3.googleusercontent.com/ogw/ADGmqu8sn9zF15pW59JIYiLgx3PQ3EyZLFp5Zqao906l=s32-c-mo";
+      $rep .= getBlogCard($blog['titre'], $categorie['nom'], $blog['description'], $imagelien, $imageProfile, $blog['auteur'], $blog['date'], $blog['couleur']);
+    }
+  echo $rep;  
   ?>
 
 

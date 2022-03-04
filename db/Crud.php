@@ -268,7 +268,21 @@ class Crud
         }
         
     }
-   
+
+    //Image
+    public function getLienImage($imageID) {
+        try{
+            $sql = "SELECT * FROM `lienimage` WHERE `imageID` = '$imageID' ";            
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+
 //Entrainement
 
     //Create
@@ -793,6 +807,36 @@ class Crud
         try {  
             $search = "%".$txt."%";
             $sql = "SELECT * FROM `blog` WHERE `titre` LIKE '$search' ";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function getCategoriesBlog($idcategorie){
+        try {  
+            $sql = "SELECT * FROM `categoriesblog` WHERE `idcategorie` = '$idcategorie' ";
+        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public function getAllCategoriesBlog(){
+        try {  
+            $sql = "SELECT * FROM `categoriesblog` ";
         
             $stmt = $this->db->prepare($sql);
         
