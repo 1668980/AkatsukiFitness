@@ -269,7 +269,7 @@ class Crud
         
     }
 
-    //Image
+//Image
     public function getLienImage($imageID) {
         try{
             $sql = "SELECT * FROM `lienimage` WHERE `imageID` = '$imageID' ";            
