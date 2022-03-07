@@ -2,6 +2,8 @@
 require_once('includes/header.php');
 require_once('includes/auth_check.php')
 //$idEntrainementChoisi = $_POST['id_training'];
+//Rajouter une bar de progression avec bootstrap!!!!! Chaque exercice monte la bar
+
 ?>
 <head>
 <style>
@@ -93,17 +95,21 @@ foreach($exercice as $training){
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
     $idIncrement++;
-
+   
     $details .= '
+    
                     <div class="col-md-4">
                         <div class="card">
                             <h4 class="card-header">
                                 <div class="ChangeButtonC">
                                     <label>
                                         <h1> '.$nom .' </h1>    
+                                        <form method="post">
                                         <button class="btn-primary" name="btn'.$idIncrement.'" id="btn'.$idIncrement.'">
                                             <span class="seatButton"> Exercice complété </span>
                                         </button>
+                                        
+                                        </form>
                                     </label>
                                 </div>
                             </h4>
@@ -115,10 +121,11 @@ foreach($exercice as $training){
 
                 
 }
-echo $details;
 if(isset($_POST['btn'.$idIncrement.''])){
     $crud->setExerciceStatusComplete($idIncrement);
 }
+echo $details;
+
 
 ?>
 </div>
