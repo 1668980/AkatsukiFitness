@@ -2,6 +2,8 @@
 require_once('includes/header.php');
 require_once('includes/auth_check.php')
 //$idEntrainementChoisi = $_POST['id_training'];
+//Rajouter une bar de progression avec bootstrap!!!!! Chaque exercice monte la bar
+
 ?>
 <head>
 <style>
