@@ -1,7 +1,8 @@
 <?php
 require_once('includes/header.php');
 require_once('includes/auth_check.php')
-//$idEntrainementChoisi = $_POST['id_training'];
+//Rajouter une bar de progression avec bootstrap!!!!! Chaque exercice monte la bar
+
 ?>
 <head>
 <style>
@@ -16,7 +17,8 @@ require_once('includes/auth_check.php')
 <main>
 <?php
 
-$entrainement = $crud->getEntrainementByIdEntrainement('1');
+$idEntrainementChoisi = $_GET['id_training'];
+$entrainement = $crud->getEntrainementByIdEntrainement($idEntrainementChoisi);
 $text = '';
 foreach($entrainement as $training){
     $idEntrainement = $training['identrainement'];
@@ -39,7 +41,7 @@ foreach($entrainement as $training){
 
                                 echo $text;
 
-                                $dureeEntrainement = $crud->getEntrainementDuration('1');
+                                $dureeEntrainement = $crud->getEntrainementDuration($idEntrainementChoisi);
                                 $text2 = '';
                                 $text2 .='<h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
                             </div>
@@ -77,7 +79,8 @@ foreach($entrainement as $training){
 <div class="card-group">
 <?php
 
-$exercice = $crud->getExercicesFromEntrainement('1');
+$idEntrainementChoisi = $_GET['id_training'];
+$exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
 $details = '';
 $idIncrement = 0;
 
@@ -93,17 +96,21 @@ foreach($exercice as $training){
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
     $idIncrement++;
-
+   
     $details .= '
+    
                     <div class="col-md-4">
                         <div class="card">
                             <h4 class="card-header">
                                 <div class="ChangeButtonC">
                                     <label>
                                         <h1> '.$nom .' </h1>    
+                                        <form method="post">
                                         <button class="btn-primary" name="btn'.$idIncrement.'" id="btn'.$idIncrement.'">
                                             <span class="seatButton"> Exercice complété </span>
                                         </button>
+                                        
+                                        </form>
                                     </label>
                                 </div>
                             </h4>
@@ -115,10 +122,11 @@ foreach($exercice as $training){
 
                 
 }
-echo $details;
 if(isset($_POST['btn'.$idIncrement.''])){
     $crud->setExerciceStatusComplete($idIncrement);
 }
+echo $details;
+
 
 ?>
 </div>
@@ -156,16 +164,19 @@ if(isset($_POST['btn'.$idIncrement.''])){
                             <label>
 
                             <?php 
+
+                            $idEntrainementChoisi = $_GET['id_training'];
+
                                 if(isset($_POST['btn2'])){
-                                    $crud->setEntrainementStatusComplete('1');
+                                    $crud->setEntrainementStatusComplete($idEntrainementChoisi);
                                     //echo "this button is selected";
                                 }
                                 if(isset($_POST['btn3'])){
-                                    $crud->setEntrainementStatusIncomplete('1');
+                                    $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
                                     //echo "this button is selected";
                                 }
                                 if(isset($_POST['btn4'])){
-                                    $crud->setEntrainementStatusComplete('1');
+                                    $crud->setEntrainementStatusComplete($idEntrainementChoisi);
                                     //echo "this button is selected";
                                 }
                             
