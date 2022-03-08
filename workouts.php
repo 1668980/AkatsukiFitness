@@ -38,10 +38,10 @@ if (isset($_GET['id'])) {
                                 $difficulte = $training['difficulte'];
                                 $type = $training['type'];
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')">
-                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25" >
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
                                                         <li>' . $type . '</li>
@@ -53,7 +53,7 @@ if (isset($_GET['id'])) {
                                         </div>';
                             }
                             echo $rep;
-                        ?>
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -81,10 +81,10 @@ if (isset($_GET['id'])) {
                                 $difficulte = $training['difficulte'];
                                 $type = $training['type'];
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')" >
-                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25" >
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
                                                         <li>' . $type . '</li>
@@ -134,9 +134,9 @@ if (isset($_GET['id'])) {
                                 $type = $training['type'];
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
+                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" onclick="triggerToast('.$idEntrainement.')" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25" >
+                                                <div class="card-img-overlay bg-dark bg-opacity-25" onclick="showTrainingOptions('.$idEntrainement.')" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
                                                         <li>' . $type . '</li>
