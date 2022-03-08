@@ -704,6 +704,19 @@ class Crud
         return false;
         }
     }
+    private function linkPanier($idUser,$idArticle){
+        try {  
+            $sql = "INSERT INTO `panier` (`iduser`, `idarticle`) VALUES 
+            ($idUser,$idArticle)";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        return true;
+
+        }catch (PDOException $e) {
+             echo $e->getMessage();
+        return false;
+        }
+    }
 //json Cattegorie
     public function addJsonCategorieAndExercice($name,$img,$cat){
         if(!$this->isJsonCategorieExist($cat)){
@@ -948,8 +961,79 @@ class Crud
         return false;
         }
     }
-    
-    
+
+//Panier    
+
+    //get
+    public function getPanierByidUser($idUser){
+        try{
+            $sql = "SELECT * FROM `panier` INNER JOIN `articlepanier` ON `panier`.`idarticle`  = `articlepanier`.`idarticle`  INNER JOIN `produits` ON `produits`.`idproduit`  = `articlepanier`.`idproduit`  WHERE `panier`.`iduser` = '$idUser' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+    //add
+    public function AddArticleToUserPanier($idUser,$idProduit,$quantite){
+        $idArticle=$this->AddArticleToPanier($idProduit,$quantite);
+        $this->linkPanier($idUser, $idArticle);
+        return $idArticle;
+    }
+    private function AddArticleToPanier($idProduit,$quantite){
+        try{    
+
+            $sql = "INSERT INTO `articlepanier` (`idproduit`,`quantite`) VALUES ($idProduit,$quantite)";
+
+            $stmt = $this->db->prepare($sql);      
+            $stmt->execute();
+
+        return $this->db->lastInsertId();
+        }catch (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+
+    //Update
+    public function UpdateQuantiteArticlePanier($idArticle,$quantite){
+        try {  
+            $sql = "UPDATE  `articlepanier`  SET `quantite` =  '$quantite'  WHERE `idarticle` =  $idArticle";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    //Delete
+    public function deleteArticlePanierByIdArticle($idArticle){
+        try {  
+            $sql = "DELETE FROM `articlepanier` WHERE `idarticle` =  $idArticle";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    //Link
+
+
+
+
+
+
+
+
+
+
+
  
 
 }

@@ -86,17 +86,9 @@ var_dump($result);*/
 $result =$crud->isUserSubscibed(1);
 var_dump($result);
 */
+
+
 /*
-
-$idexercicecatalogue =1;
-$poids = 50;
-$repetitions=5;
-$sets=2;
-$duree=0;
-$dureePause=60;
-
-$exercice = new Exercice(1,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
-
 //$result =$crud->updateExercice($exercice);
 //$result =$crud->deleteExercice(2);
 $result =$crud->deleteEntrainement(2);
@@ -128,9 +120,65 @@ var_dump($r);
 // $r =$crud->getBlogByTitleSearch("com");
 // var_dump ($r);
 
-$result =$crud->addSubscriptionToUser(2,2);
-var_dump($result);
+/*$result =$crud->addSubscriptionToUser(2,2);
+var_dump($result);*/
+// $idexercicecatalogue =1;
+// $poids = 100;
+// $repetitions=6;
+// $sets=3;
+// $duree=0;
+// $dureePause=60;
 
+// $exercice = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
+// $exercise2 = new Exercice(0,2,$poids,$repetitions,$sets,$duree,$dureePause);
+
+// $exercicesList = array();
+
+// array_push($exercicesList,$exercice);
+// array_push($exercicesList,$exercise2);
+
+ //$r =$crud->setEntrainementStatusComplete(3);
+
+
+// $result =$crud->addHistoriqueOfExerciceList($r);
+// var_dump($result);
+
+/*
+* Panier
+*/
+//Add
+$idUser= $_SESSION['userid'];
+$idProduit=3;
+$idQantite=1;
+
+// $result =$crud->AddArticleToUserPanier($idUser,$idProduit,$idQantite);
+// var_dump($result);
+//Delete
+
+// $idUser= $_SESSION['userid'];
+// $idArticle=1;
+
+
+//  $result =$crud->deleteArticlePanierByIdArticle($idArticle);
+//  var_dump($result);
+
+//Update
+
+// $idUser= $_SESSION['userid'];
+// $idArticle=2;
+// $idQuantite=10;
+
+//  $result =$crud->UpdateQuantiteArticlePanier($idArticle,$idQuantite);
+//  var_dump($result);
+
+
+//Get
+$idUser= $_SESSION['userid'];
+$idProduit=3;
+$idQantite=1;
+
+$result =$crud->getPanierByidUser($idUser);
+var_dump($result);
 
 ?>
 </div>
