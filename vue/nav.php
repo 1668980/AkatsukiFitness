@@ -10,12 +10,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav me-auto">
                     <a id="btnHome" href="index.php" class="nav-item nav-link">Accueil</a>
-                    <a id="btnTrain" 
-                        <?php if(!isset($_SESSION['userid'])) { ?> 
-                            
-                            data-bs-toggle="modal"
-                            data-bs-target="#loginModal"
-                        <?php } else {?> href="workouts.php" <?php } ?>
+                    <a id="btnTrain" <?php if(!isset($_SESSION['userid'])) { ?> data-bs-toggle="modal"
+                        data-bs-target="#loginModal" <?php } else {?> href="workouts.php" <?php } ?>
                         class="nav-item nav-link">Entraînements
                     </a>
                     <a id="btnStore" href="shop_index.php" class="nav-item nav-link">Boutique</a>
@@ -24,9 +20,16 @@
                     <a id="btnBlog" href="shop_cart.php" class="nav-item nav-link">Panier</a>
                 </div>
                 <div class="navbar-nav ms-auto">
+                    <!-- <form action="shop_cart.php"> -->
+                    <a class="btn btn-outline-light bg-gradient me-1" href='shop_cart.php'>
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </a>
+                    <!-- </form> -->
                     <?php if(!isset($_SESSION['userid'])) { ?>
-                    <button id="btnNavLogin" type="button" class="btn btn-outline-light bg-gradient" data-bs-toggle="modal"
-                        data-bs-target="#loginModal">
+                    <button id="btnNavLogin" type="button" class="btn btn-outline-light bg-gradient"
+                        data-bs-toggle="modal" data-bs-target="#loginModal">
                         Se connecter
                     </button>
                     <!-- <a href="login.php" class="nav-item nav-link">Se connecter</a> -->
