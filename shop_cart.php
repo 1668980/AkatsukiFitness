@@ -1,19 +1,17 @@
 <?php
 require_once('includes/header.php');
-
-$productList = $crud->getPanierByidUser($_SESSION['userid']);
-
-
+$cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 ?>
 <section class="py-5 "  >
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->
             <?php 
-            if(count($productList) === 0) {?>
-            <h4 class='text-primary text-center'>Aucun produit trouvé :(</h4>
+            if(count($cartItems) === 0) {?>
+            <h4 class='text-danger text-center'>Votre panier est vide :(</h4>
             <?php
             }
-            foreach($productList as $products) {
+            echo count($cartItems);
+            foreach($cartItems as $products) {
             ?>
 
             <div class="col mb-5">

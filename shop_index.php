@@ -42,14 +42,13 @@ if(isset($_GET['idcat'])){
         <?php }?>
     </div>
 
-
 <!-- les resultats -->
     <section class="py-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->
             <?php 
             if(count($productList) === 0) {?>
-            <h4 class='text-primary text-center'>Aucun produit trouvé :(</h4>
+            <h4 class='text-danger text-center'>Aucun produit trouvé :(</h4>
             <?php
             }
             foreach($productList as $products) {
