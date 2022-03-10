@@ -7,7 +7,7 @@
 
 
 
-    $idproduct= $_POST['arguments'];   
+    $idproduct= $_POST['idproduct'];   
     $idUser = $_SESSION['userid'];
     
 
@@ -17,5 +17,5 @@
     
    
     echo json_encode($aResult);
-
+    header('Location: shop_cart.php');
 ?>
