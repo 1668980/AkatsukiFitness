@@ -5,6 +5,9 @@ $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
 $isPremimium = $crud->isUserPremium($userid);
 
+$POURCENTAGE_DE_RABAIS=0.05;
+$POURCENTAGE_DE_TAXES=0.15;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idproduct= $_POST['idproduct'];   
     $idUser = $_SESSION['userid'];
@@ -52,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $quantite =  $item['quantite'];
                             if($isPremimium){
                                 $prix =  $item['prix'] * $quantite;
-                                $rabais= $prix * 0.05;
+                                $rabais= $prix * $POURCENTAGE_DE_RABAIS;
                                 $prixMembre = $prix-$rabais;
                             }else{
                                 $prix =  $item['prix']* $quantite;
@@ -160,18 +163,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Subtotal</p>
-                                    <p class="mb-2">$4798.00</p>
+                                    <p class="mb-2">Sous-Total</p>
+                                    <p class="mb-2">
+                                        
+                                    <?php 
+                                    if($isPremimium){
+                                        $POURCENTAGE_DE_RABAIS=0.05;
+                                        $POURCENTAGE_DE_TAXES=0.15;
+                                        $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
+                                        $rabaisTotal= $sousTotal * $POURCENTAGE_DE_RABAIS;                                        
+                                        $prixTotal = $sousTotal- $sousTotal*($POURCENTAGE_DE_RABAIS);
+
+
+                                       $prixTotal +=    $prixTotal*($POURCENTAGE_DE_TAXES);
+                                       
+
+
+
+
+                                        echo $sousTotal."$";
+                                        }    
+                                    ?>
+                                        </p>
                                 </div>
 
+                                <div class="d-flex justify-content-between ">
+                                    <p class="mb-2">rabais</p>
+                                        
+                                    <p class="mb-2">
+                                        <?php 
+                                         if($isPremimium){
+                                             echo $rabaisTotal."$";
+                                         }else{
+                                             echo "0$";
+                                         }
+                                        ?>
+
+                                    </p>
+
+                                    </div>
+
+
+
+                                
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Shipping</p>
-                                    <p class="mb-2">$20.00</p>
+                                    <p class="mb-2">$0.00</p>
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
-                                    <p class="mb-2">$4818.00</p>
+                                    <p class="mb-2"><?php 
+                                         echo $prixTotal
+                                        ?>
+                                    </p>
                                 </div>
 
                                 <button id="btn-checkout" type="button" class="btn btn-warning btn-lg bg-gradient">

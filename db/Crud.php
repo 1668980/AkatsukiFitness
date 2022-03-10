@@ -1123,6 +1123,14 @@ class Crud
      
 
     }
+    public function getTotalPrixPanier($idUser){
+        $listArticle = $this->getPanierByidUser($idUser);
+        $total = 0;
+        foreach($listArticle as $art){
+           $total+= $art['prix']*$art['quantite'];
+        }
+        return  $total;
+    }
     //Link
 
 

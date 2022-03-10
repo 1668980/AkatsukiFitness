@@ -50,7 +50,7 @@ addProductForm = (e,info) => {
         success: function (obj, textstatus) {
             addProductSucess(obj,idProduct);
                 }, error: function(){
-                    alert('failure');
+                    alert('Connectez vs pour ajouter au panier');
                   }
     });
         return true;
@@ -94,11 +94,11 @@ removeProductForm = (e,info) => {
         return true;
 }
 updateProductQuantitySucess = (obj, idArticle) => {
-    // add diference entre premimium et gratuit
+    // add difference entre premimium et gratuit
     let prix = obj["prix"];
     let quantite = obj["quantite"];
     let prixTotal = prix * quantite;
-    let rabais = prixTotal * 0.5;
+    let rabais = prixTotal * 0.05;
     let prixTotalMembre = prixTotal - rabais;
     
 
