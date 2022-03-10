@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //     echo `<script>alert('{$userStatus}')</script>`;
     // }
     if (!$result) {
-        echo '<div class="alert alert-danger"> Nom d\'utilisateur ou mot de passe invalide. Veuillez réessayez. </div>';
+        echo '<div id="containerLogin" class="container"> <div class="alert alert-danger mt-3"> Nom d\'utilisateur ou mot de passe invalide!</div></div>';
     } else {
         $userStatus = $crud->getUserStatus($username);
         $_SESSION['userid'] = $result;
