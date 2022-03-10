@@ -65,20 +65,24 @@ ul {
 }
 
 
-.card-login {
-    color: #fff;
-    background-color: #6D757D;
-    border-radius: 0.55rem;
-    border: 2px solid #000000;
+
+.card-membership {
     min-height: 300px;
 }
 
-.card-login:hover {
+.card-selectable {
+    color: #fff;
+    background-color: #6D757D;
+    border-radius: 0.55rem; 
+    border: 2px solid #000000;
+}
+
+.card-selectable:hover {
     border: 2px solid rgba(220, 53, 69, 1);
     background-color: rgba(220, 53, 69, 0.6);
 }
 
-.card-login-selected {
+.card-selectable-selected {
     background-color: #dc3545;
 }
 

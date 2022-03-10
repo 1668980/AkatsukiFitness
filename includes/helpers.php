@@ -35,4 +35,8 @@
         return Lang::__($key);
     }
 
+    function __val($key) { 
+        return Lang::__val($key);
+    }
+
 ?>

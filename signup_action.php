@@ -10,13 +10,26 @@ $dob = $_POST['dob'];
 $email = strtolower(trim($_POST['email']));
 $pass = $_POST['passInsc'];
 $passConf = $_POST['passConf'];
+//type abonnement
 
 $user = new Utilisateur(0, $lastname, $firstname, $email, $dob, $gender,0,null, 1);
 $user->setPassword($pass);
 
-$result = $crud->createUtilisateur($user);
+$userId = $crud->createUtilisateur($user);
 
-$_SESSION['userid'] = $result;
+$membership_months = $_POST['membership_months'];
+
+if (! in_array( $membership_months, [0,1,3,6])) { 
+    return 'gtfo';
+}
+
+
+if ($membership_months > 0 ) { 
+    $crud->addSubscriptionToUser($userId, $membership_months);
+}
+
+
+$_SESSION['userid'] = $userId;
 //$_SESSION['email'] = $email;
 header('Location: Default_workout.php');
 

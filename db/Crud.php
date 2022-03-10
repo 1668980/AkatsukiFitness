@@ -227,15 +227,37 @@ class Crud
             return false;
         }
     }    
-    public function isUserSubscribed($idUser){
+
+    public function isUserPremium($idUser){
         $user =$this->getUser($idUser);
 
+        if ($user['datedebutabonnement'] == NULL) { 
+            return false;
+        }
+        
         $dateStartSub= new DateTime($user['datedebutabonnement']);
         $dateEndSub= new DateTime($user['datefinabonnement']);
-               
+
         return $dateStartSub < $dateEndSub;
     }
     
+    public function membershipDetail($idUser) {
+       
+        $user = $this->getUser($idUser);
+       
+        $details = [];
+
+        if ($this->isUserPremium($idUser)) { 
+            $details['membership'] = 'premium';
+            $details['startdate'] = $user['datedebutabonnement'];
+            $details['enddate'] = $user['datefinabonnement'];
+        } else { 
+            $details['membership'] = 'free';
+        }
+
+        return $details;
+
+    }
     
    
 

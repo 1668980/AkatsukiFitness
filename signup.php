@@ -1,90 +1,33 @@
 <?php
+$breadcrumb =[
+    ["index.php", "Accueil"],
+    ["", "Choix du plan"]
+];
+
+$membership = $_GET['membership'];
+if(!$membership) { 
+    $membership = 'free';
+}
+
 require_once('includes/header.php');
 ?>
+
 
 <!-- Corps de la page -->
 <!-- Container du formulaire d'incription-->
 <div id="containerSignup" class="container mt-2">
 
-    <h1 class="h1 text-center textLogin mt-2">Devenir membre</h1>
+<h1>Inscription</h1>
+<h3>Étape 1: Choisissez votre plan </h3>
 
-    <form class="needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()'
-        action="signup_action.php" method="POST">
-        <!-- row 1 -->
-        <div class="row">
-            <div class="form-group col-md-6 mt-1">
-                <label for="firstname" class="form-label">Prenom</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="form-group col-md-6 mt-1">
-                <label for="lastname" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-        <!-- row 2 -->
-        <div class="row mt-1">
-            <div class="form-group col-6">
-                <label class="form-label">Sexe</label>
-                <select name="gender" class="form-select" aria-label="">
-                    <option value="0">Homme</option>
-                    <option value="1">Femme</option>
-                    <option value="2">Autre</option>
-                </select>
-                <!-- <label class="form-label">Sexe</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" value="homme" checked>
-                    <label class="form-check-label" for="radioHomme">
-                        Homme
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gender" value="femme">
-                    <label class="form-check-label" for="radioFemme">
-                        Femme
-                    </label>
-                </div> -->
-            </div>
-            <div class="form-group col-6">
-                <label for="birthDate" class="form-label">Date de naissance</label>
-                <div class="col">
-                    <input type="date" class="form-control" id="dob" name="dob" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- row 3 -->
-        <div class="row mt-1">
-            <div class="form-group col-12">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-        </div>
-        <!-- row 4 -->
-        <div class="row mt-1">
-            <div class="form-group col-md-6">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="passInsc" name="passInsc" required>
-                <span id="message1" name="message1"></span>
-            </div>
-            <div class="form-group col-md-6">
-
-                <label for="passwordConfirm" class="form-label">Confirmez le mot de passe</label>
-                <input type="password" class="form-control" id="passConf" name="passConf" required>
-                <span id="message2" name="message2"></span>
-            </div>
-        </div>
         <div class="row mt-3">
             <div class="col-12 col-sm-6 mb-2">
-                <div class="card align-items-center card-perso card-hover card-login ">
+                <div id="freecard" class="card align-items-center card-perso card-hover card-selectable card-membership
+                <?php if ($membership == 'free') { ?>
+                   card-selectable-selected 
+                <?php } ?>
+                " data-membership="free">
                     <div class="card-body">
                         <h5 class="card-title"> Abonnement Gratuit </h5>
                         <ul>
@@ -96,7 +39,12 @@ require_once('includes/header.php');
                 </div>
             </div>
             <div class="col-12 col-sm-6 mb-2">
-                <div class="card align-items-center card-perso card-hover card-login">
+                <div class="card align-items-center card-perso card-hover card-selectable card-membership
+                <?php if ($membership == 'premium') { ?>
+                   card-selectable-selected 
+                <?php } ?>
+                
+                " data-membership="premium">
                     <div class="card-body">
                         <h5 class="card-title"> Abonnement Premium </h5>
                         <ul>
@@ -108,28 +56,95 @@ require_once('includes/header.php');
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" name="invalidCheck1"
-                    required>
-                <label class="form-check-label" for="invalidCheck1"> Acceptez les <a href="#">Termes et
-                        conditions</a> </label>
-                <div class="invalid-feedback">
-                    Vous devez acceptez les T&C avant de continuer.
-                </div>
+
+
+        <div id="step1b" class="row" 
+        <?php if ($membership != 'premium') { ?>
+            style="display:none;"
+        <?php } ?>
+        >
+
+            <h3>Étape 1.2: Choisissez votre type de plan  </h3>
+
+            <div class="col-sm-12 col-md-4 card-selectable premium-months" data-months=1>
+                1 mois: <?php __('membership_price_1') ?>$/mois
             </div>
+
+            <div class="col-sm-12 col-md-4 card-selectable premium-months" data-months=3>
+                3 mois: <?php __('membership_price_3') ?>$ économisez: 5.99/mois
+            </div>
+
+            <div class="col-sm-12 col-md-4 card-selectable premium-months card-selectable-selected" data-months=6>
+                6 mois: <?php __('membership_price_6') ?>$ économisez: un mois gratuit :) 
+            </div>
+            
+
+
         </div>
-        <div class="form-group col-12 mt-3">
-            <button type="submit" id="btnSignup" class="btn btn-success">Confirmer</button>
+
+        <div class="">
+            <a id="nexturl" class="btn btn-success" style="width: 100%;" onclick="nexturl();">Continuer</a>
         </div>
     </form>
 </div>
 
 <script type="text/javascript">
-    $(".card-login").click(function() { 
-        $('.card-login').removeClass('card-login-selected');
-        $(this).addClass('card-login-selected');
+    
+
+    const DEFAULT_MONTHS=6;
+    const DEFAULT_MEMBERSHIP="<?php echo $membership ?>";
+
+    window.selected_months=DEFAULT_MONTHS;
+    window.selected_membership=DEFAULT_MEMBERSHIP;
+
+    $(".card-membership").click(function() { 
+    
+        $('.card-membership').removeClass('card-selectable-selected');
+        $(this).addClass('card-selectable-selected');
+        
+        window.selected_membership = $(this).data('membership');
+
+        if (selected_membership=='premium') { 
+            $("#step1b").show();
+
+        } else { 
+            $("#step1b").hide();
+        }
+
     });
+
+
+     $(".premium-months").click(function() { 
+    
+        $('.premium-months').removeClass('card-selectable-selected');
+        $(this).addClass('card-selectable-selected');
+        
+        window.selected_months = $(this).data('months');
+
+        if (selected_membership=='premium') { 
+            $("#step1b").show();
+
+        } else { 
+            $("#step1b").hide();
+        }
+
+    });
+
+
+
+    function nexturl() { 
+
+
+        var next_step_url = 'signup_step2.php';
+
+        next_step_url += '?membership='+window.selected_membership;
+            if (window.selected_months != undefined && window.selected_membership == 'premium') {
+                next_step_url += '&months='+window.selected_months;    
+            }
+            
+            window.location.href=next_step_url; 
+    }
+
 </script>
 
 <?php
