@@ -6,7 +6,6 @@ $avatar = $userInfo['avatar'];
 $isPremimium = $crud->isUserPremium($userid);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     $idproduct= $_POST['idproduct'];   
     $idUser = $_SESSION['userid'];
 
@@ -75,26 +74,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
-                                        <div style="width: 50px;">
-                                            <input type="number" value="<?php echo $quantite?>"
+                                        
+                                            <input class="form-control me-1" style="width: 60px;" type="number" value="<?php echo $quantite?>"
                                                 onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
-                                        </div>
-                                        <div style="width: 80px;">
+                                        
+                                        
                                             <?php if($isPremimium){?>
-                                            <h5 class="mb-0" id="CartProductPrice<?php echo $idArticle?>">
-                                                <del><?php echo $prix ?></del>$ <?php echo $prixMembre ?>$
+                                            <h5 class="mb-0 me-1" id="CartProductPrice<?php echo $idArticle?>">
+                                                <del><?php echo $prix ?>$</del> <br> <span><?php echo $prixMembre ?></span>$
                                             </h5>
 
                                             <?php } else { ?>
-                                            <h5 class="mb-0">$<?php echo $prix ?></h5>
+                                            <h5 class="mb-0 me-1">$<?php echo $prix ?></h5>
                                             <?php } ?>
 
-                                        </div>
+                                       
                                         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
                                             <input type="hidden" value="<?php echo $idItem?>" id="idproduct"
                                                 name="idproduct">
-                                            <button type="submit" class="btn btn-danger" style="color: #cecece;">
-                                                <i class="fas fa-trash-alt text-light"></i>
+                                            <button type="submit" class="btn" style="color: #cecece;">
+                                                <i class="fas fa-trash-alt text-dark"></i>
                                             </button>
                                         </form>
                                     </div>
