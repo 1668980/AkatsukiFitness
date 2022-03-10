@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                         </div>
                                         <div class="ms-3">
-                                            <h5><?php echo $item['nom'] ?></h5>
+                                            <h6><?php echo $item['nom'] ?></h6>
                                             <p class="small mb-0"><?php echo $item['info'] ?>,
                                                 <?php echo $item['marque'] ?></p>
                                         </div>
