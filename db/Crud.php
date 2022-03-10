@@ -991,6 +991,18 @@ class Crud
         return false;
         }
     }
+    public function getNombreOfProductInPanierByidUser($idUser){
+        try{
+            $sql = "SELECT * FROM `panier`  WHERE `panier`.`iduser` = '$idUser' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->rowCount();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
     //add
     public function AddArticleToUserPanier($idUser,$idProduit,$quantite){
         $idArticle=$this->AddArticleToPanier($idProduit,$quantite);

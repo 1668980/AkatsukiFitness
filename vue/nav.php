@@ -36,9 +36,9 @@
                         <i class="bi-cart-fill me-1"></i>
                         Panier
                         <?php 
-                        $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
+                        $cartItems = $crud->getNombreOfProductInPanierByidUser($_SESSION['userid']);
                         ?>
-                        <span class="badge bg-dark text-white ms-1 rounded-pill"><?php echo count($cartItems)?></span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="cartCount" ><?php echo $cartItems?></span>
                     </a>
                     <!-- </form> -->
                     <a id="btnBlog" href="profile.php" class="nav-item nav-link active">Bienvenue,

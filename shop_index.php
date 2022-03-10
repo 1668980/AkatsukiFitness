@@ -11,6 +11,7 @@ require_once('includes/header.php');
 <!-- load data from database -->
 <?php
 $categorieProduitList = $crud->getCategoriesProduit();
+
 if(isset($_GET['idcat'])){
     $productList = $crud->getAllProduitWithCategorie($_GET['idcat']);
 } else if(isset($_GET['title'])) {
@@ -56,30 +57,46 @@ if(isset($_GET['idcat'])){
             <?php
             }
             foreach($productList as $products) {
+                $idProduct =$products["idproduit"];
+
             ?>
 
+
+          
             <div class="col mb-5">
-                <div class="card h-100 card-product">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="images/products/<?php echo $products['image']?>" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h4 class="fw-bolder"><?php echo $products['nom'] ?></h4>
-                            <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
-                            <!-- Product price-->
-                            <?php echo $products['info'] ?>
-                            <?php echo $products['prix'] ?>$
+                <!-- <form action="add_product_to_cart.php" class="form-inline my-2 my-lg-0" method="POST"> -->
+
+
+                <form action="" class="form-inline my-2 my-lg-0" onsubmit='return test(event, this.productid)'>
+
+                <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
+                    <div class="card h-100 card-product">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="images/products/<?php echo $products['image']?>" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h4 class="fw-bolder"><?php echo $products['nom'] ?></h4>
+                                <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
+                                <!-- Product price-->
+                                <?php echo $products['info'] ?>
+                                <?php echo $products['prix'] ?>$
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                            <button type="submit" class="btn   btn-outline-dark btn-light" id="productBtn<?php echo $idProduct ?>">Ajouter au panier</button>
+                               
+                            </div>
                         </div>
                     </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ajouter au panier</a>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
+
+
+
             <?php } ?>
         </div>
     </section>

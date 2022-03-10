@@ -31,8 +31,38 @@ $(() => {
         } else
             $('#message2').html('Not Matching').css('color', 'red');
     });
+    
  });
 // sign up functions
+test = (e,info) => { 
+    let idProduct = info.value;
+    let quantite = 1;
+    e.preventDefault()
+    jQuery.ajax({
+        type: "POST",
+        url: 'add_product_to_cart.php',
+        dataType: 'json',
+        data: {arguments: [idProduct,quantite]},
+    
+        success: function (obj, textstatus) {
+            addProductSucess(obj,idProduct);
+                }, error: function(){
+                    alert('failure');
+                  }
+    });
+
+
+
+
+    return true;
+}
+
+addProductSucess = (val, idProduct) => {
+    let btn =`<button type="submit" class="btn   btn-outline-dark btn-light">Retirer Du panier</button>`;
+    $("#cartCount").replaceWith(val);
+    $("#productBtn"+idProduct).replaceWith(btn);
+}
+
 
 validatePassword1 = () => {
     let passwd = $('#passInsc').val();
@@ -93,3 +123,4 @@ function afficherBtnAjout() {
     var btn = document.getElementById('addExercice');
     btn.style.display="block";
 }
+
