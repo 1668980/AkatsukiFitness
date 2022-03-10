@@ -100,7 +100,7 @@ if(isset($_GET['idcat'])){
                                  <?php
                                  }else{
                                 ?>
-                                    <button class="btn btn-outline-dark btn-light" data-bs-toggle="modal" data-bs-target="#loginModal" >Ajouter au panier</button>
+                                    <button id="btnAddCart" class="btn btn-outline-dark btn-light" data-bs-toggle="modal" data-bs-target="#loginModal" >Ajouter au panier</button>
                                 <?php
                                  }
                                 ?>
