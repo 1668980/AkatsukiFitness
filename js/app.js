@@ -7,10 +7,19 @@ $(() => {
         let href = this.href
         !href ? $('#loginModalLabel').text('Connexion requise!') : null
         $('#loginModalLabel').addClass('text-danger')
-        setTimeout(() => {
-            $('#loginModalLabel').removeClass('text-danger')
-        },1000)
+        // setTimeout(() => {
+        //     $('#loginModalLabel').removeClass('text-danger')
+        // },1000)
 
+    })
+
+    $('#btnAddCart').on('click', () => {
+        // let href = this.href
+        $('#loginModalLabel').text('Connexion requise!')
+        $('#loginModalLabel').addClass('text-danger')
+        // setTimeout(() => {
+        //     $('#loginModalLabel').removeClass('text-danger')
+        // },1000)
     })
 
     $('#btnNavLogin').on('click', () => {
