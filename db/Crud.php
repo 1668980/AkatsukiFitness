@@ -1003,16 +1003,37 @@ class Crud
         return false;
         }
     }
-    //add
-    public function AddArticleToUserPanier($idUser,$idProduit,$quantite){
-        $idArticle=$this->AddArticleToPanier($idProduit,$quantite);
-        $this->linkPanier($idUser, $idArticle);
-        return $idArticle;
+    public function isArticleInPanierOfTheUser($idUser,$idProduct){
+        $listArticle = $this->getPanierByidUser($idUser);
+        foreach($listArticle as $art){
+            if($art["idproduit"] == $idProduct) {
+                return [$art['idarticle'],$art['quantite']];
+            }
+        }
+        return -1;
     }
-    private function AddArticleToPanier($idProduit,$quantite){
+    //add
+    public function AddArticleToUserPanier($idUser,$idProduct,$quantite){
+        $req = $this->isArticleInPanierOfTheUser($idUser,$idProduct);  
+        
+        
+        if($req == -1){
+            $idArticle=$this->AddArticleToPanier($idProduct,$quantite);
+            $this->linkPanier($idUser, $idArticle);
+            return $idArticle;
+
+        }else{
+            $idArticle= $req[0];
+            $quantite= $req[1]+1;
+            $this->UpdateQuantiteArticlePanier($idArticle, $quantite);
+        }
+    
+       
+    }
+    private function AddArticleToPanier($idProduct,$quantite){
         try{    
 
-            $sql = "INSERT INTO `articlepanier` (`idproduit`,`quantite`) VALUES ($idProduit,$quantite)";
+            $sql = "INSERT INTO `articlepanier` (`idproduit`,`quantite`) VALUES ($idProduct,$quantite)";
 
             $stmt = $this->db->prepare($sql);      
             $stmt->execute();

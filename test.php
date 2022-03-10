@@ -177,8 +177,12 @@ $idUser= $_SESSION['userid'];
 $idProduit=3;
 $idQantite=1;
 
-$result =$crud->getPanierByidUser($idUser);
-var_dump($result);
+// $result =$crud->getPanierByidUser($idUser);
+// var_dump($result);
+
+
+//  $result =$crud->isArticleInPanierOfTheUser($idUser, 3);
+//  var_dump($result[1]);
 
 ?>
 </div>
