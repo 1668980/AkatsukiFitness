@@ -37,8 +37,7 @@ if(isset($_GET['idcat'])){
 
     <div class="filterContainer">
         <?php foreach($categorieProduitList as $cat) {?>
-        <a class="btn btn-danger"
-            href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?></a>
+        <a class="btn btn-danger" href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?></a>
         <?php }?>
     </div>
 

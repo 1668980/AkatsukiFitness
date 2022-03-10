@@ -801,6 +801,20 @@ class Crud
             return false;
         }
     }
+    public function getBlogByID($id){
+        try {  
+            $sql = "SELECT * FROM  `blog` WHERE `idblog`= '$id' ";        
+            $stmt = $this->db->prepare($sql);
+        
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     public function getAllBlogsWithCategorie($idCategorie){
         try {  
             $sql = "SELECT * FROM `blog` WHERE `idcategorie`= $idCategorie";

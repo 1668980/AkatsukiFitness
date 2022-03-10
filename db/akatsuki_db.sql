@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 08, 2022 at 09:50 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Hôte : 127.0.0.1
+-- Généré le :  jeu. 10 mars 2022 à 03:02
+-- Version du serveur :  5.7.17
+-- Version de PHP :  5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,18 +19,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `akatsuki_db`
+-- Base de données :  `akatsuki_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articlepanier`
+-- Structure de la table `articlepanier`
 --
-DROP DATABASE IF EXISTS `akatsuki_db`;
-CREATE DATABASE IF NOT EXISTS `akatsuki_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `akatsuki_db`;
-DROP TABLE IF EXISTS `articlepanier`;
+
 CREATE TABLE `articlepanier` (
   `idarticle` int(11) NOT NULL,
   `idproduit` int(11) NOT NULL,
@@ -37,7 +35,7 @@ CREATE TABLE `articlepanier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `articlepanier`
+-- Déchargement des données de la table `articlepanier`
 --
 
 INSERT INTO `articlepanier` (`idarticle`, `idproduit`, `quantite`) VALUES
@@ -46,10 +44,9 @@ INSERT INTO `articlepanier` (`idarticle`, `idproduit`, `quantite`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Structure de la table `blog`
 --
 
-DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
   `idblog` int(11) NOT NULL,
   `idcategorie` int(11) NOT NULL,
@@ -58,34 +55,34 @@ CREATE TABLE `blog` (
   `description` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` date NOT NULL,
   `auteur` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `couleur` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
+  `couleur` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `article` varchar(20000) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `blog`
+-- Déchargement des données de la table `blog`
 --
 
-INSERT INTO `blog` (`idblog`, `idcategorie`, `imageID`, `titre`, `description`, `date`, `auteur`, `couleur`) VALUES
-(1, 1, 1, 'Combien de fois par semaine s\'entrainné?', 'La question que tout le monde se pose et dont la réponse qui demotive. Voici quelques astuces et rappels pour commencer ses entrainements', '2022-02-16', 'Jorgen Klopp', '#c9c859'),
-(2, 1, 2, 'Comment bien s\'entrainer ?', 'Plusieurs se lancent à l\'entrainement sans vraiment savoir quoi faire, et cela suffit pour perdre sa motivation', '2022-03-16', 'Cristiano Ronaldo', '#b80f0f'),
-(3, 4, 3, 'Bien performer en gymnase', 'Comment se trouver une routine pour instaurer de bonnes habitudes et une bonne éthique de travail dans le gymnase', '2022-03-01', 'Karim Benzema', '#110bd6'),
-(4, 3, 4, 'Comment ne pas tomber en dépression à cause de la covid', 'La covid tue des vies mais tues aussi notre motivation. Ce texte vous motivera à passer outre les difficultés que la COVID vous impose.', '2022-01-13', 'Bojan Krkic', '#110bd6'),
-(5, 6, 5, 'Le GOAT de tout les temps ?', 'Ronaldo et Messi sont sur les lévres de tout amateur de football dans le monde. Mais qui est vraiment le meilleur des deux ?', '2021-12-22', 'Angel Di Maria', '#59a2c9');
+INSERT INTO `blog` (`idblog`, `idcategorie`, `imageID`, `titre`, `description`, `date`, `auteur`, `couleur`, `article`) VALUES
+(1, 1, 1, 'Combien de fois par semaine s\'entrainné?', 'La question que tout le monde se pose et dont la réponse qui demotive. Voici quelques astuces et rappels pour commencer ses entrainements', '2022-02-16', 'Jorgen Klopp', '#c9c859', 'Lorsque je travaille avec mes clients, mes conseils et suggestions concernant la fréquence à laquelle ils devraient s’entraîner dépendent de facteurs individuels et des aspects mentionnés plus haut :\r\n\r\nEn règle générale, trois à cinq entraînements (3 à 5 heures d’exercice physique) par semaine suffisent à produire de très bons résultats.\r\nLes débutants, de même que les athlètes plus avancés, obtiendront les meilleurs résultats en s’entraînant 3 à 4 fois apr semaine.\r\nMais encore une fois, veillez à toujours intégrer des jours de repos entre vos sessions.\r\nPensez à vous reposer pendant une journée après deux jours consécutifs d’entraînement de musculation.\r\nSelon mon expérience personnelle, le plus important est de trouver le bon équilibre entre vos sessions de cardio et de musculation afin de non seulement perdre du poids mais aussi de maintenir un certain niveau de condition physique.Si vous voulez vous débarrasser de quelques kilos superflus, vous devez intégrer les principes suivants à votre plan d’entraînement, à vos sessions et à la manière dont vous effectuez vos exercices :\r\n\r\nSortez de votre zone de confort et ne laissez pas le temps à votre corps de s’habituer à une certaine routine. Variez l’intensité, la durée et le volume de vos entraînements en changeant la distance, le nombre de séries et de répétitions. Variez aussi la fréquence des exercices et intégrez des fractionnés à vos sessions de cardio. Vous pouvez aussi y intégrer des exercices de musculation au poids du corps pour les rendre encore plus efficaces et obtenir de meilleurs résultats (avec adidas Training par exemple).\r\nIntégrez une session spécifique de musculation avec des poids dans votre programme de la semaine. Gardez toujours à l’esprit que plus vous avez de muscles, et plus vous brûlez de calories à l’entraînement.\r\nL’entraînement, le sommeil et la nutrition sont les trois piliers de la perte de poids sur le long terme. Il vous faut considérer chacun de ces aspects et essayer de les combiner le mieux possible. Si vous négligez ne serait-ce que l’un d’entre eux, tous vos efforts seront réduits à néant.\r\nUne autre règle à toujours garder à l’esprit : ne sautez jamais un jour de repos ! Assurez-vous de vous reposer au moins un jour par semaine pour laisser le temps à votre corps de se régénérer.'),
+(2, 1, 2, 'Comment bien s\'entrainer ?', 'Plusieurs se lancent à l\'entrainement sans vraiment savoir quoi faire, et cela suffit pour perdre sa motivation', '2022-03-16', 'Cristiano Ronaldo', '#b80f0f', 'Si vous lisez cet article, il y a fort à parier que la dernière fois que vous avez fait du sport remonte à vos cours d’EPS (Éducation Physique et Sportive) au lycée.\r\n\r\nPeut-être avez-vous déjà essayé de commencer un plan d’entraînement pour la maison il y a quelques mois, mais vous avez baissé les bras ?\r\n\r\nPeu importe votre expérience ou vos échecs passés… Vous voulez vous (re)mettre au sport ? Nous allons vous aider à passer à l’action !BIENFAITS DU SPORT :  À QUELLE FRÉQUENCE FAUT-IL S’ENTRAÎNER ?\r\nVoici les recommandations générales :\r\n\r\nCardio : au moins 150 minutes de cardio à intensité modérée ou 75 minutes de séances cardio intenses par la semaine. Vous pouvez aussi combiner les deux.\r\nMusculation : des exercices qui sollicitent les groupes musculaires principaux au moins deux fois (ou plus) par semaine.\r\nPour obtenir encore plus de bienfaits : ajoutez 300 minutes par semaine de cardio à intensité modérée ou 150 minutes de séances cardio intense par semaine (ou une combinaison des deux).(7)\r\nCela peut vous sembler beaucoup mais la bonne nouvelle c’est que vous pouvez ajuster votre entraînement à votre emploi du temps ! À partir du moment où vos séances cardio durent au moins 10 minutes, vous pouvez diviser vos minutes actives en autant de sessions par semaine que vous le souhaitez. À vous ensuite de décider si vous voulez commencer par du cardio ou de la musculation.\r\n\r\nLES DIFFÉRENTS TYPES D’EXERCICES\r\nQuels sont les types d’exercices les plus courants ?\r\n\r\nLe cardio : toute activité qui fait grimper votre fréquence cardiaque et vous oblige à respirer plus vite est considérée comme du cardio. Parmi toutes les activités physiques qui vont améliorer votre endurance, on distingue :\r\nLes séances de cardio modérées : la marche rapide, la danse, la course lente, le vélo (vitesse modérée), la natation…\r\nLes séances de cardio intenses : le running, le vélo (vitesse rapide), la marche rapide en côte, la nage rapide…'),
+(3, 4, 3, 'Bien performer en gymnase', 'Comment se trouver une routine pour instaurer de bonnes habitudes et une bonne éthique de travail dans le gymnase', '2022-03-01', 'Karim Benzema', '#110bd6', 'Diriez-vous que vous vous entraînez pour le plaisir ou pour la performance? Heureusement, ils ne sont pas mutuellement exclusifs! Voici dix avantages à bouger pour le plaisir tout en misant sur la performance et le dépassement de soi.\r\n\r\nLa passion \r\nIl est tellement plus facile de se donner à 100 % lorsque la passion est au rendez-vous. Les athlètes en sont un bel exemple. Ces derniers poussent plus loin leur passion parce qu’ils aiment beaucoup ce qu’ils font. Et ce dévouement rapporte, car les résultats se font sentir, engendrant un sentiment de fierté, une envie grandissante de réussir et un niveau de motivation de plus en plus élevé. Bien qu’il y  ait des périodes plus difficiles, l’amour du sport est généralement plus fort que tout et permet de surpasser les plus grands obstacles.\r\n\r\nLa maîtrise de son art \r\nS’entraîner comme un athlète, c’est se mettre en forme avec l’intention de maîtriser son art. C’est aussi développer les capacités spécifiques à son sport et approfondir certains sujets connexes tels la nutrition (bien manger pour maximiser la performance), la psychologie du sport (penser comme un gagnant), la récupération ainsi que la prévention et la gestion des blessures. Se comporter comme un sportif, c’est percevoir son entraînement tel un athlète de haut niveau et en faire son mode de vie.\r\n\r\nLe mode de vie\r\nDévelopper des habitudes de vie saines n’est pas toujours évident. Mais rappelez-vous qu’une fois celles-ci installées, elles deviennent un réflexe auquel vous n’avez plus à penser. Se lever tôt, dormir suffisamment et bouger quotidiennement sont des habitudes de vie qui s’installent lorsque vous connaissez la raison d’adopter ces comportements.\r\n\r\nLa philosophie\r\nL’entraînement de performance met de l’avant de belles valeurs telles le respect, l’entraide, l’esprit d’équipe, la notion de sacrifice et l’excellence. Pour ce faire, il faut s’entourer des bonnes personnes, s’éloigner de celles qui sont négatives et travailler toujours plus fort. Paradoxalement, il faut aussi savoir s’arrêter lorsque nécessaire et trouver le juste milieu entre « qualité » et « quantité » en ce qui concerne le temps passé à perfectionner son art.\r\n\r\nSe surpasser\r\nLe sentiment de se surpasser est non seulement gratifiant, mais nécessaire. Dans la vie comme à l’entraînement, l’être humain doit se mettre en défi, avancer et évoluer. Pour ce faire, celui-ci doit avoir la bonne attitude. Être optimiste et faire des pas à chaque jour dans la direction donnée sont deux comportements qui assureront cette progression.\r\n\r\nLa force mentale et la visualisation\r\nLa force mentale est la voix intérieure qu’il faut savoir écouter et par moment, ignorer. Il s’agit de tenir compte de ce discours intérieur s’il est encourageant et de le faire taire, voire le transformer, lorsqu’il fait douter. La visualisation, elle, est la capacité mentale de l’être humain à se représenter une situation. Plusieurs athlètes de niveau mondial utilisent cette technique pour améliorer leurs performances, tant à l’entraînement qu’en compétition.\r\n\r\nLa confiance en soi \r\nDevenir très bon dans une discipline joue favorablement sur la confiance. Pour y arriver, il est nécessaire de sortir de sa zone de confort et de confronter ses peurs. En ce qui concerne le physique, le fait de s’entraîner régulièrement embellit le corps et génère une belle image de soi, l\'une des composantes principales de l’estime et de la confiance en soi. Sur le plan du mental, le sport permet de repousser ses limites, puis de constater les exploits réalisés.'),
+(4, 3, 4, 'Comment ne pas tomber en dépression à cause de la covid', 'La covid tue des vies mais tues aussi notre motivation. Ce texte vous motivera à passer outre les difficultés que la COVID vous impose.', '2022-01-13', 'Bojan Krkic', '#110bd6', 'Dépression et COVID-19\r\nLa pandémie de COVID-19 et les mesures de santé publique essentielles prises pour protéger la population contre le virus ont provoqué\r\nun stress important chez de nombreuses personnes. La détresse que nous ressentons est une réponse humaine normale à une situation\r\nimportante. Tandis que le monde s’adapte à un nouveau rythme, l’isolement, la solitude et un vague sentiment d’incertitude — tous\r\ndes symptômes de dépression — font maintenant partie de la vie quotidienne de gens de partout sur la planète. Cette réalité peut\r\ns’avérer très lourde sur la santé mentale d’une personne, et entraîner crainte et désespoir face à cette situation non familière. Le fait de\r\nreconnaître et d’accepter ces sentiments peut contribuer à éviter que la détresse ne se transforme en un problème de santé mentale\r\nplus important.\r\nLe stress environnemental influence grandement l’état dépressif. Les facteurs de stress environnementaux uniques à la crise de la\r\nCOVID-19 suggèrent que plus de gens qu’à l’habitude pourraient développer une dépression. En plus du stress causé par la crise,\r\nbeaucoup d’entre nous sont confrontés à des pertes personnelles importantes et à des réactions émotionnelles, qui sont de puissants\r\nprécurseurs de la dépression. Le risque est d’autant plus élevé, car les facteurs de stress sont continus et imprévisibles.\r\nEn outre, les maladies préexistantes, comme un trouble dépressif majeur, peuvent également s’aggraver en raison de l’augmentation\r\ndes facteurs de stress et de solitude vécue.\r\nGroupes particuliers à risque\r\nIsolement social : les gens vivants seuls et qui ont peu d’occasions de socialiser sont à risque. Le corps n’est pas conçu pour gérer la\r\nprivation sociale pendant une longue période. La solitude entraîne la dépression.\r\nDifficultés financières : les personnes aux prises avec le chômage, l’endettement, les pertes financières et l’insécurité financière sont\r\nplus à risque de dépression en raison du stress accru et de circonstances de vie difficiles.\r\nConflits personnels : les familles, forcées de passer des périodes prolongées dans des espaces confinés, peuvent vivre davantage\r\nde conflits, ce qui augmente également le risque. Le divorce pouvant s’avérer une conséquence potentielle, ce qui peut augmenter le\r\nrisque de dépression.\r\nDeuil : les personnes peuvent vivre un deuil important en raison du décès de personnes chères.\r\nTravailleurs de la santé de première ligne : pour ceux œuvrant aux premières lignes, deuils, traumatismes et fatigue aiguë exacerbent le\r\nstress et les exposent davantage au risque.'),
+(5, 6, 5, 'Le GOAT de tout les temps ?', 'Ronaldo et Messi sont sur les lévres de tout amateur de football dans le monde. Mais qui est vraiment le meilleur des deux ?', '2021-12-22', 'Angel Di Maria', '#59a2c9', 'La rivalité entre Lionel Messi et Cristiano Ronaldo est une rivalité de football entre les fans de l\'attaquant argentin Lionel Messi et de l\'attaquant portugais Cristiano Ronaldo et, selon certaines personnes, entre les joueurs eux-mêmes. Ayant remporté au total douze prix Ballon d\'or / FIFA Ballon d\'or (sept le dernier en 2021 pour Messi et cinq le dernier en 2017 pour Ronaldo) et dix prix du Soulier d\'Or européen (six pour Messi et quatre pour Ronaldo), les deux sont largement considérés non seulement comme les deux meilleurs joueurs de leur génération mais aussi, par la majorité des experts du sport dont des joueurs et des journalistes sportifs, comme les deux plus grands joueurs de tous les temps. Ils sont deux des footballeurs les plus décorés de l\'histoire, ayant remporté jusqu\'à présent 70 trophées combinés (38 pour Messi et 32 pour Ronaldo) au cours de leur carrière senior, et ont régulièrement franchi la barre des 50 buts en une seule saison. Ils font partie des 51 joueurs de l\'histoire du sport à avoir marqué plus de 500 buts en carrière, les deux ayant même marqué plus de 700 buts chacun dans leur carrière pour leur club et leur pays. Cristiano Ronaldo détient actuellement le record du monde du plus grand nombre de buts officiels en carrière.\r\n\r\nLes journalistes et les experts discutent régulièrement des mérites individuels des deux joueurs pour tenter d\'établir qui, selon eux, est le meilleur joueur du football moderne. Quelle que soit la préférence, les critiques de football conviennent à l\'unanimité que les deux sont les meilleurs joueurs de leur génération, surpassant leurs pairs par une marge significative1,2,3,4,5. Cette rivalité sportive est aussi comparée à d\'autres ayant eu lieu dans différents sports comme celle de Muhammad Ali et Joe Frazier en boxe, celle de Roger Federer et Rafael Nadal et celle de rivalité Björn Borg et John McEnroe en tennis, ou encore celle d\'Alain Prost et Ayrton Senna en Formule 16,7,8. Certains commentateurs choisissent d\'analyser les différents physiques et styles de jeu des deux9, tandis qu\'une partie du débat tourne autour des personnalités contrastées des deux joueurs : Ronaldo est parfois décrit comme quelqu\'un de caractère capricieux tandis que Messi est décrit comme ayant un caractère plus réservé10,11,12,13.\r\n\r\nAu niveau des clubs, Messi et Ronaldo ont été les joueurs phares des clubs rivaux du FC Barcelone et du Real Madrid pendant près d\'une décennie. Les deux joueurs se sont affrontés au moins deux fois par saison dans le match de club de saison régulière le plus populaire au monde, El Clásico, depuis l\'arrivée de Ronaldo au Real en 2009 jusqu\'à son transfert au club italien de la Juventus FC en 201814,15. En dehors du terrain, ils sont aussi le visage de deux fabricants de vêtements de sport rivaux, Adidas pour Messi et Nike pour Ronaldo, qui sont aussi les fournisseurs de kits de leurs équipes nationales16,17. Messi et Ronaldo, sont parmi les stars du football et du sport en général les mieux payées au monde en termes de revenus combinés provenant des salaires, des primes et des revenus hors terrain. En 2018, Messi devance Ronaldo sur la liste Forbes des sportifs les mieux payés, gagnant 111 millions de dollars par an, et Ronaldo suivant à 108 millions de dollars18. Ils ont aussi parmi les sportifs les plus suivis sur les réseaux sociaux au monde avec plus de 253 millions de fans combinés sur Facebook en 2021. Ronaldo est par ailleurs la personne la plus suivie sur Facebook, avec plus de 150 millions de followers, et sur Instagram avec plus de 370 millions d\'abonnés. Messi est respectivement le cinquième et septième plus suivi sur ces plateformes.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Structure de la table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `idcategorie` int(11) NOT NULL,
   `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categories`
+-- Déchargement des données de la table `categories`
 --
 
 INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
@@ -113,17 +110,16 @@ INSERT INTO `categories` (`idcategorie`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriesblog`
+-- Structure de la table `categoriesblog`
 --
 
-DROP TABLE IF EXISTS `categoriesblog`;
 CREATE TABLE `categoriesblog` (
   `idcategorie` int(11) NOT NULL,
   `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categoriesblog`
+-- Déchargement des données de la table `categoriesblog`
 --
 
 INSERT INTO `categoriesblog` (`idcategorie`, `nom`) VALUES
@@ -137,17 +133,16 @@ INSERT INTO `categoriesblog` (`idcategorie`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriesproduit`
+-- Structure de la table `categoriesproduit`
 --
 
-DROP TABLE IF EXISTS `categoriesproduit`;
 CREATE TABLE `categoriesproduit` (
   `idcategorie` int(11) NOT NULL,
   `nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categoriesproduit`
+-- Déchargement des données de la table `categoriesproduit`
 --
 
 INSERT INTO `categoriesproduit` (`idcategorie`, `nom`) VALUES
@@ -157,10 +152,9 @@ INSERT INTO `categoriesproduit` (`idcategorie`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `connexion`
+-- Structure de la table `connexion`
 --
 
-DROP TABLE IF EXISTS `connexion`;
 CREATE TABLE `connexion` (
   `idutilisateur` int(11) NOT NULL,
   `status` int(11) NOT NULL,
@@ -169,7 +163,7 @@ CREATE TABLE `connexion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `connexion`
+-- Déchargement des données de la table `connexion`
 --
 
 INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
@@ -179,10 +173,9 @@ INSERT INTO `connexion` (`idutilisateur`, `status`, `email`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenu`
+-- Structure de la table `contenu`
 --
 
-DROP TABLE IF EXISTS `contenu`;
 CREATE TABLE `contenu` (
   `idcontenu` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
@@ -190,7 +183,7 @@ CREATE TABLE `contenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `contenu`
+-- Déchargement des données de la table `contenu`
 --
 
 INSERT INTO `contenu` (`idcontenu`, `iduser`, `nom`) VALUES
@@ -200,10 +193,9 @@ INSERT INTO `contenu` (`idcontenu`, `iduser`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrainement`
+-- Structure de la table `entrainement`
 --
 
-DROP TABLE IF EXISTS `entrainement`;
 CREATE TABLE `entrainement` (
   `identrainement` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
@@ -213,7 +205,7 @@ CREATE TABLE `entrainement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrainement`
+-- Déchargement des données de la table `entrainement`
 --
 
 INSERT INTO `entrainement` (`identrainement`, `nom`, `status`, `type`, `difficulte`) VALUES
@@ -228,17 +220,16 @@ INSERT INTO `entrainement` (`identrainement`, `nom`, `status`, `type`, `difficul
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrainementcontenu`
+-- Structure de la table `entrainementcontenu`
 --
 
-DROP TABLE IF EXISTS `entrainementcontenu`;
 CREATE TABLE `entrainementcontenu` (
   `idcontenu` int(11) NOT NULL,
   `identrainement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrainementcontenu`
+-- Déchargement des données de la table `entrainementcontenu`
 --
 
 INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
@@ -255,17 +246,16 @@ INSERT INTO `entrainementcontenu` (`idcontenu`, `identrainement`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entrainementexercice`
+-- Structure de la table `entrainementexercice`
 --
 
-DROP TABLE IF EXISTS `entrainementexercice`;
 CREATE TABLE `entrainementexercice` (
   `identrainement` int(11) NOT NULL,
   `idexercice` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `entrainementexercice`
+-- Déchargement des données de la table `entrainementexercice`
 --
 
 INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES
@@ -277,10 +267,9 @@ INSERT INTO `entrainementexercice` (`identrainement`, `idexercice`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exercice`
+-- Structure de la table `exercice`
 --
 
-DROP TABLE IF EXISTS `exercice`;
 CREATE TABLE `exercice` (
   `idexercice` int(11) NOT NULL,
   `idexercicecatalogue` int(11) NOT NULL,
@@ -293,7 +282,7 @@ CREATE TABLE `exercice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `exercice`
+-- Déchargement des données de la table `exercice`
 --
 
 INSERT INTO `exercice` (`idexercice`, `idexercicecatalogue`, `status`, `poids`, `repetitions`, `sets`, `duree`, `dureepause`) VALUES
@@ -305,10 +294,9 @@ INSERT INTO `exercice` (`idexercice`, `idexercicecatalogue`, `status`, `poids`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exercicecatalogue`
+-- Structure de la table `exercicecatalogue`
 --
 
-DROP TABLE IF EXISTS `exercicecatalogue`;
 CREATE TABLE `exercicecatalogue` (
   `idexercicecatalogue` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
@@ -317,7 +305,7 @@ CREATE TABLE `exercicecatalogue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `exercicecatalogue`
+-- Déchargement des données de la table `exercicecatalogue`
 --
 
 INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcategorie`) VALUES
@@ -1656,10 +1644,9 @@ INSERT INTO `exercicecatalogue` (`idexercicecatalogue`, `nom`, `image`, `idcateg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historiquedexercice`
+-- Structure de la table `historiquedexercice`
 --
 
-DROP TABLE IF EXISTS `historiquedexercice`;
 CREATE TABLE `historiquedexercice` (
   `idexercice` int(11) NOT NULL,
   `idhistorique` int(11) NOT NULL
@@ -1668,10 +1655,9 @@ CREATE TABLE `historiquedexercice` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historiqueexerciceprecedent`
+-- Structure de la table `historiqueexerciceprecedent`
 --
 
-DROP TABLE IF EXISTS `historiqueexerciceprecedent`;
 CREATE TABLE `historiqueexerciceprecedent` (
   `idhistorique` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -1684,17 +1670,16 @@ CREATE TABLE `historiqueexerciceprecedent` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lienimage`
+-- Structure de la table `lienimage`
 --
 
-DROP TABLE IF EXISTS `lienimage`;
 CREATE TABLE `lienimage` (
   `imageID` int(11) NOT NULL,
   `lien` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `lienimage`
+-- Déchargement des données de la table `lienimage`
 --
 
 INSERT INTO `lienimage` (`imageID`, `lien`) VALUES
@@ -1707,17 +1692,16 @@ INSERT INTO `lienimage` (`imageID`, `lien`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `panier`
+-- Structure de la table `panier`
 --
 
-DROP TABLE IF EXISTS `panier`;
 CREATE TABLE `panier` (
   `iduser` int(11) NOT NULL,
   `idarticle` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `panier`
+-- Déchargement des données de la table `panier`
 --
 
 INSERT INTO `panier` (`iduser`, `idarticle`) VALUES
@@ -1726,10 +1710,9 @@ INSERT INTO `panier` (`iduser`, `idarticle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `poids`
+-- Structure de la table `poids`
 --
 
-DROP TABLE IF EXISTS `poids`;
 CREATE TABLE `poids` (
   `idpoids` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -1739,10 +1722,9 @@ CREATE TABLE `poids` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `poidshistorique`
+-- Structure de la table `poidshistorique`
 --
 
-DROP TABLE IF EXISTS `poidshistorique`;
 CREATE TABLE `poidshistorique` (
   `iduser` int(11) NOT NULL,
   `idpoids` int(11) NOT NULL
@@ -1751,10 +1733,9 @@ CREATE TABLE `poidshistorique` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produits`
+-- Structure de la table `produits`
 --
 
-DROP TABLE IF EXISTS `produits`;
 CREATE TABLE `produits` (
   `idproduit` int(11) NOT NULL,
   `idcategorie` int(11) NOT NULL,
@@ -1767,7 +1748,7 @@ CREATE TABLE `produits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `produits`
+-- Déchargement des données de la table `produits`
 --
 
 INSERT INTO `produits` (`idproduit`, `idcategorie`, `nom`, `marque`, `prix`, `info`, `description`, `image`) VALUES
@@ -1780,10 +1761,9 @@ INSERT INTO `produits` (`idproduit`, `idcategorie`, `nom`, `marque`, `prix`, `in
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
-DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE `utilisateur` (
   `iduser` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
@@ -1795,11 +1775,11 @@ CREATE TABLE `utilisateur` (
   `datedebutabonnement` date DEFAULT NULL,
   `datefinabonnement` date DEFAULT NULL,
   `poids_desire` float DEFAULT NULL,
-  `avatar` int(11) DEFAULT 1
+  `avatar` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `utilisateur`
+-- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissance`, `sexe`, `poids`, `datedebutabonnement`, `datefinabonnement`, `poids_desire`, `avatar`) VALUES
@@ -1807,285 +1787,272 @@ INSERT INTO `utilisateur` (`iduser`, `nom`, `prenom`, `email`, `date_de_naissanc
 (2, 'a', 'a', 'a@a', '2022-02-07', 0, NULL, '2022-02-23', '2022-04-23', NULL, 1);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `articlepanier`
+-- Index pour la table `articlepanier`
 --
 ALTER TABLE `articlepanier`
   ADD PRIMARY KEY (`idarticle`);
 
 --
--- Indexes for table `blog`
+-- Index pour la table `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`idblog`),
   ADD KEY `Constraint_blog_cat` (`idcategorie`);
 
 --
--- Indexes for table `categories`
+-- Index pour la table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`idcategorie`);
 
 --
--- Indexes for table `categoriesblog`
+-- Index pour la table `categoriesblog`
 --
 ALTER TABLE `categoriesblog`
   ADD PRIMARY KEY (`idcategorie`);
 
 --
--- Indexes for table `categoriesproduit`
+-- Index pour la table `categoriesproduit`
 --
 ALTER TABLE `categoriesproduit`
   ADD PRIMARY KEY (`idcategorie`);
 
 --
--- Indexes for table `connexion`
+-- Index pour la table `connexion`
 --
 ALTER TABLE `connexion`
   ADD KEY `idutilisateur` (`idutilisateur`);
 
 --
--- Indexes for table `contenu`
+-- Index pour la table `contenu`
 --
 ALTER TABLE `contenu`
   ADD PRIMARY KEY (`idcontenu`),
   ADD KEY `Constrain_idcontUser` (`iduser`);
 
 --
--- Indexes for table `entrainement`
+-- Index pour la table `entrainement`
 --
 ALTER TABLE `entrainement`
   ADD PRIMARY KEY (`identrainement`);
 
 --
--- Indexes for table `entrainementcontenu`
+-- Index pour la table `entrainementcontenu`
 --
 ALTER TABLE `entrainementcontenu`
   ADD KEY `Constrain_idcontenu` (`idcontenu`),
   ADD KEY `Constrain_identrainement` (`identrainement`);
 
 --
--- Indexes for table `entrainementexercice`
+-- Index pour la table `entrainementexercice`
 --
 ALTER TABLE `entrainementexercice`
   ADD KEY `Constrain_idexercise` (`idexercice`),
   ADD KEY `Constrain_identrainement2` (`identrainement`);
 
 --
--- Indexes for table `exercice`
+-- Index pour la table `exercice`
 --
 ALTER TABLE `exercice`
   ADD PRIMARY KEY (`idexercice`);
 
 --
--- Indexes for table `exercicecatalogue`
+-- Index pour la table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   ADD PRIMARY KEY (`idexercicecatalogue`),
   ADD KEY `Constraint_exerciceCat_categorie` (`idcategorie`);
 
 --
--- Indexes for table `historiquedexercice`
+-- Index pour la table `historiquedexercice`
 --
 ALTER TABLE `historiquedexercice`
   ADD KEY `Constraint_ExeHis_idexercice` (`idexercice`),
   ADD KEY `Constraint_ExeHis_idhistorique` (`idhistorique`);
 
 --
--- Indexes for table `historiqueexerciceprecedent`
+-- Index pour la table `historiqueexerciceprecedent`
 --
 ALTER TABLE `historiqueexerciceprecedent`
   ADD PRIMARY KEY (`idhistorique`);
 
 --
--- Indexes for table `lienimage`
+-- Index pour la table `lienimage`
 --
 ALTER TABLE `lienimage`
   ADD PRIMARY KEY (`imageID`);
 
 --
--- Indexes for table `panier`
+-- Index pour la table `panier`
 --
 ALTER TABLE `panier`
   ADD KEY `Constraint_panier_article` (`idarticle`),
   ADD KEY `Constraint_panier_user` (`iduser`);
 
 --
--- Indexes for table `poids`
+-- Index pour la table `poids`
 --
 ALTER TABLE `poids`
   ADD PRIMARY KEY (`idpoids`);
 
 --
--- Indexes for table `poidshistorique`
+-- Index pour la table `poidshistorique`
 --
 ALTER TABLE `poidshistorique`
   ADD KEY `Constraint_poidH_user` (`iduser`),
   ADD KEY `Constraint_poidH_poids` (`idpoids`);
 
 --
--- Indexes for table `produits`
+-- Index pour la table `produits`
 --
 ALTER TABLE `produits`
   ADD PRIMARY KEY (`idproduit`),
   ADD KEY `Constraint_produits_cat` (`idcategorie`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`iduser`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `articlepanier`
+-- AUTO_INCREMENT pour la table `articlepanier`
 --
 ALTER TABLE `articlepanier`
   MODIFY `idarticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT for table `blog`
+-- AUTO_INCREMENT pour la table `blog`
 --
 ALTER TABLE `blog`
   MODIFY `idblog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
 --
--- AUTO_INCREMENT for table `categoriesblog`
+-- AUTO_INCREMENT pour la table `categoriesblog`
 --
 ALTER TABLE `categoriesblog`
   MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT for table `categoriesproduit`
+-- AUTO_INCREMENT pour la table `categoriesproduit`
 --
 ALTER TABLE `categoriesproduit`
   MODIFY `idcategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT for table `contenu`
+-- AUTO_INCREMENT pour la table `contenu`
 --
 ALTER TABLE `contenu`
   MODIFY `idcontenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT for table `entrainement`
+-- AUTO_INCREMENT pour la table `entrainement`
 --
 ALTER TABLE `entrainement`
   MODIFY `identrainement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
--- AUTO_INCREMENT for table `exercice`
+-- AUTO_INCREMENT pour la table `exercice`
 --
 ALTER TABLE `exercice`
   MODIFY `idexercice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT for table `exercicecatalogue`
+-- AUTO_INCREMENT pour la table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   MODIFY `idexercicecatalogue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1330;
-
 --
--- AUTO_INCREMENT for table `historiqueexerciceprecedent`
+-- AUTO_INCREMENT pour la table `historiqueexerciceprecedent`
 --
 ALTER TABLE `historiqueexerciceprecedent`
   MODIFY `idhistorique` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `poids`
+-- AUTO_INCREMENT pour la table `poids`
 --
 ALTER TABLE `poids`
   MODIFY `idpoids` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `produits`
+-- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
   MODIFY `idproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Contraintes pour les tables déchargées
+--
 
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `blog`
+-- Contraintes pour la table `blog`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `Constraint_blog_cat` FOREIGN KEY (`idcategorie`) REFERENCES `categoriesblog` (`idcategorie`);
 
 --
--- Constraints for table `connexion`
+-- Contraintes pour la table `connexion`
 --
 ALTER TABLE `connexion`
   ADD CONSTRAINT `Constrain_iduser` FOREIGN KEY (`idutilisateur`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Constraints for table `contenu`
+-- Contraintes pour la table `contenu`
 --
 ALTER TABLE `contenu`
   ADD CONSTRAINT `Constrain_idcontUser` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Constraints for table `entrainementcontenu`
+-- Contraintes pour la table `entrainementcontenu`
 --
 ALTER TABLE `entrainementcontenu`
   ADD CONSTRAINT `Constrain_idcontenu` FOREIGN KEY (`idcontenu`) REFERENCES `contenu` (`idcontenu`) ON DELETE CASCADE,
   ADD CONSTRAINT `Constrain_identrainement` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`) ON DELETE CASCADE;
 
 --
--- Constraints for table `entrainementexercice`
+-- Contraintes pour la table `entrainementexercice`
 --
 ALTER TABLE `entrainementexercice`
   ADD CONSTRAINT `Constrain_identrainement2` FOREIGN KEY (`identrainement`) REFERENCES `entrainement` (`identrainement`) ON DELETE CASCADE,
   ADD CONSTRAINT `Constrain_idexercise` FOREIGN KEY (`idexercice`) REFERENCES `exercice` (`idexercice`) ON DELETE CASCADE;
 
 --
--- Constraints for table `exercicecatalogue`
+-- Contraintes pour la table `exercicecatalogue`
 --
 ALTER TABLE `exercicecatalogue`
   ADD CONSTRAINT `Constraint_exerciceCat_categorie` FOREIGN KEY (`idcategorie`) REFERENCES `categories` (`idcategorie`);
 
 --
--- Constraints for table `historiquedexercice`
+-- Contraintes pour la table `historiquedexercice`
 --
 ALTER TABLE `historiquedexercice`
   ADD CONSTRAINT `Constraint_ExeHis_idexercice` FOREIGN KEY (`idexercice`) REFERENCES `exercice` (`idexercice`),
   ADD CONSTRAINT `Constraint_ExeHis_idhistorique` FOREIGN KEY (`idhistorique`) REFERENCES `historiqueexerciceprecedent` (`idhistorique`);
 
 --
--- Constraints for table `panier`
+-- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
   ADD CONSTRAINT `Constraint_panier_article` FOREIGN KEY (`idarticle`) REFERENCES `articlepanier` (`idarticle`) ON DELETE CASCADE,
   ADD CONSTRAINT `Constraint_panier_user` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`iduser`) ON DELETE CASCADE;
 
 --
--- Constraints for table `poidshistorique`
+-- Contraintes pour la table `poidshistorique`
 --
 ALTER TABLE `poidshistorique`
   ADD CONSTRAINT `Constraint_poidsHistorique_poids` FOREIGN KEY (`idpoids`) REFERENCES `poids` (`idpoids`),
   ADD CONSTRAINT `Constraint_poidsHistorique_user` FOREIGN KEY (`iduser`) REFERENCES `utilisateur` (`iduser`);
 
 --
--- Constraints for table `produits`
+-- Contraintes pour la table `produits`
 --
 ALTER TABLE `produits`
   ADD CONSTRAINT `Constraint_produits_cat` FOREIGN KEY (`idcategorie`) REFERENCES `categoriesproduit` (`idcategorie`);
