@@ -1,4 +1,10 @@
 <?php
+
+$breadcrumb =[
+    ["index.php", "Accueil"],
+    ["shop_index.php", "Boutique"],
+    ["", "Panier"],
+];
 require_once('includes/header.php');
 $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 $userInfo = $crud->getUser($userid);
