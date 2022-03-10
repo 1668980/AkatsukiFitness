@@ -89,19 +89,18 @@ if(isset($_GET['idcat'])){
                                     ?>
                                     <form action="" class="form-inline my-2 my-lg-0" id="formAddProduct<?php echo $idProduct ?>" onsubmit='return addProductForm(event, this.productid)'>
                                     <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
-                                    <button type="submit" class="btn   btn-outline-dark btn-light" >Ajouter au panier</button>
+                                    <button type="submit" class="btn btn-outline-dark btn-light" >Ajouter au panier</button>
                                  </form>
 
                                  <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
                                     <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
-                                    <button type="submit" class="btn   btn-outline-dark btn-light" >Retirer du panier</button>
+                                    <button type="submit" class="btn btn-outline-dark btn-light" >Retirer du panier</button>
                                  </form>
 
                                  <?php
                                  }else{
                                 ?>
-
-                                    <button  class="btn   btn-outline-dark btn-light" >Connecter Vous pour Ajouter Au panier</button>
+                                    <button class="btn btn-outline-dark btn-light" data-bs-toggle="modal" data-bs-target="#loginModal" >Ajouter au panier</button>
                                 <?php
                                  }
                                 ?>
