@@ -5,7 +5,19 @@ $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
 $isPremimium = $crud->isUserPremium($userid);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    $idproduct= $_POST['idproduct'];   
+    $idUser = $_SESSION['userid'];
+
+    $result = $crud->deleteArticlePanierByIdProduct($idUser,$idproduct);
+
+    if (!$result) {
+        echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
+    } else {
+        header("location: {$_SERVER['PHP_SELF']}");
+    }
+}
 ?>
 
 <div class="container mt-4">
@@ -35,16 +47,16 @@ $isPremimium = $crud->isUserPremium($userid);
                         <h4 class='text-danger text-center'>Votre panier est vide :(</h4>
                         <?php
                         }
-                        foreach($cartItems as $products) {
-                            $idProduct = $products['idproduit'];
-                            $idArticle = $products['idarticle'];
-                            $quantite =  $products['quantite'];
+                        foreach($cartItems as $item) {
+                            $idItem = $item['idproduit'];
+                            $idArticle = $item['idarticle'];
+                            $quantite =  $item['quantite'];
                             if($isPremimium){
-                                $prix =  $products['prix'] * $quantite;
+                                $prix =  $item['prix'] * $quantite;
                                 $rabais= $prix * 0.05;
                                 $prixMembre = $prix-$rabais;
                             }else{
-                                $prix =  $products['prix']* $quantite;
+                                $prix =  $item['prix']* $quantite;
                             }
                             
                         ?>
@@ -53,38 +65,38 @@ $isPremimium = $crud->isUserPremium($userid);
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex flex-row align-items-center">
                                         <div>
-                                            <img src="images/products/<?php echo $products['image']?>"
+                                            <img src="images/products/<?php echo $item['image']?>"
                                                 class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                         </div>
                                         <div class="ms-3">
-                                            <h5><?php echo $products['nom'] ?></h5>
-                                            <p class="small mb-0"><?php echo $products['info'] ?>,
-                                                <?php echo $products['marque'] ?></p>
+                                            <h5><?php echo $item['nom'] ?></h5>
+                                            <p class="small mb-0"><?php echo $item['info'] ?>,
+                                                <?php echo $item['marque'] ?></p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
                                         <div style="width: 50px;">
-                                        <input  type="number" value="<?php echo $quantite?>" onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
-                                  
-
+                                            <input type="number" value="<?php echo $quantite?>"
+                                                onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
                                         </div>
                                         <div style="width: 80px;">
-                                        <?php
-                                        if($isPremimium){?>
-                                               <h5 class="mb-0" id="CartProductPrice<?php echo $idArticle?>"> <del><?php echo $prix ?></del>$ <?php echo $prixMembre ?>$</h5>                                           
+                                            <?php if($isPremimium){?>
+                                            <h5 class="mb-0" id="CartProductPrice<?php echo $idArticle?>">
+                                                <del><?php echo $prix ?></del>$ <?php echo $prixMembre ?>$
+                                            </h5>
 
-                                         <?php
-                                          }else{
-                                        ?>
+                                            <?php } else { ?>
                                             <h5 class="mb-0">$<?php echo $prix ?></h5>
+                                            <?php } ?>
 
-                                         <?php
-                                          }
-                                        ?>
-                                         
                                         </div>
-                                        <a href="#!" style="color: #cecece;"><i
-                                                class="fas fa-trash-alt text-dark"></i></a>
+                                        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
+                                            <input type="hidden" value="<?php echo $idItem?>" id="idproduct"
+                                                name="idproduct">
+                                            <button type="submit" class="btn btn-danger" style="color: #cecece;">
+                                                <i class="fas fa-trash-alt text-light"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
