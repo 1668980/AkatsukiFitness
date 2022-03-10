@@ -19,6 +19,10 @@ $sexe = $userInfo['sexe'];
 $weight = $userInfo['poids'];
 $weight_goal = $userInfo['poids_desire'];
 $avatar = $userInfo['avatar'];
+
+
+$membership_details = $crud->membershipDetail($userid);
+
 ?>
 
 <div class="profile container">

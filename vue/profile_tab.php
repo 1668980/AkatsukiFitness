@@ -38,6 +38,25 @@
 
             </div>
         </div>
+
+        <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Abonnement en cours</h5>
+                <p class="card-text"><?php __('membership_'.$membership_details['membership']) ?></p>
+                <?php 
+                if ($membership_details['membership'] == 'premium') {
+                ?>
+                date du début de l'abonnement: <?php echo $membership_details['startdate'] ?>
+                <br/>
+                date de fin de l'abonnement: <?php echo $membership_details['enddate'] ?>
+                <?php 
+                }
+                ?>
+                </div>
+            </div>
+
+        
+
     </div>
 
     <div class="col-lg-6">

@@ -45,6 +45,9 @@ require_once('includes/header.php');
 
     <form class="needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()'
         action="signup_action.php" method="POST">
+
+
+        <input type="hidden" name="membership_months" value="<?php if (isset($_GET['months'])) { echo $_GET['months']; }  else { echo '0'; } ?>">
         <!-- row 1 -->
         <div class="row">
             <div class="form-group col-md-6 mt-1">
@@ -139,7 +142,7 @@ require_once('includes/header.php');
                                         class="fab fa-cc-amex fa-2x me-2"></i></a>
                                 <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                                <form class="mt-4">
+                                <div class="mt-4">
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
                                             placeholder="Cardholder's Name" />
@@ -172,7 +175,7 @@ require_once('includes/header.php');
                                         </div>
                                     </div>
 
-                                </form>
+                                </div>
 
                                 <hr class="my-4">
 
@@ -207,19 +210,7 @@ require_once('includes/header.php');
     $(".card-selectable").click(function() { 
         $('.card-selectable').removeClass('ccard-selectable-selected');
         $(this).addClass('card-selectable-selected');
-        
-        // var selected_membership = $(this).data('membership');
-        // window.next_step_url = 'signup_step2.php?membership='+selected_membership;
-    });
-
-
-
-    // function nexturl() { 
-    //     window.location.href=next_step_url;
-    // }
-
-    // $("#freecard").click();
-
+            });
 
 
 </script>
