@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Font aweson icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Javascript -->
     <script src="utilitaires/popper.min.js"></script>
     <script src="utilitaires/jquery-3.6.0.min.js"></script>
