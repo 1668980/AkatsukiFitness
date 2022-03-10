@@ -1,8 +1,31 @@
 <?php
+
+$breadcrumb =[
+    ["index.php", "Accueil"],
+    ["shop_index.php", "Boutique"],
+    ["", "Panier"],
+];
 require_once('includes/header.php');
 $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
+$isPremimium = $crud->isUserPremium($userid);
+
+$POURCENTAGE_DE_RABAIS=0.05;
+$POURCENTAGE_DE_TAXES=0.15;
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $idproduct= $_POST['idproduct'];   
+    $idUser = $_SESSION['userid'];
+
+    $result = $crud->deleteArticlePanierByIdProduct($idUser,$idproduct);
+
+    if (!$result) {
+        echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
+    } else {
+        header("location: {$_SERVER['PHP_SELF']}");
+    }
+}
 ?>
 
 <div class="container mt-4">
@@ -32,31 +55,56 @@ $avatar = $userInfo['avatar'];
                         <h4 class='text-danger text-center'>Votre panier est vide :(</h4>
                         <?php
                         }
-                        foreach($cartItems as $products) {
+                        foreach($cartItems as $item) {
+                            $idItem = $item['idproduit'];
+                            $idArticle = $item['idarticle'];
+                            $quantite =  $item['quantite'];
+                            if($isPremimium){
+                                $prix =  $item['prix'] * $quantite;
+                                $rabais= $prix * $POURCENTAGE_DE_RABAIS;
+                                $prixMembre = $prix-$rabais;
+                            }else{
+                                $prix =  $item['prix']* $quantite;
+                            }
+                            
                         ?>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex flex-row align-items-center">
                                         <div>
-                                            <img src="images/products/<?php echo $products['image']?>"
+                                            <img src="images/products/<?php echo $item['image']?>"
                                                 class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                         </div>
                                         <div class="ms-3">
-                                            <h5><?php echo $products['nom'] ?></h5>
-                                            <p class="small mb-0"><?php echo $products['info'] ?>,
-                                                <?php echo $products['marque'] ?></p>
+                                            <h6><?php echo $item['nom'] ?></h6>
+                                            <p class="small mb-0"><?php echo $item['info'] ?>,
+                                                <?php echo $item['marque'] ?></p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
-                                        <div style="width: 50px;">
-                                            <h5 class="fw-normal mb-0"><?php echo $products['quantite'] ?></h5>
-                                        </div>
-                                        <div style="width: 80px;">
-                                            <h5 class="mb-0">$<?php echo $products['prix'] ?></h5>
-                                        </div>
-                                        <a href="#!" style="color: #cecece;"><i
-                                                class="fas fa-trash-alt text-dark"></i></a>
+                                        
+                                            <input class="form-control me-1" style="width: 60px;" type="number" value="<?php echo $quantite?>"
+                                                onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
+                                        
+                                        
+                                            <?php if($isPremimium){?>
+                                            <h5 class="mb-0 me-1" id="CartProductPrice<?php echo $idArticle?>">
+                                                <del><?php echo $prix ?>$</del> <br> <span><?php echo $prixMembre ?></span>$
+                                            </h5>
+
+                                            <?php } else { ?>
+                                            <h5 class="mb-0 me-1">$<?php echo $prix ?></h5>
+                                            <?php } ?>
+
+                                       
+                                        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
+                                            <input type="hidden" value="<?php echo $idItem?>" id="idproduct"
+                                                name="idproduct">
+                                            <button type="submit" class="btn" style="color: #cecece;">
+                                                <i class="fas fa-trash-alt text-dark"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -121,18 +169,60 @@ $avatar = $userInfo['avatar'];
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Subtotal</p>
-                                    <p class="mb-2">$4798.00</p>
+                                    <p class="mb-2">Sous-Total</p>
+                                    <p class="mb-2">
+                                        
+                                    <?php 
+                                    if($isPremimium){
+                                        $POURCENTAGE_DE_RABAIS=0.05;
+                                        $POURCENTAGE_DE_TAXES=0.15;
+                                        $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
+                                        $rabaisTotal= $sousTotal * $POURCENTAGE_DE_RABAIS;                                        
+                                        $prixTotal = $sousTotal- $sousTotal*($POURCENTAGE_DE_RABAIS);
+
+
+                                       $prixTotal +=    $prixTotal*($POURCENTAGE_DE_TAXES);
+                                       
+
+
+
+
+                                        echo $sousTotal."$";
+                                        }    
+                                    ?>
+                                        </p>
                                 </div>
 
+                                <div class="d-flex justify-content-between ">
+                                    <p class="mb-2">rabais</p>
+                                        
+                                    <p class="mb-2">
+                                        <?php 
+                                         if($isPremimium){
+                                             echo $rabaisTotal."$";
+                                         }else{
+                                             echo "0$";
+                                         }
+                                        ?>
+
+                                    </p>
+
+                                    </div>
+
+
+
+                                
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Shipping</p>
-                                    <p class="mb-2">$20.00</p>
+                                    <p class="mb-2">$0.00</p>
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
-                                    <p class="mb-2">$4818.00</p>
+                                    <p class="mb-2"><?php 
+                                         echo $prixTotal
+                                        ?>
+                                    </p>
                                 </div>
 
                                 <button id="btn-checkout" type="button" class="btn btn-warning btn-lg bg-gradient">

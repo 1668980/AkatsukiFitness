@@ -1,16 +1,25 @@
 
 
 $(() => {
-    $(".formRemoveProductClass").hide();
+  //  $(".formRemoveProductClass").hide();
     // navbar
     $('#btnTrain').on('click', () => {
         let href = this.href
         !href ? $('#loginModalLabel').text('Connexion requise!') : null
         $('#loginModalLabel').addClass('text-danger')
-        setTimeout(() => {
-            $('#loginModalLabel').removeClass('text-danger')
-        },1000)
+        // setTimeout(() => {
+        //     $('#loginModalLabel').removeClass('text-danger')
+        // },1000)
 
+    })
+
+    $('#btnAddCart').on('click', () => {
+        // let href = this.href
+        $('#loginModalLabel').text('Connexion requise!')
+        $('#loginModalLabel').addClass('text-danger')
+        // setTimeout(() => {
+        //     $('#loginModalLabel').removeClass('text-danger')
+        // },1000)
     })
 
     $('#btnNavLogin').on('click', () => {
@@ -36,7 +45,7 @@ $(() => {
     });
     
  });
-// sign up functions
+// sign up functions 
 addProductForm = (e,info) => { 
     let idProduct = info.value;
     let quantite = 1;
@@ -50,11 +59,31 @@ addProductForm = (e,info) => {
         success: function (obj, textstatus) {
             addProductSucess(obj,idProduct);
                 }, error: function(){
+                    alert('Connectez vs pour ajouter au panier');
+                  }
+    });
+        return true;
+}
+test = (idArticle,quantite)=>{
+    alert(quantite);
+}
+updateQuantityCartForm = (idArticle,quantite)=>{ 
+  
+    jQuery.ajax({
+        type: "POST",
+        url: 'update_quantity_of_product_in_cart.php',
+        dataType: 'json',
+        data: {arguments: [idArticle,quantite]},
+    
+        success: function (obj, textstatus) {
+            updateProductQuantitySucess(obj,idArticle);
+                }, error: function(){
                     alert('failure');
                   }
     });
         return true;
 }
+
 removeProductForm = (e,info) => { 
     let idProduct = info.value;
   
@@ -73,16 +102,27 @@ removeProductForm = (e,info) => {
     });
         return true;
 }
+updateProductQuantitySucess = (obj, idArticle) => {
+    // add difference entre premimium et gratuit
+    let prix = obj["prix"];
+    let quantite = obj["quantite"];
+    let prixTotal = prix * quantite;
+    let rabais = prixTotal * 0.05;
+    let prixTotalMembre = prixTotal - rabais;
+    
 
+    $("#CartProductPrice"+idArticle).html("<del>"+prixTotal+"</del>$ "+prixTotalMembre+"$");
+  
+}
 addProductSucess = (val, idProduct) => {
    
-    $("#cartCount").replaceWith(val);
+    $("#cartCount").html(val);
     $("#formAddProduct"+idProduct).hide();
     $("#formRemoveProduct"+idProduct).show();
 }
 removeProductSucess = (val, idProduct) => {
 
-    $("#cartCount").replaceWith(val);
+    $("#cartCount").html(val);
     $("#formAddProduct"+idProduct).show();
     $("#formRemoveProduct"+idProduct).hide();
 }

@@ -129,8 +129,7 @@ require_once('includes/header.php');
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h5 class="mb-0">Méthode de paiment</h5>
-                                    <img src="images/avatars/<?php echo $avatar?>.png" class="img-fluid rounded-3"
-                                        style="width: 45px;" alt="Avatar">
+                                
                                 </div>
 
                                 <!-- <p class="small mb-2">Nous acceptons</p> -->

@@ -309,10 +309,17 @@ class Crud
 
     //Create
     public function createNewEntrainement($entrainement){
+       if($this->isUserPremium($entrainement->idUser) ||count( $this->getEntrainementsByIdUser($entrainement->idUser)) <3  ){
+      
+       
        $idEntrainement= $this->createEntrainement($entrainement);
        $idContenu = $this->getContenuId($entrainement->idUser);
        $this->linkEntrainementContenu($idContenu,$idEntrainement);
        return $idEntrainement;   
+       }else
+       return false;
+
+
     }
 
     private function createEntrainement($entrainement){
@@ -1013,6 +1020,21 @@ class Crud
         return false;
         }
     }
+    public function getArticleByID($idArticle){
+        try{
+            $sql = "SELECT * FROM `panier` INNER JOIN `articlepanier` ON `panier`.`idarticle`  = `articlepanier`.`idarticle`  INNER JOIN `produits` ON `produits`.`idproduit`  = `articlepanier`.`idproduit`  WHERE `panier`.`idarticle` = '$idArticle' ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return  $result;
+        }catch  (PDOException $e) {
+            echo $e->getMessage();
+        return false;
+        }
+    }
+
+
+
     public function getNombreOfProductInPanierByidUser($idUser){
         try{
             $sql = "SELECT * FROM `panier`  WHERE `panier`.`iduser` = '$idUser' ";
@@ -1100,6 +1122,14 @@ class Crud
         }
      
 
+    }
+    public function getTotalPrixPanier($idUser){
+        $listArticle = $this->getPanierByidUser($idUser);
+        $total = 0;
+        foreach($listArticle as $art){
+           $total+= $art['prix']*$art['quantite'];
+        }
+        return  $total;
     }
     //Link
 
