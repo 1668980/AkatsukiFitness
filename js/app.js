@@ -76,13 +76,13 @@ removeProductForm = (e,info) => {
 
 addProductSucess = (val, idProduct) => {
    
-    $("#cartCount").text(val);
-    // $("#formAddProduct"+idProduct).hide();
-    // $("#formRemoveProduct"+idProduct).show();
+    $("#cartCount").replaceWith(val);
+    $("#formAddProduct"+idProduct).hide();
+    $("#formRemoveProduct"+idProduct).show();
 }
 removeProductSucess = (val, idProduct) => {
 
-    $("#cartCount").innerText(val);
+    $("#cartCount").replaceWith(val);
     $("#formAddProduct"+idProduct).show();
     $("#formRemoveProduct"+idProduct).hide();
 }

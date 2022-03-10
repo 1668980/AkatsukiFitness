@@ -32,37 +32,31 @@ $avatar = $userInfo['avatar'];
                         <h4 class='text-danger text-center'>Votre panier est vide :(</h4>
                         <?php
                         }
-                        foreach($cartItems as $items) {
-                            $idItem = $items['idproduit'];
+                        foreach($cartItems as $products) {
                         ?>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex flex-row align-items-center">
                                         <div>
-                                            <!-- <p>product id : <?php echo $idItem ?> </p> -->
-                                            <img src="images/products/<?php echo $items['image']?>"
+                                            <img src="images/products/<?php echo $products['image']?>"
                                                 class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                         </div>
                                         <div class="ms-3">
-                                            <h5><?php echo $items['nom'] ?></h5>
-                                            <p class="small mb-0"><?php echo $items['info'] ?>,
-                                                <?php echo $items['marque'] ?></p>
+                                            <h5><?php echo $products['nom'] ?></h5>
+                                            <p class="small mb-0"><?php echo $products['info'] ?>,
+                                                <?php echo $products['marque'] ?></p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
                                         <div style="width: 50px;">
-                                            <h5 class="fw-normal mb-0"><?php echo $items['quantite'] ?></h5>
+                                            <h5 class="fw-normal mb-0"><?php echo $products['quantite'] ?></h5>
                                         </div>
                                         <div style="width: 80px;">
-                                            <h5 class="mb-0">$<?php echo $items['prix'] ?></h5>
+                                            <h5 class="mb-0">$<?php echo $products['prix'] ?></h5>
                                         </div>
-                                        <form action="remove_product_to_cart.php" method="post">
-                                            <input type="hidden" value="<?php echo $idItem?>" id="idproduct" name="idproduct">
-                                            <button type="submit" class="btn btn-danger" style="color: #cecece;">
-                                                <i class="fas fa-trash-alt text-light"></i>
-                                            </button>
-                                        </form>
+                                        <a href="#!" style="color: #cecece;"><i
+                                                class="fas fa-trash-alt text-dark"></i></a>
                                     </div>
                                 </div>
                             </div>
