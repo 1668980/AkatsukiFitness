@@ -13,6 +13,13 @@
         'index_carrousel_btn_2' => 'Découvrez nos plans',
         'index_carrousel_btn_3' => 'Visitez le magasin',
         'index_btn' => 'Inscrivez-vous',
+
+        'membership_premium' => 'Premium',
+        'membership_free' => 'Gratuit',
+
+        'membership_price_1' =>'6.99',
+        'membership_price_3' =>'17.99',
+        'membership_price_6' =>'34.99',
         
         //profile_tab.php
         'profile_tab_title' => 'Mon profil',
@@ -74,5 +81,15 @@
             echo $key;
         }
      }
+
+
+     public static function __val($key) { 
+        if (isset(self::$lang[$key])) { 
+            return self::$lang[$key];
+        } else { 
+            return $key;
+        }
+     }
+
 }
 
