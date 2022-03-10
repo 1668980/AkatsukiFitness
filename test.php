@@ -180,9 +180,12 @@ $idQantite=1;
 // $result =$crud->getPanierByidUser($idUser);
 // var_dump($result);
 
-
+/*
   $result =$crud->deleteArticlePanierByIdProduct($idUser, 2);
- var_dump($result);
+ var_dump($result);*/
+
+ $result =$crud->getArticleByID(30);
+var_dump($result['prix']);
 
 ?>
 </div>

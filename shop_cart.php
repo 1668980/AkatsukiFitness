@@ -3,6 +3,9 @@ require_once('includes/header.php');
 $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
+$isPremimium = $crud->isUserPremium($userid);
+
+
 ?>
 
 <div class="container mt-4">
@@ -33,6 +36,17 @@ $avatar = $userInfo['avatar'];
                         <?php
                         }
                         foreach($cartItems as $products) {
+                            $idProduct = $products['idproduit'];
+                            $idArticle = $products['idarticle'];
+                            $quantite =  $products['quantite'];
+                            if($isPremimium){
+                                $prix =  $products['prix'] * $quantite;
+                                $rabais= $prix * 0.05;
+                                $prixMembre = $prix-$rabais;
+                            }else{
+                                $prix =  $products['prix']* $quantite;
+                            }
+                            
                         ?>
                         <div class="card mb-3">
                             <div class="card-body">
@@ -50,10 +64,24 @@ $avatar = $userInfo['avatar'];
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
                                         <div style="width: 50px;">
-                                            <h5 class="fw-normal mb-0"><?php echo $products['quantite'] ?></h5>
+                                        <input  type="number" value="<?php echo $quantite?>" onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
+                                  
+
                                         </div>
                                         <div style="width: 80px;">
-                                            <h5 class="mb-0">$<?php echo $products['prix'] ?></h5>
+                                        <?php
+                                        if($isPremimium){?>
+                                               <h5 class="mb-0" id="CartProductPrice<?php echo $idArticle?>"> <del><?php echo $prix ?></del>$ <?php echo $prixMembre ?>$</h5>                                           
+
+                                         <?php
+                                          }else{
+                                        ?>
+                                            <h5 class="mb-0">$<?php echo $prix ?></h5>
+
+                                         <?php
+                                          }
+                                        ?>
+                                         
                                         </div>
                                         <a href="#!" style="color: #cecece;"><i
                                                 class="fas fa-trash-alt text-dark"></i></a>
