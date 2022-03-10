@@ -4,7 +4,8 @@ $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
 ?>
-<div class="container">
+
+<div class="container mt-4">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="card">
             <div class="card-body">

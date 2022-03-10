@@ -32,7 +32,7 @@
                     <!-- <form action="shop_cart.php"> -->
                     <a class="btn btn-outline-light bg-gradient me-1" href='shop_cart.php'>
                         <i class="bi-cart-fill me-1"></i>
-                        Cart
+                        Panier
                         <?php 
                         $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
                         ?>
