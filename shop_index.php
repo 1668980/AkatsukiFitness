@@ -22,27 +22,31 @@ if(isset($_GET['idcat'])){
 ?>
 <!-- product container -->
 
-<a id="search-result"></a>
+<!-- <a id="search-result"></a> -->
 <div id="containerShop" class="container">
-    <form action="shop_index.php#search-result">
-        <div class="searchFilter mb-3">
-            <div class="searchBox">
-                <input class="searchInput" type="text" name="title" placeholder="Search">
-                <button class="searchButton" type="submit">
-                    <span class="bi-search"></span>
-                </button>
+    <div id="filter-boutique">
+        <form action="shop_index.php#search-result" class="filter-boutique">
+            <div class="searchFilter mb-3">
+                <div class="searchBox">
+                    <input class="searchInput" type="text" name="title" placeholder="Search">
+                    <button class="searchButton" type="submit">
+                        <span class="bi-search"></span>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <div class="filterContainer">
-        <?php foreach($categorieProduitList as $cat) {?>
-        <a class="btn btn-danger"
-            href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?></a>
-        <?php }?>
+        <div class="filterContainer">
+            <?php foreach($categorieProduitList as $cat) {?>
+            <a class="btn btn-danger"
+                href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?>
+            </a>
+            <?php }?>
+            
+        </div>
     </div>
 
-<!-- les resultats -->
+    <!-- les resultats -->
     <section class="py-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->

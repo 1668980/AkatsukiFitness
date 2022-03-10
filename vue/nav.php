@@ -1,7 +1,7 @@
     <!-- pour des la couleur du text blanche : navbar-dark / noir : navbar-light -->
     <nav id="myNav" class="navbar navbar-expand-lg navbar-dark bg-danger bg-gradient">
         <div class="container-fluid">
-            <a class="logo navbar-brand" href="index.php"><i class="bi bi-check2-circle"> </i>Akatsuki Fitness</a>
+            <a class="logo navbar-brand" href="<?php if(!isset($_SESSION['userid'])) { ?>index.php<?php } else { ?>#<?php } ?>"><i class="bi bi-check2-circle"> </i>Akatsuki Fitness</a>
             <button id="toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -9,7 +9,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav me-auto">
+                <?php if(!isset($_SESSION['userid'])) { ?>
                     <a id="btnHome" href="index.php" class="nav-item nav-link">Accueil</a>
+                    <?php } ?>
                     <a id="btnTrain" <?php if(!isset($_SESSION['userid'])) { ?> data-bs-toggle="modal"
                         data-bs-target="#loginModal" <?php } else {?> href="workouts.php" <?php } ?>
                         class="nav-item nav-link">Entraînements
