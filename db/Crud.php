@@ -1069,6 +1069,16 @@ class Crud
             return false;
         }
     }
+    public function deleteArticlePanierByIdProduct($idUser,$idProduct){
+        $listArticle = $this->getPanierByidUser($idUser);
+        foreach($listArticle as $art){
+            if($art["idproduit"] == $idProduct) {
+                return $this->deleteArticlePanierByIdArticle($art['idarticle']);
+            }
+        }
+     
+
+    }
     //Link
 
 

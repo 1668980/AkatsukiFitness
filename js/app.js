@@ -1,4 +1,7 @@
+
+
 $(() => {
+    $(".formRemoveProductClass").hide();
     // navbar
     $('#btnTrain').on('click', () => {
         let href = this.href
@@ -34,7 +37,7 @@ $(() => {
     
  });
 // sign up functions
-test = (e,info) => { 
+addProductForm = (e,info) => { 
     let idProduct = info.value;
     let quantite = 1;
     e.preventDefault()
@@ -50,19 +53,39 @@ test = (e,info) => {
                     alert('failure');
                   }
     });
-
-
-
-
-    return true;
+        return true;
+}
+removeProductForm = (e,info) => { 
+    let idProduct = info.value;
+  
+    e.preventDefault()
+    jQuery.ajax({
+        type: "POST",
+        url: 'remove_product_to_cart.php',
+        dataType: 'json',
+        data: {arguments: idProduct},
+    
+        success: function (obj, textstatus) {           
+            removeProductSucess(obj,idProduct);
+                }, error: function(){
+                    alert('failure');
+                  }
+    });
+        return true;
 }
 
 addProductSucess = (val, idProduct) => {
-    let btn =`<button type="submit" class="btn   btn-outline-dark btn-light">Retirer Du panier</button>`;
+   
     $("#cartCount").replaceWith(val);
-    $("#productBtn"+idProduct).replaceWith(btn);
+    $("#formAddProduct"+idProduct).hide();
+    $("#formRemoveProduct"+idProduct).show();
 }
+removeProductSucess = (val, idProduct) => {
 
+    $("#cartCount").replaceWith(val);
+    $("#formAddProduct"+idProduct).show();
+    $("#formRemoveProduct"+idProduct).hide();
+}
 
 validatePassword1 = () => {
     let passwd = $('#passInsc').val();

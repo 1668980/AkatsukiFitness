@@ -181,8 +181,8 @@ $idQantite=1;
 // var_dump($result);
 
 
-//  $result =$crud->isArticleInPanierOfTheUser($idUser, 3);
-//  var_dump($result[1]);
+  $result =$crud->deleteArticlePanierByIdProduct($idUser, 2);
+ var_dump($result);
 
 ?>
 </div>

@@ -67,9 +67,6 @@ if(isset($_GET['idcat'])){
                 <!-- <form action="add_product_to_cart.php" class="form-inline my-2 my-lg-0" method="POST"> -->
 
 
-                <form action="" class="form-inline my-2 my-lg-0" onsubmit='return test(event, this.productid)'>
-
-                <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
                     <div class="card h-100 card-product">
                         <!-- Product image-->
                         <img class="card-img-top" src="images/products/<?php echo $products['image']?>" alt="..." />
@@ -87,12 +84,23 @@ if(isset($_GET['idcat'])){
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                            <button type="submit" class="btn   btn-outline-dark btn-light" id="productBtn<?php echo $idProduct ?>">Ajouter au panier</button>
-                               
+                                
+                                 <form action="" class="form-inline my-2 my-lg-0" id="formAddProduct<?php echo $idProduct ?>" onsubmit='return addProductForm(event, this.productid)'>
+                                    <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
+                                    <button type="submit" class="btn   btn-outline-dark btn-light" >Ajouter au panier</button>
+                                 </form>
+
+                                 <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
+                                    <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
+                                    <button type="submit" class="btn   btn-outline-dark btn-light" >Retirer du panier</button>
+                                 </form>
+
                             </div>
+
+
                         </div>
                     </div>
-                </form>
+               
             </div>
 
 
