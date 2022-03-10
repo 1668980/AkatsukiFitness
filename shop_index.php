@@ -85,7 +85,7 @@ if(isset($_GET['idcat'])){
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
                                 
-                                 <form action="" class="form-inline my-2 my-lg-0" id="formAddProduct<?php echo $idProduct ?>" onsubmit='return addQuantityCartForm(event, this.productid)'>
+                                 <form action="" class="form-inline my-2 my-lg-0" id="formAddProduct<?php echo $idProduct ?>" onsubmit='return addProductForm(event, this.productid)'>
                                     <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
                                     <button type="submit" class="btn   btn-outline-dark btn-light" >Ajouter au panier</button>
                                  </form>
