@@ -35,6 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
         } else {
             $crud->clearPanier($idUser);
+            header("location: shop_cart.php?ordered=true");
+            echo '<script> checkout() </script>';
+        }
+    } else if (isset($_GET['ordered'])) {
+        $ordered = $_GET['ordered'];
+        if (!$ordered) {
+            echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
         }
     }
 }
