@@ -29,7 +29,14 @@
                                         }               
                                         
                                     ?></li>
-                                <li><?php __('profile_tab_label_6'); ?> <?php echo $weight ?></li>
+                                <li><?php __('profile_tab_label_6'); ?> 
+                                <?php 
+                                if($weight){
+                                    echo $weight;
+                                } else {
+                                    ?>
+                                    <a href="profile_edit.php" class="card-link"><?php __('profile_tab_link_edit'); ?></a>
+                                <?php }  ?></li>
                             </ul>
                         </p>
                         <div class="align-right"> <a href="profile_edit.php" class="card-link"><?php __('profile_tab_link_edit'); ?></a></div>
@@ -46,9 +53,9 @@
                 <?php 
                 if ($membership_details['membership'] == 'premium') {
                 ?>
-                date du début de l'abonnement: <?php echo $membership_details['startdate'] ?>
+                Date du début de l'abonnement: <?php echo $membership_details['startdate'] ?>
                 <br/>
-                date de fin de l'abonnement: <?php echo $membership_details['enddate'] ?>
+                Date de fin de l'abonnement: <?php echo $membership_details['enddate'] ?>
                 <?php 
                 }
                 ?>
@@ -89,9 +96,16 @@
             <p class="card-text">
             <ul>
 
+
+
                 <?php 
                     $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
-                        foreach ($listeEntrainement as $training) {
+
+                        $reversed = array_reverse($listeEntrainement);
+                
+                        $x = array_splice($reversed, 0 , 3);
+                        
+                        foreach ($x as $training) {
                             echo '<li>'.$training['nom'].'</li>';
                         }
                     ?>
@@ -100,7 +114,7 @@
 
             </p>
 
-            <div class="align-right"> <a href="workouts.php" class="card-link"><?php __('profile_tab_link_completed'); ?></a></div>
+            <div class="align-right"> <a href="workouts.php#completed" class="card-link"><?php __('profile_tab_link_completed'); ?></a></div>
         </div>
     </div></div>
 </div>
