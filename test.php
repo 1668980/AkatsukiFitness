@@ -184,7 +184,7 @@ $idQantite=1;
   $result =$crud->deleteArticlePanierByIdProduct($idUser, 2);
  var_dump($result);*/
 
- $result =$crud->getTotalPrixPanier($idUser);
+ $result =$crud->clearPanier($idUser);
 var_dump($result);
 
 ?>

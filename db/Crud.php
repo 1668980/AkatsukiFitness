@@ -1133,11 +1133,10 @@ class Crud
     }
     public function clearPanier($idUser){
         $listArticle = $this->getPanierByidUser($idUser);
-        foreach($listArticle as $art){
-            
-                return $this->deleteArticlePanierByIdArticle($art['idarticle']);
-            
+        foreach($listArticle as $art){            
+             $this->deleteArticlePanierByIdArticle($art['idarticle']);            
         }
+        return true;    
     }
     //Link
 
