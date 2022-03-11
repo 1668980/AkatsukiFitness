@@ -4,7 +4,7 @@
 @import url(style-blog.css);
 @import url(style-search.css);
 @import url(style-social.css);
-
+@import url(style-signup.css);
 
 a {
     color: #dc3545;
@@ -113,9 +113,6 @@ h4.title {
 p.text {
     color: #FFFFFF;
 }
-
-
-
 
 .carousel-indicators .active {
     background-color: #dc3545;
@@ -277,6 +274,7 @@ footer{
 
 .container-our-plans ul{
     list-style: square;
+    padding-left: 15px;
 }
 
 .container-our-plans .card{

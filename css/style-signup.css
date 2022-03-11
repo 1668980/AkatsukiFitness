@@ -1,0 +1,41 @@
+.container-signup h1{
+    color:#dc3545;
+}
+
+.container-signup .card-title{
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+    padding: 2px 0px;
+
+}
+.container-signup .btn{
+    width: 100%;
+}
+
+.container-signup ul{
+    list-style: square;
+    padding-left: 15px;
+}
+
+#step1b{
+    margin-top: 20px;
+}
+
+#step1b h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#step1b .premium-plans{
+    padding: 10px;
+
+}
+#step1b .card-selectable{
+    min-height: 60px;
+    padding: 20px;
+    text-align: center;
+}
+#step1b .card-selectable .title{
+   
+}
+
