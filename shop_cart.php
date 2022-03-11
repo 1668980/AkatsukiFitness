@@ -1,30 +1,41 @@
 <?php
 
-$breadcrumb =[
+$breadcrumb = [
     ["index.php", "Accueil"],
     ["shop_index.php", "Boutique"],
     ["", "Panier"],
 ];
-require_once('includes/header.php');
-require_once('includes/auth_check.php');
+require_once 'includes/header.php';
+require_once 'includes/auth_check.php';
+$idUser = $_SESSION['userid'];
 $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
 $isPremimium = $crud->isUserPremium($userid);
 
-$POURCENTAGE_DE_RABAIS=0.05;
-$POURCENTAGE_DE_TAXES=0.15;
+$POURCENTAGE_DE_RABAIS = 0.05;
+$POURCENTAGE_DE_TAXES = 0.15;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $idproduct= $_POST['idproduct'];   
-    $idUser = $_SESSION['userid'];
-
-    $result = $crud->deleteArticlePanierByIdProduct($idUser,$idproduct);
+    $idproduct = $_POST['idproduct'];
+    $result = $crud->deleteArticlePanierByIdProduct($idUser, $idproduct);
 
     if (!$result) {
         echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
     } else {
         header("location: {$_SERVER['PHP_SELF']}");
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['checkout'])) {
+        $checkout = $_GET['checkout'];
+
+        if (!$checkout) {
+            echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
+        } else {
+            $crud->clearPanier($idUser);
+        }
     }
 }
 ?>
@@ -45,36 +56,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div>
                                 <h5 class="mb-1">Votre panier</h5>
                                 <!-- php -->
-                                <?php if(count($cartItems) != 0) {?>
+                                <?php if (count($cartItems) != 0) {?>
                                 <p class="mb-0">Vous avez <?php echo count($cartItems); ?> article(s) dans votre panier
                                 </p>
                                 <?php }?>
                             </div>
                         </div>
-                        <?php 
-                        if(count($cartItems) === 0) {?>
+                        <?php
+if (count($cartItems) === 0) {?>
                         <h4 class='text-danger text-center'>Votre panier est vide :(</h4>
                         <?php
-                        }
-                        foreach($cartItems as $item) {
-                            $idItem = $item['idproduit'];
-                            $idArticle = $item['idarticle'];
-                            $quantite =  $item['quantite'];
-                            if($isPremimium){
-                                $prix =  $item['prix'] * $quantite;
-                                $rabais= $prix * $POURCENTAGE_DE_RABAIS;
-                                $prixMembre = $prix-$rabais;
-                            }else{
-                                $prix =  $item['prix']* $quantite;
-                            }
-                            
-                        ?>
+}
+foreach ($cartItems as $item) {
+    $idItem = $item['idproduit'];
+    $idArticle = $item['idarticle'];
+    $quantite = $item['quantite'];
+    if ($isPremimium) {
+        $prix = $item['prix'] * $quantite;
+        $rabais = $prix * $POURCENTAGE_DE_RABAIS;
+        $prixMembre = $prix - $rabais;
+    } else {
+        $prix = $item['prix'] * $quantite;
+    }
+
+    ?>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex flex-row align-items-center">
                                         <div>
-                                            <img src="images/products/<?php echo $item['image']?>"
+                                            <img src="images/products/<?php echo $item['image'] ?>"
                                                 class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                         </div>
                                         <div class="ms-3">
@@ -86,22 +97,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="d-flex flex-row align-items-center">
 
                                         <input class="form-control me-1" style="width: 60px;" type="number"
-                                            value="<?php echo $quantite?>"
-                                            onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
+                                            value="<?php echo $quantite ?>"
+                                            onchange="updateQuantityCartForm(<?php echo $idArticle ?>, this.value)">
 
 
-                                        <?php if($isPremimium){?>
-                                        <h5 class="mb-0 me-1" id="CartProductPrice<?php echo $idArticle?>">
+                                        <?php if ($isPremimium) {?>
+                                        <h5 class="mb-0 me-1" id="CartProductPrice<?php echo $idArticle ?>">
                                             <del><?php echo $prix ?>$</del> <br> <span><?php echo $prixMembre ?></span>$
                                         </h5>
 
-                                        <?php } else { ?>
+                                        <?php } else {?>
                                         <h5 class="mb-0 me-1">$<?php echo $prix ?></h5>
-                                        <?php } ?>
+                                        <?php }?>
 
 
                                         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
-                                            <input type="hidden" value="<?php echo $idItem?>" id="idproduct"
+                                            <input type="hidden" value="<?php echo $idItem ?>" id="idproduct"
                                                 name="idproduct">
                                             <button type="submit" class="btn" style="color: #cecece;">
                                                 <i class="fas fa-trash-alt text-dark"></i>
@@ -111,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <?php }?>
 
                     </div>
                     <div class="col-lg-5">
@@ -120,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h5 class="mb-0">Méthode de paiment</h5>
-                                    <img src="images/avatars/<?php echo $avatar?>.png" class="img-fluid rounded-3"
+                                    <img src="images/avatars/<?php echo $avatar ?>.png" class="img-fluid rounded-3"
                                         style="width: 45px;" alt="Avatar">
                                 </div>
 
@@ -170,49 +181,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                 <hr class="my-4">
 
+                                <div class="d-flex justify-content-between ">
+                                    <p class="mb-2">Rabais</p>
+                                    <p class="mb-2">
+                                        <?php
+$sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
+$prixTotal = $sousTotal;
+if ($isPremimium) {
+    $rabaisTotal = $sousTotal * $POURCENTAGE_DE_RABAIS;
+    $prixTotal = $sousTotal - $sousTotal * ($POURCENTAGE_DE_RABAIS);
+    $prixTotal += $prixTotal * ($POURCENTAGE_DE_TAXES);
+
+} else {
+    $prixTotal += $sousTotal * ($POURCENTAGE_DE_TAXES);
+
+}
+
+if ($isPremimium) {
+    echo $rabaisTotal . "$";
+} else {
+    echo "0$";
+}
+?>
+                                    </p>
+                                </div>
+
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Sous-Total</p>
                                     <p class="mb-2">
 
-                                        <?php 
-                                    if($isPremimium){
-                                        $POURCENTAGE_DE_RABAIS=0.05;
-                                        $POURCENTAGE_DE_TAXES=0.15;
-                                        $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
-                                        $rabaisTotal= $sousTotal * $POURCENTAGE_DE_RABAIS;                                        
-                                        $prixTotal = $sousTotal- $sousTotal*($POURCENTAGE_DE_RABAIS);
+                                        <?php
+echo $prixTotal . "$";
 
-
-                                       $prixTotal +=    $prixTotal*($POURCENTAGE_DE_TAXES);
-                                       
-
-
-
-
-                                        echo $sousTotal."$";
-                                        }    
-                                    ?>
+?>
                                     </p>
                                 </div>
-
-                                <div class="d-flex justify-content-between ">
-                                    <p class="mb-2">Rabais</p>
-
-                                    <p class="mb-2">
-                                        <?php 
-                                         if($isPremimium){
-                                             echo $rabaisTotal."$";
-                                         }else{
-                                             echo "0$";
-                                         }
-                                        ?>
-
-                                    </p>
-
-                                </div>
-
-
-
 
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Livraison</p>
@@ -221,17 +224,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
-                                    <p class="mb-2"><?php 
-                                         echo printf("$%01.1f", $prixTotal)
-                                        ?>$
+                                    <p class="mb-2"><?php
+echo printf("$%01.1f", $prixTotal)
+?>$
                                     </p>
                                 </div>
                                 <!-- if(count($cartItems) === 0) {?> -->
-                                <button  <?php echo count($cartItems) != 0 ?'id="btn-checkout"' : null ?> type="button" class="btn btn-warning btn-lg bg-gradient">
+                                <a <?php echo count($cartItems) != 0 ? 'id="btn-checkout" href="shop_cart.php?checkout=true" ' : 'href="#"' ?>
+                                    type="button" class="btn btn-warning btn-lg bg-gradient">
                                     <span class="ms-2">Passer la commande<i
                                             class="fas fa-long-arrow-alt-right ms-2"></i></span>
 
-                                </button>
+                                </a>
 
                             </div>
                         </div>
@@ -258,16 +262,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </h5>
                         <hr>
                         <h2 class="text-center pt-5 pb-4 text-success">Merci pour votre achat!</h2>
-                        <?php 
-                            foreach($cartItems as $item) { 
-                                $prix =  $item['prix'] * $item['quantite'];
-                                $rabais= $prix * $POURCENTAGE_DE_RABAIS;
-                                $prixMembre = $prix-$rabais;
-                        ?>
+                        <?php
+foreach ($cartItems as $item) {
+    $prix = $item['prix'] * $item['quantite'];
+    $rabais = $prix * $POURCENTAGE_DE_RABAIS;
+    $prixMembre = $prix - $rabais;
+    ?>
                         <p class="text-center"><?php echo $item['nom'] ?> (<?php echo $item['marque'] ?>) -
-                            <?php echo printf("$%01.1f", $prixMembre) ?>$ (x<?php echo $item['quantite']?>)</p>
-                        <?php } ?>
-                        <p class="text-center pb-5"> Total : <?php  echo printf("$%01.1f", $prixTotal);?>$ (avec taxes) </p>
+                            <?php echo printf("$%01.1f", $prixMembre) ?>$ (x<?php echo $item['quantite'] ?>)</p>
+                        <?php }?>
+                        <p class="text-center pb-5"> Total : <?php echo printf("$%01.1f", $prixTotal); ?>$ (avec taxes)
+                        </p>
 
                     </div>
                 </div>
@@ -278,5 +283,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 <?php
-require_once('includes/footer.php');
+require_once 'includes/footer.php';
 ?>

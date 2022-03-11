@@ -12,7 +12,7 @@ require_once('includes/header.php');
 function getBlogCard($id, $title, $categorie, $description, $lienImage, $imageProfile, $nomProfile, $datePosted, $color) {
   return '<div class="blogcard" onclick="location.href=\'blog_article.php?idblog='.$id.'\';" style="cursor: pointer;">
             <div class="blogcard-header">
-              <img src="'.$lienImage.'" alt="'.utf8_encode($title).'" />
+              <img src="'. $lienImage.'" alt="'.utf8_encode($title).'" />
             </div>
             <div class="blogcard-body">
               <span class="blogtag" style="background-color:'.$color.';">'.utf8_encode($categorie).'</span>
@@ -47,7 +47,7 @@ function getBlogCard($id, $title, $categorie, $description, $lienImage, $imagePr
 <?php
     $categories = $crud->getAllCategoriesBlog();
     $rep = '';
-    $rep .= '<a class="btn btn-danger btn-cat-blog me-2 mb-2" href="blog.php">All</a>';   
+    // $rep .= '<a class="btn btn-danger btn-cat-blog me-2 mb-2" href="blog.php">All</a>';   
     foreach($categories as $categorie) {
       $id = $categorie['idcategorie'];
       $nom = $categorie['nom'];

@@ -5,6 +5,7 @@
 @import url(style-search.css);
 @import url(style-social.css);
 @import url(style-signup.css);
+@import url(style-membership.css);
 
 a {
     color: #dc3545;
@@ -22,6 +23,7 @@ ul {
     padding: 0;
     margin: 0;
 }
+
 
 .card-hover:hover {
     box-shadow: 2px 3px 3px black;
@@ -283,9 +285,6 @@ footer{
     color: #22252A;
 }
 
-.container-our-plans .card-premium{
-   
-}
 .container-our-plans .card-premium button{
     background-color: #dc3545;
     border-color: #dc3545;
@@ -304,6 +303,7 @@ footer{
 .container-our-plans button{
     margin-top: 10px;
 }
+
 
 
 .btn-cat-shop {

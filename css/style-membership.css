@@ -1,0 +1,30 @@
+.membership-intro{
+    text-align: center;
+    max-width: 100%;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+.membership-intro h1 {
+    color: #dc3545;
+}
+.membership-container{
+    text-align: center;
+    padding: 70px;
+    max-width: 100%;
+    color: #ffffff;
+    background-color: #800f1a;
+}
+
+.membership-container .card-title{
+    text-align: center;
+    color: #dc3545;
+    border-bottom: 1px solid #dc3545;
+    padding: 2px 0px;
+}
+
+.membership-container .card{
+    background-color: #ffffff;
+    padding:40px;
+    color: #22252A;
+}

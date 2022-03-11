@@ -1131,6 +1131,14 @@ class Crud
         }
         return  $total;
     }
+    public function clearPanier($idUser){
+        $listArticle = $this->getPanierByidUser($idUser);
+        foreach($listArticle as $art){
+            
+                return $this->deleteArticlePanierByIdArticle($art['idarticle']);
+            
+        }
+    }
     //Link
 
 
