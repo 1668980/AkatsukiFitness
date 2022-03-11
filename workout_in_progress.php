@@ -19,6 +19,11 @@ require_once('includes/auth_check.php')
 
 $idEntrainementChoisi = $_GET['id_training'];
 $entrainement = $crud->getEntrainementByIdEntrainement($idEntrainementChoisi);
+
+$exercice2 = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
+$idIncrement2 = 0;
+
+
 $text = '';
 foreach($entrainement as $training){
     $idEntrainement = $training['identrainement'];
@@ -42,39 +47,14 @@ foreach($entrainement as $training){
                                 echo $text;
 
                                 $dureeEntrainement = $crud->getEntrainementDuration($idEntrainementChoisi);
+                                
                                 $text2 = '';
                                 $text2 .='<h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
-                            </div>
-                    </div>';
+                            
+                    ';
             echo $text2;
 ?>
 
-<!--
-    <div class="container w-100 ">
-        <div class="col-sm-4">
-                <div class="card mb-3 card-perso" style="max-width: auto; max-height: 100% " href="#">
-                    <div class="card-body">
-                        <h4 class="card-title"> Titre exercice <?php // echo $row['nom'] ?> </h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Durée de l'entrainement: <?php // echo $row['duree'] ?> <br /> Muscles visés </h6>
-                    </div>
-                </div>
-            </div>
-        </div>
--->
-
-<?php 
- //$exerciseList= $crud->getExercicesFromEntrainement(1);
- //$entainementList = $crud->getEntrainementsByIdUser($_SESSION['userid']);
- //for( $i =0;$i<1;$i++){
- //   echo getEntrainementByIdEntrainement($entainementList[$i]['nom']);
- //}
-
- //$result = $crud->getExercicesFromEntrainement(1);
-
- //echo $result[0]["nom"];
- 
-
-?>
 
 <div class="card-group">
 <?php
@@ -83,6 +63,17 @@ $idEntrainementChoisi = $_GET['id_training'];
 $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
 $details = '';
 $idIncrement = 0;
+
+$details2 = '
+        </div>  
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="70
+                aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                    70%
+            </div>
+        </div>
+    </div>  ';
+    echo $details2;
 
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
@@ -97,6 +88,7 @@ foreach($exercice as $training){
     $idIncrement++;
 
     $details .= '
+
     
                     <div class="col-md-4">
                         <div class="card">
@@ -121,12 +113,15 @@ foreach($exercice as $training){
 
                 
 }
+//TODO: Ameliorer avec getExerciceStatus et fix le bug qu'il faut cliquer 2 fois sur le bouton.
 if(isset($_POST['btn'.$idIncrement.'0']) || isset($_POST['btn'.$idIncrement.'1'])){
     if(isset($_POST['btn'.$idIncrement.'0'])){
-        $status =  1;
+        echo "allo complet";
+        $status = 1;
         $crud->setExerciceStatusComplete($idIncrement);
     }elseif (isset($_POST['btn'.$idIncrement.'1'])){
         $status = 0;
+        echo "allo incomplet";
         $crud->setExerciceStatusIncomplete($idIncrement);
     }
 
@@ -136,34 +131,8 @@ echo $details;
 
 ?>
 </div>
-
-   <!--
-         <div class ="row">
-             <div class="col-md-4">
-                <div class="card">
-                    <h4 class="card-header">
-                        <div class="ChangeButtonC">
-                            <label>
-                                <button class="btn-primary" id="btn1" href='" . $GET["id"] . "' onclick="document.getElementById('btn1').style.background='green'">
-                                        
-                                            <?php
-                                            //$crud->setExerciceStatusComplete("")
-                                            ?>
-                                    <span class="seatButton"> Exercice complété </span>
-                                </button>
-                            </label>
-                        </div>
-                    </h4>
-                    <div class="card-body">Sets : <?php //echo $row['sets']?> <br/> Répétitions : <?php //echo $row['repetitions'] ?> </br> Repos entre sets : <?php //echo $row['dureepause'] ?> </div>
-                    <div class="card-footer"> Poids : <?php //echo $row['poids']?></div>
-                </div>
-            </div>
-         </div> -->
     </main>
 
-<?php
-//endforeach;
-?>
             <div class="card-group container-fluid">
             <div class="row">
             <div class="ChangeButtonC">
@@ -173,10 +142,7 @@ echo $details;
 
                             $idEntrainementChoisi = $_GET['id_training'];
 
-                            $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
-                                foreach($exercice as $training){
-                                    $status = $training['status'];
-                                }
+                            
                                 if(isset($_POST['btn2'])){
                                     $crud->setEntrainementStatusComplete($idEntrainementChoisi);
                                     //echo "this button is selected";
@@ -188,6 +154,10 @@ echo $details;
                                 if(isset($_POST['btn4'])){
                                     $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
                                     //echo "this button is selected";
+                                    $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
+                                    foreach($exercice as $training){
+                                        $status = $training['status'];
+                                    }
                                     $status = 0;
                                 }
                             
@@ -210,9 +180,9 @@ echo $details;
                                 
                             </label>
                             </form>
-                        </div>
-            </div>
-        </div>
+                            </div>
+                            </div>
+                            </div>
                             <form method="post">
                             <div class="wrapper">
                                     <label>
