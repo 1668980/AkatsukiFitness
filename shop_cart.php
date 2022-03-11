@@ -170,17 +170,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                 <hr class="my-4">
 
+                                 <div class="d-flex justify-content-between ">
+                                    <p class="mb-2">Rabais</p>
+                                    <p class="mb-2">
+                                        <?php 
+                                        $POURCENTAGE_DE_RABAIS=0.05;
+                                        $POURCENTAGE_DE_TAXES=0.15;
+                                        $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
+                                        $rabaisTotal= $sousTotal * $POURCENTAGE_DE_RABAIS;                                        
+                                        $prixTotal = $sousTotal- $sousTotal*($POURCENTAGE_DE_RABAIS);
+                                         if($isPremimium){
+                                             echo $rabaisTotal."$";
+                                         }else{
+                                             echo "0$";
+                                         }
+                                        ?>
+                                    </p>
+                                </div>
+
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Sous-Total</p>
                                     <p class="mb-2">
 
                                         <?php 
                                     if($isPremimium){
-                                        $POURCENTAGE_DE_RABAIS=0.05;
-                                        $POURCENTAGE_DE_TAXES=0.15;
-                                        $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
-                                        $rabaisTotal= $sousTotal * $POURCENTAGE_DE_RABAIS;                                        
-                                        $prixTotal = $sousTotal- $sousTotal*($POURCENTAGE_DE_RABAIS);
+                                        
 
 
                                        $prixTotal +=    $prixTotal*($POURCENTAGE_DE_TAXES);
@@ -189,30 +203,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-                                        echo $sousTotal."$";
+                                        echo $prixMembre."$";
                                         }    
                                     ?>
                                     </p>
                                 </div>
-
-                                <div class="d-flex justify-content-between ">
-                                    <p class="mb-2">Rabais</p>
-
-                                    <p class="mb-2">
-                                        <?php 
-                                         if($isPremimium){
-                                             echo $rabaisTotal."$";
-                                         }else{
-                                             echo "0$";
-                                         }
-                                        ?>
-
-                                    </p>
-
-                                </div>
-
-
-
 
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Livraison</p>
