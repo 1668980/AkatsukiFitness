@@ -7,7 +7,7 @@ class Utilisateur {
     public $dob; //date_of_bith
     public $password;
     public $gender;
-    public $weight;
+    public $weight;  
     public $weight_goal;
     public $avatar;
 
