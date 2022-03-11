@@ -84,7 +84,6 @@ $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
 $details = '';
 $idIncrement = 0;
 
-
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
     //$idCatalogue = $training['idcatalogue'];
@@ -96,7 +95,7 @@ foreach($exercice as $training){
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
     $idIncrement++;
-   
+
     $details .= '
     
                     <div class="col-md-4">
@@ -106,7 +105,7 @@ foreach($exercice as $training){
                                     <label>
                                         <h1> '.$nom .' </h1>    
                                         <form method="post">
-                                        <button class="btn-primary" name="btn'.$idIncrement.'" id="btn'.$idIncrement.'">
+                                        <button class="btn-primary" name="btn'.$idIncrement.''.$status.'" id="btn'.$idIncrement.''.$status.'">
                                             <span class="seatButton"> Exercice complété </span>
                                         </button>
                                         
@@ -122,8 +121,15 @@ foreach($exercice as $training){
 
                 
 }
-if(isset($_POST['btn'.$idIncrement.''])){
-    $crud->setExerciceStatusComplete($idIncrement);
+if(isset($_POST['btn'.$idIncrement.'0']) || isset($_POST['btn'.$idIncrement.'1'])){
+    if(isset($_POST['btn'.$idIncrement.'0'])){
+        $status =  1;
+        $crud->setExerciceStatusComplete($idIncrement);
+    }elseif (isset($_POST['btn'.$idIncrement.'1'])){
+        $status = 0;
+        $crud->setExerciceStatusIncomplete($idIncrement);
+    }
+
 }
 echo $details;
 
@@ -167,6 +173,10 @@ echo $details;
 
                             $idEntrainementChoisi = $_GET['id_training'];
 
+                            $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
+                                foreach($exercice as $training){
+                                    $status = $training['status'];
+                                }
                                 if(isset($_POST['btn2'])){
                                     $crud->setEntrainementStatusComplete($idEntrainementChoisi);
                                     //echo "this button is selected";
@@ -176,8 +186,9 @@ echo $details;
                                     //echo "this button is selected";
                                 }
                                 if(isset($_POST['btn4'])){
-                                    $crud->setEntrainementStatusComplete($idEntrainementChoisi);
+                                    $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
                                     //echo "this button is selected";
+                                    $status = 0;
                                 }
                             
                                 ?>
