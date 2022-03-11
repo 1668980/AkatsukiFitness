@@ -26,9 +26,9 @@ echo $blog;
                     Article
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title text-center "><?php echo utf8_encode($blog['titre']) ?></h4>
+                    <h4 class="card-title text-center "><?php echo ($blog['titre']) ?></h4>
                     <div class="m-5">
-                        <p><?php echo utf8_encode($blog['article']) ?></p>                        
+                        <p><?php echo ($blog['article']) ?></p>                        
                     </div>
                 </div>
                 <div class="card-footer text-muted">
