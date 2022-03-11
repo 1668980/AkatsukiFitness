@@ -218,7 +218,7 @@ if ($isPremimium) {
                                     <p class="mb-2">
 
                                         <?php
-echo $prixTotal . "$";
+                                echo $sousTotal . "$";
 
 ?>
                                     </p>
@@ -232,7 +232,8 @@ echo $prixTotal . "$";
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
                                     <p class="mb-2"><?php
-echo printf("$%01.1f", $prixTotal)
+                                    echo $prixTotal;
+
 ?>$
                                     </p>
                                 </div>
