@@ -39,11 +39,11 @@ if(isset($_GET['idcat'])){
 
         <div class="filterContainer">
             <?php foreach($categorieProduitList as $cat) {?>
-            <a class="btn btn-danger btn-cat-shop me-3"
+            <a class="btn btn-danger btn-cat-shop me-2 mb-2"
                 href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?>
             </a>
             <?php }?>
-            <a class="btn btn-danger btn-cat-shop" href="shop_index.php"><i class="bi bi-x-circle"></i></a>
+            <a class="btn btn-danger btn-cat-shop me-2 mb-2" href="shop_index.php"><i class="bi bi-x-circle"></i></a>
         </div>
     </div>
 

@@ -47,11 +47,11 @@ function getBlogCard($id, $title, $categorie, $description, $lienImage, $imagePr
 <?php
     $categories = $crud->getAllCategoriesBlog();
     $rep = '';
-    $rep .= '<a class="btn btn-danger" style="margin:10px;" href="blog.php">All</a>';   
+    $rep .= '<a class="btn btn-danger btn-cat-blog me-2 mb-2" href="blog.php">All</a>';   
     foreach($categories as $categorie) {
       $id = $categorie['idcategorie'];
       $nom = $categorie['nom'];
-      $rep .= '<a class="btn btn-danger" style="margin:10px;" href="blog.php?idcat='.$id.'#search-result ">'. ($nom).'</a>';      
+      $rep .= '<a class="btn btn-danger btn-cat-blog me-2 mb-2"" href="blog.php?idcat='.$id.'#search-result ">'. ($nom).'</a>';      
     }
     echo $rep;
   ?>
