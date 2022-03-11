@@ -3,7 +3,6 @@
     $skip_container=true;
     require_once('includes/header.php');
 ?>
-
 <div class="container-welcome">
     <div class="container">
         <div class="row">
@@ -55,9 +54,7 @@
                     </div>
                 </div>
 
-                <div class="mt-3"><p>Vous hésitez entre nos plans? <a href="">Voir nos plans en détail</a>.</p></div>
-
-                
+                <div class="mt-3"><p>Vous hésitez entre nos plans? <a href="membership_plans.php">Voir nos plans en détail</a>.</p></div>
 
     </div>
 
