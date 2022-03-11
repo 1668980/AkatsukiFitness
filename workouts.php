@@ -1,4 +1,5 @@
 <?php
+
 $breadcrumb = [
     ["index.php", "Accueil"],
     ["", "Entraînements"],
@@ -113,7 +114,7 @@ if (isset($_GET['id'])) {
     </div>
     <div class="accordion-item border-0 ">
         <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button bg-danger bg-gradient text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            <button id="completedshow" class="accordion-button bg-danger bg-gradient text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                 Complétés
             </button>
         </h2>
@@ -154,6 +155,8 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
+    <a id="completed"></a>
+
 </div>
 
 <!-- Modal -->
@@ -229,6 +232,14 @@ if (isset($_GET['id'])) {
   </div>
 </div>
 
+
+<script>
+    if(window.location.hash == '#completed') { 
+        $("#panelsStayOpen-collapseOne").removeClass('show');
+        $("#panelsStayOpen-collapseTwo").removeClass('show');
+        $("#panelsStayOpen-collapseThree").addClass('show');
+    }
+</script>
 
 <?php
 require_once 'includes/footer.php';
