@@ -30,6 +30,9 @@ $workout01= new Entrainement(0,$idUser,$name,$difficulte,$type);
 
 $idWorkout01 = $crud->createNewEntrainement($workout01);
 $crud->addExercices($exercicesList01,$idWorkout01);
+$crud->addExercices($exercicesList01,$idWorkout01);
+$crud->addExercices($exercicesList01,$idWorkout01);
+$crud->addExercices($exercicesList01,$idWorkout01);
 
 
 $name = "Par defaut02";

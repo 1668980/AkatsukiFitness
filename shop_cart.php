@@ -211,7 +211,7 @@ if ($isPremimium) {
                                     <p class="mb-2">
 
                                         <?php
-echo $prixTotal . "$";
+                                echo $prixTotal . "$";
 
 ?>
                                     </p>
