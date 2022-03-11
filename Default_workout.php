@@ -42,6 +42,9 @@ $workout02= new Entrainement(0,$idUser,$name,$difficulte,$type);
 
 $idWorkout02 = $crud->createNewEntrainement($workout02);
 $crud->addExercices($exercicesList01,$idWorkout02);
+$crud->addExercices($exercicesList01,$idWorkout02);
+$crud->addExercices($exercicesList01,$idWorkout02);
+$crud->addExercices($exercicesList01,$idWorkout02);
 
 
 session_destroy();
