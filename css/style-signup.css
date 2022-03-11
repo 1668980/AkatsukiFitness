@@ -1,0 +1,57 @@
+.container-signup h1{
+    color:#dc3545;
+}
+
+.container-signup .card-title{
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+    padding: 2px 0px;
+
+}
+.container-signup .btn{
+    width: 100%;
+}
+
+.container-signup ul{
+    list-style: square;
+    padding-left: 15px;
+}
+
+#step1b{
+    margin-top: 20px;
+}
+
+#step1b h4{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#step1b .premium-plans{
+    padding: 10px;
+
+}
+#step1b .card-selectable{
+    min-height: 60px;
+    padding: 20px;
+    text-align: center;
+}
+
+.subscription-details{
+    margin: 20px 0px;
+    padding: 20px;
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+    background-color: #22252A;
+    margin-bottom: 20px;
+}
+.subscription-details h5{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dc3545;
+    
+}
+.signup-form input{
+    margin-bottom: 10px;
+}
+.signup-form label{
+    margin-bottom: 2px;
+}
