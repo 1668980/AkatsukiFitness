@@ -226,8 +226,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         ?>$
                                     </p>
                                 </div>
-
-                                <button id="btn-checkout" type="button" class="btn btn-warning btn-lg bg-gradient">
+                                <!-- if(count($cartItems) === 0) {?> -->
+                                <button  <?php echo count($cartItems) != 0 ?'id="btn-checkout"' : null ?> type="button" class="btn btn-warning btn-lg bg-gradient">
                                     <span class="ms-2">Passer la commande<i
                                             class="fas fa-long-arrow-alt-right ms-2"></i></span>
 
