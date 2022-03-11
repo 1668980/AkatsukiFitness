@@ -174,11 +174,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <p class="mb-2">Rabais</p>
                                     <p class="mb-2">
                                         <?php 
-                                        $POURCENTAGE_DE_RABAIS=0.05;
-                                        $POURCENTAGE_DE_TAXES=0.15;
                                         $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
+                                        $prixTotal=$sousTotal;
+                                      if($isPremimium){
                                         $rabaisTotal= $sousTotal * $POURCENTAGE_DE_RABAIS;                                        
                                         $prixTotal = $sousTotal- $sousTotal*($POURCENTAGE_DE_RABAIS);
+                                        $prixTotal +=    $prixTotal*($POURCENTAGE_DE_TAXES);
+
+                                      }else{
+                                        $prixTotal +=    $sousTotal*($POURCENTAGE_DE_TAXES);
+
+                                      }
+
+
+
+
                                          if($isPremimium){
                                              echo $rabaisTotal."$";
                                          }else{
@@ -192,19 +202,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <p class="mb-2">Sous-Total</p>
                                     <p class="mb-2">
 
-                                        <?php 
-                                    if($isPremimium){
-                                        
-
-
-                                       $prixTotal +=    $prixTotal*($POURCENTAGE_DE_TAXES);
-                                       
-
-
-
-
-                                        echo $prixMembre."$";
-                                        }    
+                                    <?php
+                                        echo $prixTotal."$";
+                                          
                                     ?>
                                     </p>
                                 </div>
