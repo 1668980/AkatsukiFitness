@@ -4,16 +4,22 @@ $(() => {
     for (let p of searchParams) {
         console.log(p);
     }
+
+    if (searchParams.has('ordered')) {
+        $('#containerCart').hide()
+        $('#contCompOrder').show()
+    }
+
     if (searchParams.has('auth_error')) {
         $('#loginModalLabel').text('Connexion requise!')
         $('#loginModalLabel').addClass('text-danger')
         $('#loginModal').modal('show');
     }
     //  $(".formRemoveProductClass").hide();
-    $('#btn-checkout').on('click', () => {
-        $('#containerCart').hide()
-        $('#contCompOrder').show()
-    })
+    // $('#btn-checkout').on('click', () => {
+    //     $('#containerCart').hide()
+    //     $('#contCompOrder').show()
+    // })
 
 
     $('#btnTrain').on('click', () => {
@@ -59,6 +65,10 @@ $(() => {
 
 });
 
+checkout = () => {
+    $('#containerCart').hide()
+    $('#contCompOrder').show()
+}
 
 
 // sign up functions 
