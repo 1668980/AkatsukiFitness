@@ -133,6 +133,7 @@ updateProductQuantitySucess = (obj, idArticle) => {
 addProductSucess = (val, idProduct) => {
 
     $("#cartCount").html(val);
+    // window.location.href = "shop_cart.php";
    // $("#formAddProduct" + idProduct).hide();
     //$("#formRemoveProduct" + idProduct).show();
 }
