@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="container mt-0">
+<div id="containerCart" class="container mt-0  mb-3">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="card">
             <div class="card-body">
@@ -84,21 +84,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
-                                        
-                                            <input class="form-control me-1" style="width: 60px;" type="number" value="<?php echo $quantite?>"
-                                                onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
-                                        
-                                        
-                                            <?php if($isPremimium){?>
-                                            <h5 class="mb-0 me-1" id="CartProductPrice<?php echo $idArticle?>">
-                                                <del><?php echo $prix ?>$</del> <br> <span><?php echo $prixMembre ?></span>$
-                                            </h5>
 
-                                            <?php } else { ?>
-                                            <h5 class="mb-0 me-1">$<?php echo $prix ?></h5>
-                                            <?php } ?>
+                                        <input class="form-control me-1" style="width: 60px;" type="number"
+                                            value="<?php echo $quantite?>"
+                                            onchange="updateQuantityCartForm(<?php echo $idArticle?>, this.value)">
 
-                                       
+
+                                        <?php if($isPremimium){?>
+                                        <h5 class="mb-0 me-1" id="CartProductPrice<?php echo $idArticle?>">
+                                            <del><?php echo $prix ?>$</del> <br> <span><?php echo $prixMembre ?></span>$
+                                        </h5>
+
+                                        <?php } else { ?>
+                                        <h5 class="mb-0 me-1">$<?php echo $prix ?></h5>
+                                        <?php } ?>
+
+
                                         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="post">
                                             <input type="hidden" value="<?php echo $idItem?>" id="idproduct"
                                                 name="idproduct">
@@ -172,8 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-2">Sous-Total</p>
                                     <p class="mb-2">
-                                        
-                                    <?php 
+
+                                        <?php 
                                     if($isPremimium){
                                         $POURCENTAGE_DE_RABAIS=0.05;
                                         $POURCENTAGE_DE_TAXES=0.15;
@@ -191,12 +192,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         echo $sousTotal."$";
                                         }    
                                     ?>
-                                        </p>
+                                    </p>
                                 </div>
 
                                 <div class="d-flex justify-content-between ">
-                                    <p class="mb-2">rabais</p>
-                                        
+                                    <p class="mb-2">Rabais</p>
+
                                     <p class="mb-2">
                                         <?php 
                                          if($isPremimium){
@@ -208,21 +209,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                     </p>
 
-                                    </div>
+                                </div>
 
 
 
-                                
+
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Shipping</p>
-                                    <p class="mb-2">$0.00</p>
+                                    <p class="mb-2">Livraison</p>
+                                    <p class="mb-2">0.00$</p>
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
                                     <p class="mb-2"><?php 
-                                         echo $prixTotal
-                                        ?>
+                                         echo printf("$%01.1f", $prixTotal)
+                                        ?>$
                                     </p>
                                 </div>
 
@@ -237,6 +238,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     </div>
 
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="contCompOrder" class="container mt-0">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg">
+                        <h5 class="mb-3">
+                            <a id="btnAfterCheckout" href="shop_index.php" class="text-body">
+                                <i class="fas fa-long-arrow-alt-left me-2"></i>Retouner à la boutique</a>
+                        </h5>
+                        <hr>
+                        <h2 class="text-center pt-5 pb-4 text-success">Merci pour votre achat!</h2>
+                        <?php 
+                            foreach($cartItems as $item) { 
+                                $prix =  $item['prix'] * $item['quantite'];
+                                $rabais= $prix * $POURCENTAGE_DE_RABAIS;
+                                $prixMembre = $prix-$rabais;
+                        ?>
+                        <p class="text-center"><?php echo $item['nom'] ?> (<?php echo $item['marque'] ?>) -
+                            <?php echo printf("$%01.1f", $prixMembre) ?>$ (x<?php echo $item['quantite']?>)</p>
+                        <?php } ?>
+                        <p class="text-center pb-5"> Total : <?php  echo printf("$%01.1f", $prixTotal);?>$ (avec taxes) </p>
+
+                    </div>
                 </div>
 
             </div>

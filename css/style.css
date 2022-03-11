@@ -237,3 +237,7 @@ p.text {
 .btn-cat-blog {
     width: 120px;
 }
+
+#contCompOrder{
+    display: none;
+}
