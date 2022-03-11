@@ -39,11 +39,11 @@ if(isset($_GET['idcat'])){
 
         <div class="filterContainer">
             <?php foreach($categorieProduitList as $cat) {?>
-            <a class="btn btn-danger"
+            <a class="btn btn-danger btn-cat-shop me-2 mb-2"
                 href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?>
             </a>
             <?php }?>
-            
+            <a class="btn btn-outline-light bg-gradient  btn-cat-shop me-2 mb-2" href="shop_index.php"><i class="bi bi-x-circle"></i></a>
         </div>
     </div>
 
@@ -62,91 +62,94 @@ if(isset($_GET['idcat'])){
             ?>
 
 
-          
+
             <div class="col mb-5">
                 <!-- <form action="add_product_to_cart.php" class="form-inline my-2 my-lg-0" method="POST"> -->
 
 
-                    <div class="card h-100 card-product">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="images/products/<?php echo $products['image']?>" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h4 class="fw-bolder"><?php echo $products['nom'] ?></h4>
-                                <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
-                                <!-- Product price-->
-                                <?php echo $products['info'] ?>
-                                <?php echo $products['prix'] ?>$
-                            </div>
+                <div class="card h-100 card-product">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="images/products/<?php echo $products['image']?>" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h4 class="fw-bolder"><?php echo $products['nom'] ?></h4>
+                            <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
+                            <!-- Product price-->
+                            <?php echo $products['info'] ?>
+                            <?php echo $products['prix'] ?>$
                         </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center">
-                                <?php
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <?php
                                  if(isset($_SESSION['userid'])){
                                     ?>
-                                    <form action="" class="form-inline my-2 my-lg-0" onsubmit='return addProductForm(event, this.productid)'>
-                                    <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
-                                    <button type="submit" class="btn btn-outline-dark btn-light" >Ajouter au panier</button>
-                                 </form>
+                            <form action="" class="form-inline my-2 my-lg-0"
+                                onsubmit='return addProductForm(event, this.productid)'>
+                                <input type="hidden" value="<?php echo  $idProduct ?>" class="productecho"
+                                    name="productid">
+                                <button type="submit" class="btn btn-success">Ajouter au panier</button>
+                            </form>
 
-                                 <!-- <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
+                            <!-- <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
                                     <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
                                     <button type="submit" class="btn btn-outline-dark btn-light" >Retirer du panier</button>
                                  </form> -->
 
-                                 <?php
+                            <?php
                                  }else{
                                 ?>
-                                    <button id="btnAddCart" class="btn btn-outline-dark btn-light" data-bs-toggle="modal" data-bs-target="#loginModal" >Ajouter au panier</button>
-                                <?php
+                            <button id="btnAddCart" class="btn btn-success bg-gradient" data-bs-toggle="modal"
+                                data-bs-target="#loginModal">Ajouter au panier</button>
+                            <?php
                                  }
                                 ?>
 
-                                 
-
-                            </div>
 
 
                         </div>
+
+
                     </div>
-               
+                </div>
+
             </div>
 
-        <?php 
+            <?php 
         if(isset($_SESSION['userid'])){
           if($crud->isArticleInPanierOfTheUser($_SESSION['userid'],$idProduct) != -1){
         ?>
-            <script>                
-                $("#formAddProduct<?php echo $idProduct?>").hide();
-                $("#formRemoveProduct<?php echo $idProduct?>").show();            
+            <script>
+            $("#formAddProduct<?php echo $idProduct?>").hide();
+            $("#formRemoveProduct<?php echo $idProduct?>").show();
             </script>
 
-        <?php 
+            <?php 
         }else {
         ?>
-            <script>                
-                $("#formAddProduct<?php echo $idProduct?>").show();
-                $("#formRemoveProduct<?php echo $idProduct?>").hide();            
+            <script>
+            $("#formAddProduct<?php echo $idProduct?>").show();
+            $("#formRemoveProduct<?php echo $idProduct?>").hide();
             </script>
 
-        <?php 
+            <?php 
         }
     }
 
 
 
         ?>
-        
 
-            
-          
 
-     
-        
-        <?php } ?>
+
+
+
+
+
+            <?php } ?>
         </div>
     </section>
 </div>

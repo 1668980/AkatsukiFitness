@@ -103,7 +103,7 @@ class Crud
     }    
     private function updateEmailUtilisateurTable($user){
         try {  
-            $sql = "UPDATE `utilisateur` SET `email` =  '$user->email' WHERE `utilisateur`.`iduser` =  $user->idUser";
+            $sql = "UPDATE `utilisateur` SET `email` =  '$user->email' WHERE `utilisateur`.`iduser` =  $user->id_user";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;
@@ -114,7 +114,7 @@ class Crud
     }    
     private function updateUserConnexionTable($user){
         try {  
-            $sql = "UPDATE `connexion` SET `email` =  '$user->email' WHERE `connexion`.`idUtilisateur` =  $user->idUser";
+            $sql = "UPDATE `connexion` SET `email` =  '$user->email' WHERE `connexion`.`idUtilisateur` =  $user->id_user";
             $stmt = $this->db->prepare($sql);  
             $stmt->execute();            
             return true;

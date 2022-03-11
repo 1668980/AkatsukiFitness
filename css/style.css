@@ -306,3 +306,8 @@ footer{
 .container-our-plans button{
     margin-top: 10px;
 }
+
+
+#contCompOrder{
+    display: none;
+}

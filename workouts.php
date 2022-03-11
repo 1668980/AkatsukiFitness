@@ -123,7 +123,6 @@ if (isset($_GET['id'])) {
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-
                         <?php
                             $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
 
@@ -134,7 +133,7 @@ if (isset($_GET['id'])) {
                                 $difficulte = $training['difficulte'];
                                 $type = $training['type'];
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px; onclick="workoutInProgress('.$idEntrainement.')"> 
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25" >
@@ -150,7 +149,6 @@ if (isset($_GET['id'])) {
                             }
                             echo $rep;
                             ?>
-                         
                         </div>
                     </div>
                 </div>
