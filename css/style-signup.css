@@ -35,7 +35,23 @@
     padding: 20px;
     text-align: center;
 }
-#step1b .card-selectable .title{
-   
-}
 
+.subscription-details{
+    margin: 20px 0px;
+    padding: 20px;
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+    background-color: #22252A;
+    margin-bottom: 20px;
+}
+.subscription-details h5{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dc3545;
+    
+}
+.signup-form input{
+    margin-bottom: 10px;
+}
+.signup-form label{
+    margin-bottom: 2px;
+}

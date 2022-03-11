@@ -26,7 +26,7 @@ require_once('includes/header.php');
                 <?php } ?>
                 " data-membership="free">
                     <div class="card-body">
-                        <h5 class="card-title"> Abonnement Gratuit </h5>
+                        <h5 class="card-title">Abonnement Gratuit</h5>
                         <ul>
                             <li>Blogs créés par des passionés du fitness</li>
                             <li>Des entrainements préselectionés </li>
@@ -43,7 +43,7 @@ require_once('includes/header.php');
                 
                 " data-membership="premium">
                     <div class="card-body">
-                        <h5 class="card-title"> Abonnement Premium </h5>
+                        <h5 class="card-title">Abonnement Premium </h5>
                         <ul>
                             <li>Tous les avantages de l'abonnement gratuit</li>
                             <li>Un suivis de vos buts et objectifs </li>
@@ -89,7 +89,6 @@ require_once('includes/header.php');
 
 <script type="text/javascript">
     
-
     const DEFAULT_MONTHS=1;
     const DEFAULT_MEMBERSHIP="<?php echo $membership ?>";
 
