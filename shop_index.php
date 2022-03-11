@@ -43,7 +43,7 @@ if(isset($_GET['idcat'])){
                 href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?>
             </a>
             <?php }?>
-            <a class="btn btn-danger btn-cat-shop me-2 mb-2" href="shop_index.php"><i class="bi bi-x-circle"></i></a>
+            <a class="btn btn-outline-light bg-gradient  btn-cat-shop me-2 mb-2" href="shop_index.php"><i class="bi bi-x-circle"></i></a>
         </div>
     </div>
 
@@ -91,7 +91,7 @@ if(isset($_GET['idcat'])){
                                 onsubmit='return addProductForm(event, this.productid)'>
                                 <input type="hidden" value="<?php echo  $idProduct ?>" class="productecho"
                                     name="productid">
-                                <button type="submit" class="btn btn-success bg-gradient">Ajouter au panier</button>
+                                <button type="submit" class="btn btn-success">Ajouter au panier</button>
                             </form>
 
                             <!-- <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>

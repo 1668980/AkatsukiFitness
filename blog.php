@@ -55,6 +55,7 @@ function getBlogCard($id, $title, $categorie, $description, $lienImage, $imagePr
     }
     echo $rep;
   ?>
+  <a class="btn btn-outline-light bg-gradient btn-cat-blog me-2 mb-2" href="blog.php"><i class="bi bi-x-circle"></i></a>
 </div>
 <script>
 function changeFilter($categorie) {
