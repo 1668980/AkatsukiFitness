@@ -51,7 +51,7 @@ function getBlogCard($id, $title, $categorie, $description, $lienImage, $imagePr
     foreach($categories as $categorie) {
       $id = $categorie['idcategorie'];
       $nom = $categorie['nom'];
-      $rep .= '<a class="btn btn-danger" style="margin:10px;" href="blog.php?idcat='.$id.'#search-result ">'.utf8_encode($nom).'</a>';      
+      $rep .= '<a class="btn btn-danger" style="margin:10px;" href="blog.php?idcat='.$id.'#search-result ">'. ($nom).'</a>';      
     }
     echo $rep;
   ?>

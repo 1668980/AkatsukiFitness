@@ -87,15 +87,15 @@ if(isset($_GET['idcat'])){
                                 <?php
                                  if(isset($_SESSION['userid'])){
                                     ?>
-                                    <form action="" class="form-inline my-2 my-lg-0" id="formAddProduct<?php echo $idProduct ?>" onsubmit='return addProductForm(event, this.productid)'>
+                                    <form action="" class="form-inline my-2 my-lg-0" onsubmit='return addProductForm(event, this.productid)'>
                                     <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
                                     <button type="submit" class="btn btn-outline-dark btn-light" >Ajouter au panier</button>
                                  </form>
 
-                                 <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
+                                 <!-- <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
                                     <input type="hidden" value="<?php echo  $idProduct ?>"  class="productecho"  name="productid">
                                     <button type="submit" class="btn btn-outline-dark btn-light" >Retirer du panier</button>
-                                 </form>
+                                 </form> -->
 
                                  <?php
                                  }else{

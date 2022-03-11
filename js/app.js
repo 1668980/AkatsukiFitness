@@ -128,14 +128,14 @@ updateProductQuantitySucess = (obj, idArticle) => {
 addProductSucess = (val, idProduct) => {
 
     $("#cartCount").html(val);
-    $("#formAddProduct" + idProduct).hide();
-    $("#formRemoveProduct" + idProduct).show();
+   // $("#formAddProduct" + idProduct).hide();
+    //$("#formRemoveProduct" + idProduct).show();
 }
 removeProductSucess = (val, idProduct) => {
 
     $("#cartCount").html(val);
-    $("#formAddProduct" + idProduct).show();
-    $("#formRemoveProduct" + idProduct).hide();
+    // $("#formAddProduct" + idProduct).show();
+    // $("#formRemoveProduct" + idProduct).hide();
 }
 
 validatePassword1 = () => {
