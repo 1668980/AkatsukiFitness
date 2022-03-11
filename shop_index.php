@@ -23,7 +23,7 @@ if(isset($_GET['idcat'])){
 ?>
 <!-- product container -->
 
-<!-- <a id="search-result"></a> -->
+<a id="search-result"></a>
 <div id="containerShop" class="container">
     <div id="filter-boutique">
         <form action="shop_index.php#search-result" class="filter-boutique">

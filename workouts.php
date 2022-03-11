@@ -1,4 +1,5 @@
 <?php
+
 $breadcrumb = [
     ["index.php", "Accueil"],
     ["", "Entraînements"],
@@ -113,7 +114,7 @@ if (isset($_GET['id'])) {
     </div>
     <div class="accordion-item border-0 ">
         <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button bg-danger bg-gradient text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            <button id="completedshow" class="accordion-button bg-danger bg-gradient text-white collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                 Complétés
             </button>
         </h2>
@@ -122,51 +123,6 @@ if (isset($_GET['id'])) {
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_3.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25">
-                                        <h4 class="card-title"> Training complet </h4>
-                                        <ul>
-                                            <li>Tout le corps</li>
-                                            <li>30 minutes</li>
-                                            <li>Débutant </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-=======
->>>>>>> Stashed changes
-
                         <?php
                             $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
 
@@ -199,6 +155,8 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
+    <a id="completed"></a>
+
 </div>
 
 <!-- Modal -->
@@ -274,6 +232,14 @@ if (isset($_GET['id'])) {
   </div>
 </div>
 
+
+<script>
+    if(window.location.hash == '#completed') { 
+        $("#panelsStayOpen-collapseOne").removeClass('show');
+        $("#panelsStayOpen-collapseTwo").removeClass('show');
+        $("#panelsStayOpen-collapseThree").addClass('show');
+    }
+</script>
 
 <?php
 require_once 'includes/footer.php';
