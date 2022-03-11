@@ -3,6 +3,7 @@
 @import url(style-breadcrumb.css);
 @import url(style-blog.css);
 @import url(style-search.css);
+@import url(style-social.css);
 
 
 a {
@@ -36,7 +37,7 @@ ul {
 /* nav bar O.V */
 #myNav {
     padding: 12px;
-    /* background-color: #dc3545 !important; */
+    background-color: #800f1a !important;
     text-align: center;
 }
 
@@ -229,6 +230,83 @@ p.text {
 #btn-checkout {
     width: 100%!important;
 }
+
+.container-welcome{
+    padding: 70px;
+    max-width: 100%;
+    color: #ffffff;
+    background-color: #800f1a;
+}
+.container-welcome button{
+    font-size:20px;
+    min-height: 68px;
+}
+.container-our-plans{
+
+    padding: 70px;
+    max-width: 100%;
+    color: #ffffff;
+}
+.container-our-plans p{
+    text-align: center;
+}
+.container-our-plans h1{
+    text-align: center;
+    color:#dc3545;
+}
+
+footer{
+   
+    bottom: 0;
+    width: 100%
+}
+.footer-main{
+    margin-top: 60px;
+    padding: 45px 70px 25px 70px ;
+    background-color: #000000;
+    min-height: 200px;
+    color: #ffffff;
+}
+.footer-main small{
+    color: #949494;
+}
+
+.footer-main li{
+    font-size: smaller;
+}
+
+.container-our-plans ul{
+    list-style: square;
+}
+
+.container-our-plans .card{
+    background-color: #ffffff;
+    padding:40px;
+    color: #22252A;
+}
+
+.container-our-plans .card-premium{
+   
+}
+.container-our-plans .card-premium button{
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.container-our-plans .card-premium button:hover{
+    background-color: #800f1a;
+    border-color: #dc3545;
+}
+.container-our-plans .card-title{
+    text-align: center;
+    color: #dc3545;
+    border-bottom: 1px solid #dc3545;
+    padding: 2px 0px;
+
+}
+.container-our-plans button{
+    margin-top: 10px;
+}
+
 
 .btn-cat-shop {
     width: 85px;

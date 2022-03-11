@@ -1,5 +1,6 @@
 <?php
 
+
 $landing_img = "images/about/guy-red-gloves-cropped.jpg";
 $landing_title = "À propos de nous";
 $breadcrumb =[
