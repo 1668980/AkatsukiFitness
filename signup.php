@@ -12,13 +12,10 @@ if(!$membership) {
 require_once('includes/header.php');
 ?>
 
-
-<!-- Corps de la page -->
-<!-- Container du formulaire d'incription-->
-<div id="containerSignup" class="container mt-2">
+<div id="containerSignup" class="container container-signup mt-2">
 
 <h1>Inscription</h1>
-<h3>Étape 1: Choisissez votre plan </h3>
+<h4>Étape 1: Choisissez votre plan </h3>
 
 
         <div class="row mt-3">
@@ -29,7 +26,7 @@ require_once('includes/header.php');
                 <?php } ?>
                 " data-membership="free">
                     <div class="card-body">
-                        <h5 class="card-title"> Abonnement Gratuit </h5>
+                        <h5 class="card-title">Abonnement Gratuit</h5>
                         <ul>
                             <li>Blogs créés par des passionés du fitness</li>
                             <li>Des entrainements préselectionés </li>
@@ -46,7 +43,7 @@ require_once('includes/header.php');
                 
                 " data-membership="premium">
                     <div class="card-body">
-                        <h5 class="card-title"> Abonnement Premium </h5>
+                        <h5 class="card-title">Abonnement Premium </h5>
                         <ul>
                             <li>Tous les avantages de l'abonnement gratuit</li>
                             <li>Un suivis de vos buts et objectifs </li>
@@ -58,40 +55,41 @@ require_once('includes/header.php');
         </div>
 
 
-        <div id="step1b" class="row" 
+        <div id="step1b"
         <?php if ($membership != 'premium') { ?>
             style="display:none;"
         <?php } ?>
         >
+            <hr>
+            <h4>Étape 1.2: Choisissez votre type de plan premium</h3>
+            <div class="row premium-plans">
+                            
+                <div class="col-sm-12 col-md-4 card-selectable premium-months card-selectable-selected" data-months=1>
+                    1 mois: <strong><?php __('membership_price_1') ?>$</strong>/mois
+                </div>
 
-            <h3>Étape 1.2: Choisissez votre type de plan  </h3>
+                <div class="col-sm-12 col-md-4 card-selectable premium-months" data-months=3>
+                    3 mois: <strong><?php __('membership_price_3') ?>$</strong> 
+                    <small>Économisez 1$ par mois! (5.99/mois)</small>
+                </div>
 
-            <div class="col-sm-12 col-md-4 card-selectable premium-months" data-months=1>
-                1 mois: <?php __('membership_price_1') ?>$/mois
+                <div class="col-sm-12 col-md-4 card-selectable premium-months" data-months=6>
+                    6 mois: <strong><?php __('membership_price_6') ?>$</strong> 
+                    <small>Économisez: recevez un mois gratuit<small>
+                </div>
+
             </div>
-
-            <div class="col-sm-12 col-md-4 card-selectable premium-months" data-months=3>
-                3 mois: <?php __('membership_price_3') ?>$ économisez: 5.99/mois
-            </div>
-
-            <div class="col-sm-12 col-md-4 card-selectable premium-months card-selectable-selected" data-months=6>
-                6 mois: <?php __('membership_price_6') ?>$ économisez: un mois gratuit :) 
-            </div>
-            
-
-
         </div>
 
-        <div class="">
-            <a id="nexturl" class="btn btn-success" style="width: 100%;" onclick="nexturl();">Continuer</a>
+        <div class="mt-4">
+            <a id="nexturl" class="btn btn-success" onclick="nexturl();">Continuer</a>
         </div>
     </form>
 </div>
 
 <script type="text/javascript">
     
-
-    const DEFAULT_MONTHS=6;
+    const DEFAULT_MONTHS=1;
     const DEFAULT_MEMBERSHIP="<?php echo $membership ?>";
 
     window.selected_months=DEFAULT_MONTHS;

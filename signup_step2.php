@@ -18,34 +18,25 @@ require_once('includes/header.php');
 
 ?>
 
-<!-- Corps de la page -->
-<!-- Container du formulaire d'incription-->
-<div id="containerSignup" class="container mt-2">
+<div id="containerSignup" class="container container-signup mt-2">
+    <h1>Inscription</h1>
+    <h4>Étape 2: Vos informations</h4>
 
-    <h1 class="h1 textLogin mt-2">Inscription</h1>
+    <div class="subscription-details">
+        <h5>Détail du plan choisi: <?php __('membership_'.$membership); ?></h5>
+        <?php 
+            if($membership=='premium'){ ?>
+            Durée: <?php echo $_GET['months']; ?> mois <br/>
+            Prix: <?php echo $price ?>$
+        <?php 
+            }
+        ?>
+        <p><a href="signup.php">Modifier le plan</a></p>
+    </div>
 
-    
-    <h3>Étape 2: Vos informations</h3>
-    <h5>Détail du plan choisi: <?php __('membership_'.$membership); ?></h5>
-
-    <?php 
-        if($membership=='premium'){ ?>
-         <p>Durée: <?php echo $_GET['months']; ?> mois</p>
-         <p>Prix: <?php echo $price ?> $</p>
-
-         <?php 
-        }
-    ?>
-    <p><a href="signup.php">Modifier le plan</a></p>
-  
-    
-
-   
-    
-
+    <div class="signup-form">
     <form class="needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()'
         action="signup_action.php" method="POST">
-
 
         <input type="hidden" name="membership_months" value="<?php if (isset($_GET['months'])) { echo $_GET['months']; }  else { echo '0'; } ?>">
         <!-- row 1 -->
@@ -108,12 +99,16 @@ require_once('includes/header.php');
                 <span id="message2" name="message2"></span>
             </div>
         </div>
+
+    </div>
+    
+    
        
         <div class="row">
             <div class="col-12">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" name="invalidCheck1"
                     required>
-                <label class="form-check-label" for="invalidCheck1"> Acceptez les <a href="#">Termes et
+                <label class="form-check-label" for="invalidCheck1"> J'accepte les <a href="#">Termes et
                         conditions</a> </label>
                 <div class="invalid-feedback">
                     Vous devez acceptez les T&C avant de continuer.
@@ -125,7 +120,10 @@ require_once('includes/header.php');
         <?php
         if ($membership == 'premium') {
         ?>
-                 <div class="card bg-danger text-white rounded-3">
+        
+        <hr>
+            <h4>Étape 3: Paiment</h3>
+                 <div class="card bg-danger text-white rounded-3 mt-4">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h5 class="mb-0">Méthode de paiment</h5>

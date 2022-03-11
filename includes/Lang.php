@@ -18,8 +18,8 @@
         'index_welcome_text' => 'S\'entraîner n\'aura jamais été aussi simple. Akatasuki Fitness est une compagnie Québécoise qui vous propose des plans d\'entraînements sur mesure et personalisé à vos besoin que vous pouvez accéder peut importe où vous êtes, que ce soit à partir du Gym, de la maison ou du travail.',
         'index_membership_title' => 'Inscrivez-vous maintenant!',
         'index_membership_text' => 'Inscrivez-vous maintenant!',
-        'index_btn_free' => 'Plan gratuit',
-        'index_btn_premium' => 'Plan premium',
+        'index_btn_free' => 'Choisir ce plan',
+        'index_btn_premium' => 'Choisir ce plan',
 
 
         'membership_premium' => 'Premium',
