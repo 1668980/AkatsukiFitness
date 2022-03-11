@@ -21,7 +21,7 @@ $idEntrainementChoisi = $_GET['id_training'];
 $entrainement = $crud->getEntrainementByIdEntrainement($idEntrainementChoisi);
 
 $exercice2 = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
-$idIncrement2 = 0;
+$idExercice2 = 0;
 
 
 $text = '';
@@ -62,7 +62,7 @@ foreach($entrainement as $training){
 $idEntrainementChoisi = $_GET['id_training'];
 $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
 $details = '';
-$idIncrement = 0;
+$idExercice = 0;
 
 $details2 = '
         </div>  
@@ -78,14 +78,14 @@ $details2 = '
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
     //$idCatalogue = $training['idcatalogue'];
-    $status = $training['status'];
+    $statusExercice = $training['status'];
     $poids = $training['poids'];
     $reps = $training['repetitions'];
     $sets = $training['sets'];
     $duree = $training['duree'];
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
-    $idIncrement++;
+   // $idExercice++;
 
     $details .= '
 
@@ -97,10 +97,18 @@ foreach($exercice as $training){
                                     <label>
                                         <h1> '.$nom .' </h1>    
                                         <form method="post">
-                                        <button class="btn-primary" name="btn'.$idIncrement.''.$status.'" id="btn'.$idIncrement.''.$status.'">
+                                        ';
+                                        if($statusExercice==1){
+                                            $details .='<button type="submit" class="btn-primary" name="btn'.$idExercice.''.$status.'" id="btn'.$idExercice.''.$status.'">
                                             <span class="seatButton"> Exercice complété </span>
-                                        </button>
+                                        </button>';
+                                        }else{
+                                            $details .='<button type="submit"class="btn-primary" name="btn'.$idExercice.''.$status.'" id="btn'.$idExercice.''.$status.'">
+                                            <span class="seatButton"> Exercice incomplete </span>
+                                        </button>';
+                                        }
                                         
+                                        $details .= '
                                         </form>
                                     </label>
                                 </div>
@@ -114,17 +122,16 @@ foreach($exercice as $training){
                 
 }
 //TODO: Ameliorer avec getExerciceStatus et fix le bug qu'il faut cliquer 2 fois sur le bouton.
-if(isset($_POST['btn'.$idIncrement.'0']) || isset($_POST['btn'.$idIncrement.'1'])){
-    if(isset($_POST['btn'.$idIncrement.'0'])){
-        echo "allo complet";
-        $status = 1;
-        $crud->setExerciceStatusComplete($idIncrement);
-    }elseif (isset($_POST['btn'.$idIncrement.'1'])){
-        $status = 0;
-        echo "allo incomplet";
-        $crud->setExerciceStatusIncomplete($idIncrement);
+if(isset($_POST['btn'.$idExercice.'0']) || isset($_POST['btn'.$idExercice.'1'])){
+    if($statusExercice==0){     
+        $crud->setExerciceStatusComplete($idExercice);
+    }else{
+        $crud->setExerciceStatusIncomplete($idExercice);
     }
 
+}
+if($statusExercice == 1){
+echo "statusExercice 1 ";
 }
 echo $details;
 
