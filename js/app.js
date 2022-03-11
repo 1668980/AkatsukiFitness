@@ -1,7 +1,15 @@
-
-
 $(() => {
-  //  $(".formRemoveProductClass").hide();
+    let searchParams = new URLSearchParams(window.location.search)
+    // get and print all query parameters
+    for (let p of searchParams) {
+        console.log(p);
+    }
+    if (searchParams.has('auth_error')) {
+        $('#loginModalLabel').text('Connexion requise!')
+        $('#loginModalLabel').addClass('text-danger')
+        $('#loginModal').modal('show');
+    }
+    //  $(".formRemoveProductClass").hide();
     // navbar
     $('#btnTrain').on('click', () => {
         let href = this.href
@@ -35,18 +43,21 @@ $(() => {
         } else
             $('#message1').html('Non valide').css('color', 'red');
     });
-    
-    
+
+
     $('#passConf').on('keyup', function () {
         if ($('#passInsc').val() == $('#passConf').val()) {
             $('#message2').html('Matching').css('color', 'green');
         } else
             $('#message2').html('Not Matching').css('color', 'red');
     });
-    
- });
+
+});
+
+
+
 // sign up functions 
-addProductForm = (e,info) => { 
+addProductForm = (e, info) => {
     let idProduct = info.value;
     let quantite = 1;
     e.preventDefault()
@@ -54,53 +65,53 @@ addProductForm = (e,info) => {
         type: "POST",
         url: 'add_product_to_cart.php',
         dataType: 'json',
-        data: {arguments: [idProduct,quantite]},
-    
+        data: { arguments: [idProduct, quantite] },
+
         success: function (obj, textstatus) {
-            addProductSucess(obj,idProduct);
-                }, error: function(){
-                    alert('Connectez vs pour ajouter au panier');
-                  }
+            addProductSucess(obj, idProduct);
+        }, error: function () {
+            alert('Connectez vs pour ajouter au panier');
+        }
     });
-        return true;
+    return true;
 }
-test = (idArticle,quantite)=>{
+test = (idArticle, quantite) => {
     alert(quantite);
 }
-updateQuantityCartForm = (idArticle,quantite)=>{ 
-  
+updateQuantityCartForm = (idArticle, quantite) => {
+
     jQuery.ajax({
         type: "POST",
         url: 'update_quantity_of_product_in_cart.php',
         dataType: 'json',
-        data: {arguments: [idArticle,quantite]},
-    
+        data: { arguments: [idArticle, quantite] },
+
         success: function (obj, textstatus) {
-            updateProductQuantitySucess(obj,idArticle);
-                }, error: function(){
-                    alert('failure');
-                  }
+            updateProductQuantitySucess(obj, idArticle);
+        }, error: function () {
+            alert('failure');
+        }
     });
-        return true;
+    return true;
 }
 
-removeProductForm = (e,info) => { 
+removeProductForm = (e, info) => {
     let idProduct = info.value;
-  
+
     e.preventDefault()
     jQuery.ajax({
         type: "POST",
         url: 'remove_product_to_cart.php',
         dataType: 'json',
-        data: {arguments: idProduct},
-    
-        success: function (obj, textstatus) {           
-            removeProductSucess(obj,idProduct);
-                }, error: function(){
-                    alert('failure');
-                  }
+        data: { arguments: idProduct },
+
+        success: function (obj, textstatus) {
+            removeProductSucess(obj, idProduct);
+        }, error: function () {
+            alert('failure');
+        }
     });
-        return true;
+    return true;
 }
 updateProductQuantitySucess = (obj, idArticle) => {
     // add difference entre premimium et gratuit
@@ -109,22 +120,22 @@ updateProductQuantitySucess = (obj, idArticle) => {
     let prixTotal = prix * quantite;
     let rabais = prixTotal * 0.05;
     let prixTotalMembre = prixTotal - rabais;
-    
 
-    $("#CartProductPrice"+idArticle).html("<del>"+prixTotal+"</del>$ "+prixTotalMembre+"$");
-  
+
+    $("#CartProductPrice" + idArticle).html("<del>" + prixTotal + "</del>$ " + prixTotalMembre + "$");
+
 }
 addProductSucess = (val, idProduct) => {
-   
+
     $("#cartCount").html(val);
-    $("#formAddProduct"+idProduct).hide();
-    $("#formRemoveProduct"+idProduct).show();
+    $("#formAddProduct" + idProduct).hide();
+    $("#formRemoveProduct" + idProduct).show();
 }
 removeProductSucess = (val, idProduct) => {
 
     $("#cartCount").html(val);
-    $("#formAddProduct"+idProduct).show();
-    $("#formRemoveProduct"+idProduct).hide();
+    $("#formAddProduct" + idProduct).show();
+    $("#formRemoveProduct" + idProduct).hide();
 }
 
 validatePassword1 = () => {
@@ -184,6 +195,6 @@ function triggerToast($idTraining) {
 
 function afficherBtnAjout() {
     var btn = document.getElementById('addExercice');
-    btn.style.display="block";
+    btn.style.display = "block";
 }
 

@@ -6,6 +6,7 @@ $breadcrumb =[
     ["", "Panier"],
 ];
 require_once('includes/header.php');
+require_once('includes/auth_check.php');
 $cartItems = $crud->getPanierByidUser($_SESSION['userid']);
 $userInfo = $crud->getUser($userid);
 $avatar = $userInfo['avatar'];
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="container mt-4">
+<div class="container mt-0">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="card">
             <div class="card-body">

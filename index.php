@@ -3,6 +3,9 @@
 $carousel=true;
 
 require_once('includes/header.php');
+// if(isset($_GET['loggedin'])){
+//     echo '<script> alert("need to be logged in!") </script>';
+// }
 ?>
 
 <div class="container">
@@ -43,4 +46,7 @@ require_once('includes/header.php');
 </div>
         
 
-<?php require_once('includes/footer.php');?>
+<?php 
+require_once('includes/footer.php');
+
+?>
