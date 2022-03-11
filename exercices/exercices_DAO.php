@@ -1,10 +1,10 @@
 <?php 
 
-
 class exerciceDao extends BaseDAO
 {
     protected $_tableName;
 	protected $_primaryKey;
+	protected $_tableName2;
 
 	public function init($tableName, $primmaryKey){
 		$this->_tableName = $tableName;
@@ -47,13 +47,27 @@ abstract class baseDAO{
 		if (is_null($key)){
 			$key = $this-> _primaryKey;
 		}
+
 		$sql = "select * from $this->_tableName where {$key}=?";
 		$stmt = $this->__connection->prepare($sql);
 		$stmt->bind_param("i", $value);
 		$stmt->execute();
-		$results = $stmt->get_result();
-		while ($result = mysqli_fetch_array($results)) {
+		$results1 = $stmt->get_result();
+		while ($result = mysqli_fetch_array($results1)) {
 			$rows[] = $result;
+		}
+		return $rows;
+	}
+
+	public function getCatbyId(){
+		$rows = array();
+
+		$sql = "select * from $this->_tableName ";
+		$stmt = $this->__connection->prepare($sql);
+		$stmt->execute();
+		$results = $stmt->get_result();			
+		while ($ligne = mysqli_fetch_object($results)) {
+			$rows[] = $ligne;
 		}
 		return $rows;
 	}
@@ -62,7 +76,7 @@ abstract class baseDAO{
 
 	public function fetchAll(){
 		$rows = array();
-		$sql = "select * from $this->_tableName";
+		$sql = "select * from $this->_tableName limit 25";
 		$stmt = $this->__connection->prepare($sql);
 		$stmt->execute();
 		$results = $stmt->get_result();
@@ -70,6 +84,7 @@ abstract class baseDAO{
 		while ($ligne = mysqli_fetch_object($results)) {
 			$rows[] = $ligne;
 		}
+
 		return $rows;
 	}
 

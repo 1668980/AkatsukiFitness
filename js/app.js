@@ -210,7 +210,23 @@ function triggerToast($idTraining) {
 }
 
 function afficherBtnAjout() {
-    var btn = document.getElementById('addExercice');
-    btn.style.display = "block";
+    var tName = document.getElementById('trainingName'); 
+    if (tName.value.length != 0){
+        document.getElementById('btnAddExercice').disabled = false; 
+        document.getElementById('trainingName').disabled = true; 
+        //lister();
+    }
+    else {
+        alert("Veuillez svp entrer un nom d'entrainement");
+    }
 }
+
+function addExo(idExo,nom,idCat,) {
+    var rep = '<input type="text" id="idExo" name="exo['+idExo+'][id]" value="'+idExo+'">';
+        rep += '<input type="text" id="nomExo" name="exo['+idExo+'][nom]" value="'+nom+'">';
+        rep += '<input type="text" id="idcat" name="exo['+idExo+'][idcat]" value="'+idCat+'">';
+    $('#donneesExo').append(rep);
+    alert("Exercice bien ajouter");
+}
+
 

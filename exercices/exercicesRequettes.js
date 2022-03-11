@@ -1,7 +1,7 @@
 
 function lister() {
 	var formexercice = new FormData();
-	formexercice.append('action', 'lister');//alert(formexercice.get("action"));
+	formexercice.append('action', 'lister'); 
 	$.ajax({
 		type: 'POST',
 		url: 'exercices/exercicesControleur.php',
@@ -11,7 +11,6 @@ function lister() {
 		dataType: 'json', //text pour le voir en format de string
 		success: function (reponse) {//alert(reponse);
 			exercicesVue(reponse);
-			//alert('success');
 		},
 		fail: function (err) {
 			alert('Failure');
