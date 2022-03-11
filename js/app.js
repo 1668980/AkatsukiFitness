@@ -10,7 +10,12 @@ $(() => {
         $('#loginModal').modal('show');
     }
     //  $(".formRemoveProductClass").hide();
-    // navbar
+    $('#btn-checkout').on('click', () => {
+        $('#containerCart').hide()
+        $('#contCompOrder').show()
+    })
+
+
     $('#btnTrain').on('click', () => {
         let href = this.href
         !href ? $('#loginModalLabel').text('Connexion requise!') : null

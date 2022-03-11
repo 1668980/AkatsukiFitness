@@ -229,3 +229,15 @@ p.text {
 #btn-checkout {
     width: 100%!important;
 }
+
+.btn-cat-shop {
+    width: 85px;
+}
+
+.btn-cat-blog {
+    width: 120px;
+}
+
+#contCompOrder{
+    display: none;
+}

@@ -20,18 +20,11 @@ $gender = $userInfo['sexe'];
 $weight_goal = $userInfo['poids_desire'];
 $avatar = $userInfo['avatar'];
 
-// var_export($userInfo);
-// die();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
 
     $user = $crud->getUser($_SESSION['userid']);
-
-
-    // echo $user['lastname'];
-
-
 
     $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : $user['nom'];
     $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : $user['prenom'];
@@ -43,14 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : $user['avatar'];
 
 
+    $email_change_required = false;
+    if ($user['email'] != $_POST['email']) { 
+        $email_change_required=true;
+    } 
+    
+    $user = new Utilisateur($_SESSION["userid"], $lastname, $firstname, $email, $dob, $gender, $weight, $weight_goal, $avatar);
 
-   $user = new Utilisateur($_SESSION["userid"], $lastname, $firstname, $email, $dob, $gender, $weight, $weight_goal, $avatar);
+    $r = $crud->updateUserUtilisateurTableSansEmail($user);
 
-   $r= $crud->updateUserUtilisateurTableSansEmail($user);
+    if ($email_change_required)  {
+        $crud->updateUserEmail($user);
+    }
   
    header('Location: profile.php');
-   
-    
+       
     return;
 }
 
