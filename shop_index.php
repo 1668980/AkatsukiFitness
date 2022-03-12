@@ -91,7 +91,12 @@ if(isset($_GET['idcat'])){
                                 onsubmit='return addProductForm(event, this.productid)'>
                                 <input type="hidden" value="<?php echo  $idProduct ?>" class="productecho"
                                     name="productid">
-                                <button type="submit" class="btn btn-success">Ajouter au panier</button>
+                                    <div id='sucessBtnContainer01<?php echo $idProduct?>'>
+                                        <button type="submit" id="btnAddToCart"class="btn btn-success">Ajouter au panier</button>
+                                    </div>
+                               
+
+
                             </form>
 
                             <!-- <form  action="" class="form-inline my-2 my-lg-0 formRemoveProductClass" id="formRemoveProduct<?php echo $idProduct ?>" onsubmit='return removeProductForm(event, this.productid)'>
@@ -121,18 +126,35 @@ if(isset($_GET['idcat'])){
             <?php 
         if(isset($_SESSION['userid'])){
           if($crud->isArticleInPanierOfTheUser($_SESSION['userid'],$idProduct) != -1){
+          
         ?>
             <script>
-            $("#formAddProduct<?php echo $idProduct?>").hide();
-            $("#formRemoveProduct<?php echo $idProduct?>").show();
+           
+
+
+
+
+           $("#sucessBtnContainer01<?php echo $idProduct?>").replaceWith(`
+         
+           <div class="dummy-positioning ">
+  
+              <div class="success-icon">
+                <div class="success-icon__tip"></div>
+                <div class="success-icon__long"></div>
+              </div>
+
+            </div>`
+            );
+
             </script>
 
             <?php 
         }else {
         ?>
             <script>
-            $("#formAddProduct<?php echo $idProduct?>").show();
-            $("#formRemoveProduct<?php echo $idProduct?>").hide();
+           // $("#formAddProduct<?php echo $idProduct?>").show();
+          //  $("#formRemoveProduct<?php echo $idProduct?>").hide();
+           
             </script>
 
             <?php 
