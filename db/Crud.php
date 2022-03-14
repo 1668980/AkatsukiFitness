@@ -485,6 +485,24 @@ class Crud
             return false;
         }
     }
+
+    public function setEntrainementStatusInProgress($idEntrainement){
+        try {  
+
+            //TODO :  utiliser la constante self::STATUS_INCOMPLETE ici mais il faut la passer par value;
+            // $s = self::STATUS_INCOMPLETE;
+            //$sql = "UPDATE `entrainement` SET `status` = $s  WHERE `identrainement` =  $idEntrainement";
+            // ou avec un prepared statement. il faut utiliser un bindvalue au lieu d'un bindparam;
+
+            $sql = "UPDATE `entrainement` SET `status` =  2 WHERE `identrainement` =  $idEntrainement";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     //Delete
         
     public function deleteEntrainementById($idEntrainement){
