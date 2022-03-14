@@ -5,12 +5,16 @@ require_once 'db/Utilisateur.php';
 require_once 'db/conn.php';
 require_once 'db/Entrainement.php';
 $name = $_POST['trainingName'];
-$type = $_POST['trainingType'];
-$difficulty = $_POST['trainingDifficulty'];
 $user = $_SESSION['userid'];
+$exoChoisis = $_POST['exo'];
+$listeExo = array();
 
-
-$training = new Entrainement(0, $user, $name, $difficulty, $type);
+$training = new Entrainement(0, $user, $name, 0, 0);
 $result = $crud->createNewEntrainement($training);
-header('Location: workouts.php');
+foreach($exoChoisis as $exo){
+    $ex = new Exercice(0, $exo['idcat'], 0, 0, 0, 0, 0);
+    $listeExo[] = $ex;
+}
+$result = $crud->addExercices($listeExo, $result);
+
 ?>

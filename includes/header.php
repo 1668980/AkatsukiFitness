@@ -44,6 +44,8 @@
     <script src="utilitaires/jquery-3.6.0.min.js"></script>
     <script src="utilitaires/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
     <script src="js/app.js"></script>
+    <script language="javascript" src="exercices/exercicesRequettes.js"></script>
+    <script language="javascript" src="exercices/exercicesVue.js"></script>
 </head>
 
 
@@ -51,17 +53,13 @@
 
 
 <body class="bg-dark">
-
     <?php
-
-
     if (isset($breadcrumb)){
         echo '<div class="container">';
         breadcrumb($breadcrumb);
     echo '</div>';
     }
     ?>
-
     <?php
         if (isset($landing_img)){
             echo '<div class="landing mb-5" style="background-image:url(\''.$landing_img.'\')">
@@ -73,8 +71,6 @@
             echo '</div></div>';   
             }
     ?>
-
-
     <?php
         if (isset($carousel)) { 
             include ('vue/carrousel.php');

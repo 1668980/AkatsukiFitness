@@ -4,16 +4,22 @@ $(() => {
     for (let p of searchParams) {
         console.log(p);
     }
+
+    if (searchParams.has('ordered')) {
+        $('#containerCart').hide()
+        $('#contCompOrder').show()
+    }
+
     if (searchParams.has('auth_error')) {
         $('#loginModalLabel').text('Connexion requise!')
         $('#loginModalLabel').addClass('text-danger')
         $('#loginModal').modal('show');
     }
     //  $(".formRemoveProductClass").hide();
-    $('#btn-checkout').on('click', () => {
-        $('#containerCart').hide()
-        $('#contCompOrder').show()
-    })
+    // $('#btn-checkout').on('click', () => {
+    //     $('#containerCart').hide()
+    //     $('#contCompOrder').show()
+    // })
 
 
     $('#btnTrain').on('click', () => {
@@ -59,6 +65,10 @@ $(() => {
 
 });
 
+checkout = () => {
+    $('#containerCart').hide()
+    $('#contCompOrder').show()
+}
 
 
 // sign up functions 
@@ -134,7 +144,18 @@ addProductSucess = (val, idProduct) => {
 
     $("#cartCount").html(val);
     // window.location.href = "shop_cart.php";
-   // $("#formAddProduct" + idProduct).hide();
+    $("#sucessBtnContainer01"+idProduct).replaceWith(`
+         
+           <div class="dummy-positioning ">
+  
+              <div class="success-icon">
+                <div class="success-icon__tip"></div>
+                <div class="success-icon__long"></div>
+              </div>
+
+            </div>`
+            );
+
     //$("#formRemoveProduct" + idProduct).show();
 }
 removeProductSucess = (val, idProduct) => {
@@ -199,10 +220,24 @@ function triggerToast($idTraining) {
     }
 }
 
-function afficherBtnAjout() {
-    var btn = document.getElementById('addExercice');
-    btn.style.display = "block";
+function afficherBtnconf() {
+    var tName = document.getElementById('trainingName'); 
+    if (tName.value.length != 0){
+        document.getElementById('btnSignup1').disabled = false; 
+        document.getElementById('trainingName').disabled = true; 
+        lister();
+    }
+    else {
+        alert("Veuillez svp entrer un nom d'entrainement");
+    }
 }
 
+function addExo(idExo,nom,idCat,) {
+    var rep = '<input type="text" id="idExo" name="exo['+idExo+'][id]" value="'+idExo+'">';
+        rep += '<input type="text" id="nomExo" name="exo['+idExo+'][nom]" value="'+nom+'">';
+        rep += '<input type="text" id="idcat" name="exo['+idExo+'][idcat]" value="'+idCat+'">';
+    $('#donneesExo').append(rep);
+    alert("Exercice bien ajouter");
+}
 
 

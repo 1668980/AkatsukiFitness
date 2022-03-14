@@ -35,6 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
         } else {
             $crud->clearPanier($idUser);
+            header("location: shop_cart.php?ordered=true");
+            echo '<script> checkout() </script>';
+        }
+    } else if (isset($_GET['ordered'])) {
+        $ordered = $_GET['ordered'];
+        if (!$ordered) {
+            echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
         }
     }
 }
@@ -211,7 +218,7 @@ if ($isPremimium) {
                                     <p class="mb-2">
 
                                         <?php
-echo $prixTotal . "$";
+                                echo $sousTotal . "$";
 
 ?>
                                     </p>
@@ -225,7 +232,8 @@ echo $prixTotal . "$";
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2">Total(Incl. taxes)</p>
                                     <p class="mb-2"><?php
-echo printf("$%01.1f", $prixTotal)
+                                    echo $prixTotal;
+
 ?>$
                                     </p>
                                 </div>

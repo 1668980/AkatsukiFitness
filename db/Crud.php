@@ -533,6 +533,18 @@ class Crud
     
     }
 
+    public function getLastCreatedIdEntrainement(){
+        try {  
+            $sql = "SELECT MAX(identrainement) FROM  `entrainement`";
+            $stmt = $this->db->prepare($sql);  
+            $stmt->execute();            
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 //Exercice 
     
     //create

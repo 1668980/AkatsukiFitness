@@ -31,28 +31,29 @@ if (isset($_GET['id'])) {
                         <div class="row">
                         <?php
                             $listeEntrainement = $crud->getEntrainementsInProgressByIdUser($_SESSION['userid']);
-
+                            
                             $rep = '';
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
-                                $nom = $training['nom'];
-                                $difficulte = $training['difficulte'];
-                                $type = $training['type'];
+                                $listeExercice = $crud->getExercicesFromEntrainement($training['idexercice']);
+                                $exo1 = $listeExercice[1];
+                                $exo2 = $listeExercice[2];
+                                $exo3 = $listeExercice[3];
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')">
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25" >
+                                                <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
-                                                        <li>' . $type . '</li>
-                                                        <li>' . /*.$duree.*/ ' minutes </li>
-                                                        <li>' . $difficulte. '</li>
+                                                        <li>' . $exo1 . '</li>
+                                                        <li>' . $exo2 . '</li>
+                                                        <li>' . $exo3 . '</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>';
-                            }
+                            }       
                             echo $rep;
                         ?>
                         </div>
@@ -74,24 +75,36 @@ if (isset($_GET['id'])) {
                         <div class="row">
                             <?php
                             $listeEntrainement = $crud->getEntrainementsByIdUser($_SESSION['userid']);
-
+                            $listeExercice = array();
                             $rep = '';
+
+
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
                                 $nom = $training['nom'];
-                                $difficulte = $training['difficulte'];
-                                $type = $training['type'];
+                                $listeExercice = $crud->getExercicesFromEntrainement($training['identrainement']);
+                                $exo1 = array('Exercice1','Exercice2','Exercice3');
+                                
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')" >
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25" >
-                                                    <h4 class="card-title"> ' . $nom . '</h4>
-                                                    <ul>
-                                                        <li>' . $type . '</li>
-                                                        <li>' . /*.$duree.*/ ' minutes </li>
-                                                        <li>' . $difficulte. '</li>
-                                                    </ul>
+                                                <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
+                                                    
+                                                    <div class="row justify-content-center align-bottom">
+                                                        <div class="col">
+                                                            <a class="badge rounded-pill bg-primary"> Supprimer </a>
+                                                        </div> 
+                                                        <div class="col">
+                                                        <a class="badge rounded-pill bg-primary"> Continuer </a>
+                                                        </div> 
+                                                        <div class="col">
+                                                            <a class="badge rounded-pill bg-primary" href=""> Modifier </a>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row">
+                                                    <h4 class="card-title text-center"> <span class="badge badge-pill bg-danger">' . $nom . '</h4>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>';
@@ -222,15 +235,7 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-<div id="toastTrainingOptions" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-    <div class="mt-2 pt-2 border-top">
-      <button type="button" class="btn btn-primary btn-sm">Take action</button>
-      <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
-    </div>
-  </div>
-</div>
+
 
 
 <script>
