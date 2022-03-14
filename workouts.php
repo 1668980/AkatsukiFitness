@@ -35,13 +35,12 @@ if (isset($_GET['id'])) {
                             $rep = '';
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
-                                $listeExercice = $crud->getExercicesFromEntrainement($training['idexercice']);
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')">
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
-                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
-                                                    <h4 class="card-title"> ' . $nom . '</h4>
+                                                    <h4 class="card-title"> ' . $training['nom'] . '</h4>
                                                     <ul>
                                                     </ul>
                                                 </div>
@@ -82,7 +81,7 @@ if (isset($_GET['id'])) {
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')" >
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
                                                     
                                                     <div class="row justify-content-center align-bottom">
