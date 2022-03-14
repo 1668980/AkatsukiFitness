@@ -144,7 +144,18 @@ addProductSucess = (val, idProduct) => {
 
     $("#cartCount").html(val);
     // window.location.href = "shop_cart.php";
-   // $("#formAddProduct" + idProduct).hide();
+    $("#sucessBtnContainer01"+idProduct).replaceWith(`
+         
+           <div class="dummy-positioning ">
+  
+              <div class="success-icon">
+                <div class="success-icon__tip"></div>
+                <div class="success-icon__long"></div>
+              </div>
+
+            </div>`
+            );
+
     //$("#formRemoveProduct" + idProduct).show();
 }
 removeProductSucess = (val, idProduct) => {
