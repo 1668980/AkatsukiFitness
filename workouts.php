@@ -36,9 +36,6 @@ if (isset($_GET['id'])) {
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
                                 $listeExercice = $crud->getExercicesFromEntrainement($training['idexercice']);
-                                $exo1 = $listeExercice[1];
-                                $exo2 = $listeExercice[2];
-                                $exo3 = $listeExercice[3];
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')">
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
@@ -46,9 +43,6 @@ if (isset($_GET['id'])) {
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
-                                                        <li>' . $exo1 . '</li>
-                                                        <li>' . $exo2 . '</li>
-                                                        <li>' . $exo3 . '</li>
                                                     </ul>
                                                 </div>
                                             </div>
