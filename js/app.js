@@ -209,12 +209,12 @@ function triggerToast($idTraining) {
     }
 }
 
-function afficherBtnAjout() {
+function afficherBtnconf() {
     var tName = document.getElementById('trainingName'); 
     if (tName.value.length != 0){
-        document.getElementById('btnAddExercice').disabled = false; 
+        document.getElementById('btnSignup1').disabled = false; 
         document.getElementById('trainingName').disabled = true; 
-        //lister();
+        lister();
     }
     else {
         alert("Veuillez svp entrer un nom d'entrainement");

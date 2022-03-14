@@ -76,13 +76,10 @@
             include ('vue/carrousel.php');
         }
     ?>
-<<<<<<< Updated upstream
 
     <?php
          if (! isset($skip_container) || !$skip_container) {
     ?>
-=======
->>>>>>> Stashed changes
     <div class="container">
     <?php } ?>
 
