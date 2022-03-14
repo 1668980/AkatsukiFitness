@@ -12,7 +12,7 @@ $listeExo = array();
 $training = new Entrainement(0, $user, $name, 0, 0);
 $result = $crud->createNewEntrainement($training);
 foreach($exoChoisis as $exo){
-    $ex = new Exercice(0, $exo['idcat'], 0, 0, 0, 0, 0);
+    $ex = new Exercice(0, $exo['id'], 0, 0, 0, 0, 0);
     $listeExo[] = $ex;
 }
 $result = $crud->addExercices($listeExo, $result);
