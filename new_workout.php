@@ -29,7 +29,7 @@ require_once 'db/conn.php';
         <div class="form-group col-12 mt-3 " id="addExercice">
             <button type="button" id="btnAddExercice" class="btn btn-danger" onclick="lister()">Ajouter un exercice</button>
         </div>    
-        <div id="donneesExo" class="form group col-12 mt-3 d-none">
+        <div id="donneesExo" class="form group col-12 mt-3">
 
         </div>
     </form>

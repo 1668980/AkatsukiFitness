@@ -232,7 +232,7 @@ function afficherBtnconf() {
     }
 }
 
-function addExo(idExo,nom,idCat,) {
+function addExo(idExo,nom,idCat) {
     var rep = '<input type="text" id="idExo" name="exo['+idExo+'][id]" value="'+idExo+'">';
         rep += '<input type="text" id="nomExo" name="exo['+idExo+'][nom]" value="'+nom+'">';
         rep += '<input type="text" id="idcat" name="exo['+idExo+'][idcat]" value="'+idCat+'">';
