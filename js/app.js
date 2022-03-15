@@ -240,4 +240,10 @@ function addExo(idExo,nom,idCat) {
     alert("Exercice bien ajouter");
 }
 
+function creerTraining($){
+    document.getElementById('div_trainingName').style = "display:none"; 
+    lister();
+    document.getElementById('div_exercices').style = "display:block"; 
+}
+
 

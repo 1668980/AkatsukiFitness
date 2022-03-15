@@ -83,18 +83,6 @@ if (isset($_GET['id'])) {
                                             <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
-                                                    
-                                                    <div class="row justify-content-center align-bottom">
-                                                        <div class="col">
-                                                            <a class="badge rounded-pill bg-primary"> Supprimer </a>
-                                                        </div> 
-                                                        <div class="col">
-                                                        <a class="badge rounded-pill bg-primary"> Continuer </a>
-                                                        </div> 
-                                                        <div class="col">
-                                                            <a class="badge rounded-pill bg-primary" href=""> Modifier </a>
-                                                        </div> 
-                                                    </div>
                                                     <div class="row">
                                                     <h4 class="card-title text-center"> <span class="badge badge-pill bg-danger">' . $nom . '</h4>
                                                     </div>
@@ -106,7 +94,7 @@ if (isset($_GET['id'])) {
                             ?>
                             <div class="col-md-4 mb-4" onclick="window.location.href='new_workout.php'" style="min-width:162px; min-height:185px;">
                                 <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                    <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                     <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center">
                                         <h4 class="card-title text-center"> <span class="badge badge-pill bg-black">Créer un entrainement</span></h4>
                                     </div>
