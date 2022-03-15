@@ -154,7 +154,7 @@ foreach($exercice as $training){
                                             <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'"> 
                                             <input hidden name="action" value="0"> 
                                             <button type="submit" class="btn-primary" name="btn'.$idExercice.''.$statusExercice.'" id="btn'.$idExercice.''.$statusExercice.'">
-                                            <span class="seatButton"> Exercice incomplété </span>
+                                            <span class="seatButton"> Incomplété Exercice </span>
                                         </button>';
                                         }else{
                                             $details .='
@@ -163,7 +163,7 @@ foreach($exercice as $training){
                                             <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'"> 
                                             <input hidden name="action" value="1"> 
                                             <button type="submit" class="btn-primary" name="btn'.$idExercice.''.$statusExercice.'" id="btn'.$idExercice.''.$statusExercice.'">
-                                            <span class="seatButton"> Exercice complété </span>
+                                            <span class="seatButton"> Complété Exercice </span>
                                         </button>';
                                         }
                                         
