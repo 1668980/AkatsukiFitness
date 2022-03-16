@@ -1,7 +1,6 @@
 <?php
 require_once('includes/header.php');
 require_once('includes/auth_check.php')
-//Rajouter une bar de progression avec bootstrap!!!!! Chaque exercice monte la bar
 
 ?>
 <head>
@@ -12,6 +11,15 @@ require_once('includes/auth_check.php')
 .button {
     position: absolute;
     top: 50%;
+}
+
+.buttonPlay, .buttonReset {
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  border: none;
+  margin: 0;
+  outline: none;
 }
 
 #playButton {
@@ -38,11 +46,9 @@ foreach($entrainement as $training){
     $status = $training['status'];
     $difficulte = $training['difficulte'];
     $type = $training['type'];
-    //$duree = $training['duree'];
     
-//function getEntrainements($nomEntrainement){
     $text .= '
-                <div class="card mb-3 card-perso d-flex p-2 bd-highlight" >
+                <div class="card mb-3 card-perso d-flex p-2 bd-highlight" style="margin-top:60px">
                             <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <h2 class="card-title text-center mx-auto w-100"> '.$nom .' </h2>
@@ -133,6 +139,7 @@ foreach($exercice as $training){
     $duree = $training['duree'];
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
+    $image = $training['image'];
    // $idExercice++;
 
     $details .= '
@@ -144,36 +151,35 @@ foreach($exercice as $training){
                                 <div class="ChangeButtonC">
                                     <label>
                                         <h1> '.$nom .' </h1>    
-                                        
-                                        ';
-                                        if($statusExercice==1){
-
-                                            $details .='
-                                            <form method="post" action="workout_in_progress_action.php">
-                                            <input hidden name="idExercice" value="'.$idExercice.'"> 
-                                            <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'"> 
-                                            <input hidden name="action" value="0"> 
-                                            <button type="submit" class="btn-primary" name="btn'.$idExercice.''.$statusExercice.'" id="btn'.$idExercice.''.$statusExercice.'">
-                                            <span class="seatButton"> Incomplété Exercice </span>
-                                        </button>';
-                                        }else{
-                                            $details .='
-                                            <form method="post" action="workout_in_progress_action.php">
-                                            <input hidden name="idExercice" value="'.$idExercice.'"> 
-                                            <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'"> 
-                                            <input hidden name="action" value="1"> 
-                                            <button type="submit" class="btn-primary" name="btn'.$idExercice.''.$statusExercice.'" id="btn'.$idExercice.''.$statusExercice.'">
-                                            <span class="seatButton"> Complété Exercice </span>
-                                        </button>';
-                                        }
-                                        
-                                        $details .= '
-                                        </form>
                                     </label>
                                 </div>
                             </h4>
-                            <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .'  </div>
-                            <div class="card-footer"> Poids : '.$poids .'</div>
+                            <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .' sec. </br> Poids : '.$poids .' lbs.  <img src="'.$image.' "alt="..." class="img-thumbnail"> </img> </div>
+                            <div class="card-footer"> ';
+                                if($statusExercice==1){
+
+                                    $details .='
+                                    <form method="post" action="workout_in_progress_action.php">
+                                    <input hidden name="idExercice" value="'.$idExercice.'"> 
+                                    <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'"> 
+                                    <input hidden name="action" value="0"> 
+                                    <button type="submit" class="btn-primary" name="btn'.$idExercice.''.$statusExercice.'" id="btn'.$idExercice.''.$statusExercice.'">
+                                    <span class="seatButton"> Incompléter Exercice </span>
+                                </button>';
+                                }else{
+                                    $details .='
+                                    <form method="post" action="workout_in_progress_action.php">
+                                    <input hidden name="idExercice" value="'.$idExercice.'"> 
+                                    <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'"> 
+                                    <input hidden name="action" value="1"> 
+                                    <button type="submit" class="btn-primary" name="btn'.$idExercice.''.$statusExercice.'" id="btn'.$idExercice.''.$statusExercice.'">
+                                    <span class="seatButton"> Compléter Exercice </span>
+                                </button>';
+                                }
+                                
+                                $details .= '
+                                </form>
+                            </div>
                         </div>
                 </div>
                 ';
