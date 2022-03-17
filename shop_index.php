@@ -79,6 +79,7 @@ if(isset($_GET['idcat'])){
                             <br>
                             <!-- Product price-->
                             <?php echo $products['info'] ?>
+                            <br>
                             <b><?php echo $products['prix'] ?>$</b>
                         </div>
                     </div>
