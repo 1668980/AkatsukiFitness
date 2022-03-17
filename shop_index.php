@@ -49,7 +49,7 @@ if(isset($_GET['idcat'])){
     </div>
 
     <!-- les resultats -->
-    <section class="py-5">
+    <section class="mt-3">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->
             <?php 
