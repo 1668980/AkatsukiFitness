@@ -1,5 +1,6 @@
 <?php
 
+
 $breadcrumb = [
     ["index.php", "Accueil"],
     ["", "Entraînements"],
@@ -15,7 +16,69 @@ if (isset($_GET['id'])) {
     });
     </script>';
 }
+$userid = $_SESSION['userid'];
+$membership_details = $crud->membershipDetail($userid);
+
+$entrainemnt_count = count($crud->getEntrainementsByIdUser($userid));
+
+$new_workout_possible = '';
+if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::MAX_WORKOUT_FREE) {
+    $new_workout_possible = 'disabled';
+}
+
 ?>
+
+<div class="container workout-intro">
+    <h1>Entraînements</h1>
+    <h5>Passez à l'action!</h5>
+
+    <div class="mt-5 text-center">
+        <p>Découvrez nos entraînements fait sur mesure, modifiez-les à votre goût ou créez votre propre entraînement personnalisé.</p>
+
+    </div>
+    <hr>
+
+    <div class="mx-auto" style="max-width: 800px;">
+
+
+        <div class="row">
+            <div class="col-md-6 text-center align-self-center">
+
+                <?php
+                if ($membership_details['membership'] == 'premium') {
+                ?>
+                    <p> En tant que membre premium vous pouvez créer autant d'entraînement personnalisé que vous voulez.</p>
+                <?php
+                } else {
+                ?>
+                    <p> En tant que membre gratuit vous pouvez créer jusqu'à un maximum de <?php echo  Crud::MAX_WORKOUT_FREE ?> entraînements personnalisé.</p>
+                <?php
+                }
+                ?>
+
+            </div>
+
+            <div class="col-md-6 text-center align-self-center">
+
+                <a href="new_workout.php" class="btn btn-success <?php echo $new_workout_possible ?> ">Créer un entrainement</a>
+
+                <?php
+                if ($new_workout_possible == 'disabled') {
+                ?>
+                    <p><small>Votre limite est atteinte.</small></p>
+                <?php
+                }
+                ?>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
 
 <div class="accordion mt-5" id="accordionPanelsStayOpenExample">
     <div class="accordion-item border-0">
@@ -29,15 +92,15 @@ if (isset($_GET['id'])) {
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-                        <?php
+                            <?php
                             $listeEntrainement = $crud->getEntrainementsInProgressByIdUser($_SESSION['userid']);
-                            
+
                             $rep = '';
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')">
-                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress(' . $idEntrainement . ')">
+                                            <div id="TCard' . $idEntrainement . '" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
                                                     <h4 class="card-title"> ' . $training['nom'] . '</h4>
@@ -46,9 +109,9 @@ if (isset($_GET['id'])) {
                                                 </div>
                                             </div>
                                         </div>';
-                            }       
+                            }
                             echo $rep;
-                        ?>
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -76,11 +139,11 @@ if (isset($_GET['id'])) {
                                 $idEntrainement = $training['identrainement'];
                                 $nom = $training['nom'];
                                 $listeExercice = $crud->getExercicesFromEntrainement($training['identrainement']);
-                                $exo1 = array('Exercice1','Exercice2','Exercice3');
-                                
+                                $exo1 = array('Exercice1', 'Exercice2', 'Exercice3');
+
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress('.$idEntrainement.')" >
-                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress(' . $idEntrainement . ')" >
+                                            <div id="TCard' . $idEntrainement . '" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
                                                     <div class="row">
@@ -92,16 +155,17 @@ if (isset($_GET['id'])) {
                             }
                             echo $rep;
                             ?>
-                            <div class="col-md-4 mb-4" onclick="window.location.href='new_workout.php'" style="min-width:162px; min-height:185px;">
-                                <div class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                    <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                    <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center">
-                                        <h4 class="card-title text-center"> <span class="badge badge-pill bg-black">Créer un entrainement</span></h4>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
+
+                    <a href="new_workout.php" class="btn btn-success <?php echo $new_workout_possible ?>" style="min-width:100%">Créer un entraînement</a>
+                    <?php
+                    if ($new_workout_possible == 'disabled') {
+                    ?>
+                        <p class="text-center" style="color:#fff"><small>Votre limite est atteinte.</small></p>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -117,7 +181,7 @@ if (isset($_GET['id'])) {
                 <div class="container">
                     <div class="card-group container-fluid ">
                         <div class="row">
-                        <?php
+                            <?php
                             $listeEntrainement = $crud->getEntrainementsCompletedByIdUser($_SESSION['userid']);
 
                             $rep = '';
@@ -127,15 +191,15 @@ if (isset($_GET['id'])) {
                                 $difficulte = $training['difficulte'];
                                 $type = $training['type'];
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px; onclick="workoutInProgress('.$idEntrainement.')"> 
-                                            <div id="TCard'.$idEntrainement.'" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px; onclick="workoutInProgress(' . $idEntrainement . ')"> 
+                                            <div id="TCard' . $idEntrainement . '" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25" >
                                                     <h4 class="card-title"> ' . $nom . '</h4>
                                                     <ul>
                                                         <li>' . $type . '</li>
                                                         <li>' . /*.$duree.*/ ' minutes </li>
-                                                        <li>' . $difficulte. '</li>
+                                                        <li>' . $difficulte . '</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -220,7 +284,7 @@ if (isset($_GET['id'])) {
 
 
 <script>
-    if(window.location.hash == '#completed') { 
+    if (window.location.hash == '#completed') {
         $("#panelsStayOpen-collapseOne").removeClass('show');
         $("#panelsStayOpen-collapseTwo").removeClass('show');
         $("#panelsStayOpen-collapseThree").addClass('show');
