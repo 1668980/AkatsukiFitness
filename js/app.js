@@ -107,7 +107,7 @@ updateQuantityCartForm = (idArticle, quantite) => {
 
         success: function (obj, textstatus) {
             updateProductQuantitySucess(obj, idArticle);
-            location.reload()
+          //  location.reload()
         }, error: function () {
             alert('failure');
         }

@@ -30,7 +30,7 @@
 
         $aResult['sousTotal'] = $sousTotal;
         $aResult['rabaisTotal'] =$sousTotal *($POURCENTAGE_DE_RABAIS);
-        $aResult['PrixTotal'] = $sousTotal + $sousTotal*($POURCENTAGE_DE_TAXES) ;
+        $aResult['PrixTotal'] = $sousTotal -$aResult['rabaisTotal']+ $sousTotal*($POURCENTAGE_DE_TAXES) ;
 
 
     }else{
