@@ -7,6 +7,7 @@ class Crud
     const STATUS_COMPLETED = 1;
     const STATUS_INPROGRESS = 2;
 
+    const  MAX_WORKOUT_FREE=3;
 
     private $db;
 
@@ -309,7 +310,7 @@ class Crud
 
     //Create
     public function createNewEntrainement($entrainement){
-       if($this->isUserPremium($entrainement->idUser) ||count( $this->getEntrainementsByIdUser($entrainement->idUser)) <3  ){
+       if($this->isUserPremium($entrainement->idUser) ||count( $this->getEntrainementsByIdUser($entrainement->idUser)) < self::MAX_WORKOUT_FREE  ){
       
        
        $idEntrainement= $this->createEntrainement($entrainement);
