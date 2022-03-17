@@ -3,11 +3,11 @@
      public static $lang = [
 
         //index.php
-        'index_carrousel_title_1' => 'This is a title',
-        'index_carrousel_title_2' => 'This is a title',
+        'index_carrousel_title_1' => 'Entraînements sur mesure',
+        'index_carrousel_title_2' => 'Inscription pour tous',
         'index_carrousel_title_3' => 'Obtenez 5% de rabais sur tous les articles',
-        'index_carrousel_text_1' => 'Lorsque vous êtes membre, obtenez un rabais instantané sur tous les articles du magasin.',
-        'index_carrousel_text_2' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at purus accumsan, iaculis turpis vitae, accumsan urna.',
+        'index_carrousel_text_1' => 'Sentez-vous énergique et fort avec de nouveaux entraînements que vous pouvez faire à la maison ou au gym.',
+        'index_carrousel_text_2' => 'Que ce soit gratuit ou premium, vous y trouverez des entraînements adaptés.',
         'index_carrousel_text_3' => 'Lorsque vous êtes membre, obtenez un rabais instantané sur tous les articles du magasin.',
         'index_carrousel_btn_1' => 'Inscrivez-vous',
         'index_carrousel_btn_2' => 'Découvrez nos plans',

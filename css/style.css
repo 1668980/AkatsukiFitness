@@ -443,7 +443,6 @@ footer{
     from {
       width: 0em;
       top: 5.1em;
-      left: 3.2em;
     }
     to {
       width: 4em;
@@ -451,4 +450,10 @@ footer{
       left: 2.75em;
       visibility: visible;
     }
+  }
+
+  .carousel-caption h5{
+      font-size: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
   }
