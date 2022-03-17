@@ -28,20 +28,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
     if (isset($_GET['checkout'])) {
+        // get total
         $checkout = $_GET['checkout'];
 
         if (!$checkout) {
             echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
         } else {
-            $crud->clearPanier($idUser);
-            header("location: shop_cart.php?ordered=true");
+            header("location: shop_cart.php?ordered=true&total=" . $_GET['total'] . "");
             echo '<script> checkout() </script>';
         }
-    } else if (isset($_GET['ordered'])) {
+    } 
+    else if (isset($_GET['ordered'])) {
         $ordered = $_GET['ordered'];
         if (!$ordered) {
             echo '<div class=""> <div class="alert alert-danger mt-3"> Une erreur c\'est produite.</div></div>';
+        } else {
+            $checkoutItems = $crud->clearPanier($idUser);
+
         }
     }
 }
@@ -70,23 +75,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             </div>
                         </div>
                         <?php
-if (count($cartItems) === 0) {?>
+                        if (count($cartItems) === 0) {?>
                         <h4 class='text-danger text-center'>Votre panier est vide :(</h4>
                         <?php
-}
-foreach ($cartItems as $item) {
-    $idItem = $item['idproduit'];
-    $idArticle = $item['idarticle'];
-    $quantite = $item['quantite'];
-    if ($isPremimium) {
-        $prix = $item['prix'] * $quantite;
-        $rabais = $prix * $POURCENTAGE_DE_RABAIS;
-        $prixMembre = $prix - $rabais;
-    } else {
-        $prix = $item['prix'] * $quantite;
-    }
+                        }
+                        foreach ($cartItems as $item) {
+                            $idItem = $item['idproduit'];
+                            $idArticle = $item['idarticle'];
+                            $quantite = $item['quantite'];
+                            if ($isPremimium) {
+                                $prix = $item['prix'] * $quantite;
+                                $rabais = $prix * $POURCENTAGE_DE_RABAIS;
+                                $prixMembre = $prix - $rabais;
+                            } else {
+                                $prix = $item['prix'] * $quantite;
+                            }
 
-    ?>
+                        ?>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
@@ -103,7 +108,7 @@ foreach ($cartItems as $item) {
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
 
-                                        <input class="form-control me-1" style="width: 60px;" type="number"
+                                        <input id="changeQ" class="form-control me-1 " style="width: 60px;" type="number"
                                             value="<?php echo $quantite ?>"
                                             onchange="updateQuantityCartForm(<?php echo $idArticle ?>, this.value)">
 
@@ -192,23 +197,23 @@ foreach ($cartItems as $item) {
                                     <p class="mb-2">Rabais</p>
                                     <p class="mb-2">
                                         <?php
-$sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
-$prixTotal = $sousTotal;
-if ($isPremimium) {
-    $rabaisTotal = $sousTotal * $POURCENTAGE_DE_RABAIS;
-    $prixTotal = $sousTotal - $sousTotal * ($POURCENTAGE_DE_RABAIS);
-    $prixTotal += $prixTotal * ($POURCENTAGE_DE_TAXES);
+                                    $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
+                                    $prixTotal = $sousTotal;
+                                    if ($isPremimium) {
+                                        $rabaisTotal = $sousTotal * $POURCENTAGE_DE_RABAIS;
+                                        $prixTotal = $sousTotal - $sousTotal * ($POURCENTAGE_DE_RABAIS);
+                                        $prixTotal += $prixTotal * ($POURCENTAGE_DE_TAXES);
 
-} else {
-    $prixTotal += $sousTotal * ($POURCENTAGE_DE_TAXES);
+                                    } else {
+                                        $prixTotal += $sousTotal * ($POURCENTAGE_DE_TAXES);
 
-}
+                                    }
 
-if ($isPremimium) {
-    echo $rabaisTotal . "$";
-} else {
-    echo "0$";
-}
+                                    if ($isPremimium) {
+                                        echo $rabaisTotal . "$";
+                                    } else {
+                                        echo "0$";
+                                    }
 ?>
                                     </p>
                                 </div>
@@ -238,7 +243,7 @@ if ($isPremimium) {
                                     </p>
                                 </div>
                                 <!-- if(count($cartItems) === 0) {?> -->
-                                <a <?php echo count($cartItems) != 0 ? 'id="btn-checkout" href="shop_cart.php?checkout=true" ' : 'href="#"' ?>
+                                <a <?php if(count($cartItems) != 0) { ?> id="btn-checkout" href="shop_cart.php?checkout=true&total=<?php echo $prixTotal ?>"  <?php  } else { ?> href="#" <?php  }?>
                                     type="button" class="btn btn-warning btn-lg bg-gradient">
                                     <span class="ms-2">Passer la commande<i
                                             class="fas fa-long-arrow-alt-right ms-2"></i></span>
@@ -271,15 +276,16 @@ if ($isPremimium) {
                         <hr>
                         <h2 class="text-center pt-5 pb-4 text-success">Merci pour votre achat!</h2>
                         <?php
-foreach ($cartItems as $item) {
-    $prix = $item['prix'] * $item['quantite'];
-    $rabais = $prix * $POURCENTAGE_DE_RABAIS;
-    $prixMembre = $prix - $rabais;
-    ?>
+                        foreach ($checkoutItems as $item) {
+                            $prix = $item['prix'] * $item['quantite'];
+                            $rabais = $prix * $POURCENTAGE_DE_RABAIS;
+                            $prixMembre = $prix - $rabais;
+                            ?>
                         <p class="text-center"><?php echo $item['nom'] ?> (<?php echo $item['marque'] ?>) -
                             <?php echo printf("$%01.1f", $prixMembre) ?>$ (x<?php echo $item['quantite'] ?>)</p>
                         <?php }?>
-                        <p class="text-center pb-5"> Total : <?php echo printf("$%01.1f", $prixTotal); ?>$ (avec taxes)
+                        <p class="text-center pb-5"> Total : <?php echo $_GET['total']; ?>$ (avec
+                            taxes)
                         </p>
 
                     </div>

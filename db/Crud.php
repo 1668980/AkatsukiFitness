@@ -1167,7 +1167,7 @@ class Crud
         foreach($listArticle as $art){            
              $this->deleteArticlePanierByIdArticle($art['idarticle']);            
         }
-        return true;    
+        return $listArticle;    
     }
     //Link
 

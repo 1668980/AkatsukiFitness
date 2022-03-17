@@ -21,6 +21,10 @@ $(() => {
     //     $('#contCompOrder').show()
     // })
 
+    // $( "#changeQ" ).change(function() {
+    //     location.reload();
+    //   });
+
 
     $('#btnTrain').on('click', () => {
         let href = this.href
