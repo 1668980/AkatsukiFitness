@@ -1,6 +1,7 @@
 <?php
 $breadcrumb = [
     ["index.php", "Accueil"],
+    ["workouts.php", "Entraînements"],
     ["", "Nouvel entrainement"],
 ];
 
@@ -32,7 +33,7 @@ require_once 'db/conn.php';
                 </div>
             </div>
             <div style="display:none" id="div_exercices">
-                
+
             </div>
         </form>
     </div>

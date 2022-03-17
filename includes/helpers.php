@@ -3,6 +3,7 @@
     function is_logged_in() { 
         return isset($_SESSION['userid']);
     }
+  
 
     function breadcrumb(array $bc_elements) { 
         $str = '
