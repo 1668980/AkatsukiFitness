@@ -74,11 +74,12 @@ if(isset($_GET['idcat'])){
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h4 class="fw-bolder"><?php echo $products['nom'] ?></h4>
-                            <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
+                            <h5 class="fw-bolder"><?php echo $products['nom'] ?></h5>
+                            <h7 class="fw-bolder"><?php echo $products['marque'] ?></h7>
+                            <br>
                             <!-- Product price-->
                             <?php echo $products['info'] ?>
-                            <?php echo $products['prix'] ?>$
+                            <b><?php echo $products['prix'] ?>$</b>
                         </div>
                     </div>
                     <!-- Product actions-->
