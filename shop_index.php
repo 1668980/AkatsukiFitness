@@ -150,8 +150,8 @@ if(isset($_GET['idcat'])){
         }else {
         ?>
             <script>
-            // $("#formAddProduct<?php echo $idProduct?>").show();
-            //  $("#formRemoveProduct<?php echo $idProduct?>").hide();
+            // $("#formAddProduct<?php //echo $idProduct?>").show();
+            //  $("#formRemoveProduct<?php //echo $idProduct?>").hide();
             </script>
 
             <?php 

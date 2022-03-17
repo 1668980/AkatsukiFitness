@@ -135,14 +135,21 @@ removeProductForm = (e, info) => {
 }
 updateProductQuantitySucess = (obj, idArticle) => {
     // add difference entre premimium et gratuit
-    let prix = obj["prix"];
-    let quantite = obj["quantite"];
-    let prixTotal = prix * quantite;
-    let rabais = prixTotal * 0.05;
-    let prixTotalMembre = prixTotal - rabais;
+    let prix = obj['articleUpdated']["prixArticle"];
+    let prixRabais = obj['articleUpdated']["prixRabaisArticle"];  
+
+    if(obj['isPremium']){
+        $("#CartProductPrice" + idArticle).html("<del>" + prix + "</del>$ " + prixRabais + "$");
+    }else{
+        $("#CartProductPrice" + idArticle).html(prix +"$");
+    }
+
+        $('#cartDiscountPrice').html(obj['rabaisTotal']);
+        $('#cartSousTotalPrice').html(obj['sousTotal']);
+        $('#cartTotalPrice').html(obj['PrixTotal']);
+   
 
 
-    $("#CartProductPrice" + idArticle).html("<del>" + prixTotal + "</del>$ " + prixTotalMembre + "$");
 
 }
 addProductSucess = (val, idProduct) => {

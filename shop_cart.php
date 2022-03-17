@@ -194,8 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-between ">
-                                    <p class="mb-2">Rabais</p>
-                                    <p class="mb-2">
+                                    <p class="mb-2" >Rabais</p>
+                                    <p class="mb-2"id="cartDiscountPrice">
                                         <?php
                                     $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
                                     $prixTotal = $sousTotal;
@@ -219,8 +219,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 </div>
 
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Sous-Total</p>
-                                    <p class="mb-2">
+                                    <p class="mb-2" >Sous-Total</p>
+                                    <p class="mb-2"id="cartSousTotalPrice">
 
                                         <?php
                                 echo $sousTotal . "$";
@@ -235,8 +235,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-2">Total(Incl. taxes)</p>
-                                    <p class="mb-2"><?php
+                                    <p class="mb-2" >Total(Incl. taxes)</p>
+                                    <p class="mb-2"id="cartTotalPrice"><?php
                                     echo $prixTotal;
 
 ?>$
