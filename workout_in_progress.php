@@ -46,7 +46,7 @@ foreach($entrainement as $training){
     $status = $training['status'];
     $difficulte = $training['difficulte'];
     $type = $training['type'];
-    
+
     $text .= '
                 <div class="card mb-3 card-perso d-flex p-2 bd-highlight" style="margin-top:60px">
                             <div class="card-body">
@@ -131,7 +131,6 @@ $details2 = '
 
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
-    //$idCatalogue = $training['idcatalogue'];
     $statusExercice = $training['status'];
     $poids = $training['poids'];
     $reps = $training['repetitions'];
@@ -140,7 +139,6 @@ foreach($exercice as $training){
     $dureepause = $training['dureepause'];
     $nom = $training['nom'];
     $image = $training['image'];
-   // $idExercice++;
 
     $details .= '
 
@@ -255,94 +253,18 @@ echo $details;
                             </div>
                             </div>
                             <form method="post">
-                            <div class="wrapper">
-                                    <label>
-                                <button class="btn-danger" name="btn4" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
-                                       
-                                    <span class="seatButton"> Abandonner exercice</span>
-                                </button>
-                            </div>
+                                <div class="wrapper">
+                                        <label>
+                                    <button class="btn-danger" name="btn4" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
+                                        
+                                        <span class="seatButton"> Abandonner exercice</span>
+                                    </button>
+                                </div>
                             </form>
     </div>
     
 </div>
-<!-- <script src="js/script.js"></script> -->
-
-<script type="text/javascript"> 
-function timeToString(time) {
-   
-    let diffInHrs = time / 3600000;
-    let hh = Math.floor(diffInHrs);
-  
-    let diffInMin = (diffInHrs - hh) * 60;
-    let mm = Math.floor(diffInMin);
-  
-    let diffInSec = (diffInMin - mm) * 60;
-    let ss = Math.floor(diffInSec);
-  
-    let diffInMs = (diffInSec - ss) * 100;
-    let ms = Math.floor(diffInMs);
-  
-    let formattedMM = mm.toString().padStart(2, "0");
-    let formattedSS = ss.toString().padStart(2, "0");
-    let formattedMS = ms.toString().padStart(2, "0");
-  
-    return `${formattedMM}:${formattedSS}:${formattedMS}`;
-  }
-  
-  // Declare variables to use in our functions below
-  
-  let startTime;
-  let elapsedTime = 0;
-  let timerInterval;
-  
-  // Create function to modify innerHTML
-  
-  function print(txt) {
-    document.getElementById("display").innerHTML = txt;
-  }
-  
-  // Create "start", "pause" and "reset" functions
-  
-  function start() {
-    startTime = Date.now() - elapsedTime;
-    timerInterval = setInterval(function printTime() {
-      elapsedTime = Date.now() - startTime;
-      print(timeToString(elapsedTime));
-    }, 10);
-    showButton("PAUSE");
-  }
-  
-  function pause() {
-    clearInterval(timerInterval);
-    showButton("PLAY");
-  }
-  
-  function reset() {
-    clearInterval(timerInterval);
-    print("00:00:00");
-    elapsedTime = 0;
-    showButton("PLAY");
-  }
-  
-  // Create function to display buttons
-  
-  function showButton(buttonKey) {
-    const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
-    const buttonToHide = buttonKey === "PLAY" ? pauseButton : playButton;
-    buttonToShow.style.display = "block";
-    buttonToHide.style.display = "none";
-  }
-  // Create event listeners
-  
-  let playButton = document.getElementById("playButton");
-  let pauseButton = document.getElementById("pauseButton");
-  let resetButton = document.getElementById("resetButton");
-  
-  playButton.addEventListener("click", start);
-  pauseButton.addEventListener("click", pause);
-  resetButton.addEventListener("click", reset);
-</script>
+<script src="js/script.js"></script>
 </main>
 
 
