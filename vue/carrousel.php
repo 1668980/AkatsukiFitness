@@ -7,24 +7,20 @@
     <div class="carousel-inner">
         <div class="carousel-item active ">
             <div class="slide slide1 ">
-
-
-
                 <div class="carousel-caption d-none d-md-block">
                     <h5><?php __('index_carrousel_title_1'); ?></h5>
-                    <p><?php __('index_carrousel_text_1'); ?></p>
-                    <a href="signup.php"> <?php __('index_carrousel_btn_1'); ?></a>
+                    <h4 class="mb-4"><?php __('index_carrousel_text_1'); ?></h4>
+                    <a href="signup.php" class="btn btn-success"> <?php __('index_carrousel_btn_1'); ?></a>
                 </div>
 
             </div>
         </div>
         <div class="carousel-item">
             <div class="slide slide2">
-                
                 <div class="carousel-caption d-none d-md-block">
                     <h5><?php __('index_carrousel_title_2'); ?></h5>
-                    <p><?php __('index_carrousel_text_2'); ?></p>
-                    <a href="signup.php"> <?php __('index_carrousel_btn_2'); ?></a>
+                    <h4 class="mb-4"><?php __('index_carrousel_text_2'); ?></h4>
+                    <a href="membership_plans.php" class="btn btn-success"> <?php __('index_carrousel_btn_2'); ?></a>
                 </div>
 
             </div>
@@ -34,8 +30,8 @@
                 
                 <div class="carousel-caption d-none d-md-block">
                     <h5><?php __('index_carrousel_title_3'); ?></h5>
-                    <p><?php __('index_carrousel_text_3'); ?></p>
-                    <a href="signup.php"> <?php __('index_carrousel_btn_3'); ?></a>
+                    <h4 class="mb-4"><?php __('index_carrousel_text_3'); ?></h4>
+                    <a href="shop_index.php" class="btn btn-success"> <?php __('index_carrousel_btn_3'); ?></a>
                 </div>
 
             </div>

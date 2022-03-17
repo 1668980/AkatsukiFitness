@@ -43,12 +43,13 @@ if(isset($_GET['idcat'])){
                 href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?>
             </a>
             <?php }?>
-            <a class="btn btn-outline-light bg-gradient  btn-cat-shop me-2 mb-2" href="shop_index.php"><i class="bi bi-x-circle"></i></a>
+            <a class="btn btn-outline-light bg-gradient  btn-cat-shop me-2 mb-2" href="shop_index.php"><i
+                    class="bi bi-x-circle"></i></a>
         </div>
     </div>
 
     <!-- les resultats -->
-    <section class="py-5">
+    <section class="mt-3">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- chaque cards -->
             <?php 
@@ -74,11 +75,14 @@ if(isset($_GET['idcat'])){
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h4 class="fw-bolder"><?php echo $products['nom'] ?></h4>
+                            <h4 class="fw-bolder "><?php echo $products['nom'] ?></h4>
                             <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
+                            <br>
                             <!-- Product price-->
-                            <?php echo $products['info'] ?>
-                            <?php echo $products['prix'] ?>$
+                            <p class=""><?php echo $products['info'] ?>
+                                <br>
+                                <b><?php echo $products['prix'] ?>$</b>
+                            </p>
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -91,10 +95,11 @@ if(isset($_GET['idcat'])){
                                 onsubmit='return addProductForm(event, this.productid)'>
                                 <input type="hidden" value="<?php echo  $idProduct ?>" class="productecho"
                                     name="productid">
-                                    <div id='sucessBtnContainer01<?php echo $idProduct?>'>
-                                        <button type="submit" id="btnAddToCart"class="btn btn-success">Ajouter au panier</button>
-                                    </div>
-                               
+                                <div id='sucessBtnContainer01<?php echo $idProduct?>'>
+                                    <button type="submit" id="btnAddToCart" class="btn btn-success">Ajouter au
+                                        panier</button>
+                                </div>
+
 
 
                             </form>
@@ -129,12 +134,7 @@ if(isset($_GET['idcat'])){
           
         ?>
             <script>
-           
-
-
-
-
-           $("#sucessBtnContainer01<?php echo $idProduct?>").replaceWith(`
+            $("#sucessBtnContainer01<?php echo $idProduct?>").replaceWith(`
          
            <div class="dummy-positioning ">
   
@@ -143,18 +143,15 @@ if(isset($_GET['idcat'])){
                 <div class="success-icon__long"></div>
               </div>
 
-            </div>`
-            );
-
+            </div>`);
             </script>
 
             <?php 
         }else {
         ?>
             <script>
-           // $("#formAddProduct<?php echo $idProduct?>").show();
-          //  $("#formRemoveProduct<?php echo $idProduct?>").hide();
-           
+            // $("#formAddProduct<?php echo $idProduct?>").show();
+            //  $("#formRemoveProduct<?php echo $idProduct?>").hide();
             </script>
 
             <?php 

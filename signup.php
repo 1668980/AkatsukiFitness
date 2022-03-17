@@ -28,9 +28,10 @@ require_once('includes/header.php');
                     <div class="card-body">
                         <h5 class="card-title">Abonnement Gratuit</h5>
                         <ul>
-                            <li>Blogs créés par des passionés du fitness</li>
-                            <li>Des entrainements préselectionés </li>
-                            <li>Des produits pour faciliter la #fitnessLife</li>
+                            <li>Accès à l'achats de produits Akatsuki Fitness</li>
+                            <li>Accédez à nos plans d'entraînements</li>
+                            <li>Créez jusqu'à <?php echo Crud::MAX_WORKOUT_FREE ?> plans d'entraînements personnalisés</li>
+                            <li>Toujours gratuit :)</li>
                         </ul>
                     </div>
                 </div>
@@ -45,9 +46,9 @@ require_once('includes/header.php');
                     <div class="card-body">
                         <h5 class="card-title">Abonnement Premium </h5>
                         <ul>
-                            <li>Tous les avantages de l'abonnement gratuit</li>
+                        <li>Tous les avantages de l'abonnement gratuit</li>
                             <li>Un suivis de vos buts et objectifs </li>
-                            <li>La possibilité de personnaliser vos entrainements</li>
+                            <li>Sans limite de plans d'entraînements personnalisés</li>
                         </ul>
                     </div>
                 </div>

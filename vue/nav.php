@@ -1,5 +1,5 @@
     <!-- pour des la couleur du text blanche : navbar-dark / noir : navbar-light -->
-    <nav id="myNav" class="navbar navbar-expand-lg navbar-dark bg-gradient fixed-top">
+    <nav id="myNav" class="navbar navbar-expand-lg navbar-dark bg-gradient sticky-top">
         <div class="container-fluid">
             <a class="logo navbar-brand" href="<?php if(!isset($_SESSION['userid'])) { ?>index.php<?php } else { ?>#<?php } ?>"><i class="bi bi-check2-circle"> </i>Akatsuki Fitness</a>
             <button id="toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse"
