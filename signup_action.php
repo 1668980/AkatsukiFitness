@@ -29,8 +29,8 @@ if ($membership_months > 0 ) {
 }
 
 
-$_SESSION['userid'] = $userId;
+
 //$_SESSION['email'] = $email;
-header('Location: Default_workout.php');
+header('Location: login.php');
 
 ?>
