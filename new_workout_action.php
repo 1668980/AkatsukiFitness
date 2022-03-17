@@ -16,5 +16,6 @@ foreach($exoChoisis as $exo){
     $listeExo[] = $ex;
 }
 $result = $crud->addExercices($listeExo, $result);
+header('Location: workouts.php');
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 $breadcrumb = [
     ["index.php", "Accueil"],
+    ["workouts.php", "Entraînements"],
     ["", "Nouvel entrainement"],
 ];
 
@@ -15,24 +16,31 @@ require_once 'db/conn.php';
 <div id="containerSignup" class="container mt-5 pt-5">
 
     <div class="card align-items-center mb-5 card-perso bg-danger bg-opacity-75 bg-gradiant">
-        <p class="fs-1 fw-bold mt-5">Créer un entrainement </p>
-        <form class="w-75 mt-4 mb-4 needs-validation ">
+        <p class="fs-1 fw-bold mt-5" id="titreF">Créer un entrainement </p>
+        <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php">
             <div style="display:block" id="div_trainingName">
                 <div class="row mb-3">
-                    <label for="trainingName" class="col-md-2 col-form-label">Nom</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="trainingName" name="trainingName" required>
-                    </div>
+                    <label for="trainingName" class="text-center">Veuillez nommer votre entrainement</label>
+                    <input type="text" class="form-control mt-2" id="trainingName" name="trainingName" required>
                     <div class="valid-feedback">
-                        Looks good!
+                        Jolie nom!
                     </div>
                 </div>
-                <div class="row mb-3 align-items-center">
-                    <button type="button" class="btn bg-success mt-4 mb-4 " onclick="lister()">Confirmer</button>
+                <div class="row mb-3" id="btn_lister">
+                    <button type="button" class="btn btn-success mt-4 mb-4 align-items-center" onclick="afficherListeExo()">Confirmer</button>
                 </div>
             </div>
-            <div style="display:none" id="div_exercices">
-                
+            <div style="display:none" id="div_exercicesglob">
+                <div class=" row m-2 align-items-center">
+                    <button type="submit" class="btn btn-success mt-4 mb-4 align-items-center">Confirmer</button>
+                </div>
+                <div class="container row m-2" id="div_exercices">
+
+                </div>
+
+            </div>
+            <div id="donneesExo" class="form group col-12 mt-3 d-none">
+
             </div>
         </form>
     </div>

@@ -18,7 +18,7 @@ function lister() {
 	});
 }
 
-function listerParGenre(genre) {
+function listerParCat(genre) {
 	var formexercice = new FormData();
 	formexercice.append('action', 'listerParGenre');//alert(formexercice.get("action"));
 	formexercice.append('genre', genre);

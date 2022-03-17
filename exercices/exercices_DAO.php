@@ -24,6 +24,11 @@ class exerciceDao extends BaseDAO
         $result = $this->fetchAll();
         return $result;
     }
+
+	public function getExoByCat($idCat){
+		$result = $this->fetchByCat($idCat);
+        return $result;
+	}
 }
 
 abstract class baseDAO{
@@ -72,7 +77,19 @@ abstract class baseDAO{
 		return $rows;
 	}
 
-
+	public function fetchByCat($idCat){
+		$rows = array();
+		$sql = "select * from $this->_tableName where idcategorie = ?";
+		$stmt = $this->__connection->prepare($sql);
+		$stmt->bind_param("i", $idCat);
+		$stmt->execute();
+		$results = $stmt->get_result();
+			
+		while ($ligne = mysqli_fetch_object($results)) {
+			$rows[] = $ligne;
+		}
+		return $rows;
+	}
 
 	public function fetchAll(){
 		$rows = array();
@@ -84,7 +101,6 @@ abstract class baseDAO{
 		while ($ligne = mysqli_fetch_object($results)) {
 			$rows[] = $ligne;
 		}
-
 		return $rows;
 	}
 

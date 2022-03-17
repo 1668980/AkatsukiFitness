@@ -6,7 +6,7 @@ var exercicesVue=function(reponse){
 			listerVue(reponse.listeExercices);
 		break;
 		case "listerParGenre" :
-			listerVue(reponse.listeParGenre);
+			listerVue(reponse.listeExercicesParGenre);
 		break;
 		case "rechercher":
 			lister(reponse.listeRechercher);
@@ -14,12 +14,12 @@ var exercicesVue=function(reponse){
 	}
 }
 
-function listerVue(listeExercices){
+function listerVue(liste){
 	
 	var rep='<table class="table text-white" id="listeExercice"> <thead><tr><th scope="col">Nom</th> ' +
 			'<th scope="col">Catégorie</th><th scope="col">Image</th><th scope="col"></th> </tr></thead><tbody>' ;
 
-	listeExercices.forEach(element => {
+	liste.forEach(element => {
 		rep+= '<tr>';
 		rep+= '<td>' + element.nom + '</td>';
 		rep+='<td>' + element.idcategorie +'</td> ';
@@ -29,7 +29,6 @@ function listerVue(listeExercices){
 	});
 	rep+='</tbody></table>';
 	$('#div_exercices').html(rep);
-	$('#div_exercices').show();
+	$('#div_exercicesglob').show();
 	//$('#divTriage').show();
-	alert("done");
 }

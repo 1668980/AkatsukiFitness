@@ -47,16 +47,14 @@ function listerParGenre()
 	$tabRes['action'] = "listerParGenre";
 	try {
 		$tabRes['listeExercicesPargenre'] = array();
-		$tabRes['listeExercicesParGenre'] = $exercices->getExercices();
-		foreach($tabRes['listeExercices'] as $ex){
+		$tabRes['listeExercicesPargenre'] = $exercices->getExoByCat($genre);
+		foreach($tabRes['listeExercicesPargenre'] as $ex){
 			$cat = $crud->getNameOfCat($ex->idcategorie);
 			$ex->idcategorie = $cat;
-			$tabRes['listeExercicesParGenre'][] = $ex;
+			$tabRes['listeExercicesPargenre'][] = $ex;
 		}
 	} catch (Exception $e) {
-		$tabRes['erreur'][] = $e;
 	} finally {
-		unset($unModele);
 	}
 }
 

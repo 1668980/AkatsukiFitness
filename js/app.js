@@ -246,4 +246,16 @@ function creerTraining($){
     document.getElementById('div_exercices').style = "display:block"; 
 }
 
+function afficherListeExo(){
+    const titreF = document.getElementById('titreF'); 
+    const tName = document.getElementById('trainingName'); 
+    if (tName.value.length != 0){
+        titreF.innerHTML = "Ajoutez des exercices!";
+        document.getElementById('div_trainingName').style = "display:none"; 
+        lister();
+    }
+    else {
+        alert("Veuillez svp entrer un nom d'entrainement");
+    }
+}
 
