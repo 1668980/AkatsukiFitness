@@ -1,6 +1,6 @@
 <?php
 
-$breadcrumb =[
+$breadcrumb = [
     ["/", "Accueil"],
     ["", "Mon profil"]
 ];
@@ -19,8 +19,6 @@ $sexe = $userInfo['sexe'];
 $weight = $userInfo['poids'];
 $weight_goal = $userInfo['poids_desire'];
 $avatar = $userInfo['avatar'];
-
-
 $membership_details = $crud->membershipDetail($userid);
 
 ?>
@@ -32,19 +30,33 @@ $membership_details = $crud->membershipDetail($userid);
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profil</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link " id="goals-tab" data-bs-toggle="tab" data-bs-target="#goals" type="button" role="tab" aria-controls="home" aria-selected="true">Mes objectifs</button>
-            </li>
+            <?php
+            if ($membership_details['membership'] == 'premium') {
+            ?>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="goals-tab" data-bs-toggle="tab" data-bs-target="#goals" type="button" role="tab" aria-controls="home" aria-selected="true">Mes objectifs</button>
+                </li>
+            <?php
+
+            }
+            ?>
+
         </ul>
 
 
         <div class="tab-content" id="myTabContent">
-            <?php require_once('vue/profile_tab.php'); ?>
-            <?php require_once('vue/profile_goals_tab.php'); ?>
+            <?php
+            require_once('vue/profile_tab.php');
+
+            if ($membership_details['membership'] == 'premium') {
+                require_once('vue/profile_goals_tab.php');
+            }
+            ?>
+
         </div>
 
     </div>
- </div>
+</div>
 
 
 <?php
