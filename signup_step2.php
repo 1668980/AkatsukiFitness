@@ -20,7 +20,7 @@ require_once('includes/header.php');
 
 <div id="containerSignup" class="container container-signup mt-2">
     <h1>Inscription</h1>
-    <h4>Étape 2: Vos informations</h4>
+    <h4>Étape 1: Choix du plan</h4>
 
     <div class="subscription-details">
         <h5>Détail du plan choisi: <?php __('membership_'.$membership); ?></h5>
@@ -33,7 +33,7 @@ require_once('includes/header.php');
         ?>
         <p><a href="signup.php">Modifier le plan</a></p>
     </div>
-
+    <h4>Étape 2: Vos informations</h4>
     <div class="signup-form">
     <form class="needs-validation " name="form1" id="form1" onsubmit='return validatePassword1()'
         action="signup_action.php" method="POST">
