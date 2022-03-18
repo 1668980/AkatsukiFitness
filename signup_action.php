@@ -15,7 +15,7 @@ $user = new Utilisateur(0, $lastname, $firstname, $email, $dob, $gender,0,null, 
 $user->setPassword($pass);
 
 $userId = $crud->createUtilisateur($user);
-
+if($userId>-1){
 $membership_months = $_POST['membership_months'];
 
 if (! in_array( $membership_months, [0,1,3,6])) { 
@@ -31,5 +31,7 @@ if ($membership_months > 0 ) {
 $_SESSION['userid'] = $userId;
 
 header('Location: Default_workout.php');
-
+}else if($userId == false){
+    header('Location: login.php');
+}
 ?>

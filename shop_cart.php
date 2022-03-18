@@ -86,9 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             if ($isPremimium) {
                                 $prix = $item['prix'] * $quantite;
                                 $rabais = $prix * $POURCENTAGE_DE_RABAIS;
-                                $prixMembre = $prix - $rabais;
+                                $prixMembre = round($prix - $rabais,2);
                             } else {
-                                $prix = $item['prix'] * $quantite;
+                                $prix = round($item['prix'] * $quantite,2);
                             }
 
                         ?>
@@ -200,12 +200,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                     $sousTotal = $crud->getTotalPrixPanier($_SESSION['userid']);
                                     $prixTotal = $sousTotal;
                                     if ($isPremimium) {
-                                        $rabaisTotal = $sousTotal * $POURCENTAGE_DE_RABAIS;
+                                        $rabaisTotal = round($sousTotal * $POURCENTAGE_DE_RABAIS,2);
                                         $prixTotal = $sousTotal - $sousTotal * ($POURCENTAGE_DE_RABAIS);
-                                        $prixTotal += $prixTotal * ($POURCENTAGE_DE_TAXES);
+                                        $prixTotal += round($prixTotal * ($POURCENTAGE_DE_TAXES),2);
 
                                     } else {
-                                        $prixTotal += $sousTotal * ($POURCENTAGE_DE_TAXES);
+                                        $prixTotal += round($sousTotal * ($POURCENTAGE_DE_TAXES),2);
 
                                     }
 
@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-2" >Total(Incl. taxes)</p>
                                     <p class="mb-2"id="cartTotalPrice"><?php
-                                    echo $prixTotal;
+                                    echo round($prixTotal,2);
 
 ?>$
                                     </p>
