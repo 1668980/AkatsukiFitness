@@ -243,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                     </p>
                                 </div>
                                 <!-- if(count($cartItems) === 0) {?> -->
-                                <a <?php if(count($cartItems) != 0) { ?> id="btn-checkout" href="shop_cart.php?checkout=true&total=<?php echo $prixTotal ?>"  <?php  } else { ?> href="#" <?php  }?>
+                                <a <?php if(count($cartItems) != 0) { ?> id="btn-checkout" href="shop_cart.php?checkout=true&total=<?php echo round($prixTotal,2) ?>"  <?php  } else { ?> href="#" <?php  }?>
                                     type="button" class="btn btn-warning btn-lg bg-gradient">
                                     <span class="ms-2">Passer la commande<i
                                             class="fas fa-long-arrow-alt-right ms-2"></i></span>

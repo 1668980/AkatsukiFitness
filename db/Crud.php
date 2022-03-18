@@ -640,6 +640,8 @@ class Crud
 
 
     }
+
+    
     public function setExerciceStatusComplete($idExercice){
         try {  
             $sql = "UPDATE `exercice` SET `status` =  1 WHERE `idexercice` =  $idExercice";

@@ -108,7 +108,7 @@ require_once('includes/header.php');
             <div class="col-12">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" name="invalidCheck1"
                     required>
-                <label class="form-check-label" for="invalidCheck1"> J'accepte les <a href="#">Termes et
+                <label class="form-check-label" for="invalidCheck1"> J'accepte les <a href="terms_of_use.php" target="_blank">Termes et
                         conditions</a> </label>
                 <div class="invalid-feedback">
                     Vous devez acceptez les T&C avant de continuer.
