@@ -192,7 +192,21 @@ foreach($exercice as $training){
                                 </div>
                             </h4>
                             <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .' sec. </br> Poids : '.$poids .' lbs.  <img src="'.$image.' "alt="..." class="card-img-bottom"> </img> </div>
-                            <div class="card-footer"> ';
+                            <div class="card-footer">
+                            
+                            
+                            <form action="update_exercice.php" method="POST">
+                           
+                           <input hidden name="idExercice" value="'. $idExercice.'">
+                           <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'">
+                           <input hidden name="poids" value="'. $poids.'">
+                           <input hidden name="reps" value="'. $reps.'">
+                           <input hidden name="sets" value="'. $sets.'">
+                           <input hidden name="duree" value="'. $duree.'">
+                           <input hidden name="dureepause" value="'. $dureepause.'">
+                            <button typde="submit">Modifier</button>
+                            
+                            </form>';
                                 if($statusExercice==1){
 
                                     $details .='
@@ -296,4 +310,5 @@ echo $details;
 
 <?php
 require_once('includes/footer.php');
+include('includes/modal_update_exercice.php')
 ?>

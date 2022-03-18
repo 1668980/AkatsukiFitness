@@ -2,6 +2,7 @@
 <?php
   
     require_once 'db/conn.php';
+    
     require_once 'includes/session.php';
     header('Content-Type: application/json'); 
 
