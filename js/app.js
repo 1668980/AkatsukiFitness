@@ -204,7 +204,7 @@ function workoutInProgress(idEntrainement) {
 }
 
 function workoutPause(){
-    windows.location.href = "workouts.php";
+    window.location.href = "workouts.php";
 }
 
 f1 = () => {
