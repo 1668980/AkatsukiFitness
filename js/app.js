@@ -250,9 +250,7 @@ function addExo(idExo,nom,idCat) {
         rep += '<input type="text" id="idcat" name="exo['+idExo+'][idcat]" value="'+idCat+'">';
     $('#donneesExo').append(rep);
     $("#confirm_workout_creation_notice").hide();
-
-    $("#confirm_workout_creation").removeClass('disabled');
-    
+    $("#btnAjoutEx"+idExo).addClass('disabled');
 }
 
 function creerTraining($){

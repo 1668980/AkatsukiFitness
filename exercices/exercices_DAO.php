@@ -79,7 +79,7 @@ abstract class baseDAO{
 
 	public function fetchByCat($idCat){
 		$rows = array();
-		$sql = "select * from $this->_tableName where idcategorie = ?";
+		$sql = "select * from $this->_tableName where idcategorie = ? limit 25";
 		$stmt = $this->__connection->prepare($sql);
 		$stmt->bind_param("i", $idCat);
 		$stmt->execute();
