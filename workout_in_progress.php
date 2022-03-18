@@ -17,7 +17,21 @@ require_once('includes/auth_check.php')
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+button{
+    border-radius: 10px; 
+}
 
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+button.margin-right {
+  margin-right: 100px;
+}
 
 .buttonPlay, .buttonReset {
   cursor: pointer;
@@ -121,6 +135,7 @@ $count2 = $count1 * 100;
 $count = number_format($count2, 0);
 
 $details2 = '
+
         </div>  
         <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="'.$nbExerciceComplete.'
@@ -133,7 +148,8 @@ $details2 = '
         
     </div>  
     <form method="post">
-        <ul>
+    
+    <div class="flex-parent jc-center">
             <button class="btn-primary" name="commencerButton">Commencer l\'exercice</button>
 
             
@@ -143,15 +159,12 @@ $details2 = '
 ?>
 </br>
         <div class="ChangeButtonC">
-            <label>
-                <button class="btn-primary" name="btn3" id="btn3" onclick="document.getElementById('btn3').style.background='blue'" href="workouts.php">
+                <button class="btn-primary" name="btn3" id="btn3" onclick=workoutPause(); href="workouts.php">
                     <span class="seatButton"> Pause </span>
                 </button>
-            </label>
         </div>
-
+</div>
         <!-- <button class="btn-primary">Modifier</button> -->
-        </ul>
     </form>
 
 <?php
