@@ -203,6 +203,10 @@ function workoutInProgress(idEntrainement) {
     window.location.href = "workout_in_progress.php?id_training=" + idEntrainement;
 }
 
+function workoutPause(){
+    windows.location.href = "workouts.php";
+}
+
 f1 = () => {
     let checkbox = $('#invalidCheck1');
     if (checkbox.prop("checked") == true) {
