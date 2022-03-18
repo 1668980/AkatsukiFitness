@@ -2,49 +2,52 @@
 include 'db/conn.php';
 include 'includes/header.php';
 
-$idexercicecatalogue =2;
-$poids = 50;
-$repetitions=5;
-$sets=2;
-$duree=0;
-$dureePause=60;
-
-$exercice01 = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
-$exercice01 = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
-$exercice01 = new Exercice(0,$idexercicecatalogue,$poids,$repetitions,$sets,$duree,$dureePause);
-
-
-$exercicesList01 = array();
-array_push($exercicesList01,$exercice01);
-
-
-$exercicesList02;
 $idUser  = $_SESSION['userid'];
 
 
- 
-$name = "Par defaut01";
+$name = "Défaut 01 - Abdominaux";
 $difficulte=1;
-$type="Bas du corp";
-$workout01= new Entrainement(0,$idUser,$name,$difficulte,$type);
+$type="Haut du corps";
+$workout= new Entrainement(0,$idUser,$name,$difficulte,$type);
 
-$idWorkout01 = $crud->createNewEntrainement($workout01);
-$crud->addExercices($exercicesList01,$idWorkout01);
-$crud->addExercices($exercicesList01,$idWorkout01);
-$crud->addExercices($exercicesList01,$idWorkout01);
-$crud->addExercices($exercicesList01,$idWorkout01);
+$id_workout = $crud->createNewEntrainement($workout);
+$poids=0;
+$repetitions=15;
+$sets=3;
+$duree=15;
+$dureePause=15;
+
+$exercicesList = array();
+foreach( [3,4,5,7,12] as $exercice_id ) { 
+    $e = new Exercice(0,$exercice_id,$poids,$repetitions,$sets,$duree,$dureePause);
+    array_push($exercicesList,$e);
+}
+
+$crud->addExercices($exercicesList,$id_workout);
 
 
-$name = "Par defaut02";
+
+
+
+$name = "Défaut 02 - Jambes";
 $difficulte=1;
-$type="haut1 du corp";
-$workout02= new Entrainement(0,$idUser,$name,$difficulte,$type);
+$type="Bas du corps";
+$workout= new Entrainement(0,$idUser,$name,$difficulte,$type);
 
-$idWorkout02 = $crud->createNewEntrainement($workout02);
-$crud->addExercices($exercicesList01,$idWorkout02);
-$crud->addExercices($exercicesList01,$idWorkout02);
-$crud->addExercices($exercicesList01,$idWorkout02);
-$crud->addExercices($exercicesList01,$idWorkout02);
+$id_workout = $crud->createNewEntrainement($workout);
+$poids=0;
+$repetitions=15;
+$sets=3;
+$duree=15;
+$dureePause=15;
+
+$exercicesList = array();
+foreach( [463,944,441,1028,872] as $exercice_id ) { 
+    $e = new Exercice(0,$exercice_id,$poids,$repetitions,$sets,$duree,$dureePause);
+    array_push($exercicesList,$e);
+}
+
+$crud->addExercices($exercicesList,$id_workout);
 
 
 session_destroy();

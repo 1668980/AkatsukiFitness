@@ -53,6 +53,7 @@
 
 
 <body class="bg-dark">
+    <div id="wrapper">
 
     <?php include ('vue/nav.php'); ?>
     

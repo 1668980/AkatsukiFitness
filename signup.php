@@ -85,7 +85,6 @@ require_once('includes/header.php');
         <div class="mt-4">
             <a id="nexturl" class="btn btn-success" onclick="nexturl();">Continuer</a>
         </div>
-    </form>
 </div>
 
 <script type="text/javascript">

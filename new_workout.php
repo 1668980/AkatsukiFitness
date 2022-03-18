@@ -11,23 +11,28 @@ require_once 'db/Entrainement.php';
 require_once 'db/Exercice.php';
 require_once 'db/conn.php';
 ?>
-<!-- Corps de la page -->
-<!-- Container du formulaire d'incription-->
+
 <div id="containerSignup" class="container mt-5 pt-5">
 
     <div class="card align-items-center mb-5 card-perso bg-danger bg-opacity-75 bg-gradiant">
+<<<<<<< HEAD
         <p class="fs-1 fw-bold mt-5" id="titreF">Créer un entrainement </p>
         <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php" onsubmit='return validateExo()'>
+=======
+        <p class="fs-1 fw-bold mt-5" id="titreF">Créez un entrainement</p>
+        <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php">
+>>>>>>> 5c6463f6ac21985deb59ba3450a4b3c90f424edc
             <div style="display:block" id="div_trainingName">
                 <div class="row mb-3">
-                    <label for="trainingName" class="text-center">Veuillez nommer votre entrainement</label>
+                    <label for="trainingName" class="text-center">Nommez votre entrainement</label>
                     <input type="text" class="form-control mt-2" id="trainingName" name="trainingName" required>
                     <div class="valid-feedback">
                         Jolie nom!
                     </div>
                 </div>
                 <div class="row mb-3" id="btn_lister">
-                    <button type="button" class="btn btn-success mt-4 mb-4 align-items-center" onclick="afficherListeExo()">Confirmer</button>
+                    <button type="button" class="btn btn-success mt-2 align-items-center" onclick="afficherListeExo()">Suivant</button>
+                    <a href="workouts.php"class="btn btn-secondary mt-2 align-items-center">Annuler</a>
                 </div>
             </div>
             <div style="display:none" id="div_exercicesglob">
@@ -60,6 +65,12 @@ require_once 'db/conn.php';
                 </div>
                 <div class="container row m-2" id="div_exercices">
 
+                </div>
+
+                <div class=" row m-2 align-items-center">
+                    <button id="confirm_workout_creation" type="submit" class="btn btn-success mt-2 mb-2 align-items-center disabled">Confirmer</button>
+                    <small id="confirm_workout_creation_notice" class="text-center"> Veuillez ajouter au moins 1 exercice</small>
+                    <a href="workouts.php"class="btn btn-secondary mt-2 align-items-center">Annuler</a>
                 </div>
 
             </div>

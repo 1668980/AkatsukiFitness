@@ -21,6 +21,10 @@ $(() => {
     //     $('#contCompOrder').show()
     // })
 
+    // $( "#changeQ" ).change(function() {
+    //     location.reload();
+    //   });
+
 
     $('#btnTrain').on('click', () => {
         let href = this.href
@@ -103,6 +107,7 @@ updateQuantityCartForm = (idArticle, quantite) => {
 
         success: function (obj, textstatus) {
             updateProductQuantitySucess(obj, idArticle);
+          //  location.reload()
         }, error: function () {
             alert('failure');
         }
@@ -130,14 +135,21 @@ removeProductForm = (e, info) => {
 }
 updateProductQuantitySucess = (obj, idArticle) => {
     // add difference entre premimium et gratuit
-    let prix = obj["prix"];
-    let quantite = obj["quantite"];
-    let prixTotal = prix * quantite;
-    let rabais = prixTotal * 0.05;
-    let prixTotalMembre = prixTotal - rabais;
+    let prix = obj['articleUpdated']["prixArticle"];
+    let prixRabais = obj['articleUpdated']["prixRabaisArticle"];  
+
+    if(obj['isPremium']){
+        $("#CartProductPrice" + idArticle).html("<del>" + prix + "</del>$ " + prixRabais + "$");
+    }else{
+        $("#CartProductPrice" + idArticle).html(prix +"$");
+    }
+
+        $('#cartDiscountPrice').html(obj['rabaisTotal']);
+        $('#cartSousTotalPrice').html(obj['sousTotal']);
+        $('#cartTotalPrice').html(obj['PrixTotal']);
+   
 
 
-    $("#CartProductPrice" + idArticle).html("<del>" + prixTotal + "</del>$ " + prixTotalMembre + "$");
 
 }
 addProductSucess = (val, idProduct) => {
@@ -237,7 +249,10 @@ function addExo(idExo,nom,idCat) {
         rep += '<input type="text" id="nomExo" name="exo['+idExo+'][nom]" value="'+nom+'">';
         rep += '<input type="text" id="idcat" name="exo['+idExo+'][idcat]" value="'+idCat+'">';
     $('#donneesExo').append(rep);
-    alert("Exercice bien ajouter");
+    $("#confirm_workout_creation_notice").hide();
+
+    $("#confirm_workout_creation").removeClass('disabled');
+    
 }
 
 function creerTraining($){
@@ -250,7 +265,7 @@ function afficherListeExo(){
     let titreF = document.getElementById('titreF'); 
     let tName = document.getElementById('trainingName'); 
     if (tName.value.length != 0){
-        titreF.innerHTML = "Ajoutez des exercices!";
+        titreF.innerHTML = "Ajoutez des exercices";
         document.getElementById('div_trainingName').style = "display:none"; 
         lister();
     }
