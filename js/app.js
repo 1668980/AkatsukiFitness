@@ -249,7 +249,10 @@ function addExo(idExo,nom,idCat) {
         rep += '<input type="text" id="nomExo" name="exo['+idExo+'][nom]" value="'+nom+'">';
         rep += '<input type="text" id="idcat" name="exo['+idExo+'][idcat]" value="'+idCat+'">';
     $('#donneesExo').append(rep);
-    alert("Exercice bien ajouter");
+    $("#confirm_workout_creation_notice").hide();
+
+    $("#confirm_workout_creation").removeClass('disabled');
+    
 }
 
 function creerTraining($){
@@ -262,7 +265,7 @@ function afficherListeExo(){
     const titreF = document.getElementById('titreF'); 
     const tName = document.getElementById('trainingName'); 
     if (tName.value.length != 0){
-        titreF.innerHTML = "Ajoutez des exercices!";
+        titreF.innerHTML = "Ajoutez des exercices";
         document.getElementById('div_trainingName').style = "display:none"; 
         lister();
     }
