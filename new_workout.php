@@ -15,13 +15,8 @@ require_once 'db/conn.php';
 <div id="containerSignup" class="container mt-5 pt-5">
 
     <div class="card align-items-center mb-5 card-perso bg-danger bg-opacity-75 bg-gradiant">
-<<<<<<< HEAD
         <p class="fs-1 fw-bold mt-5" id="titreF">Créer un entrainement </p>
         <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php" onsubmit='return validateExo()'>
-=======
-        <p class="fs-1 fw-bold mt-5" id="titreF">Créez un entrainement</p>
-        <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php">
->>>>>>> 5c6463f6ac21985deb59ba3450a4b3c90f424edc
             <div style="display:block" id="div_trainingName">
                 <div class="row mb-3">
                     <label for="trainingName" class="text-center">Nommez votre entrainement</label>
