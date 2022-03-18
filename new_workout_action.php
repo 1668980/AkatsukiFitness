@@ -13,7 +13,7 @@ $result = $crud->createNewEntrainement($training);
 if (isset($_POST['exo'])) {
     $exoChoisis = $_POST['exo'];
     foreach ($exoChoisis as $exo) {
-        $ex = new Exercice(0, $exo['id'], 0, 0, 0, 0, 0);
+        $ex = new Exercice(0, $exo['id'], 0, 8, 4, 0, 15);
         $listeExo[] = $ex;
     }
     $result = $crud->addExercices($listeExo, $result);

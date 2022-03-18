@@ -152,7 +152,7 @@ if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::M
                                                     <h4 class="card-title text-center"> <span class="badge badge-pill bg-danger">' . $nom . '</h4>
                                                     </div>
                                                     <div class="row justify-content-end">
-                                                    <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#modalConf"></button>
+                                                    <button type="button" class="btn-close btn" aria-label="Close" data-bs-toggle="modal" data-bs-target="#modalConf">text</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -291,8 +291,11 @@ if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::M
         Voulez vous vraiment supprimer cet entrainement
       </div>
       <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+            <form action="supprimer.php" method="post">
+                <button type="submit" class="btn btn-primary">Oui</button>
+          </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-        <button type="button" class="btn btn-primary">Oui</button>
       </div>
     </div>
   </div>
