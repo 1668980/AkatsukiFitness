@@ -24,7 +24,7 @@ function listerVue(liste){
 		rep+= '<td>' + element.nom + '</td>';
 		rep+='<td>' + element.idcategorie +'</td> ';
 		rep+='<td> <img src="' + element.image + '" alt="..." class="img-thumbnail"> </img> </td>';
-		rep+='<td><button type="button" id="btnAjoutEx" class="btn btn-success" onclick="addExo(\''+element.idexercicecatalogue +'\',\''+element.nom +'\',\''+element.idcategorie +'\');" >Ajouter</button></td>';
+		rep+='<td><button type="button" id="btnAjoutEx'+element.idexercicecatalogue+'" class="btn btn-success" onclick="addExo(\''+element.idexercicecatalogue +'\',\''+element.nom +'\',\''+element.idcategorie +'\');" >Ajouter</button></td>';
 		rep+='</tr>';
 	});
 	rep+='</tbody></table>';
