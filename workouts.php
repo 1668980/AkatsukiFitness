@@ -98,15 +98,17 @@ if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::M
                             $rep = '';
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
+                                $nom = $training['nom'];
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress(' . $idEntrainement . ')">
                                             <div id="TCard' . $idEntrainement . '" class="card card-perso card-hover text-white border-0"  style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
                                                 <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
-                                                    <h4 class="card-title"> ' . $training['nom'] . '</h4>
-                                                    <ul>
-                                                    </ul>
+                                                    <div class="row">
+                                                    <h4 class="card-title text-center"> <span class="badge badge-pill bg-danger">' . $nom . '</h4>
+                                                    </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>';
                             }
@@ -142,12 +144,15 @@ if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::M
                                 $exo1 = array('Exercice1', 'Exercice2', 'Exercice3');
 
                                 // $duree = $training['duree'];
-                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;" onclick="workoutInProgress(' . $idEntrainement . ')" >
+                                $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px;">
                                             <div id="TCard' . $idEntrainement . '" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
                                                 <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
+                                                <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" onclick="workoutInProgress(' . $idEntrainement . ')" >
                                                     <div class="row">
                                                     <h4 class="card-title text-center"> <span class="badge badge-pill bg-danger">' . $nom . '</h4>
+                                                    </div>
+                                                    <div class="row justify-content-end">
+                                                    <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#modalConf"></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,19 +193,14 @@ if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::M
                             foreach ($listeEntrainement as $training) {
                                 $idEntrainement = $training['identrainement'];
                                 $nom = $training['nom'];
-                                $difficulte = $training['difficulte'];
-                                $type = $training['type'];
                                 // $duree = $training['duree'];
                                 $rep .= '<div class="col-md-4 mb-4" style="min-width:162px; min-height:185px; onclick="workoutInProgress(' . $idEntrainement . ')"> 
                                             <div id="TCard' . $idEntrainement . '" class="card card-perso card-hover text-white border-0" style="min-width:162px; min-height:185px;">
-                                                <img src="images/training_bg/bg_2.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
-                                                <div class="card-img-overlay bg-dark bg-opacity-25" >
-                                                    <h4 class="card-title"> ' . $nom . '</h4>
-                                                    <ul>
-                                                        <li>' . $type . '</li>
-                                                        <li>' . /*.$duree.*/ ' minutes </li>
-                                                        <li>' . $difficulte . '</li>
-                                                    </ul>
+                                                <img src="images/training_bg/bg_1.jpg" class="card-img" alt="..." style="min-width:162px; min-height:185px;">
+                                                <div class="card-img-overlay bg-dark bg-opacity-25 justify-content-center" >
+                                                    <div class="row">
+                                                    <h4 class="card-title text-center"> <span class="badge badge-pill bg-danger">' . $nom . '</h4>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>';
@@ -280,7 +280,23 @@ if ($membership_details['membership'] == 'free' && $entrainemnt_count >= Crud::M
     </div>
 </div>
 
-
+<div class="modal fade" id="modalConf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Supprimer Entrainement</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Voulez vous vraiment supprimer cet entrainement
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+        <button type="button" class="btn btn-primary">Oui</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script>
