@@ -64,17 +64,13 @@ $idEntrainementChoisi = $_GET['id_training'];
         $crud->setEntrainementStatusComplete($idEntrainementChoisi);
         //echo "this button is selected";
     }
-    // if(isset($_POST['btn3'])){
-    //     $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
-    //     echo "this button is selected";
-    // }
     if(isset($_POST['btn4'])){
         $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
         //echo "this button is selected";
         $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
         foreach($exercice as $training){
             $status = $training['status'];
-            $status = $crud->setExerciceStatusIncomplete($idEntrainementChoisi);
+            $status = $crud->setExerciceStatusIncomplete($training['idexercice']);
         }
     }
 
@@ -86,7 +82,6 @@ $entrainement = $crud->getEntrainementByIdEntrainement($idEntrainementChoisi);
 
 $exercice2 = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
 
-
 $text = '';
 foreach($entrainement as $training){
     $idEntrainement = $training['identrainement'];
@@ -96,17 +91,15 @@ foreach($entrainement as $training){
     $type = $training['type'];
 
     $text .= '
-                <div class="card mb-3 card-perso d-flex p-2 bd-highlight bg-highlight" style="margin-top:60px">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <h1 class="card-title text-center mx-auto w-100"> '.$nom .' </h1>
-                                    
+            <div class="card mb-3 card-perso d-flex p-2 bd-highlight bg-highlight" style="margin-top:60px">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <h1 class="card-title text-center mx-auto w-100"> '.$nom .' </h1>
 
                 <div class="stopwatch">
                 <div class="circle">
                     <span class="time" id="display">00:00:00</span>
                 </div>
-
                     <div class="controls">
                         <button class="buttonPlay">
                             <img id="playButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg"/>
@@ -120,24 +113,21 @@ foreach($entrainement as $training){
                         </div>
                     </div>
                 </div>
+    ';
+}
+echo $text;
 
-                
-                                ';
-                            }
-
-                                echo $text;
-
-                                $dureeEntrainement = $crud->getEntrainementDuration($idEntrainementChoisi);
+$dureeEntrainement = $crud->getEntrainementDuration($idEntrainementChoisi);
                                 
-                                $text2 = '';
-                                $text2 .='<h6 class="card-subtitle mb-2 ">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
+$text2 = '';
+$text2 .='<h6 class="card-subtitle mb-2 ">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
                             
-                    ';
-                    if(isset($_POST['commencerButton'])){
-                        $crud->setEntrainementStatusInProgress($idEntrainementChoisi);
-                        //echo "this button is selected";
-                    }
-            echo $text2;
+';
+if(isset($_POST['commencerButton'])){
+    $crud->setEntrainementStatusInProgress($idEntrainementChoisi);
+    //echo "this button is selected";
+}
+echo $text2;
 ?>
 
 
@@ -182,11 +172,12 @@ $details2 = '
 ?>
 
 </form>
-    <button class="btn-primary justify-content-end" name="btn3" id="btn3" onclick="workoutPause();" >
+<form action="workouts.php">
+    <button class="btn-primary justify-content-end" name="btn3" id="btn3">
         Pause
     </button>
+</form>
 </div>
-        <!-- <button class="btn-primary">Modifier</button> -->
 
 <?php
 foreach($exercice as $training){
@@ -201,8 +192,6 @@ foreach($exercice as $training){
     $image = $training['image'];
 
     $details .= '
-
-    
                     <div class="col-md-4">
                         <div class="card mb-3 card-perso d-flex p-2 bd-highlight" style="margin-top:15px">
                             <h4 class="card-header">
@@ -214,9 +203,8 @@ foreach($exercice as $training){
                             </h4>
                             <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .' sec. </br> Poids : '.$poids .' lbs.  <img src="'.$image.' "alt="..." class="card-img-bottom"> </img> </div>
                             <div class="card-footer">
-                            
-                            
-                            <form action="update_exercice.php" method="POST">
+                        
+                        <form action="update_exercice.php" method="POST">
                            
                            <input hidden name="idExercice" value="'. $idExercice.'">
                            <input hidden name="idEntrainement" value="'.$idEntrainementChoisi.'">
@@ -225,7 +213,7 @@ foreach($exercice as $training){
                            <input hidden name="sets" value="'. $sets.'">
                            <input hidden name="duree" value="'. $duree.'">
                            <input hidden name="dureepause" value="'. $dureepause.'">
-                            <button typde="submit">Modifier</button>
+                           <button type="submit">Modifier</button>
                             
                             </form>';
                                 if($statusExercice==1){
@@ -258,19 +246,13 @@ foreach($exercice as $training){
 }
 echo $details;
 ?>
-            <div class="card-group container-fluid">
-            <div class="row">
-            <div class="ChangeButtonC">
-                            <label>
-
-                           
-                                
-                                
-                                </div>
-                                
-                                
-                            </label>
-                            </form>
+<div class="card-group container-fluid">
+    <div class="row">
+        <div class="ChangeButtonC">
+            <label>
+                </div>    
+                    </label>
+                        </form>
                             </div>
                             </div>
                             </div>
@@ -282,16 +264,15 @@ echo $details;
                                 </button>
                                     </label>
                             </div>
-                            <form method="post">
-                                <form action="workouts.php" >
-                                    <div class="wrapper">
-                                            <label>
-                                        <button class="btn-danger" name="btn4" id="btn4">
-                                            
-                                            <span class="seatButton"> Abandonner exercice</span>
-                                        </button>
-                                </form>
-                            </form>
+                    <form method="post">
+                        <form action="workouts.php" >
+                        <div class="wrapper">
+                    <label>
+                    <button class="btn-danger" name="btn4" id="btn4">
+                        <span class="seatButton"> Abandonner exercice</span>
+                    </button>
+                </form>
+            </form>
         </div>
     </div>
     
@@ -302,5 +283,4 @@ echo $details;
 
 <?php
 require_once('includes/footer.php');
-include('includes/modal_update_exercice.php')
 ?>
