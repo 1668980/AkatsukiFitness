@@ -32,14 +32,19 @@ function rechercher(){
 	global $tabRes, $exercices, $crud;
 	$rctitre = $_POST['rctext'];
 	$tabRes['action'] = "rechercher";
+	$requete = "SELECT * FROM exercicecatalogue WHERE LOWER(nom) LIKE '%$rctitre%' limit 25 ";
 	try {
+		$unModele = new exercicesModele($requete, array());
+		$stmt = $unModele->executer();
 		$tabRes['listeRechercher'] = array();
-		$tabRes['listeRechercher'] = $exercices->getExerciceByTitre($rctitre);
-		// foreach($tabRes['listeRechercher'] as $ex){
-		// 	$cat = $crud->getNameOfCat($ex->idcategorie);
-		// 	$ex->idcategorie = $cat;
-		// 	$tabRes['listeRechercher'][] = $ex;
-		// }
+		while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+			$tabRes['listeRechercher'][] = $ligne;
+		}
+		foreach($tabRes['listeRechercher'] as $ex){
+			$cat = $crud->getNameOfCat($ex->idcategorie);
+			$ex->idcategorie = $cat;
+			$tabRes['listeRechercher'][] = $ex;
+		}
 	} catch (Exception $e) {
 	} finally {
 	}
