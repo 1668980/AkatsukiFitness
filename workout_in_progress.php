@@ -7,11 +7,17 @@ require_once('includes/auth_check.php')
 <style>
 .wrapper {
     text-align: center;
+    position: relative;
 }
 .button {
+    margin: 0;
     position: absolute;
     top: 50%;
+    left: 70% 
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
+
 
 .buttonPlay, .buttonReset {
   cursor: pointer;
@@ -51,13 +57,8 @@ foreach($entrainement as $training){
                 <div class="card mb-3 card-perso d-flex p-2 bd-highlight" style="margin-top:60px">
                             <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <h2 class="card-title text-center mx-auto w-100"> '.$nom .' </h2>
-                                    <form method="post">
-                                        <ul>
-                                            <button class="btn-primary">Modifier</button>
-                                            <button class="btn-primary" name="commencerButton">Commencer</button>
-                                        </ul>
-                                    </form>
+                                <h1 class="card-title text-center mx-auto w-100"> '.$nom .' </h1>
+                                    
 
                 <div class="stopwatch">
                 <div class="circle">
@@ -70,13 +71,15 @@ foreach($entrainement as $training){
 
                             <img  id="pauseButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg"/>
                         </button>
+                        </br>
                         <button class="buttonReset">
                             <img id="resetButton" src="https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg"/>
                         </button>
                         </div>
                     </div>
-
                 </div>
+
+                
                                 ';
                             }
 
@@ -126,9 +129,32 @@ $details2 = '
                 .$count.'%
             </div>
         </div>
-    </div>  ';
-    echo $details2;
 
+        
+    </div>  
+    <form method="post">
+        <ul>
+            <button class="btn-primary" name="commencerButton">Commencer l\'exercice</button>
+
+            
+           
+    ';
+    echo $details2;
+?>
+</br>
+        <div class="ChangeButtonC">
+            <label>
+                <button class="btn-primary" name="btn3" id="btn3" onclick="document.getElementById('btn3').style.background='blue'" href="workouts.php">
+                    <span class="seatButton"> Pause </span>
+                </button>
+            </label>
+        </div>
+
+        <!-- <button class="btn-primary">Modifier</button> -->
+        </ul>
+    </form>
+
+<?php
 foreach($exercice as $training){
     $idExercice = $training['idexercice'];
     $statusExercice = $training['status'];
@@ -144,7 +170,7 @@ foreach($exercice as $training){
 
     
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card mb-3 card-perso d-flex p-2 bd-highlight" style="margin-top:15px">
                             <h4 class="card-header">
                                 <div class="ChangeButtonC">
                                     <label>
@@ -152,7 +178,7 @@ foreach($exercice as $training){
                                     </label>
                                 </div>
                             </h4>
-                            <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .' sec. </br> Poids : '.$poids .' lbs.  <img src="'.$image.' "alt="..." class="img-thumbnail"> </img> </div>
+                            <div class="card-body">Sets : '.$sets .' <br/> Répétitions : '.$reps .' </br> Repos entre sets : '.$dureepause .' sec. </br> Poids : '.$poids .' lbs.  <img src="'.$image.' "alt="..." class="card-img-bottom"> </img> </div>
                             <div class="card-footer"> ';
                                 if($statusExercice==1){
 
@@ -184,19 +210,7 @@ foreach($exercice as $training){
 
                 
 }
-//TODO: Ameliorer avec getExerciceStatus et fix le bug qu'il faut cliquer 2 fois sur le bouton.
-// if(isset($_POST['btn'.$idExercice.'0']) || isset($_POST['btn'.$idExercice.'1'])){
-//     if($statusExercice==0){     
-//         $crud->setExerciceStatusComplete($idExercice);
-//     }else{
-//         $crud->setExerciceStatusIncomplete($idExercice);
-        
-//     }
 
-//}
-// if($statusExercice == 1){
-// echo "statusExercice 1 ";
-// }
 echo $details;
 
 
@@ -232,20 +246,9 @@ echo $details;
                             
                                 ?>
                                 
-                                <form method="post">
-                                <button class="btn-success" name="btn2" id="btn2" onclick="document.getElementById('btn2').style.background='green'">
-                                       
-                                    <span class="seatButton"> Fini </span>
-                                </button>
-                                    </label>
+                                
                                 </div>
-                                <div class="ChangeButtonC">
-                                    <label>
-                                <button class="btn-primary" name="btn3" id="btn3" onclick="document.getElementById('btn3').style.background='blue'" href="/workouts.php">
-                                    <span class="seatButton"> Pause </span>
-                                </button>
-                                    </label>
-                                </div>
+                                
                                 
                             </label>
                             </form>
@@ -254,13 +257,23 @@ echo $details;
                             </div>
                             <form method="post">
                                 <div class="wrapper">
-                                        <label>
-                                    <button class="btn-danger" name="btn4" id="btn4" onclick="document.getElementById('btn4').style.background='red'">
-                                        
-                                        <span class="seatButton"> Abandonner exercice</span>
-                                    </button>
-                                </div>
+                                <button class="btn-success" name="btn2" id="btn2" onclick="document.getElementById('btn2').style.background='green'">
+                                       
+                                    <span class="seatButton" > Finir l'exercice </span>
+                                </button>
+                                    </label>
+                            </div>
+                            <form method="post">
+                                <form action="workouts.php" >
+                                    <div class="wrapper">
+                                            <label>
+                                        <button class="btn-danger" name="btn4" id="btn4">
+                                            
+                                            <span class="seatButton"> Abandonner exercice</span>
+                                        </button>
+                                </form>
                             </form>
+                                </div>
     </div>
     
 </div>
