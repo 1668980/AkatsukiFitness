@@ -59,6 +59,10 @@ ul {
     color: white;
 }
 
+#contUpdateEx {
+    max-width: 300px;
+}
+
 #btnLogin {
     width: 100%;
 }
