@@ -247,8 +247,8 @@ function creerTraining($){
 }
 
 function afficherListeExo(){
-    const titreF = document.getElementById('titreF'); 
-    const tName = document.getElementById('trainingName'); 
+    let titreF = document.getElementById('titreF'); 
+    let tName = document.getElementById('trainingName'); 
     if (tName.value.length != 0){
         titreF.innerHTML = "Ajoutez des exercices!";
         document.getElementById('div_trainingName').style = "display:none"; 
@@ -256,6 +256,17 @@ function afficherListeExo(){
     }
     else {
         alert("Veuillez svp entrer un nom d'entrainement");
+    }
+}
+
+function validateExo(){
+    let exo = document.getElementById('donneesExo');
+    if (exo.innerHTML == ""){
+        alert("Veuillez svp ajouter au moins 1 exercice");
+        return false;
+    }
+    else {
+        return true;
     }
 }
 

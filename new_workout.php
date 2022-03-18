@@ -17,7 +17,7 @@ require_once 'db/conn.php';
 
     <div class="card align-items-center mb-5 card-perso bg-danger bg-opacity-75 bg-gradiant">
         <p class="fs-1 fw-bold mt-5" id="titreF">Créer un entrainement </p>
-        <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php">
+        <form class="w-75 mt-2 mb-4 needs-validation " method="POST" action="new_workout_action.php" onsubmit='return validateExo()'>
             <div style="display:block" id="div_trainingName">
                 <div class="row mb-3">
                     <label for="trainingName" class="text-center">Veuillez nommer votre entrainement</label>
@@ -34,14 +34,36 @@ require_once 'db/conn.php';
                 <div class=" row m-2 align-items-center">
                     <button type="submit" class="btn btn-success mt-4 mb-4 align-items-center">Confirmer</button>
                 </div>
+                <div class=" row m-2 align-items-center">
+                    <div class="col-sm-4">
+                    <div class="dropdown">
+                        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="max-width:80px">
+                            Trier
+                        </a>
+                        <?php
+                        $listeCat = $crud->ListExercicesCategories();
+                        $rep = '<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                        foreach ($listeCat as $cat) {
+                            $rep .= '<li><a class="dropdown-item" onclick="listerParCat(' . $cat['idcategorie'] . ')">' . $cat['nom'] . '</a></li>';
+                        }
+                        echo $rep;
+                        ?>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control " id="rcText">
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success" onclick="rechercher(document.getElementById('rcText').value)">Rechercher</button>
+                    </div>
+                </div>
                 <div class="container row m-2" id="div_exercices">
 
                 </div>
 
             </div>
-            <div id="donneesExo" class="form group col-12 mt-3 d-none">
-
-            </div>
+            <div id="donneesExo" class="form group col-12 mt-3 d-none"></div>
         </form>
     </div>
 

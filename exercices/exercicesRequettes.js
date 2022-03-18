@@ -60,10 +60,10 @@ function getGenres() {
 }
 
 
-function rechercher() {
-	var leForm = document.getElementById('formRechercher');
-	var formexercice = new FormData(leForm);
+function rechercher(rctext) {
+	var formexercice = new FormData();
 	formexercice.append('action', 'rechercher');
+	formexercice.append('rctext', rctext);
 	$.ajax({
 		type: 'POST',
 		url: 'exercices/exercicesControleur.php',

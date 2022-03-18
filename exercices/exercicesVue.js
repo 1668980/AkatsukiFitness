@@ -6,10 +6,10 @@ var exercicesVue=function(reponse){
 			listerVue(reponse.listeExercices);
 		break;
 		case "listerParGenre" :
-			listerVue(reponse.listeExercicesParGenre);
+			listerVue(reponse.listeExercices);
 		break;
 		case "rechercher":
-			lister(reponse.listeRechercher);
+			listerVue(reponse.listeRechercher);
 		break;
 	}
 }

@@ -57,8 +57,8 @@ abstract class baseDAO{
 		$stmt = $this->__connection->prepare($sql);
 		$stmt->bind_param("i", $value);
 		$stmt->execute();
-		$results1 = $stmt->get_result();
-		while ($result = mysqli_fetch_array($results1)) {
+		$results = $stmt->get_result();
+		while ($result = mysqli_fetch_array($results)) {
 			$rows[] = $result;
 		}
 		return $rows;

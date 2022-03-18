@@ -29,12 +29,17 @@ function lister(){
 
 
 function rechercher(){
-	global $tabRes, $exercices;
+	global $tabRes, $exercices, $crud;
 	$rctitre = $_POST['rctext'];
 	$tabRes['action'] = "rechercher";
 	try {
 		$tabRes['listeRechercher'] = array();
-		$tabRes['listeRechercher'] = $exercices->getexerciceByTitre($rctitre);
+		$tabRes['listeRechercher'] = $exercices->getExerciceByTitre($rctitre);
+		// foreach($tabRes['listeRechercher'] as $ex){
+		// 	$cat = $crud->getNameOfCat($ex->idcategorie);
+		// 	$ex->idcategorie = $cat;
+		// 	$tabRes['listeRechercher'][] = $ex;
+		// }
 	} catch (Exception $e) {
 	} finally {
 	}
@@ -46,12 +51,12 @@ function listerParGenre()
 	$genre = $_POST['genre'];
 	$tabRes['action'] = "listerParGenre";
 	try {
-		$tabRes['listeExercicesPargenre'] = array();
-		$tabRes['listeExercicesPargenre'] = $exercices->getExoByCat($genre);
-		foreach($tabRes['listeExercicesPargenre'] as $ex){
+		$tabRes['listeExercices'] = array();
+		$tabRes['listeExercices'] = $exercices->getExoByCat($genre);
+		foreach($tabRes['listeExercices'] as $ex){
 			$cat = $crud->getNameOfCat($ex->idcategorie);
 			$ex->idcategorie = $cat;
-			$tabRes['listeExercicesPargenre'][] = $ex;
+			$tabRes['listeExercices'][] = $ex;
 		}
 	} catch (Exception $e) {
 	} finally {
