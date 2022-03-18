@@ -302,5 +302,4 @@ echo $details;
 
 <?php
 require_once('includes/footer.php');
-include('includes/modal_update_exercice.php')
 ?>
