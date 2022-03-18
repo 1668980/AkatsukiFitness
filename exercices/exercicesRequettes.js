@@ -71,7 +71,8 @@ function rechercher(rctext) {
 		contentType: false,
 		processData: false,
 		dataType: 'json',
-		success: function (reponse) {//alert(reponse);
+		success: function (reponse) {
+			alert(reponse.listeRechercher);
 			exercicesVue(reponse);
 		},
 		fail: function (err) {
