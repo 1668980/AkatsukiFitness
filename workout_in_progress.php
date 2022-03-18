@@ -172,9 +172,11 @@ $details2 = '
 ?>
 
 </form>
-    <button class="btn-primary justify-content-end" name="btn3" id="btn3" onclick="workoutPause();" >
+<form action="workouts.php">
+    <button class="btn-primary justify-content-end" name="btn3" id="btn3">
         Pause
     </button>
+</form>
 </div>
 
 <?php
