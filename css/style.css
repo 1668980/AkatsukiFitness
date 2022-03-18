@@ -262,6 +262,16 @@ p.text {
     color:#dc3545;
 }
 
+#wrapper{
+    min-height: 100%;
+    margin-bottom: -200px;
+    padding-bottom: 200px;
+}
+
+html, body {
+    height: 100%;
+}
+
 footer{
    
     bottom: 0;
@@ -273,6 +283,9 @@ footer{
     background-color: #000000;
     min-height: 200px;
     color: #ffffff;
+    width:100%;
+    bottom:0;
+    left:0;
 }
 .footer-main small{
     color: #949494;

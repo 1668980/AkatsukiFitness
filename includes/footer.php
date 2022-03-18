@@ -1,4 +1,5 @@
-        <!-- login modal -->
+</div>
+       <!-- login modal -->
         <?php include('includes/modal_login.php') ?>
 
         <?php
@@ -38,6 +39,8 @@
             <hr>
             <p class="text-center"><small>Copyright &copy; <?echo date("Y") ?> Akatsuki Fitness</small></p>
         </footer>
+
+         
     </body>
 
 </html>
