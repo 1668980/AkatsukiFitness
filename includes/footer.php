@@ -26,7 +26,7 @@
                         <li><a href="shop_index.php">Boutique</a></li>
                      
                         <li><a href="mailto:info@akatsukifitness.com">Nous contacter</a></li>
-                        <li><a href="#">Termes et conditions</a></li>
+                        <li><a href="terms_of_use.php">Termes et conditions</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">

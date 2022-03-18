@@ -59,6 +59,10 @@ ul {
     color: white;
 }
 
+#contUpdateEx {
+    max-width: 300px;
+}
+
 #btnLogin {
     width: 100%;
 }
@@ -469,4 +473,22 @@ footer{
       font-size: 40px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
+  }
+
+  .terms-of-use{
+      padding: 60px 80px;
+      color: #fff;
+  }
+
+  .terms-of-use h1{
+    color: #dc3545;
+
+  }
+  .terms-of-use h5{
+    color: #dc3545;
+  }
+
+  .terms-of-use ul{
+    list-style-type: square;
+    padding-left: 15px;
   }

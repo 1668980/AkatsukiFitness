@@ -9,10 +9,10 @@ $chartset = 'utf8mb4';
 // remote database connection (online)
 // Port number: 3306
 
-// $host = 'sql5.freesqldatabase.com';
-// $db = 'sql5478501';
-// $user = 'sql5478501';
-// $pass = 'ibpQSZZv3T';
+// $host = 'sql5.freemysqlhosting.net';
+// $db = 'sql5479981';
+// $user = 'sql5479981';
+// $pass = 'T2WuDe3Ibc';
 // $chartset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;chartset=$chartset";
