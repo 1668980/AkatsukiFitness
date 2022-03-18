@@ -22,7 +22,7 @@ button{
 }
 
 .flex-parent {
-  display: flex;
+    display: flex;
 }
 
 .jc-center {
@@ -49,8 +49,36 @@ button.margin-right {
 #pauseButton {
   display: none;
 }
+
+h6{
+    color:black;
+}
 </style>
 <main>
+<?php 
+
+$idEntrainementChoisi = $_GET['id_training'];
+
+
+    if(isset($_POST['btn2'])){
+        $crud->setEntrainementStatusComplete($idEntrainementChoisi);
+        //echo "this button is selected";
+    }
+    // if(isset($_POST['btn3'])){
+    //     $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
+    //     echo "this button is selected";
+    // }
+    if(isset($_POST['btn4'])){
+        $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
+        //echo "this button is selected";
+        $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
+        foreach($exercice as $training){
+            $status = $training['status'];
+            $status = $crud->setExerciceStatusIncomplete($idEntrainementChoisi);
+        }
+    }
+
+?>
 <?php
 
 $idEntrainementChoisi = $_GET['id_training'];
@@ -68,10 +96,10 @@ foreach($entrainement as $training){
     $type = $training['type'];
 
     $text .= '
-                <div class="card mb-3 card-perso d-flex p-2 bd-highlight" style="margin-top:60px">
-                            <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <h1 class="card-title text-center mx-auto w-100"> '.$nom .' </h1>
+                <div class="card mb-3 card-perso d-flex p-2 bd-highlight bg-highlight" style="margin-top:60px">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h1 class="card-title text-center mx-auto w-100"> '.$nom .' </h1>
                                     
 
                 <div class="stopwatch">
@@ -102,7 +130,7 @@ foreach($entrainement as $training){
                                 $dureeEntrainement = $crud->getEntrainementDuration($idEntrainementChoisi);
                                 
                                 $text2 = '';
-                                $text2 .='<h6 class="card-subtitle mb-2 text-muted">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
+                                $text2 .='<h6 class="card-subtitle mb-2 ">Durée de lentrainement: ' . $dureeEntrainement .  ' minute(s)<br /> Muscles visés: '.$type .' </br> Difficulté: '.$difficulte .' </h6>
                             
                     ';
                     if(isset($_POST['commencerButton'])){
@@ -136,36 +164,29 @@ $count = number_format($count2, 0);
 
 $details2 = '
 
-        </div>  
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="'.$nbExerciceComplete.'
-                aria-valuemin="0" aria-valuemax="'.$nbExercice.'" style="width:'.$count.'%">
-                '
-                .$count.'%
-            </div>
+</div>  
+    <div class="progress">
+        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="'.$nbExerciceComplete.'
+            aria-valuemin="0" aria-valuemax="'.$nbExercice.'" style="width:'.$count.'%">
+            '
+            .$count.'%
         </div>
-
-        
-    </div>  
-    <form method="post">
-    
+    </div>    
+</div>  
+<form method="post">
     <div class="flex-parent jc-center">
-            <button class="btn-primary" name="commencerButton">Commencer l\'exercice</button>
+    <button class="btn-success text-center mx-auto w-100" name="commencerButton">Commencer l\'exercice</button>
 
-            
-           
     ';
     echo $details2;
 ?>
-</br>
-        <div class="ChangeButtonC">
-                <button class="btn-primary" name="btn3" id="btn3" onclick=workoutPause(); href="workouts.php">
-                    <span class="seatButton"> Pause </span>
-                </button>
-        </div>
+
+</form>
+    <button class="btn-primary justify-content-end" name="btn3" id="btn3" onclick="workoutPause();" >
+        Pause
+    </button>
 </div>
         <!-- <button class="btn-primary">Modifier</button> -->
-    </form>
 
 <?php
 foreach($exercice as $training){
@@ -234,44 +255,15 @@ foreach($exercice as $training){
                         </div>
                 </div>
                 ';
-
-                
 }
-
 echo $details;
-
-
 ?>
-
             <div class="card-group container-fluid">
             <div class="row">
             <div class="ChangeButtonC">
                             <label>
 
-                            <?php 
-
-                            $idEntrainementChoisi = $_GET['id_training'];
-
-                            
-                                if(isset($_POST['btn2'])){
-                                    $crud->setEntrainementStatusComplete($idEntrainementChoisi);
-                                    //echo "this button is selected";
-                                }
-                                if(isset($_POST['btn3'])){
-                                    $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
-                                    //echo "this button is selected";
-                                }
-                                if(isset($_POST['btn4'])){
-                                    $crud->setEntrainementStatusIncomplete($idEntrainementChoisi);
-                                    //echo "this button is selected";
-                                    $exercice = $crud->getExercicesFromEntrainement($idEntrainementChoisi);
-                                    foreach($exercice as $training){
-                                        $status = $training['status'];
-                                    }
-                                    $status = 0;
-                                }
-                            
-                                ?>
+                           
                                 
                                 
                                 </div>
@@ -300,7 +292,7 @@ echo $details;
                                         </button>
                                 </form>
                             </form>
-                                </div>
+        </div>
     </div>
     
 </div>
