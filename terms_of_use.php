@@ -12,7 +12,7 @@ require_once('includes/header.php');
     <h1>Termes et conditions</h1>
     <h5>Mentions obligatoires</h5>
 
-    Le site Internet AkatasukiFitness.ca est un service de : <br />
+    Le site Internet akatsukifitness.herokuapp.com est un service de : <br />
     Akatsuki Fitness inc.<br />
     1379A Notre-Dame, Repentigny, Québec, Canada<br />
     Numéro de TPS: 801757485 TVQ:1219246184<br />
@@ -21,7 +21,7 @@ require_once('includes/header.php');
     <br /><br />
 
     <p>
-        Les présentes conditions générales d’utilisation ont pour objet l’encadrement juridique des modalités de mise à disposition des services du site [akatsukifitness.ca] et leur utilisation par « l’Utilisateur ».
+        Les présentes conditions générales d’utilisation ont pour objet l’encadrement juridique des modalités de mise à disposition des services du site [akatsukifitness.herokuapp.com] et leur utilisation par « l’Utilisateur ».
     </p>
 
     <p>
