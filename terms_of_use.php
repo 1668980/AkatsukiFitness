@@ -42,7 +42,7 @@ require_once('includes/header.php');
     </p>
 
     <p>
-        Le site AkatsukiFitness.ca est par principe accessible aux utilisateurs 24/24h, 7/7j, sauf interruption, programmée ou non, pour les besoins de sa maintenance ou cas de force majeure. En cas d’impossibilité d’accès au service, EspaceFitness.ca s’engage à faire son maximum afin de rétablir l’accès au service et s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention. N’étant soumis qu’à une obligation de moyen, EspaceFitness.ca ne saurait être tenu pour responsable de tout dommage, quelle qu’en soit la nature, résultant d’une indisponibilité du service.
+        Le site akatsukifitness.herokuapp.com est par principe accessible aux utilisateurs 24/24h, 7/7j, sauf interruption, programmée ou non, pour les besoins de sa maintenance ou cas de force majeure. En cas d’impossibilité d’accès au service, EspaceFitness.ca s’engage à faire son maximum afin de rétablir l’accès au service et s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention. N’étant soumis qu’à une obligation de moyen, EspaceFitness.ca ne saurait être tenu pour responsable de tout dommage, quelle qu’en soit la nature, résultant d’une indisponibilité du service.
     </p>
 
     <p>
@@ -61,7 +61,7 @@ require_once('includes/header.php');
     </p>
 
     <h5>Responsabilité</h5>
-    <p>AkatsukiFitness.ca s’efforce de fournir des informations aussi précises que possible et les sources des informations diffusées sur le site sont réputées fiables. Néanmoins, le site ne pourra être tenu responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations. Les informations données sur le site le sont à titre purement informatif. Ainsi, l’Utilisateur assume seul l’entière responsabilité de l’utilisation des informations et contenus du présent site.
+    <p>akatsukifitness.herokuapp.com s’efforce de fournir des informations aussi précises que possible et les sources des informations diffusées sur le site sont réputées fiables. Néanmoins, le site ne pourra être tenu responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations. Les informations données sur le site le sont à titre purement informatif. Ainsi, l’Utilisateur assume seul l’entière responsabilité de l’utilisation des informations et contenus du présent site.
     </p>
 
 </div>
