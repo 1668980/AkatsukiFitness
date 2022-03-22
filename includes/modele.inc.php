@@ -11,7 +11,7 @@ function __construct($requete=null,$params=null){
 }
 	
 function obtenirConnexion(){
-	$maConnexion = new Connexion("localhost", "root", "", "akatsuki_db");
+	$maConnexion = new Connexion("sql5.freemysqlhosting.net", "sql5479981", "T2WuDe3Ibc", "sql5479981");
 	$maConnexion->connecter();
 	return $maConnexion->getConnexion();
 }

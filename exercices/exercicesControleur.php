@@ -1,10 +1,10 @@
 <?php 
 
 $tabRes = array();
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_HOST', 'localhost');
-define('DB_DATABASE', 'akatsuki_db');
+define('DB_USER', 'sql5479981');
+define('DB_PASS', 'T2WuDe3Ibc');
+define('DB_HOST', 'sql5.freemysqlhosting.net');
+define('DB_DATABASE', 'sql5479981');
 require_once("../includes/modele.inc.php");
 require_once("../exercices/exercices_DAO.php");
 require_once("../db/conn.php");
