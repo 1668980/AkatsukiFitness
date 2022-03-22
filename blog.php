@@ -16,12 +16,12 @@ function getBlogCard($id, $title, $categorie, $description, $lienImage, $imagePr
             </div>
             <div class="blogcard-body">
               <span class="blogtag" style="background-color:'.$color.';">'.utf8_encode($categorie).'</span>
-              <h4>'. ($title).'</h4>
-              <p>'.($description).'</p>
+              <h4>'. utf8_encode($title).'</h4>
+              <p>'. utf8_encode($description).'</p>
               <div class="bloguser">
                 <img src="'.$imageProfile.'" alt="user" />
                 <div class="bloguser-info">
-                  <h5>'. ($nomProfile).'</h5>
+                  <h5>'. utf8_encode($nomProfile).'</h5>
                   <small>'.$datePosted.'</small>
                 </div>
               </div>
