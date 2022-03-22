@@ -40,7 +40,7 @@ if(isset($_GET['idcat'])){
         <div class="filterContainer">
             <?php foreach($categorieProduitList as $cat) {?>
             <a class="btn btn-danger btn-cat-shop me-2 mb-2"
-                href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo $cat['nom']?>
+                href="shop_index.php?idcat=<?php echo $cat['idcategorie']?>#search-result "><?php echo utf8_encode($cat['nom'])?>
             </a>
             <?php }?>
             <a class="btn btn-outline-light bg-gradient  btn-cat-shop me-2 mb-2" href="shop_index.php"><i
@@ -75,11 +75,11 @@ if(isset($_GET['idcat'])){
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h4 class="fw-bolder "><?php echo $products['nom'] ?></h4>
-                            <h6 class="fw-bolder"><?php echo $products['marque'] ?></h6>
+                            <h4 class="fw-bolder "><?php echo utf8_encode($products['nom']) ?></h4>
+                            <h6 class="fw-bolder"><?php echo utf8_encode($products['marque']) ?></h6>
                             <br>
                             <!-- Product price-->
-                            <p class=""><?php echo $products['info'] ?>
+                            <p class=""><?php echo utf8_encode($products['info']) ?>
                                 <br>
                                 <b><?php echo $products['prix'] ?>$</b>
                             </p>
